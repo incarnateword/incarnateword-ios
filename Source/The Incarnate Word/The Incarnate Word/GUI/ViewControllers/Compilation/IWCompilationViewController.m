@@ -21,11 +21,11 @@
     IWCompilationWebService             *_compilationWebService;
     IWCompilationStructure              *_compilation;
     
-    CGFloat                             _fTopViewHeight;
+//    CGFloat                             _fTopViewHeight;
     
     BOOL                                _bShouldFlipHorizontally;
     NSTimer                             *_timerLoading;
-    UITapGestureRecognizer              *_tapGestureOnDummyScrollView;
+//    UITapGestureRecognizer              *_tapGestureOnDummyScrollView;
 
 }
 
@@ -38,7 +38,7 @@
 @property (weak, nonatomic) IBOutlet UIView                     *viewTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint         *constraintTopViewHeight;
 @property (weak, nonatomic) IBOutlet UILabel                    *lblTop;
-@property (weak, nonatomic) IBOutlet UIScrollView               *scrollViewTop;
+//@property (weak, nonatomic) IBOutlet UIScrollView               *scrollViewTop;
 
 -(void)setupUI;
 -(void)getData;
@@ -70,12 +70,13 @@
     _tableViewVolumeList.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self.view sendSubviewToBack:_viewTop];
-    _fTopViewHeight = _constraintTopViewHeight.constant;
-    _constraintViewVolumeTopSpace.constant = _fTopViewHeight;
+//    _fTopViewHeight = _constraintTopViewHeight.constant;
+    _constraintViewVolumeTopSpace.constant = 0;
+    _constraintTopViewHeight.constant = 0;
     [self startLoadingAnimation];
-    [self setupDummyScrollView];
+//    [self setupDummyScrollView];
 }
-
+/*
 -(void)setupDummyScrollView
 {
     CGRect rect = [[UIScreen mainScreen] bounds];
@@ -90,11 +91,14 @@
     [_scrollViewTop addGestureRecognizer:_tapGestureOnDummyScrollView];
 }
 
+
 - (void) handleTapOnDummyScrollView: (UITapGestureRecognizer *)recognizer
 {
     NSIndexPath* indexPath = [_tableViewVolumeList indexPathForRowAtPoint:[recognizer locationInView:_tableViewVolumeList]];
     [self selectedItemAtIndex:indexPath.row];
 }
+ 
+ */
 
 -(void)getData
 {
@@ -137,10 +141,26 @@
     
     [self stopLoadingAnimation];
     
-    _lblTop.font  = [UIFont fontWithName:FONT_TITLE_REGULAR size:19];
-    _lblTop.text = _compilation.strTitle;
+//    _lblTop.font  = [UIFont fontWithName:FONT_TITLE_REGULAR size:19];
+//    _lblTop.text = _compilation.strTitle;
+    
+    [self setHeaderView];
 }
 
+
+-(void)setHeaderView
+{
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, 70)];
+    headerView.backgroundColor = [UIColor darkGrayColor];
+    UILabel *label = [[UILabel alloc] initWithFrame:headerView.bounds];
+    label.font  = [UIFont fontWithName:FONT_TITLE_REGULAR size:19];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = _compilation.strTitle;
+    label.textColor = [UIColor whiteColor];
+    [headerView addSubview:label];
+    _tableViewVolumeList.tableHeaderView = headerView;
+}
 
 #pragma mark - Table View Datasource
 
@@ -209,7 +229,7 @@
 #pragma mark - Scrollview Delegate
 
 
-
+/*
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     float           fTopViewHeight  = _fTopViewHeight;
@@ -274,6 +294,7 @@
     }
 }
 
+ */
 
 #pragma mark - Loading Animation
 
