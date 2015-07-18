@@ -349,7 +349,7 @@
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellWord"];
     UILabel *labelTitle = (UILabel*)[cell viewWithTag:201];
-    labelTitle.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:21.0];
+    labelTitle.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:18];
     labelTitle.text = word.strWord;
     
     return cell;
