@@ -1,0 +1,10 @@
+PODS:
+  - Bypass (1.0.1)
+
+DEPENDENCIES:
+  - Bypass (~> 1.0.1)
+
+SPEC CHECKSUMS:
+  Bypass: 72a80e30ea645fb190eaecdc7d67a1904b76b7dc
+
+COCOAPODS: 0.37.1

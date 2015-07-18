@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+    </dependencies>
+    <scenes>
+        <!--Left Drawer View Controller-->
+        <scene sceneID="eVE-uZ-DO3">
+            <objects>
+                <viewController storyboardIdentifier="LEFT_DRAWER_VC" id="jOn-Gv-mna" customClass="IWLeftDrawerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JzR-rb-5LS"/>
+                        <viewControllerLayoutGuide type="bottom" id="nbt-Ab-4ui"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7RM-qW-8bA">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="46" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4w6-sj-O6T" userLabel="TableViewMenu">
+                                <rect key="frame" x="0.0" y="20" width="300" height="580"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell_Menu" id="VwL-Ls-YSa">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VwL-Ls-YSa" id="Jcn-5K-nIy">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjP-Ny-Zdn" userLabel="LblTitle">
+                                                    <rect key="frame" x="50" y="2" width="234" height="40"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="IjP-Ny-Zdn" firstAttribute="top" secondItem="Jcn-5K-nIy" secondAttribute="top" constant="2" id="GKT-XJ-kSh" userLabel="LblTitle_Top"/>
+                                                <constraint firstAttribute="bottom" secondItem="IjP-Ny-Zdn" secondAttribute="bottom" constant="1" id="QXl-8a-reW" userLabel="LblTitle_Top"/>
+                                                <constraint firstAttribute="trailing" secondItem="IjP-Ny-Zdn" secondAttribute="trailing" constant="16" id="bKk-GJ-aAt" userLabel="LblTitle_Trailing"/>
+                                                <constraint firstItem="IjP-Ny-Zdn" firstAttribute="leading" secondItem="Jcn-5K-nIy" secondAttribute="leading" constant="10" id="nfK-Nv-WrJ" userLabel="LblTitle_Leading"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="jOn-Gv-mna" id="smd-vF-tMc"/>
+                                    <outlet property="delegate" destination="jOn-Gv-mna" id="xeA-UV-NPH"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.94826897089999995" blue="0.807783739" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="4w6-sj-O6T" firstAttribute="top" secondItem="7RM-qW-8bA" secondAttribute="top" constant="20" id="RlS-jn-roN" userLabel="TableViewMenu_Top"/>
+                            <constraint firstItem="4w6-sj-O6T" firstAttribute="leading" secondItem="7RM-qW-8bA" secondAttribute="leading" id="hQg-aX-fq5" userLabel="TableViewMenu_Leading"/>
+                            <constraint firstAttribute="trailing" secondItem="4w6-sj-O6T" secondAttribute="trailing" id="mDF-Uu-bnr" userLabel="TableViewMenu_Trailing"/>
+                            <constraint firstAttribute="bottom" secondItem="4w6-sj-O6T" secondAttribute="bottom" id="sOv-Zq-VvL" userLabel="TableViewMenu_Bottom"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="600"/>
+                    <connections>
+                        <outlet property="tableViewMenu" destination="4w6-sj-O6T" id="Mvc-0X-NCy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FME-Wd-1EI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="493" y="624"/>
+        </scene>
+    </scenes>
+</document>
