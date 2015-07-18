@@ -52,6 +52,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint         *constraintLblTopTopSpace;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint         *constraintLblBottomTopSpace;
 @property (weak, nonatomic) IBOutlet UIScrollView               *scrollViewTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint         *constraintHorizontalSpaceBtnsBackNext;
 
 
 - (IBAction)btnPrevVolumePressed:(id)sender;
@@ -121,6 +122,13 @@
     self.view.backgroundColor = COLOR_VIEW_BG;
     _viewBottom.backgroundColor = COLOR_VIEW_BG;
     _viewToolbar.backgroundColor = COLOR_NAV_BAR;
+    
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    
+    float space = rect.size.width / 3 - 50 - 25;
+    
+    _constraintHorizontalSpaceBtnsBackNext.constant = space;
+    
     [self startLoadingAnimation];
 }
 
