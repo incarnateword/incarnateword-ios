@@ -434,7 +434,26 @@
     
     IWInfoViewController *infoVC = [[IWGUIManager sharedManager] getInfoViewControllerForText:_detailChapterStructure.strDescription];
     infoVC.delegateInfoView = self;
-    _viewToolbar.hidden = YES;
+    
+    
+    [UIView animateWithDuration:0.2 animations:
+     ^{
+         _viewBottom.alpha  = 0.2;
+         
+     }];
+    
+    [UIView animateWithDuration:0.5 animations:
+     ^{
+         _viewToolbar.alpha = 0;
+
+     }
+                     completion:^(BOOL finished)
+     {
+         
+//         _viewToolbar.hidden = YES;
+
+     } ];
+
 
     [self addChildViewController:infoVC];
     
@@ -443,7 +462,20 @@
 
 -(void)infoViewRemoved
 {
-    _viewToolbar.hidden = NO;
+//    _viewToolbar.hidden = NO;
+
+    _viewToolbar.alpha = 1;
+
+    
+    [UIView animateWithDuration:0.2 animations:
+     ^{
+         _viewBottom.alpha  = 1.0;
+     }
+                     completion:^(BOOL finished)
+     {
+         
+         
+     } ];
 }
 
 - (BOOL)prefersStatusBarHidden {

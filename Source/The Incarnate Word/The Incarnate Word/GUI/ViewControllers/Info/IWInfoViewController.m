@@ -10,8 +10,9 @@
 #import "IWUtility.h"
 #import "IWGUIManager.h"
 #import "BPMarkdownView.h"
+#import "IWUIConstants.h"
 
-#define MARKDOWNVIEW_HEIGHT 250
+#define MARKDOWNVIEW_HEIGHT 350
 
 
 @interface IWInfoViewController ()
@@ -35,7 +36,7 @@
     _btnClose.hidden = YES;
     
     CGRect markdownRect = CGRectMake(0,
-                                   self.view.frame.size.height - MARKDOWNVIEW_HEIGHT ,
+                                   self.view.frame.size.height,
                                    self.view.frame.size.width,
                                    MARKDOWNVIEW_HEIGHT);
     
@@ -47,13 +48,14 @@
     _viewLine = [[UIView alloc] initWithFrame:CGRectMake(0,
                                                          self.view.frame.size.height - MARKDOWNVIEW_HEIGHT ,
                                                          self.view.frame.size.width,
-                                                         1)];
-    _viewLine.backgroundColor = [UIColor colorWithRed:170.0/255 green:170.0/255 blue:170.0/255 alpha:1.0];
+                                                         0.5)];
+    _viewLine.backgroundColor = [UIColor colorWithRed:190.0/255 green:190.0/255 blue:190.0/255 alpha:1.0];
     [self.view addSubview:_viewLine];
     _viewLine.alpha = 0;
     
     BOOL bIsiOS8AndAbove = NO;
     
+    /*
     if ([UIVisualEffect class])
     {
         bIsiOS8AndAbove = YES;
@@ -67,25 +69,35 @@
         visualEffectView.frame = containerView.bounds;
         [containerView addSubview:visualEffectView];
         [self.view addSubview:containerView];
-        containerView.backgroundColor = [UIColor lightGrayColor];
+        containerView.backgroundColor = [UIColor colorWithRed:119.0/255 green:119.0/255 blue:119.0/255 alpha:1.0];//[UIColor lightGrayColor];
         containerView.alpha = 0.95;
         _markdownView.backgroundColor = [UIColor clearColor];
         
         [self.view bringSubviewToFront:_markdownView];
     }
     else
+     
+     */
     {
         // Alternate code path to follow when the
         // class is not available.
-        _markdownView.backgroundColor = [UIColor colorWithRed:200.0/255 green:200.0/255 blue:200.0/255 alpha:1.0];
+        _markdownView.backgroundColor = COLOR_NAV_BAR;//[UIColor colorWithRed:200.0/255 green:200.0/255 blue:200.0/255 alpha:1.0];//[UIColor colorWithRed:119.0/255 green:119.0/255 blue:119.0/255 alpha:1.0];
     }
     
 
     [UIView animateWithDuration:0.2 animations:
      ^{
-         _markdownView.alpha = bIsiOS8AndAbove ? 1.0: 0.9;
+         _markdownView.alpha =1.0; //bIsiOS8AndAbove ? 1.0: 0.9;
+         
+         _markdownView.frame = CGRectMake(0,
+                                                              self.view.frame.size.height - MARKDOWNVIEW_HEIGHT ,
+                                                              self.view.frame.size.width,
+                                                              MARKDOWNVIEW_HEIGHT);
+     } completion:^(BOOL finished){
          _viewLine.alpha = 1.0;
-    }];
+
+     
+     } ];
 
     [self.view bringSubviewToFront:_btnClose];
 //    _btnClose.layer.cornerRadius = 7.0;
@@ -101,13 +113,27 @@
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
 {
+    
     if(_delegateInfoView && [_delegateInfoView respondsToSelector:@selector(infoViewRemoved)])
     {
         [_delegateInfoView infoViewRemoved];
     }
     
-    [self.view removeFromSuperview];
-
+    _viewLine.alpha = 0;
+    
+    [UIView animateWithDuration:0.2 animations:
+     ^{
+         _markdownView.frame = CGRectMake(0,
+                                          self.view.frame.size.height,
+                                          self.view.frame.size.width,
+                                          MARKDOWNVIEW_HEIGHT);
+     }
+     completion:^(BOOL finished)
+     {
+         [self.view removeFromSuperview];
+         
+       
+     } ];
 }
 
 
