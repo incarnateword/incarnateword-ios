@@ -113,7 +113,6 @@
     _viewLoading.backgroundColor = COLOR_LOADING_VIEW;
 
     _constraintViewBottomTopSpace.constant = 0;
-    _tableViewParts.decelerationRate =  1.0;
     _tableViewParts.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     _viewBottom.hidden = YES;
 //    _btnPrevVolume.hidden = YES;
@@ -132,6 +131,7 @@
     [self startLoadingAnimation];
 }
 
+/*
 -(void)setupDummyScrollView
 {
     CGRect rect = [[UIScreen mainScreen] bounds];
@@ -151,6 +151,8 @@
     NSIndexPath* indexPath = [_tableViewParts indexPathForRowAtPoint:[recognizer locationInView:_tableViewParts]];
     [self selectedItemAtIndex:indexPath];
 }
+*/
+
 
 -(void)getData
 {
@@ -192,38 +194,59 @@
     [_tableViewParts reloadData];
     [self stopLoadingAnimation];
 
+    
+//    [self setupDummyScrollView];
+    [self setHeaderView];
+}
+
+
+-(void)setHeaderView
+{
     //Default setup
-    _fTopViewHeight = 100;
-    _constraintViewBottomTopSpace.constant = 100;
-    _constraintLblTopTopSpace.constant = 10;
-    _constraintLblBottomTopSpace.constant = 10 + 40 + 10;
+    float fTopViewHeight = 100;
+    float fTopLbl_Y = 10;
+    float fBottomLbl_Y = 10 + 40 + 10;
     
     BOOL bIsTitlePresent = YES;
     
     if([IWUtility isNilOrEmptyString:_detailVolumeStructure.strTitle])
     {
-        _fTopViewHeight = _fTopViewHeight - 10 - 40;
-        _constraintLblBottomTopSpace.constant = 10;
+        fTopViewHeight = fTopViewHeight - 10 - 40;
+        fBottomLbl_Y = 10;
         bIsTitlePresent = NO;
     }
     
     if([IWUtility isNilOrEmptyString:_detailVolumeStructure.strSubTitle])
     {
-        _fTopViewHeight = _fTopViewHeight - 10 - 30 - (bIsTitlePresent ? 0 : 10);
+        fTopViewHeight = fTopViewHeight - 10 - 30 - (bIsTitlePresent ? 0 : 10);
     }
     
-    _constraintViewBottomTopSpace.constant = _fTopViewHeight;
     
-    _lblTop.text = _detailVolumeStructure.strTitle;
-    _lblTop.font  = [UIFont fontWithName:FONT_TITLE_REGULAR size:20];
+    CGRect rect = [[UIScreen mainScreen] bounds];
 
-    _lblBottom.text = _detailVolumeStructure.strSubTitle;
-    _lblBottom.font  = [UIFont fontWithName:FONT_TITLE_REGULAR size:18];
+    UILabel *lblTop = [[UILabel alloc] initWithFrame:CGRectMake(10, fTopLbl_Y, rect.size.width-20, 40)];
+    UILabel *lblBottom = [[UILabel alloc] initWithFrame:CGRectMake(10, fBottomLbl_Y, rect.size.width-20, 30)];
+
+    lblTop.text = _detailVolumeStructure.strTitle;
+    lblTop.font  = [UIFont fontWithName:FONT_TITLE_REGULAR size:20];
+    lblTop.textAlignment = NSTextAlignmentCenter;
+    lblTop.textColor = [UIColor whiteColor];
     
-    [self setupDummyScrollView];
+    lblBottom.text = _detailVolumeStructure.strSubTitle;
+    lblBottom.font  = [UIFont fontWithName:FONT_TITLE_REGULAR size:18];
+    lblBottom.textAlignment = NSTextAlignmentCenter;
+    lblBottom.textColor = [UIColor whiteColor];
 
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, fTopViewHeight)];
+    headerView.backgroundColor = [UIColor darkGrayColor];
+    
+    [headerView addSubview:lblTop];
+    [headerView addSubview:lblBottom];
+
+    
+    _tableViewParts.tableHeaderView = headerView;
 }
-
 
 #pragma mark - Table View Datasource
 
@@ -616,7 +639,7 @@
 #pragma mark - Scrollview Delegate
 
 
-
+/*
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -687,7 +710,7 @@
         _constraintViewToolbarHeight.constant = 44.0;
     }
 }
-
+*/
 
 #pragma mark - Loading Animation
 

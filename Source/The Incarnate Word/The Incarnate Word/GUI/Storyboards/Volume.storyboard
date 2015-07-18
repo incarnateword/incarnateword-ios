@@ -53,7 +53,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1l-pY-f4H" userLabel="ViewBottom">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="QRd-eW-cYh" userLabel="TableViewParts">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="QRd-eW-cYh" userLabel="TableViewParts">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -266,10 +266,6 @@
                                     <constraint firstAttribute="bottom" secondItem="QRd-eW-cYh" secondAttribute="bottom" constant="44" id="m89-gV-L7V" userLabel="TableViewParts_Bottom"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWS-CL-3Dl" userLabel="ScrollViewTop">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xs8-tC-dKf" userLabel="ViewLoading">
                                 <rect key="frame" x="273" y="274" width="53" height="53"/>
                                 <subviews>
@@ -287,7 +283,6 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.94826897089999995" blue="0.807783739" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="NWS-CL-3Dl" firstAttribute="leading" secondItem="7Mk-Ce-JXf" secondAttribute="leading" id="06g-HI-Ooc" userLabel="ScrollViewTop_Leading"/>
                             <constraint firstAttribute="centerX" secondItem="xs8-tC-dKf" secondAttribute="centerX" id="390-C7-Cdg" userLabel="ViewLoading_HorizontallyCentered"/>
                             <constraint firstAttribute="bottom" secondItem="V1l-pY-f4H" secondAttribute="bottom" id="3Im-9F-1uz" userLabel="ViewBottom_Bottom"/>
                             <constraint firstAttribute="trailing" secondItem="V1l-pY-f4H" secondAttribute="trailing" id="7Mf-tQ-NlL" userLabel="ViewBottom_Trailing"/>
@@ -296,10 +291,7 @@
                             <constraint firstItem="V1l-pY-f4H" firstAttribute="leading" secondItem="7Mk-Ce-JXf" secondAttribute="leading" id="FF9-3p-kQj" userLabel="ViewBottom_Leading"/>
                             <constraint firstItem="Hrt-xg-WWm" firstAttribute="leading" secondItem="7Mk-Ce-JXf" secondAttribute="leading" id="HeZ-4m-6fW" userLabel="ViewTop_Leading"/>
                             <constraint firstItem="Hrt-xg-WWm" firstAttribute="top" secondItem="7Mk-Ce-JXf" secondAttribute="top" id="P4k-bJ-mIO" userLabel="ViewTop_Top"/>
-                            <constraint firstAttribute="trailing" secondItem="NWS-CL-3Dl" secondAttribute="trailing" id="Ric-X0-bja" userLabel="ScrollViewTop_Trailing"/>
-                            <constraint firstAttribute="bottom" secondItem="NWS-CL-3Dl" secondAttribute="bottom" constant="44" id="iEX-xq-eMP" userLabel="ScrollViewTop_Bottom"/>
                             <constraint firstAttribute="centerY" secondItem="xs8-tC-dKf" secondAttribute="centerY" id="iea-pG-fyJ" userLabel="ViewLoading_VerticallyCentered"/>
-                            <constraint firstItem="NWS-CL-3Dl" firstAttribute="top" secondItem="7Mk-Ce-JXf" secondAttribute="top" id="mWq-V1-XMN" userLabel="ScrollViewTop_Top"/>
                         </constraints>
                     </view>
                     <connections>
@@ -313,7 +305,6 @@
                         <outlet property="constraintViewTopHeight" destination="7AO-GH-SoH" id="5Ep-Cg-PLB"/>
                         <outlet property="lblBottom" destination="0Sq-c3-V5c" id="flr-U0-1eL"/>
                         <outlet property="lblTop" destination="6zt-e2-4dM" id="bjX-vH-mtJ"/>
-                        <outlet property="scrollViewTop" destination="NWS-CL-3Dl" id="qeh-hJ-bS1"/>
                         <outlet property="tableViewParts" destination="QRd-eW-cYh" id="iaf-T0-JAH"/>
                         <outlet property="viewBottom" destination="V1l-pY-f4H" id="h4p-ia-fFh"/>
                         <outlet property="viewLoading" destination="xs8-tC-dKf" id="cXK-Hf-uTI"/>
