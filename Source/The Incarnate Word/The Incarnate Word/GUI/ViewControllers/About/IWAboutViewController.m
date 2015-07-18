@@ -17,34 +17,29 @@
 
 
 
-@interface IWAboutViewController ()<WebServiceDelegate,UIScrollViewDelegate>
+@interface IWAboutViewController ()<WebServiceDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     IWAboutWebService       *_aboutWebService;
     IWAboutStructure        *_aboutDataStructure;
     
     BOOL                    _bShouldFlipHorizontally;
     NSTimer                 *_timerLoading;
-    BPMarkdownView          *_markdownView;
     float                   _fImageViewHeight;
+    NSNumber                *_rowHeight;
 }
 
 @property (nonatomic, assign) CGFloat lastContentOffset;
 
 
 @property (weak, nonatomic) IBOutlet UIView                     *viewLoading;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint         *constraintImageViewHeight;
 @property (weak, nonatomic) IBOutlet UIView                     *viewMiddle;
+@property (weak, nonatomic) IBOutlet UITableView                *tableView;
 
-@property (weak, nonatomic) IBOutlet UIImageView                *imageViewAuther;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint         *constraintViewMiddleTopSpace;
-@property (weak, nonatomic) IBOutlet UITextView                 *textView;
-@property (weak, nonatomic) IBOutlet UIScrollView               *scrollViewTop;
 
 
 -(void)setupUI;
 -(void)getData;
 -(void)updateUI;
--(void)addMarkdownView;
 
 
 @end
@@ -62,18 +57,22 @@
 -(void)setupUI
 {
     self.view.backgroundColor = COLOR_VIEW_BG;
-
-    _fImageViewHeight = _constraintImageViewHeight.constant;
-    _constraintViewMiddleTopSpace.constant = _fImageViewHeight;
+    
+//    _fImageViewHeight = _constraintImageViewHeight.constant;
+//    _constraintViewMiddleTopSpace.constant = _fImageViewHeight;
+    
     self.navigationItem.title = @"Loading...";
     _viewLoading.layer.cornerRadius = 3.0;
-    _imageViewAuther.hidden = YES;
     _viewLoading.backgroundColor = COLOR_LOADING_VIEW;
+    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
 //    [self.view bringSubviewToFront:_viewMiddle];
     [self startLoadingAnimation];
-    [self setupDummyScrollView];
+//    [self setupDummyScrollView];
 }
 
+
+/*
 -(void)setupDummyScrollView
 {
     CGRect rect = [[UIScreen mainScreen] bounds];
@@ -83,6 +82,7 @@
     _scrollViewTop.showsHorizontalScrollIndicator = NO;
     _scrollViewTop.showsVerticalScrollIndicator = NO;
 }
+*/
 
 -(void)getData
 {
@@ -115,16 +115,99 @@
 -(void)updateUI
 {
     self.navigationItem.title = @"About";
-    _imageViewAuther.image = [UIImage imageNamed:_strImageName];
-    _imageViewAuther.hidden = NO;
-    [self addMarkdownView];
+//    _imageViewAuther.image = [UIImage imageNamed:_strImageName];
+//    _imageViewAuther.hidden = NO;
+//    [self addMarkdownView];
     
     self.navigationItem.title = _aboutDataStructure.strDescriptionTitle;
 
     
     [self stopLoadingAnimation];
+    
+    
+    [_tableView reloadData];
+    
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, 190)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:headerView.bounds];
+    [headerView addSubview:imageView];
+    imageView.image = [UIImage imageNamed:_strImageName];
+    self.tableView.tableHeaderView = headerView;
 }
 
+
+
+
+#pragma mark - UITableViewDataSource
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    return _aboutDataStructure == nil ? 0 : 1 ;
+}
+
+
+
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AboutCell" forIndexPath:indexPath];
+    
+    
+    UILabel *lbl =  (UILabel*)[cell viewWithTag:201];
+    
+   
+    NSString *strFinal = [_aboutDataStructure.strDescription stringByReplacingOccurrencesOfString:@"\n---\n" withString:@"\n"];
+    lbl.text = strFinal;
+    
+    indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
+    
+    CGSize cellSize = [cell systemLayoutSizeFittingSize:CGSizeMake(320, 0) withHorizontalFittingPriority:1000.0 verticalFittingPriority:50.0];
+    _rowHeight = [NSNumber numberWithFloat:cellSize.height];
+    
+    return cell;
+}
+
+
+
+#pragma mark - UITableViewDelegate
+
+
+
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   
+    return [_rowHeight floatValue];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Remove seperator inset
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsMake(0, 10, 0, 10)];
+    }
+    
+    // Prevent the cell from inheriting the Table View's margin settings
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
+    // Explictly set your cell's layout margins
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+/*
 -(void)addMarkdownView
 {
 //    _markdownView  = [IWUtility getMarkdownViewOfFrame:[self getMarkdownRect]];
@@ -229,7 +312,7 @@
     
     return markdownRect;
 }
-
+*/
 #pragma mark - Loading Animation
 
 -(void)startLoadingAnimation
