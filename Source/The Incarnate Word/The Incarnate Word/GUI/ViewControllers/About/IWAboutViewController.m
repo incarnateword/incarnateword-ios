@@ -158,10 +158,19 @@
     
     
     UILabel *lbl =  (UILabel*)[cell viewWithTag:201];
-    
    
     NSString *strFinal = [_aboutDataStructure.strDescription stringByReplacingOccurrencesOfString:@"\n---\n" withString:@"\n"];
-    lbl.text = strFinal;
+    UIFont *font = [UIFont fontWithName:FONT_BODY_REGULAR size:18];
+    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:font
+                                                                forKey:NSFontAttributeName];
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:strFinal attributes:attrsDictionary];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:5];
+    [paragraphStyle setAlignment:NSTextAlignmentLeft];
+    [attrString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [strFinal length])];
+    
+    lbl.attributedText = attrString;
     
     indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
     
@@ -207,8 +216,10 @@
         [cell setLayoutMargins:UIEdgeInsetsZero];
     }
 }
+
+
 /*
--(void)addMarkdownView
+ -(void)addMarkdownView
 {
 //    _markdownView  = [IWUtility getMarkdownViewOfFrame:[self getMarkdownRect]];
 //    [_viewMiddle addSubview:_markdownView];
@@ -232,6 +243,8 @@
     _textView.delegate = self;
     _textView.attributedText = attrString;//[IWUtility getMarkdownNSAttributedStringFromNSString:strFinal];
 }
+
+
 
 #pragma mark - Scrollview Delegate
 
