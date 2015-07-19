@@ -45,7 +45,7 @@
     
     IWWordMeaningStructure *wordMeaning = [[IWWordMeaningStructure alloc] init];
     wordMeaning.strWord = [dict objectForKey:@"word"];
-    wordMeaning.strDefinition = [dict objectForKey:@"definition"];
+    wordMeaning.strDefinition = [NSString stringWithFormat:@"#%@  %@%@",[dict objectForKey:@"word"],@"\n",[dict objectForKey:@"definition"]];
     wordMeaning.strUrl = [dict objectForKey:@"url"];
 
     [self sendResponse:wordMeaning];
