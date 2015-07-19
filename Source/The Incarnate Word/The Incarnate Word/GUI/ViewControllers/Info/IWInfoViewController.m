@@ -13,13 +13,13 @@
 #import "IWUIConstants.h"
 
 #define MARKDOWNVIEW_HEIGHT 350
-
+#define MARKDOWNVIEW_MARGIN 5
 
 @interface IWInfoViewController ()
 {
     BPMarkdownView                          *_markdownView;
     UITapGestureRecognizer                  *_gestureTapForWholeView;
-    UIView                                  *_viewLine;
+//    UIView                                  *_viewLine;
 
 }
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;
@@ -33,25 +33,34 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    UIView *bgView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    bgView.backgroundColor = [UIColor blackColor];
+    bgView.alpha  = 0.5;
+    
+    [self.view addSubview:bgView];
+    
     _btnClose.hidden = YES;
     
-    CGRect markdownRect = CGRectMake(0,
+    
+    
+    CGRect markdownRect = CGRectMake(MARKDOWNVIEW_MARGIN,
                                    self.view.frame.size.height,
-                                   self.view.frame.size.width,
+                                   self.view.frame.size.width - 2* MARKDOWNVIEW_MARGIN,
                                    MARKDOWNVIEW_HEIGHT);
     
     _markdownView = [IWUtility getMarkdownViewOfFrame:markdownRect];
+    _markdownView.layer.cornerRadius = 3.0;
     [_markdownView setMarkdown:_strText];
     [self.view addSubview:_markdownView];
     _markdownView.alpha = 0;
     
-    _viewLine = [[UIView alloc] initWithFrame:CGRectMake(0,
-                                                         self.view.frame.size.height - MARKDOWNVIEW_HEIGHT ,
-                                                         self.view.frame.size.width,
-                                                         0.5)];
-    _viewLine.backgroundColor = [UIColor colorWithRed:190.0/255 green:190.0/255 blue:190.0/255 alpha:1.0];
-    [self.view addSubview:_viewLine];
-    _viewLine.alpha = 0;
+//    _viewLine = [[UIView alloc] initWithFrame:CGRectMake(MARKDOWNVIEW_MARGIN +2,
+//                                                         self.view.frame.size.height - MARKDOWNVIEW_HEIGHT ,
+//                                                         self.view.frame.size.width - 2*MARKDOWNVIEW_MARGIN - 4,
+//                                                         0.5)];
+//    _viewLine.backgroundColor = [UIColor colorWithRed:190.0/255 green:190.0/255 blue:190.0/255 alpha:1.0];
+//    [self.view addSubview:_viewLine];
+//    _viewLine.alpha = 0;
     
     BOOL bIsiOS8AndAbove = NO;
     
@@ -89,12 +98,12 @@
      ^{
          _markdownView.alpha =1.0; //bIsiOS8AndAbove ? 1.0: 0.9;
          
-         _markdownView.frame = CGRectMake(0,
-                                                              self.view.frame.size.height - MARKDOWNVIEW_HEIGHT ,
-                                                              self.view.frame.size.width,
-                                                              MARKDOWNVIEW_HEIGHT);
+         _markdownView.frame = CGRectMake(MARKDOWNVIEW_MARGIN,
+                                                              self.view.frame.size.height - MARKDOWNVIEW_HEIGHT,
+                                                              self.view.frame.size.width - 2* MARKDOWNVIEW_MARGIN,
+                                                              MARKDOWNVIEW_HEIGHT - MARKDOWNVIEW_MARGIN);
      } completion:^(BOOL finished){
-         _viewLine.alpha = 1.0;
+//         _viewLine.alpha = 1.0;
 
      
      } ];
@@ -119,19 +128,18 @@
         [_delegateInfoView infoViewRemoved];
     }
     
-    _viewLine.alpha = 0;
+//    _viewLine.alpha = 0;
     
     [UIView animateWithDuration:0.2 animations:
      ^{
-         _markdownView.frame = CGRectMake(0,
+         _markdownView.frame = CGRectMake(MARKDOWNVIEW_MARGIN,
                                           self.view.frame.size.height,
-                                          self.view.frame.size.width,
+                                          self.view.frame.size.width - 2* MARKDOWNVIEW_MARGIN,
                                           MARKDOWNVIEW_HEIGHT);
      }
      completion:^(BOOL finished)
      {
          [self.view removeFromSuperview];
-         
        
      } ];
 }
