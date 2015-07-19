@@ -146,12 +146,24 @@
 
 -(void)swipeleft:(UISwipeGestureRecognizer*)gestureRecognizer
 {
-    [self btnNextVolumePressed:nil];
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan)
+    {
+    }
+    else if (gestureRecognizer.state == UIGestureRecognizerStateEnded)
+    {
+        [self btnNextVolumePressed:nil];
+    }
 }
 
 -(void)swiperight:(UISwipeGestureRecognizer*)gestureRecognizer
 {
-    [self btnPrevVolumePressed:nil];
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan)
+    {
+    }
+    else if (gestureRecognizer.state == UIGestureRecognizerStateEnded)
+    {
+        [self btnPrevVolumePressed:nil];
+    }
 }
 
 

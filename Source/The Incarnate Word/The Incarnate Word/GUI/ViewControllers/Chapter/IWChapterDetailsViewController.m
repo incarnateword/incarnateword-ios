@@ -195,12 +195,24 @@
 
 -(void)swipeleft:(UISwipeGestureRecognizer*)gestureRecognizer
 {
-    [self btnNextChapterPressed:nil];
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan)
+    {
+    }
+    else if (gestureRecognizer.state == UIGestureRecognizerStateEnded)
+    {
+        [self btnNextChapterPressed:nil];
+    }
 }
 
 -(void)swiperight:(UISwipeGestureRecognizer*)gestureRecognizer
 {
-    [self btnBackPressed:nil];
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan)
+    {
+    }
+    else if (gestureRecognizer.state == UIGestureRecognizerStateEnded)
+    {
+        [self btnBackPressed:nil];
+    }
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
