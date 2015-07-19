@@ -34,7 +34,7 @@
     UILabel                             *_lblMaterialBottom;
     BOOL                                _bIsAddingMaterialTopBar;
     UITapGestureRecognizer              *_tapGestureOnDummyScrollView;
-
+    UISwipeGestureRecognizer            *_swipeleft,*_swiperight;
 }
 
 @property (nonatomic, assign) CGFloat                           lastContentOffset;
@@ -93,6 +93,9 @@
 
 - (IBAction)btnNextVolumePressed:(id)sender
 {
+    if([IWUtility isNilOrEmptyString:_detailVolumeStructure.strUrlNextVolume])
+        return;
+    
     CGRect rectTableTop = CGRectMake(0, 0, 10, 10);
     [_tableViewParts scrollRectToVisible:rectTableTop animated:NO];
     
@@ -128,8 +131,29 @@
     
     _constraintHorizontalSpaceBtnsBackNext.constant = space;
     
+    
+    _swipeleft =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeleft:)];
+    _swipeleft.direction=UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:_swipeleft];
+    
+    _swiperight=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swiperight:)];
+    _swiperight.direction=UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:_swiperight];
+
+    
     [self startLoadingAnimation];
 }
+
+-(void)swipeleft:(UISwipeGestureRecognizer*)gestureRecognizer
+{
+    [self btnNextVolumePressed:nil];
+}
+
+-(void)swiperight:(UISwipeGestureRecognizer*)gestureRecognizer
+{
+    [self btnPrevVolumePressed:nil];
+}
+
 
 /*
 -(void)setupDummyScrollView
