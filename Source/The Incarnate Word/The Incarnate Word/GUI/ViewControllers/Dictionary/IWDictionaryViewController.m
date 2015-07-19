@@ -179,7 +179,7 @@
 
 -(void)updateUI
 {
-    self.navigationItem.title = @"Entries";
+    self.navigationItem.title = @"Dictionary";
     
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     
