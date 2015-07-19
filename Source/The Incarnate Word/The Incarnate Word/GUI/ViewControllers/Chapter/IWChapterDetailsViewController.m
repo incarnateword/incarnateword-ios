@@ -33,6 +33,7 @@
     UITapGestureRecognizer                  *_gestureTapForWholeView;
     BOOL                                    _bIsScrollingInProgress;
     UISwipeGestureRecognizer                *_swipeleft,*_swiperight;
+    IWInfoViewController                    *_infoVC;
 }
 
 @property (nonatomic, assign) CGFloat lastContentOffset;
@@ -451,13 +452,13 @@
 
 - (IBAction)btnInfoPressed:(id)sender {
     
-    IWInfoViewController *infoVC = [[IWGUIManager sharedManager] getInfoViewControllerForText:_detailChapterStructure.strDescription];
-    infoVC.delegateInfoView = self;
+    _infoVC = [[IWGUIManager sharedManager] getInfoViewControllerForText:_detailChapterStructure.strDescription];
+    _infoVC.delegateInfoView = self;
     
     
     [UIView animateWithDuration:0.2 animations:
      ^{
-         _viewBottom.alpha  = 0.2;
+//         _viewBottom.alpha  = 0.2;
          
      }];
     
@@ -474,9 +475,12 @@
      } ];
 
 
-    [self addChildViewController:infoVC];
+//    [self addChildViewController:infoVC];
     
-    [self.view addSubview:infoVC.view];
+    UIWindow *keyWindow = [[[UIApplication sharedApplication] delegate] window];
+    
+    [keyWindow addSubview:_infoVC.view];
+    _infoVC.view.frame = [keyWindow bounds];
 }
 
 -(void)infoViewRemoved
