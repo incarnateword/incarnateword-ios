@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -146,7 +146,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylE-ZW-G5g" userLabel="BtnShare">
-                                        <rect key="frame" x="264" y="11" width="72" height="22"/>
+                                        <rect key="frame" x="550" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="7Nu-FK-zh6" userLabel="BtnShare_Width"/>
                                         </constraints>
@@ -163,9 +163,9 @@
                                     <constraint firstAttribute="height" constant="44" id="7tb-PH-8v9" userLabel="ViewToolBar_Height"/>
                                     <constraint firstAttribute="bottom" secondItem="0Zc-kh-ZXd" secondAttribute="bottom" constant="5" id="A8q-7w-X5G" userLabel="BtnBack_Bottom"/>
                                     <constraint firstItem="ylE-ZW-G5g" firstAttribute="top" secondItem="Y3e-zZ-aVV" secondAttribute="top" id="C9s-3n-V8I" userLabel="BtnShare_Top"/>
-                                    <constraint firstAttribute="centerX" secondItem="ylE-ZW-G5g" secondAttribute="centerX" id="D2a-6N-Rtf" userLabel="HorizontallyCentered_BtnShare"/>
                                     <constraint firstItem="0Zc-kh-ZXd" firstAttribute="leading" secondItem="Y3e-zZ-aVV" secondAttribute="leading" id="TUU-Aw-MfL" userLabel="BtnBack_Leading"/>
                                     <constraint firstAttribute="bottom" secondItem="ylE-ZW-G5g" secondAttribute="bottom" id="hNn-Ye-Brj" userLabel="BtnShare_Bottom"/>
+                                    <constraint firstAttribute="trailing" secondItem="ylE-ZW-G5g" secondAttribute="trailing" constant="3" id="lb2-FL-DP1" userLabel="BtnShare_Trailing"/>
                                 </constraints>
                             </view>
                         </subviews>
