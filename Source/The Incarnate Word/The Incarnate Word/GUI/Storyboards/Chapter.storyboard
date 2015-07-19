@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
         <!--Chapter Details View Controller-->
@@ -119,7 +119,7 @@
                                     <constraint firstItem="Ff2-Hn-oNc" firstAttribute="leading" secondItem="Mge-yv-s1d" secondAttribute="leading" id="cOz-gc-tLJ" userLabel="BtnBack_Leading"/>
                                     <constraint firstAttribute="bottom" secondItem="2iB-XC-n0X" secondAttribute="bottom" id="ewg-Oz-XiO" userLabel="BtnInfo_Bottom"/>
                                     <constraint firstItem="Ff2-Hn-oNc" firstAttribute="top" secondItem="Mge-yv-s1d" secondAttribute="top" id="f04-ic-Jwy" userLabel="BtnBack_Top"/>
-                                    <constraint firstAttribute="trailing" secondItem="lLY-ff-Ll7" secondAttribute="trailing" constant="10" id="hqu-MZ-gvg" userLabel="BtnShare_Trailing"/>
+                                    <constraint firstAttribute="trailing" secondItem="lLY-ff-Ll7" secondAttribute="trailing" constant="3" id="hqu-MZ-gvg" userLabel="BtnShare_Trailing"/>
                                     <constraint firstAttribute="bottom" secondItem="sMq-uy-L8b" secondAttribute="bottom" id="pIf-vt-9l7" userLabel="BtnNext_Bottom"/>
                                 </constraints>
                             </view>
