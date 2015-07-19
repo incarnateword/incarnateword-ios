@@ -76,7 +76,11 @@
 {
     _strChapterPath = _detailChapterStructure.strPrevChapterUrl;
     _iItemIndex = 0;
-    
+    _btnInfo.hidden = YES;
+    _btnShare.hidden = YES;
+    _btnNextChapter.hidden = YES;
+
+
     [UIView animateWithDuration:0.5 animations:^{
     
         CGRect rect = [self getMarkdownViewRect];
@@ -100,6 +104,9 @@
     _strChapterPath = _detailChapterStructure.strNextChapterUrl;
     _iItemIndex = 0;
     _btnInfo.hidden = YES;
+    _btnShare.hidden = YES;
+    _btnNextChapter.hidden = YES;
+
     
     [UIView animateWithDuration:0.5 animations:^{
         
