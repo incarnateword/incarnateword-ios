@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "The Incarnate Word/GUI/ViewControllers/VolumeDetails/IWVolumeDetailsViewController.m"
-            timestampString = "458855150.328093"
+            timestampString = "459005909.285878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
-            landmarkName = "-updateUI"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "-requestFailed:error:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "The Incarnate Word/GUI/ViewControllers/VolumeDetails/IWVolumeDetailsViewController.m"
-            timestampString = "458855938.378647"
+            timestampString = "459005909.285878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "520"
-            endingLineNumber = "520"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "556"
+            endingLineNumber = "556"
+            landmarkName = "-tableView:heightForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "The Incarnate Word/GUI/ViewControllers/VolumeDetails/IWVolumeDetailsViewController.m"
-            timestampString = "458856155.144781"
+            timestampString = "459005363.55942"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "-setupDummyScrollView"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "-setupUI"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "The Incarnate Word/GUI/ViewControllers/VolumeDetails/IWVolumeDetailsViewController.m"
-            timestampString = "458856359.20663"
+            timestampString = "459005363.55942"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "-btnNextVolumePressed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "The Incarnate Word/GUI/ViewControllers/VolumeDetails/IWVolumeDetailsViewController.m"
-            timestampString = "458856365.893883"
+            timestampString = "459005363.55942"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "-setupUI"
             landmarkType = "5">
          </BreakpointContent>
