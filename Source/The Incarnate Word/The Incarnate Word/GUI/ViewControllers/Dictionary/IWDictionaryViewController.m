@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIView                 *viewLoading;
 @property (weak, nonatomic) IBOutlet UIView                 *viewTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint     *constraintVIewTopHeight;
+@property (weak, nonatomic) IBOutlet UIView                 *viewAlpha;
 
 
 -(void)setupVC;
@@ -199,19 +200,26 @@
 
 -(void)setupSearchBar
 {
+    UIColor *searchBarColor = [UIColor colorWithRed:199.0/255 green:201.0/255 blue:207.0/255 alpha:1.0];
+    
     CGRect rect = [[UIScreen mainScreen] bounds];
-//    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, rect.size.width - 60, 45)];
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, 44)];
-    _searchBar.barTintColor = [UIColor lightGrayColor];//[UIColor lightGrayColor];//[IWUtility getNavBarColor];
-    _searchBar.backgroundColor = [UIColor lightGrayColor];//[IWUtility getNavBarColor];
     _searchBar.placeholder = @"Search";
     _searchBar.translucent = YES;
     _searchBar.delegate = self;
     _searchBar.showsCancelButton = NO;
-    _searchBar.searchBarStyle = UISearchBarStyleMinimal;//Removes border
     
+    //Background color
+    _searchBar.barTintColor = searchBarColor;
+
+    //Remove border
+    _searchBar.layer.borderWidth = 1;
+    _searchBar.layer.borderColor = searchBarColor.CGColor;
+    //_searchBar.searchBarStyle = UISearchBarStyleProminent;//Removes border
+
     //Cursor color
     [[UITextField appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor blackColor]];
+    
     //Cancel button text color
     [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                                                   [UIColor blackColor],
@@ -220,11 +228,12 @@
                                                                                         forState:UIControlStateNormal];
     //Placeholder text color
     [[UILabel appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor darkGrayColor]];
-
-    //_tableViewWordList.tableHeaderView = _searchBar;
     
-    _viewTop.backgroundColor = [UIColor lightGrayColor];
+    //Text Field Bg Color
+    //[[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setBackgroundColor:[UIColor whiteColor]];
+    
     [_viewTop addSubview:_searchBar];
+    _viewTop.backgroundColor = searchBarColor;
 }
 
 
@@ -325,8 +334,10 @@
 
 -(void)disableTableInteraction:(BOOL)bShouldDisable
 {
-    _tableViewWordList.userInteractionEnabled = !bShouldDisable;
-    _tableViewWordList.alpha = bShouldDisable ? 0.7 : 1.0;
+//    _tableViewWordList.userInteractionEnabled = !bShouldDisable;
+//    _tableViewWordList.alpha = bShouldDisable ? 0.7 : 1.0;
+    _viewAlpha.hidden = !bShouldDisable;
+
 }
 
 #pragma mark - Table View Datasource
@@ -358,7 +369,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return (_bIsKeyboardShown && [IWUtility isNilOrEmptyString:_searchBar.text] == NO) ? 0.0 : 40.0;
+    return (_bIsKeyboardShown && [IWUtility isNilOrEmptyString:_searchBar.text] == NO) ? 0.0 : 30.0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -393,7 +404,7 @@
 {
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     header.textLabel.textColor = COLOR_SECTION_HEADER_TITLE;
-    header.textLabel.font = [UIFont fontWithName:FONT_BODY_ITALIC size:27];
+    header.textLabel.font = [UIFont fontWithName:FONT_BODY_ITALIC size:25];
     header.backgroundView.backgroundColor = COLOR_SECTION_HEADER;
     header.textLabel.textAlignment = NSTextAlignmentLeft;
 }
@@ -414,6 +425,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.view endEditing:YES];
 //    [_searchBar performSelector: @selector(resignFirstResponder)
 //                     withObject: nil
 //                     afterDelay: 0.1];
@@ -422,7 +434,10 @@
     
     IWAlphabetStructure *alphabet = [_arrOfAlphabetsCopy objectAtIndex:indexPath.section];
     IWWordStructure *word = [alphabet.arrWords objectAtIndex:indexPath.row];
-    [[IWUserActionManager sharedManager] showDictionaryMeaningForWord:word.strWord];
+    
+    NSString *strUrl = [IWUtility isNilOrEmptyString:word.strUrl] == NO ? word.strUrl : word.strWord;
+    
+    [[IWUserActionManager sharedManager] showDictionaryMeaningForWord:strUrl];
 }
 
 #pragma mark - Loading Animation

@@ -59,6 +59,10 @@
                                     <outlet property="delegate" destination="8CY-s2-h8h" id="MNI-Mg-5Hw"/>
                                 </connections>
                             </tableView>
+                            <view hidden="YES" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NT5-UI-FHJ" userLabel="ViewAlpha">
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yb0-Q0-KyO" userLabel="ViewLoading">
                                 <rect key="frame" x="273" y="274" width="53" height="53"/>
                                 <subviews>
@@ -76,21 +80,26 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.92451236749999999" blue="0.69425944839999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="NT5-UI-FHJ" firstAttribute="top" secondItem="r8D-pl-1eQ" secondAttribute="bottom" id="1OF-tf-Nag" userLabel="Vertical Space_ViewTop_ViewAlpha"/>
                             <constraint firstAttribute="trailing" secondItem="r8D-pl-1eQ" secondAttribute="trailing" id="555-x1-A4p" userLabel="ViewTop_Trailing"/>
+                            <constraint firstAttribute="trailing" secondItem="NT5-UI-FHJ" secondAttribute="trailing" id="7qc-3g-CPf" userLabel="ViewAlpha_Trailing"/>
                             <constraint firstItem="r8D-pl-1eQ" firstAttribute="top" secondItem="cQF-tT-cO3" secondAttribute="top" id="AXR-eO-vE6" userLabel="ViewTop_Top"/>
                             <constraint firstItem="14A-MA-TUD" firstAttribute="top" secondItem="r8D-pl-1eQ" secondAttribute="bottom" id="B25-MS-hL5" userLabel="VerticalSpace_TableViewWordList_ViewTop"/>
                             <constraint firstItem="r8D-pl-1eQ" firstAttribute="leading" secondItem="cQF-tT-cO3" secondAttribute="leading" id="JYO-e3-DLx" userLabel="ViewTop_Leading"/>
                             <constraint firstAttribute="trailing" secondItem="14A-MA-TUD" secondAttribute="trailing" id="TMo-UU-JV2" userLabel="TableViewWordList_Trailing"/>
+                            <constraint firstAttribute="bottom" secondItem="NT5-UI-FHJ" secondAttribute="bottom" id="Tb0-Ka-d97" userLabel="ViewAlpha_Bottom"/>
                             <constraint firstAttribute="centerX" secondItem="yb0-Q0-KyO" secondAttribute="centerX" id="g73-en-ZPu" userLabel="ViewLoading_HorizontallyCentered"/>
                             <constraint firstItem="14A-MA-TUD" firstAttribute="leading" secondItem="cQF-tT-cO3" secondAttribute="leading" id="jkZ-lR-1tK" userLabel="TableViewWordList_Leading"/>
                             <constraint firstAttribute="bottom" secondItem="14A-MA-TUD" secondAttribute="bottom" id="k40-tm-onE" userLabel="TableViewWordList_Bottom"/>
                             <constraint firstAttribute="centerY" secondItem="yb0-Q0-KyO" secondAttribute="centerY" id="wtr-Ta-btp" userLabel="ViewLoading_VerticallyCentered"/>
+                            <constraint firstItem="NT5-UI-FHJ" firstAttribute="leading" secondItem="cQF-tT-cO3" secondAttribute="leading" id="xTO-L7-fhs" userLabel="ViewAlpha_Leading"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="constraintTableViewBottom" destination="k40-tm-onE" id="VEz-D0-IPp"/>
                         <outlet property="constraintVIewTopHeight" destination="E9d-xE-WfS" id="c2W-in-Mf1"/>
                         <outlet property="tableViewWordList" destination="14A-MA-TUD" id="0c4-QH-r38"/>
+                        <outlet property="viewAlpha" destination="NT5-UI-FHJ" id="TCH-dH-TqY"/>
                         <outlet property="viewLoading" destination="yb0-Q0-KyO" id="6f1-yd-kTM"/>
                         <outlet property="viewTop" destination="r8D-pl-1eQ" id="C9e-gm-Sey"/>
                     </connections>
