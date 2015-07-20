@@ -68,13 +68,17 @@
     [UIView animateWithDuration:0.25 animations:
      ^{
          _markdownView.alpha =1.0;
-         _btnClose.alpha =1.0;
-         
+         _btnClose.alpha = 0.2;
+
          _markdownView.frame = CGRectMake(MARKDOWNVIEW_SIDE_MARGIN,
                                           self.view.frame.size.height - MARKDOWNVIEW_HEIGHT,
                                           self.view.frame.size.width - 2* MARKDOWNVIEW_SIDE_MARGIN,
                                           MARKDOWNVIEW_HEIGHT - MARKDOWNVIEW_BOTTOM_MARGIN);
-     } ];
+     }  completion:
+     ^(BOOL finished)
+    {
+        _btnClose.alpha = 1.0;
+    }];
 }
 
 -(void)setupTapGesture
