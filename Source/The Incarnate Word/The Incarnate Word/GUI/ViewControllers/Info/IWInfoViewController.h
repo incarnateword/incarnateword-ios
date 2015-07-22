@@ -20,6 +20,7 @@
 @interface IWInfoViewController : UIViewController
 
 @property(readwrite,weak) id<InfoViewDelegate> delegateInfoView;
-@property(readwrite) NSString *strText;
+@property(readwrite) NSString                   *strText;
+@property(readwrite) NSString                   *strDate;
 
 @end

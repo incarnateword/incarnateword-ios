@@ -17,38 +17,81 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wv1-Yi-17t" userLabel="ViewAlpha">
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wv1-Yi-17t" userLabel="ViewAlpha">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axv-Jp-YGE" userLabel="BtnClose">
-                                <rect key="frame" x="5" y="560" width="590" height="35"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRM-9K-9kd" userLabel="ViewContainer">
+                                <rect key="frame" x="0.0" y="600" width="600" height="250"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbD-Fh-YCY" userLabel="ViewForMarkdown">
+                                        <rect key="frame" x="5" y="0.0" width="590" height="205"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHa-Mo-mQR" userLabel="lbl">
+                                                <rect key="frame" x="0.0" y="175" width="590" height="30"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="3Ym-Fc-3vj" userLabel="lbl_Height"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="16"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="RHa-Mo-mQR" firstAttribute="leading" secondItem="gbD-Fh-YCY" secondAttribute="leading" id="APa-Za-IeA" userLabel="lbl_Leading"/>
+                                            <constraint firstAttribute="bottom" secondItem="RHa-Mo-mQR" secondAttribute="bottom" id="akc-aa-pQu" userLabel="lbl_Bottom"/>
+                                            <constraint firstAttribute="trailing" secondItem="RHa-Mo-mQR" secondAttribute="trailing" id="uGm-AY-iIy" userLabel="lbl_Trailing"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axv-Jp-YGE" userLabel="BtnClose">
+                                        <rect key="frame" x="5" y="210" width="590" height="35"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="eq8-Ov-AVI" userLabel="BtnClose_Height"/>
+                                        </constraints>
+                                        <state key="normal" title="Close">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnCloseClicked:" destination="hdx-RV-PaD" eventType="touchUpInside" id="adm-gu-Jye"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="eq8-Ov-AVI" userLabel="BtnClose_Height"/>
+                                    <constraint firstAttribute="trailing" secondItem="axv-Jp-YGE" secondAttribute="trailing" constant="5" id="8HI-xV-ThP" userLabel="BtnClose_Trailing"/>
+                                    <constraint firstAttribute="bottom" secondItem="axv-Jp-YGE" secondAttribute="bottom" constant="5" id="B7I-tS-uM7" userLabel="BtnClose_Bottom"/>
+                                    <constraint firstItem="gbD-Fh-YCY" firstAttribute="top" secondItem="fRM-9K-9kd" secondAttribute="top" id="BRf-rt-uyT" userLabel="ViewForMarkdown_Top"/>
+                                    <constraint firstItem="axv-Jp-YGE" firstAttribute="top" secondItem="gbD-Fh-YCY" secondAttribute="bottom" constant="5" id="EKQ-DI-QtD" userLabel="VerticalSpace_ViewForMarkdown_BtnClose"/>
+                                    <constraint firstItem="axv-Jp-YGE" firstAttribute="leading" secondItem="fRM-9K-9kd" secondAttribute="leading" constant="5" id="IBe-Pd-0vB" userLabel="BtnClose_Leading"/>
+                                    <constraint firstItem="gbD-Fh-YCY" firstAttribute="leading" secondItem="fRM-9K-9kd" secondAttribute="leading" constant="5" id="OqK-jZ-dRM" userLabel="ViewForMarkdown_Leading"/>
+                                    <constraint firstAttribute="height" constant="250" id="R1J-q4-Yeu" userLabel="ViewContainer_Height"/>
+                                    <constraint firstAttribute="trailing" secondItem="gbD-Fh-YCY" secondAttribute="trailing" constant="5" id="exK-FY-hE3" userLabel="ViewForMarkdown_Trailing"/>
                                 </constraints>
-                                <state key="normal" title="Close">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnCloseClicked:" destination="hdx-RV-PaD" eventType="touchUpInside" id="adm-gu-Jye"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="axv-Jp-YGE" secondAttribute="trailing" constant="5" id="0Ed-Ri-PfR" userLabel="BtnClose_Trailing"/>
                             <constraint firstAttribute="bottom" secondItem="wv1-Yi-17t" secondAttribute="bottom" id="8oa-Vf-33q" userLabel="ViewAlpha_Bottom"/>
                             <constraint firstItem="wv1-Yi-17t" firstAttribute="top" secondItem="g8D-Fq-qXx" secondAttribute="top" id="EqX-AH-3sa" userLabel="ViewAlpha_Top"/>
-                            <constraint firstAttribute="bottom" secondItem="axv-Jp-YGE" secondAttribute="bottom" constant="5" id="NRx-JH-e08" userLabel="BtnClose_Bottom"/>
                             <constraint firstAttribute="trailing" secondItem="wv1-Yi-17t" secondAttribute="trailing" id="Qaa-Xu-27X" userLabel="ViewAlpha_Trailing"/>
                             <constraint firstItem="wv1-Yi-17t" firstAttribute="leading" secondItem="g8D-Fq-qXx" secondAttribute="leading" id="VRd-tr-l3l" userLabel="ViewAlpha_Leading"/>
-                            <constraint firstItem="axv-Jp-YGE" firstAttribute="leading" secondItem="g8D-Fq-qXx" secondAttribute="leading" constant="5" id="wDQ-1N-Sb5" userLabel="BtnClose_Leading"/>
+                            <constraint firstItem="fRM-9K-9kd" firstAttribute="leading" secondItem="g8D-Fq-qXx" secondAttribute="leading" id="XQ8-ij-m3a" userLabel="ViewContainer_Leading"/>
+                            <constraint firstAttribute="trailing" secondItem="fRM-9K-9kd" secondAttribute="trailing" id="e6T-Yj-pde" userLabel="ViewContainer_Trailing"/>
+                            <constraint firstAttribute="bottom" secondItem="fRM-9K-9kd" secondAttribute="bottom" constant="-250" id="suA-DO-MyT" userLabel="ViewContainer_Bottom"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btnClose" destination="axv-Jp-YGE" id="Dfn-DK-Ssq"/>
+                        <outlet property="constraintViewContainerBottom" destination="suA-DO-MyT" id="DbR-mz-hdP"/>
+                        <outlet property="constraintViewContainerHeight" destination="R1J-q4-Yeu" id="nBh-CP-Tmw"/>
+                        <outlet property="lblDate" destination="RHa-Mo-mQR" id="i9q-Af-TYd"/>
+                        <outlet property="viewAlpha" destination="wv1-Yi-17t" id="b9D-fP-Xyr"/>
+                        <outlet property="viewContainer" destination="fRM-9K-9kd" id="h0w-qp-N4k"/>
+                        <outlet property="viewForMarkdown" destination="gbD-Fh-YCY" id="pAq-pu-mvt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BQB-e3-fV9" userLabel="First Responder" sceneMemberID="firstResponder"/>

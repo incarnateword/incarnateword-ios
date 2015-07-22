@@ -34,6 +34,7 @@
     BOOL                                    _bIsScrollingInProgress;
     UISwipeGestureRecognizer                *_swipeleft,*_swiperight;
     IWInfoViewController                    *_infoVC;
+    NSString                                *_strDate;
 }
 
 @property (nonatomic, assign) CGFloat lastContentOffset;
@@ -289,19 +290,19 @@
 
     [self addMarkdownView];
     
-//    NSArray *arrDate = [_detailChapterStructure.strDate componentsSeparatedByString:@"-"];
+    NSArray *arrDate = [_detailChapterStructure.strDate componentsSeparatedByString:@"-"];
     
-//    if(arrDate.count == 3)
-//    {
-//        _lblYear.text = [arrDate objectAtIndex:0];
-//        NSArray *months = [[NSArray alloc] initWithObjects:@"JAN",@"FEB",@"MARCH",@"APRIL",@"MAY",@"JUNE",@"JULY",@"AUG",@"SEP",@"OCT",@"NOV",@"DEC", nil ];
-//        
-//        int iMonth = [[arrDate objectAtIndex:1] intValue];
-//        NSString *strMonth =  (iMonth > 0 && iMonth <=12 )? [months objectAtIndex: iMonth -1] :@"";
-//        _lblMonth.text = strMonth;
-//        _lblDay.text = [arrDate objectAtIndex:2];
-//        _viewDate.hidden = NO;
-//    }
+    if(arrDate.count == 3)
+    {
+        NSString *strYear = [arrDate objectAtIndex:0];
+        NSArray *months = [[NSArray alloc] initWithObjects:@"Jan",@"Feb",@"March",@"April",@"May",@"June",@"July",@"Aug",@"Sep",@"Oct",@"Nov",@"Dec", nil ];
+        
+        int iMonth = [[arrDate objectAtIndex:1] intValue];
+        NSString *strMonth =  (iMonth > 0 && iMonth <=12 )? [months objectAtIndex: iMonth -1] :@"";
+        NSString *strDay = [arrDate objectAtIndex:2];
+        
+        _strDate = [NSString stringWithFormat:@"%@ %@ %@",strDay,strMonth,strYear];
+    }
     
     NSMutableString *strPath = [[NSMutableString alloc] init];
     
@@ -454,28 +455,9 @@
     
     _infoVC = [[IWGUIManager sharedManager] getInfoViewControllerForText:_detailChapterStructure.strDescription];
     _infoVC.delegateInfoView = self;
+    _infoVC.strDate = _strDate;
     
-    
-    [UIView animateWithDuration:0.2 animations:
-     ^{
-//         _viewBottom.alpha  = 0.2;
-         
-     }];
-    
-    [UIView animateWithDuration:0.5 animations:
-     ^{
-         _viewToolbar.alpha = 0;
 
-     }
-                     completion:^(BOOL finished)
-     {
-         
-//         _viewToolbar.hidden = YES;
-
-     } ];
-
-
-//    [self addChildViewController:infoVC];
     
     UIWindow *keyWindow = [[[UIApplication sharedApplication] delegate] window];
     
@@ -485,20 +467,7 @@
 
 -(void)infoViewRemoved
 {
-//    _viewToolbar.hidden = NO;
 
-    _viewToolbar.alpha = 1;
-
-    
-    [UIView animateWithDuration:0.2 animations:
-     ^{
-         _viewBottom.alpha  = 1.0;
-     }
-                     completion:^(BOOL finished)
-     {
-         
-         
-     } ];
 }
 
 - (BOOL)prefersStatusBarHidden {

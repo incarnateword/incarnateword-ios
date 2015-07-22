@@ -17,13 +17,20 @@
 #define MARKDOWNVIEW_BOTTOM_MARGIN 45
 
 
-@interface IWInfoViewController ()
+@interface IWInfoViewController ()<UIGestureRecognizerDelegate>
 {
     BPMarkdownView                          *_markdownView;
     UITapGestureRecognizer                  *_gestureTapForWholeView;
+    float                                   _fContainerHeight;
 }
 
-@property (weak, nonatomic) IBOutlet UIButton *btnClose;
+@property (weak, nonatomic) IBOutlet UIButton           *btnClose;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintViewContainerHeight;
+@property (weak, nonatomic) IBOutlet UIView             *viewForMarkdown;
+@property (weak, nonatomic) IBOutlet UILabel            *lblDate;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintViewContainerBottom;
+@property (weak, nonatomic) IBOutlet UIView             *viewContainer;
+@property (weak, nonatomic) IBOutlet UIView             *viewAlpha;
 
 @end
 
@@ -33,19 +40,25 @@
 {
     [super viewDidLoad];
     
+    [self setupData];
     [self setupUI];
     [self setupTapGesture];
 }
 
+-(void)setupData
+{
+    _fContainerHeight = _constraintViewContainerHeight.constant;
+}
+
 -(void)setupUI
 {
+    _lblDate.text = _strDate;
     [self setupCloseBtn];
     [self addMarkdownView];
 }
 
 -(void)setupCloseBtn
 {
-    _btnClose.alpha = 0;
     _btnClose.layer.cornerRadius = 3.0;
     _btnClose.backgroundColor = COLOR_NAV_BAR;
 }
@@ -53,31 +66,31 @@
 -(void)addMarkdownView
 {
     CGRect markdownRect = CGRectMake(MARKDOWNVIEW_SIDE_MARGIN,
-                                     self.view.frame.size.height,
-                                     self.view.frame.size.width - 2* MARKDOWNVIEW_SIDE_MARGIN,
-                                     MARKDOWNVIEW_HEIGHT);
+                                     MARKDOWNVIEW_SIDE_MARGIN,
+                                     [UIScreen mainScreen].bounds.size.width - MARKDOWNVIEW_SIDE_MARGIN - 15,
+                                     _fContainerHeight - 80/*([IWUtility isNilOrEmptyString:_strDate] ? 50 : 85)*/);
     
     _markdownView = [IWUtility getMarkdownViewOfFrame:markdownRect];
-    _markdownView.layer.cornerRadius = 3.0;
+    _markdownView.translatesAutoresizingMaskIntoConstraints = NO;
+    _viewForMarkdown.layer.cornerRadius = 3.0;
     [_markdownView setMarkdown:_strText];
-    _markdownView.alpha = 0;
-    _markdownView.backgroundColor = COLOR_NAV_BAR;
+    _markdownView.backgroundColor = [UIColor clearColor];
+    _viewForMarkdown.backgroundColor = COLOR_NAV_BAR;
 
-    [self.view addSubview:_markdownView];
+    [_viewForMarkdown addSubview:_markdownView];
     
-    [UIView animateWithDuration:0.25 animations:
+    _constraintViewContainerBottom.constant = -_fContainerHeight;
+    
+    [UIView animateWithDuration:0.4 animations:
      ^{
-         _markdownView.alpha =1.0;
-         _btnClose.alpha = 0.2;
-
-         _markdownView.frame = CGRectMake(MARKDOWNVIEW_SIDE_MARGIN,
-                                          self.view.frame.size.height - MARKDOWNVIEW_HEIGHT,
-                                          self.view.frame.size.width - 2* MARKDOWNVIEW_SIDE_MARGIN,
-                                          MARKDOWNVIEW_HEIGHT - MARKDOWNVIEW_BOTTOM_MARGIN);
-     }  completion:
+         _constraintViewContainerBottom.constant = 0;
+         [_viewContainer layoutIfNeeded];
+         _markdownView.frame = markdownRect;
+         _viewAlpha.alpha = 0.5;
+     }
+    completion:
      ^(BOOL finished)
     {
-        _btnClose.alpha = 1.0;
     }];
 }
 
@@ -85,9 +98,17 @@
 {
     _gestureTapForWholeView = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                       action:@selector(handleSingleTap:)];
+    _gestureTapForWholeView.delegate = self;
     [self.view addGestureRecognizer:_gestureTapForWholeView];
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if (gestureRecognizer == _gestureTapForWholeView && [touch.view isDescendantOfView:_viewContainer])
+        return NO;
+    
+    return YES;
+}
 
 #pragma mark - Remove View Methods
 
@@ -108,19 +129,15 @@
     {
         [_delegateInfoView infoViewRemoved];
     }
-    _btnClose.alpha = 0;
 
-    [UIView animateWithDuration:0.25 animations:
+    [UIView animateWithDuration:0.4 animations:
      ^{
-         _markdownView.frame = CGRectMake(MARKDOWNVIEW_SIDE_MARGIN,
-                                          self.view.frame.size.height,
-                                          self.view.frame.size.width - 2* MARKDOWNVIEW_SIDE_MARGIN,
-                                          MARKDOWNVIEW_HEIGHT);
+         _constraintViewContainerBottom.constant = -_fContainerHeight;
+         [_viewContainer layoutIfNeeded];
      }
-                     completion:^(BOOL finished)
+    completion:^(BOOL finished)
      {
          [self.view removeFromSuperview];
-         
      }];
 }
 
