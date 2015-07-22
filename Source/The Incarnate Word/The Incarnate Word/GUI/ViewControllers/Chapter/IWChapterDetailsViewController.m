@@ -157,7 +157,7 @@
     float space = rect.size.width / 3 - 50 - 25;
     
     _constraintHorizontalSpaceBtnsBackNext.constant = space;
-    _constraintHorizontalSpaceBtnsInfoShare.constant = space +5;
+    _constraintHorizontalSpaceBtnsInfoShare.constant = space +8;
     
    
     _viewLoading.layer.cornerRadius = 3.0;

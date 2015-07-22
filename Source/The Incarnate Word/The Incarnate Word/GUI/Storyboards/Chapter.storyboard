@@ -94,7 +94,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLY-ff-Ll7" userLabel="BtnShare">
                                         <rect key="frame" x="200" y="0.0" width="50" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="hnz-zf-BgP" userLabel="BtnShare_Width"/>
+                                            <constraint firstAttribute="width" constant="44" id="hnz-zf-BgP" userLabel="BtnShare_Width"/>
                                         </constraints>
                                         <state key="normal" image="btn_share">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -111,15 +111,15 @@
                                     <constraint firstAttribute="height" constant="44" id="3qj-08-2wZ" userLabel="ViewToolBar_Height"/>
                                     <constraint firstItem="sMq-uy-L8b" firstAttribute="top" secondItem="Mge-yv-s1d" secondAttribute="top" id="5og-HZ-6Y9" userLabel="BtnNext_Top"/>
                                     <constraint firstItem="dey-0F-Zgz" firstAttribute="leading" secondItem="Mge-yv-s1d" secondAttribute="leading" id="6vi-Oh-3x0" userLabel="ViewLine_Leading"/>
-                                    <constraint firstItem="lLY-ff-Ll7" firstAttribute="top" secondItem="Mge-yv-s1d" secondAttribute="top" id="Gcz-9P-T6w" userLabel="BtnShare_Top"/>
-                                    <constraint firstAttribute="bottom" secondItem="lLY-ff-Ll7" secondAttribute="bottom" id="P0Z-ac-Yb8" userLabel="BtnShare_Bottom"/>
+                                    <constraint firstItem="lLY-ff-Ll7" firstAttribute="top" secondItem="Mge-yv-s1d" secondAttribute="top" constant="4" id="Gcz-9P-T6w" userLabel="BtnShare_Top"/>
+                                    <constraint firstAttribute="bottom" secondItem="lLY-ff-Ll7" secondAttribute="bottom" constant="4" id="P0Z-ac-Yb8" userLabel="BtnShare_Bottom"/>
                                     <constraint firstItem="lLY-ff-Ll7" firstAttribute="leading" secondItem="2iB-XC-n0X" secondAttribute="trailing" id="Txm-AB-4aj" userLabel="HorizontalSpace_BtnInfo_BtnShare"/>
                                     <constraint firstAttribute="trailing" secondItem="dey-0F-Zgz" secondAttribute="trailing" id="W6g-Km-10B" userLabel="ViewLine_Trailing"/>
                                     <constraint firstItem="2iB-XC-n0X" firstAttribute="top" secondItem="Mge-yv-s1d" secondAttribute="top" constant="3" id="bbz-gu-maW" userLabel="BtnInfo_Top"/>
                                     <constraint firstItem="Ff2-Hn-oNc" firstAttribute="leading" secondItem="Mge-yv-s1d" secondAttribute="leading" id="cOz-gc-tLJ" userLabel="BtnBack_Leading"/>
                                     <constraint firstAttribute="bottom" secondItem="2iB-XC-n0X" secondAttribute="bottom" id="ewg-Oz-XiO" userLabel="BtnInfo_Bottom"/>
                                     <constraint firstItem="Ff2-Hn-oNc" firstAttribute="top" secondItem="Mge-yv-s1d" secondAttribute="top" id="f04-ic-Jwy" userLabel="BtnBack_Top"/>
-                                    <constraint firstAttribute="trailing" secondItem="lLY-ff-Ll7" secondAttribute="trailing" constant="3" id="hqu-MZ-gvg" userLabel="BtnShare_Trailing"/>
+                                    <constraint firstAttribute="trailing" secondItem="lLY-ff-Ll7" secondAttribute="trailing" constant="4" id="hqu-MZ-gvg" userLabel="BtnShare_Trailing"/>
                                     <constraint firstAttribute="bottom" secondItem="sMq-uy-L8b" secondAttribute="bottom" id="pIf-vt-9l7" userLabel="BtnNext_Bottom"/>
                                 </constraints>
                             </view>
