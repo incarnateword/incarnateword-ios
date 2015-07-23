@@ -70,16 +70,20 @@
                                      [UIScreen mainScreen].bounds.size.width - MARKDOWNVIEW_SIDE_MARGIN - 15,
                                      _fContainerHeight - 80/*([IWUtility isNilOrEmptyString:_strDate] ? 50 : 85)*/);
     
-    _markdownView = [IWUtility getMarkdownViewOfFrame:markdownRect withCustomBPDisplaySettings:nil];
+    BPDisplaySettings *customBPSettings = [[BPDisplaySettings alloc] init];
+    customBPSettings.defaultFont = [UIFont fontWithName:FONT_TITLE_REGULAR size:[UIFont systemFontSize] + 4.0];
+    
+    _markdownView = [IWUtility getMarkdownViewOfFrame:markdownRect withCustomBPDisplaySettings:customBPSettings];
     _markdownView.translatesAutoresizingMaskIntoConstraints = NO;
     _viewForMarkdown.layer.cornerRadius = 3.0;
     [_markdownView setMarkdown:_strText];
     _markdownView.backgroundColor = [UIColor clearColor];
     _viewForMarkdown.backgroundColor = COLOR_NAV_BAR;
-
     [_viewForMarkdown addSubview:_markdownView];
     
     _constraintViewContainerBottom.constant = -_fContainerHeight;
+    
+    [_btnClose.titleLabel setFont:[UIFont fontWithName:FONT_TITLE_REGULAR size:[UIFont systemFontSize] + 4.0]];
     
     [UIView animateWithDuration:0.4 animations:
      ^{
