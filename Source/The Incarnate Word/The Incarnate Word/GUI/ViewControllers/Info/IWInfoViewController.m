@@ -53,6 +53,7 @@
 -(void)setupUI
 {
     _lblDate.text = _strDate;
+    _lblDate.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:[UIFont systemFontSize] + 4.0];
     [self setupCloseBtn];
     [self addMarkdownView];
 }
