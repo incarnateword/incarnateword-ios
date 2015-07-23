@@ -333,7 +333,7 @@
     _markdownView.delegate = nil;
     _markdownView = nil;
     
-    _markdownView  = [IWUtility getMarkdownViewOfFrame:[self getMarkdownViewRect]];
+    _markdownView  = [IWUtility getMarkdownViewOfFrame:[self getMarkdownViewRect] withCustomBPDisplaySettings:nil];
     [_viewBottom addSubview:_markdownView];
     [_markdownView setMarkdown:_detailChapterStructure.strText];
     _markdownView.delegate = self;

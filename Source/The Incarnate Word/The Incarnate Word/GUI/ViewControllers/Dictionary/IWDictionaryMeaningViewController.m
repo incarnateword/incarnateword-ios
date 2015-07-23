@@ -131,7 +131,7 @@
                                      0,
                                      screenWidth,
                                      screenHeight - totalTopMargin -10);
-    _markdownView  = [IWUtility getMarkdownViewOfFrame:markdownRect];
+    _markdownView  = [IWUtility getMarkdownViewOfFrame:markdownRect withCustomBPDisplaySettings:nil];
     [_viewDescription addSubview:_markdownView];
     _markdownView.layer.cornerRadius = 3.0;
     [_markdownView setMarkdown:_wordMeaningStructure.strDefinition];

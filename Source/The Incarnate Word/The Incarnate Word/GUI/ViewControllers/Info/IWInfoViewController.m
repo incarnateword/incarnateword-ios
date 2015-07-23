@@ -70,7 +70,7 @@
                                      [UIScreen mainScreen].bounds.size.width - MARKDOWNVIEW_SIDE_MARGIN - 15,
                                      _fContainerHeight - 80/*([IWUtility isNilOrEmptyString:_strDate] ? 50 : 85)*/);
     
-    _markdownView = [IWUtility getMarkdownViewOfFrame:markdownRect];
+    _markdownView = [IWUtility getMarkdownViewOfFrame:markdownRect withCustomBPDisplaySettings:nil];
     _markdownView.translatesAutoresizingMaskIntoConstraints = NO;
     _viewForMarkdown.layer.cornerRadius = 3.0;
     [_markdownView setMarkdown:_strText];

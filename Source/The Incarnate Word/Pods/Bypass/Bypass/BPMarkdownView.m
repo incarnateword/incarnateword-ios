@@ -62,6 +62,11 @@ BPCreatePageFrames(BPDocument *document,
     BPElementWalker* walker = [[BPElementWalker alloc] init];
     
     BPAttributedTextVisitor* textVisitor = [[BPAttributedTextVisitor alloc] init];
+    
+    //ADITYA ADDITIONS -> Applied font customisation to BPAttributedTextVisitor via BPMarkdownView's displaySettings
+    __weak BPMarkdownView *weakRef = (BPMarkdownView*)accessibilityContainer;
+    textVisitor.displaySettings = weakRef.displaySettings;
+    //ADITYA END
     [walker addElementVisitor:textVisitor];
     
     BPAccessibilityVisitor* accessVisitor = [[BPAccessibilityVisitor alloc] initWithAccessibilityContainer:accessibilityContainer];

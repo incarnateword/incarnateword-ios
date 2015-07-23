@@ -74,14 +74,11 @@
 }
 
 
-+(BPMarkdownView*)getMarkdownViewOfFrame:(CGRect) rect
++(BPMarkdownView*)getMarkdownViewOfFrame:(CGRect) rect withCustomBPDisplaySettings: (BPDisplaySettings*) customBPSettings
 {
     BPMarkdownView *markdownView = [[BPMarkdownView alloc] initWithFrame:rect];
-    markdownView.backgroundColor = [UIColor clearColor];
     BPDisplaySettings *bpSettings = [[BPDisplaySettings alloc] init];
-    bpSettings.defaultColor = [UIColor redColor];
-    bpSettings.defaultFont = [UIFont fontWithName:@"Helevetica-Light" size:15.0];
-    markdownView.displaySettings = bpSettings;
+    markdownView.displaySettings = customBPSettings != nil ? customBPSettings : bpSettings;
     markdownView.backgroundColor = COLOR_MARKDOWN_VIEW_BG;
     
     markdownView.bounces = NO;
