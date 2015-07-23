@@ -303,6 +303,10 @@
         
         _strDate = [NSString stringWithFormat:@"%@ %@ %@",strDay,strMonth,strYear];
     }
+    else
+    {
+         _strDate = @"";
+    }
     
     NSMutableString *strPath = [[NSMutableString alloc] init];
     
