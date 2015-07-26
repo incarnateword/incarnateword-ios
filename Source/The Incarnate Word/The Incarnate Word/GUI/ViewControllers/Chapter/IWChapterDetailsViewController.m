@@ -154,10 +154,10 @@
 {
     CGRect rect = [[UIScreen mainScreen] bounds];
 
-    float space = rect.size.width / 3 - 50 - 25;
+    float space = rect.size.width / 3 - 50 -16;
     
     _constraintHorizontalSpaceBtnsBackNext.constant = space;
-    _constraintHorizontalSpaceBtnsInfoShare.constant = space +8;
+    _constraintHorizontalSpaceBtnsInfoShare.constant = space ;
     
    
     _viewLoading.layer.cornerRadius = 3.0;
@@ -167,7 +167,7 @@
     _viewToolbar.backgroundColor = COLOR_NAV_BAR;
 
     
-    _btnInfo.titleLabel.font = [UIFont fontWithName:FONT_BODY_ITALIC size:26.0];
+    _btnInfo.titleLabel.font = [UIFont fontWithName:FONT_BODY_ITALIC size:28.0];
     
     
     [self startLoadingAnimation];
@@ -341,6 +341,7 @@
     [_viewBottom addSubview:_markdownView];
     [_markdownView setMarkdown:_detailChapterStructure.strText];
     _markdownView.delegate = self;
+    _markdownView.scrollsToTop = YES;
 }
 
 -(CGRect)getMarkdownViewRect
@@ -356,8 +357,10 @@
 }
 
 
-
-
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
+{
+    return YES;
+}
 #pragma mark - Loading Animation
 
 -(void)startLoadingAnimation

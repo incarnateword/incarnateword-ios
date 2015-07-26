@@ -72,7 +72,14 @@
                                      _fContainerHeight - 80/*([IWUtility isNilOrEmptyString:_strDate] ? 50 : 85)*/);
     
     BPDisplaySettings *customBPSettings = [[BPDisplaySettings alloc] init];
-    customBPSettings.defaultFont = [UIFont fontWithName:FONT_TITLE_REGULAR size:[UIFont systemFontSize] + 4.0];
+    CGFloat systemFontSize = [UIFont systemFontSize];
+    customBPSettings.defaultFont = [UIFont fontWithName:FONT_TITLE_REGULAR size:systemFontSize + 4.0];
+    customBPSettings.boldFont = [UIFont fontWithName:FONT_TITLE_MEDIUM size:systemFontSize + 4.0];
+    customBPSettings.italicFont =  [UIFont fontWithName:FONT_TITLE_ITALIC size:systemFontSize + 4.0];
+    customBPSettings.monospaceFont = [UIFont fontWithName:FONT_TITLE_REGULAR size:systemFontSize - 2.f];
+    customBPSettings.quoteFont = [UIFont fontWithName:FONT_TITLE_ITALIC size:systemFontSize + 4.0];
+
+    
     
     _markdownView = [IWUtility getMarkdownViewOfFrame:markdownRect withCustomBPDisplaySettings:customBPSettings];
     _markdownView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -138,6 +145,7 @@
     [UIView animateWithDuration:0.4 animations:
      ^{
          _constraintViewContainerBottom.constant = -_fContainerHeight;
+         _viewAlpha.alpha = 0.0;
          [_viewContainer layoutIfNeeded];
      }
     completion:^(BOOL finished)

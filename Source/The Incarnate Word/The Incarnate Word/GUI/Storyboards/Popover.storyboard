@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wv1-Yi-17t" userLabel="ViewAlpha">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wv1-Yi-17t" userLabel="ViewAlpha">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -25,10 +25,10 @@
                                 <rect key="frame" x="0.0" y="600" width="600" height="250"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbD-Fh-YCY" userLabel="ViewForMarkdown">
-                                        <rect key="frame" x="5" y="0.0" width="590" height="205"/>
+                                        <rect key="frame" x="5" y="0.0" width="590" height="200"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHa-Mo-mQR" userLabel="lbl">
-                                                <rect key="frame" x="0.0" y="175" width="590" height="30"/>
+                                                <rect key="frame" x="0.0" y="170" width="590" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="3Ym-Fc-3vj" userLabel="lbl_Height"/>
@@ -46,10 +46,10 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axv-Jp-YGE" userLabel="BtnClose">
-                                        <rect key="frame" x="5" y="210" width="590" height="35"/>
+                                        <rect key="frame" x="5" y="205" width="590" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="eq8-Ov-AVI" userLabel="BtnClose_Height"/>
+                                            <constraint firstAttribute="height" constant="40" id="eq8-Ov-AVI" userLabel="BtnClose_Height"/>
                                         </constraints>
                                         <state key="normal" title="Close">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
