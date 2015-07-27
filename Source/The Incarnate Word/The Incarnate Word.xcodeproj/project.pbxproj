@@ -62,7 +62,6 @@
 		48C2C4E71B07887A00ED333F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C2C4E51B07887A00ED333F /* Main.storyboard */; };
 		48C2C4E91B07887A00ED333F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48C2C4E81B07887A00ED333F /* Images.xcassets */; };
 		48C2C4EC1B07887B00ED333F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48C2C4EA1B07887B00ED333F /* LaunchScreen.xib */; };
-		48C2C4F81B07887B00ED333F /* The_Incarnate_WordTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C2C4F71B07887B00ED333F /* The_Incarnate_WordTests.m */; };
 		48C2C5101B078B1700ED333F /* BaseWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C2C5091B078B1700ED333F /* BaseWebService.m */; };
 		48C2C5111B078B1700ED333F /* WSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C2C50D1B078B1700ED333F /* WSError.m */; };
 		48C2C5121B078B1700ED333F /* HttpCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C2C50F1B078B1700ED333F /* HttpCommunication.m */; };
@@ -81,16 +80,6 @@
 		B2DCAC5A1B0DEDE40092AD85 /* MarkdownTokens.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DCAC531B0DEDE40092AD85 /* MarkdownTokens.m */; };
 		B2DCAC5B1B0DEDE40092AD85 /* NSAttributedStringMarkdownParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DCAC571B0DEDE40092AD85 /* NSAttributedStringMarkdownParser.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		48C2C4F21B07887B00ED333F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 48C2C4D01B07887A00ED333F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 48C2C4D71B07887A00ED333F;
-			remoteInfo = "The Incarnate Word";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		483D67431B0881B200BA9A82 /* IWHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWHomeViewController.h; sourceTree = "<group>"; };
@@ -187,7 +176,6 @@
 		48C2C4E61B07887A00ED333F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48C2C4E81B07887A00ED333F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		48C2C4EB1B07887B00ED333F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		48C2C4F11B07887B00ED333F /* The Incarnate WordTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "The Incarnate WordTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C2C4F61B07887B00ED333F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48C2C4F71B07887B00ED333F /* The_Incarnate_WordTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = The_Incarnate_WordTests.m; sourceTree = "<group>"; };
 		48C2C5081B078B1700ED333F /* BaseWebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWebService.h; sourceTree = "<group>"; };
@@ -235,13 +223,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AD18642D3A0FF75FC2D3A73 /* libPods-The Incarnate Word.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		48C2C4EE1B07887B00ED333F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,7 +647,6 @@
 			isa = PBXGroup;
 			children = (
 				48C2C4D81B07887A00ED333F /* The Incarnate Word.app */,
-				48C2C4F11B07887B00ED333F /* The Incarnate WordTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -842,24 +822,6 @@
 			productReference = 48C2C4D81B07887A00ED333F /* The Incarnate Word.app */;
 			productType = "com.apple.product-type.application";
 		};
-		48C2C4F01B07887B00ED333F /* The Incarnate WordTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 48C2C4FE1B07887B00ED333F /* Build configuration list for PBXNativeTarget "The Incarnate WordTests" */;
-			buildPhases = (
-				48C2C4ED1B07887B00ED333F /* Sources */,
-				48C2C4EE1B07887B00ED333F /* Frameworks */,
-				48C2C4EF1B07887B00ED333F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				48C2C4F31B07887B00ED333F /* PBXTargetDependency */,
-			);
-			name = "The Incarnate WordTests";
-			productName = "The Incarnate WordTests";
-			productReference = 48C2C4F11B07887B00ED333F /* The Incarnate WordTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -872,10 +834,6 @@
 				TargetAttributes = {
 					48C2C4D71B07887A00ED333F = {
 						CreatedOnToolsVersion = 6.3;
-					};
-					48C2C4F01B07887B00ED333F = {
-						CreatedOnToolsVersion = 6.3;
-						TestTargetID = 48C2C4D71B07887A00ED333F;
 					};
 				};
 			};
@@ -893,7 +851,6 @@
 			projectRoot = "";
 			targets = (
 				48C2C4D71B07887A00ED333F /* The Incarnate Word */,
-				48C2C4F01B07887B00ED333F /* The Incarnate WordTests */,
 			);
 		};
 /* End PBXProject section */
@@ -923,13 +880,6 @@
 				48BBDA531B3C845E00564E70 /* Monotype Sabon Semi Bold Italic 3554968c-1c22-469d-8fe9.otf in Resources */,
 				48BBDA551B3C93A100564E70 /* bg-noise.png in Resources */,
 				487869741B08DC1B00429141 /* Volume.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		48C2C4EF1B07887B00ED333F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1027,23 +977,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		48C2C4ED1B07887B00ED333F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				48C2C4F81B07887B00ED333F /* The_Incarnate_WordTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		48C2C4F31B07887B00ED333F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 48C2C4D71B07887A00ED333F /* The Incarnate Word */;
-			targetProxy = 48C2C4F21B07887B00ED333F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		48C2C4E51B07887A00ED333F /* Main.storyboard */ = {
@@ -1181,40 +1115,6 @@
 			};
 			name = Release;
 		};
-		48C2C4FF1B07887B00ED333F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "The Incarnate WordTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/The Incarnate Word.app/The Incarnate Word";
-			};
-			name = Debug;
-		};
-		48C2C5001B07887B00ED333F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "The Incarnate WordTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/The Incarnate Word.app/The Incarnate Word";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1232,15 +1132,6 @@
 			buildConfigurations = (
 				48C2C4FC1B07887B00ED333F /* Debug */,
 				48C2C4FD1B07887B00ED333F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		48C2C4FE1B07887B00ED333F /* Build configuration list for PBXNativeTarget "The Incarnate WordTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				48C2C4FF1B07887B00ED333F /* Debug */,
-				48C2C5001B07887B00ED333F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
