@@ -66,7 +66,6 @@
 		48C2C5111B078B1700ED333F /* WSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C2C50D1B078B1700ED333F /* WSError.m */; };
 		48C2C5121B078B1700ED333F /* HttpCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C2C50F1B078B1700ED333F /* HttpCommunication.m */; };
 		48C2C5171B07906B00ED333F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C2C5161B07906B00ED333F /* Reachability.m */; };
-		48D54F0B1B1CD5C0002AD10D /* IWCarouselItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D54F0A1B1CD5C0002AD10D /* IWCarouselItemViewController.m */; };
 		48E51FF01B30ABA9008825FC /* Popover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48E51FEF1B30ABA9008825FC /* Popover.storyboard */; };
 		48E51FF41B30ABEF008825FC /* IWInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E51FF31B30ABEF008825FC /* IWInfoViewController.m */; };
 		8AD18642D3A0FF75FC2D3A73 /* libPods-The Incarnate Word.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A76EDDEF6408E3B815FA982A /* libPods-The Incarnate Word.a */; };
@@ -188,8 +187,6 @@
 		48C2C5131B078FAC00ED333F /* WebServiceConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebServiceConstants.h; sourceTree = "<group>"; };
 		48C2C5151B07906B00ED333F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		48C2C5161B07906B00ED333F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		48D54F091B1CD5C0002AD10D /* IWCarouselItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWCarouselItemViewController.h; sourceTree = "<group>"; };
-		48D54F0A1B1CD5C0002AD10D /* IWCarouselItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWCarouselItemViewController.m; sourceTree = "<group>"; };
 		48E51FEF1B30ABA9008825FC /* Popover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Popover.storyboard; sourceTree = "<group>"; };
 		48E51FF21B30ABEF008825FC /* IWInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWInfoViewController.h; sourceTree = "<group>"; };
 		48E51FF31B30ABEF008825FC /* IWInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWInfoViewController.m; sourceTree = "<group>"; };
@@ -345,8 +342,6 @@
 			children = (
 				483D67431B0881B200BA9A82 /* IWHomeViewController.h */,
 				483D67441B0881B200BA9A82 /* IWHomeViewController.m */,
-				48D54F091B1CD5C0002AD10D /* IWCarouselItemViewController.h */,
-				48D54F0A1B1CD5C0002AD10D /* IWCarouselItemViewController.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -973,7 +968,6 @@
 				48E51FF41B30ABEF008825FC /* IWInfoViewController.m in Sources */,
 				483D67601B0886E500BA9A82 /* MMExampleDrawerVisualStateManager.m in Sources */,
 				B20EC21D1B1EFBF100691285 /* IWDictionaryMeaningViewController.m in Sources */,
-				48D54F0B1B1CD5C0002AD10D /* IWCarouselItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
