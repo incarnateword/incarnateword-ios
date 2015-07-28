@@ -22,8 +22,6 @@
 -(void)showDictionary;
 -(void)showDictionaryMeaningForWord:(NSString*)strWord;
 -(void)showHomeScreen;
-
 -(void)toggleLeftDrawer;
-
 
 @end

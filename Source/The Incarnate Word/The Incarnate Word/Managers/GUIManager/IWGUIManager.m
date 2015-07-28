@@ -37,17 +37,14 @@ static IWGUIManager* guiManager = nil ;
 {
     if (!guiManager)
     {
-        
         guiManager = [[IWGUIManager alloc] init] ;
     }
 }
-
 
 +(IWGUIManager *)sharedManager
 {
     return guiManager;
 }
-
 
 -(id) init
 {
@@ -61,13 +58,10 @@ static IWGUIManager* guiManager = nil ;
     return guiManager ;
 }
 
-
 -(void)setupInitialUI
 {
     [self setupDrawerConrtol];
 }
-
-
 
 #pragma mark - Setup Drawer Control
 
@@ -119,9 +113,9 @@ static IWGUIManager* guiManager = nil ;
                                               alpha:1.0];
         [window setTintColor:tintColor];
     }
+    
     [window setRootViewController:self.drawerController];
     [window makeKeyAndVisible];
-    
 }
 
 
@@ -138,14 +132,12 @@ static IWGUIManager* guiManager = nil ;
     }
 }
 
-
 - (void) drawerToggleLeft
 {
     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
     MMDrawerController *drawerVC = (MMDrawerController*) window.rootViewController;
     [drawerVC toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
-
 
 -(void) forceOnRoot:(UINavigationController *) centerNavController
 {
@@ -156,8 +148,6 @@ static IWGUIManager* guiManager = nil ;
     //POP to root view controller
     [centerNavController popToRootViewControllerAnimated:NO] ;
 }
-
-
 
 - (void) drawerEnableAccess:(BOOL)bShouldEnableAccess
 {
@@ -278,9 +268,6 @@ static IWGUIManager* guiManager = nil ;
 
 -(void)btnDrawerClicked
 {
-//    UINavigationController* navigation = (UINavigationController*)self.drawerController.centerViewController ;
-//    [navigation popViewControllerAnimated:NO] ;
-    
     [self drawerToggleLeft];
 }
 

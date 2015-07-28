@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIView             *viewTop;
 @property (strong, nonatomic) IBOutlet UIPageControl    *pageControl;
 @property (weak, nonatomic) IBOutlet UIView             *viewBottom;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel            *lblTitle;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionViewQuotes;
 
 
@@ -46,7 +46,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg-noise.png"]]];
-//    _viewTop.layer.cornerRadius = 5.0;
     _viewTop.clipsToBounds = YES;
     _viewBottom.layer.cornerRadius = 5.0;
     _viewBottom.clipsToBounds = YES;
@@ -78,7 +77,6 @@
     
     [self setupNavigationBar];
     [self setBanners];
-
 }
 
 -(void)setupNavigationBar
@@ -103,7 +101,6 @@
     
     self.navigationItem.leftBarButtonItems = [NSArray
                                               arrayWithObjects:negativeSpacerLeft, leftButton, nil];
-    
     
      UIColor *navBarColor = [IWUtility getNavBarColor];
     
@@ -140,7 +137,6 @@
     _arrBanner = [[NSArray alloc] initWithObjects:@"If one reads Sri Aurobindo carefully one finds the answers to all that one wants to know.",
                   @"If you want to know what Sri Aurobindo has said on a given subject, you must at least read all that he has written on that subject. You will then see that he has apparently said the most contradictory things. But when one has read everything, and understood a little, one perceives that all the contradictions complement each other and are organised and unified into an integral synthesis.",
                   @"It is not by books that Sri Aurobindo ought to be studied but by subjects — what he has said on the Divine, on Unity, on religion, on evolution, on education, on self-perfection, on supermind, etc., etc.",nil];
-//    [self performSelectorOnMainThread:@selector(setupPageViewController) withObject:nil waitUntilDone:NO];
 }
 
 #pragma mark - Setup Pages

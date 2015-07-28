@@ -19,8 +19,6 @@ static IWAppManager* appManager = nil ;
 {
     if (!appManager)
     {
-        NSLog(@"initialize !!!!");
-
         appManager = [[IWAppManager alloc] init] ;
     }
 }
@@ -37,10 +35,7 @@ static IWAppManager* appManager = nil ;
     if (nil == appManager)
     {
         appManager = [super init];
-
-        NSLog(@"HERE !!!!");
         [self initializeApplication];
-        
     }
     
     return appManager ;

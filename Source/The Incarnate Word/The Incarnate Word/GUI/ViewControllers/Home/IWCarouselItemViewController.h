@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface IWCarouselItemViewController : UIViewController
-@property(readwrite) int pageNumber;
-@property(readwrite) NSString *strQuote;
+@property(readwrite) int        pageNumber;
+@property(readwrite) NSString   *strQuote;
 
 @end
