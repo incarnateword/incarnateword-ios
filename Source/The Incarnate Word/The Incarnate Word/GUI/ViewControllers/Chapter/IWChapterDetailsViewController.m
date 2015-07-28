@@ -11,7 +11,6 @@
 #import "IWDetailChapterStructure.h"
 #import "IWUtility.h"
 #import "IWPathStructure.h"
-
 #import "BPMarkdownView.h"
 #import "BPDisplaySettings.h"
 #import "IWUIConstants.h"
@@ -23,7 +22,6 @@
 {
     IWChapterWebService                     *_chapterWebService;
     IWDetailChapterStructure                *_detailChapterStructure;
-    
     
     BOOL                                    _bShouldFlipHorizontally;
     NSTimer                                 *_timerLoading;
@@ -37,16 +35,12 @@
     NSString                                *_strDate;
 }
 
-@property (nonatomic, assign) CGFloat lastContentOffset;
-
-
+@property (nonatomic, assign) CGFloat                           lastContentOffset;
 @property (weak, nonatomic) IBOutlet UIView                     *viewBottom;
 @property (weak, nonatomic) IBOutlet UIView                     *viewLoading;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint         *constraintViewBottomTopSpace;
 @property (weak, nonatomic) IBOutlet UIButton                   *btnPrevChapter;
-
 @property (weak, nonatomic) IBOutlet UIButton                   *btnNextChapter;
-
 @property (weak, nonatomic) IBOutlet UIView                     *viewForTap;
 @property (weak, nonatomic) IBOutlet UIButton                   *btnInfo;
 @property (weak, nonatomic) IBOutlet UIView                     *viewToolbar;
@@ -67,9 +61,9 @@
 
 @implementation IWChapterDetailsViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     [self setupVC];
 }
@@ -82,9 +76,8 @@
     _btnShare.hidden = YES;
     _btnNextChapter.hidden = YES;
 
-
-    [UIView animateWithDuration:0.5 animations:^{
-    
+    [UIView animateWithDuration:0.5 animations:
+     ^{
         CGRect rect = [self getMarkdownViewRect];
         rect.origin.x = [UIScreen mainScreen].bounds.size.width;
         _markdownView.frame = rect;
@@ -109,7 +102,6 @@
     _btnShare.hidden = YES;
     _btnNextChapter.hidden = YES;
 
-    
     [UIView animateWithDuration:0.5 animations:^{
         
         CGRect rect = [self getMarkdownViewRect];
@@ -158,26 +150,20 @@
     
     _constraintHorizontalSpaceBtnsBackNext.constant = space;
     _constraintHorizontalSpaceBtnsInfoShare.constant = space ;
-    
    
     _viewLoading.layer.cornerRadius = 3.0;
     _viewLoading.backgroundColor = COLOR_LOADING_VIEW;
     self.view.backgroundColor = COLOR_VIEW_BG;
     _viewBottom.backgroundColor = COLOR_VIEW_BG;
     _viewToolbar.backgroundColor = COLOR_NAV_BAR;
-
     
     _btnInfo.titleLabel.font = [UIFont fontWithName:FONT_BODY_ITALIC size:28.0];
-    
     
     [self startLoadingAnimation];
 
     _viewBottom.hidden = YES;
     self.navigationItem.title = @"Loading...";
     
-
-
-//    _btnPrevChapter.hidden = YES;
     _btnNextChapter.hidden = YES;
     _btnShare.hidden = YES;
     
@@ -198,7 +184,6 @@
     _swiperight=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swiperight:)];
     _swiperight.direction=UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:_swiperight];
-    
 }
 
 
@@ -318,13 +303,7 @@
             [strPath appendString:@" / "];
     }
     
-//    _lblBreadCrum.text = [strPath copy];
-    
-
-    
-    
     _btnNextChapter.hidden = [IWUtility isNilOrEmptyString:_detailChapterStructure.strNextChapterUrl];
-//    _btnPrevChapter.hidden = [IWUtility isNilOrEmptyString:_detailChapterStructure.strPrevChapterUrl];
     _btnShare.hidden = NO;
     
     [self stopLoadingAnimation];
@@ -448,7 +427,8 @@
     }
  }
 
-- (IBAction)btnBackPressed:(id)sender {
+- (IBAction)btnBackPressed:(id)sender
+{
     
     [self hideNavigationBar:NO];
     
@@ -458,30 +438,24 @@
         [self btnPrevChapterPressed:nil];
 }
 
-- (IBAction)btnInfoPressed:(id)sender {
-    
+- (IBAction)btnInfoPressed:(id)sender
+{
     _infoVC = [[IWGUIManager sharedManager] getInfoViewControllerForText:_detailChapterStructure.strDescription];
     _infoVC.delegateInfoView = self;
     _infoVC.strDate = _strDate;
     
-
-    
     UIWindow *keyWindow = [[[UIApplication sharedApplication] delegate] window];
-    
     [keyWindow addSubview:_infoVC.view];
     _infoVC.view.frame = [keyWindow bounds];
 }
 
 -(void)infoViewRemoved
 {
-
 }
 
-- (BOOL)prefersStatusBarHidden {
+- (BOOL)prefersStatusBarHidden
+{
     return YES;
 }
-
-
-
 
 @end

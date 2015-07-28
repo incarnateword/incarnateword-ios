@@ -20,13 +20,8 @@
 {
     IWCompilationWebService             *_compilationWebService;
     IWCompilationStructure              *_compilation;
-    
-//    CGFloat                             _fTopViewHeight;
-    
     BOOL                                _bShouldFlipHorizontally;
     NSTimer                             *_timerLoading;
-//    UITapGestureRecognizer              *_tapGestureOnDummyScrollView;
-
 }
 
 @property (nonatomic, assign) CGFloat lastContentOffset;
@@ -38,7 +33,6 @@
 @property (weak, nonatomic) IBOutlet UIView                     *viewTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint         *constraintTopViewHeight;
 @property (weak, nonatomic) IBOutlet UILabel                    *lblTop;
-//@property (weak, nonatomic) IBOutlet UIScrollView               *scrollViewTop;
 
 -(void)setupUI;
 -(void)getData;
@@ -51,7 +45,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     [self setupUI];
     [self getData];
@@ -70,35 +63,10 @@
     _tableViewVolumeList.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self.view sendSubviewToBack:_viewTop];
-//    _fTopViewHeight = _constraintTopViewHeight.constant;
     _constraintViewVolumeTopSpace.constant = 0;
     _constraintTopViewHeight.constant = 0;
     [self startLoadingAnimation];
-//    [self setupDummyScrollView];
 }
-/*
--(void)setupDummyScrollView
-{
-    CGRect rect = [[UIScreen mainScreen] bounds];
-    rect.size.height = rect.size.height + _constraintTopViewHeight.constant - 20 - 44;
-    [_scrollViewTop setContentSize:rect.size];
-    _scrollViewTop.delegate =  self;
-    _scrollViewTop.showsHorizontalScrollIndicator = NO;
-    _scrollViewTop.showsVerticalScrollIndicator = NO;
-    
-    
-    _tapGestureOnDummyScrollView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOnDummyScrollView:)];
-    [_scrollViewTop addGestureRecognizer:_tapGestureOnDummyScrollView];
-}
-
-
-- (void) handleTapOnDummyScrollView: (UITapGestureRecognizer *)recognizer
-{
-    NSIndexPath* indexPath = [_tableViewVolumeList indexPathForRowAtPoint:[recognizer locationInView:_tableViewVolumeList]];
-    [self selectedItemAtIndex:indexPath.row];
-}
- 
- */
 
 -(void)getData
 {
@@ -106,8 +74,8 @@
     [_compilationWebService sendAsyncRequest];
 }
 
-#pragma mark - Webservice Callbacks
 
+#pragma mark - Webservice Callbacks
 
 -(void)requestSucceed:(BaseWebService*)webService response:(id)responseModel
 {
@@ -128,7 +96,6 @@
 
 #pragma mark - Update UI
 
-
 -(void)updateUI
 {
     self.navigationItem.title = _compilation.strAuthName;
@@ -140,10 +107,6 @@
     }
     
     [self stopLoadingAnimation];
-    
-//    _lblTop.font  = [UIFont fontWithName:FONT_TITLE_REGULAR size:19];
-//    _lblTop.text = _compilation.strTitle;
-    
     [self setHeaderView];
 }
 
@@ -225,76 +188,6 @@
     }
 }
 
-
-#pragma mark - Scrollview Delegate
-
-
-/*
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    float           fTopViewHeight  = _fTopViewHeight;
-    UIScrollView *scrollViewBottom  = (UIScrollView*)_tableViewVolumeList;
-    UIScrollView *scrollViewDummy   = _scrollViewTop;
-    
-    if(scrollView == scrollViewDummy)
-    {
-        if(scrollView.contentOffset.y <= fTopViewHeight -1 )
-        {
-            _constraintViewVolumeTopSpace.constant = fTopViewHeight - scrollView.contentOffset.y;
-            [scrollViewBottom setContentOffset:CGPointMake(0, 0)];
-        }
-        else
-        {
-            _constraintViewVolumeTopSpace.constant = 0;
-            scrollViewDummy.userInteractionEnabled = NO;
-            self.lastContentOffset = 0;
-            [scrollViewBottom setContentOffset:CGPointMake(0, 1)];
-        }
-    }
-    else
-    {
-        if (self.lastContentOffset > scrollView.contentOffset.y)
-        {
-            [self hideNavigationBar:NO];//up
-            
-            if( scrollView.contentOffset.y == 0)
-            {
-                scrollViewDummy.userInteractionEnabled = YES;
-            }
-        }
-        else
-        {
-            [self hideNavigationBar:YES];//down
-            
-            if(_constraintViewVolumeTopSpace.constant > 0 || scrollView.contentOffset.y == 0)
-            {
-                scrollViewDummy.userInteractionEnabled = YES;
-                [scrollViewBottom setContentOffset:CGPointMake(0, 0)];
-            }
-        }
-        
-        self.lastContentOffset = scrollView.contentOffset.y;
-    }
-}
-
--(void)hideNavigationBar:(BOOL) bShouldHide
-{
-    return;
-    
-    if(self.navigationController.navigationBar.hidden == NO && bShouldHide == YES )
-    {
-        [self.navigationController setNavigationBarHidden: bShouldHide animated:YES];
-        [[UIApplication sharedApplication] setStatusBarHidden:bShouldHide];
-
-    }
-    else if (self.navigationController.navigationBar.hidden == YES && bShouldHide == NO)
-    {
-        [self.navigationController setNavigationBarHidden: bShouldHide animated:YES];
-        [[UIApplication sharedApplication] setStatusBarHidden:bShouldHide];
-    }
-}
-
- */
 
 #pragma mark - Loading Animation
 

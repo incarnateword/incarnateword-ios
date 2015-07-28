@@ -70,7 +70,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     [self setupVC];
 }
@@ -118,7 +117,6 @@
     _constraintViewBottomTopSpace.constant = 0;
     _tableViewParts.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     _viewBottom.hidden = YES;
-//    _btnPrevVolume.hidden = YES;
     _btnNextVolume.hidden = YES;
     
     self.view.backgroundColor = COLOR_VIEW_BG;
@@ -126,11 +124,8 @@
     _viewToolbar.backgroundColor = COLOR_NAV_BAR;
     
     CGRect rect = [[UIScreen mainScreen] bounds];
-    
     float space = rect.size.width / 3 - 50 - 25;
-    
     _constraintHorizontalSpaceBtnsBackNext.constant = space;
-    
     
     _swipeleft =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeleft:)];
     _swipeleft.direction=UISwipeGestureRecognizerDirectionLeft;
@@ -140,7 +135,6 @@
     _swiperight.direction=UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:_swiperight];
 
-    
     [self startLoadingAnimation];
 }
 
@@ -165,30 +159,6 @@
         [self btnPrevVolumePressed:nil];
     }
 }
-
-
-/*
--(void)setupDummyScrollView
-{
-    CGRect rect = [[UIScreen mainScreen] bounds];
-    rect.size.height = rect.size.height + _fTopViewHeight - 20 - 44 -44;
-    [_scrollViewTop setContentSize:rect.size];
-    _scrollViewTop.delegate =  self;
-    _scrollViewTop.showsHorizontalScrollIndicator = NO;
-    _scrollViewTop.showsVerticalScrollIndicator = NO;
-    
-    
-    _tapGestureOnDummyScrollView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOnDummyScrollView:)];
-    [_scrollViewTop addGestureRecognizer:_tapGestureOnDummyScrollView];
-}
-
-- (void) handleTapOnDummyScrollView: (UITapGestureRecognizer *)recognizer
-{
-    NSIndexPath* indexPath = [_tableViewParts indexPathForRowAtPoint:[recognizer locationInView:_tableViewParts]];
-    [self selectedItemAtIndex:indexPath];
-}
-*/
-
 
 -(void)getData
 {
@@ -219,30 +189,23 @@
 
 #pragma mark - Update UI
 
-
 -(void)updateUI
 {
     _viewBottom.hidden = NO;
-    self.navigationItem.title = _detailVolumeStructure.strCompilationName;//[NSString stringWithFormat:@"Volume %@",_detailVolumeStructure.strIndex];
-//    _btnPrevVolume.hidden = [IWUtility isNilOrEmptyString:_detailVolumeStructure.strUrlPrevVolume];
+    self.navigationItem.title = _detailVolumeStructure.strCompilationName;
     _btnNextVolume.hidden = [IWUtility isNilOrEmptyString:_detailVolumeStructure.strUrlNextVolume];
     
     [_tableViewParts reloadData];
     [self stopLoadingAnimation];
 
-    
-//    [self setupDummyScrollView];
     [self setHeaderView];
 }
 
-
 -(void)setHeaderView
 {
-    //Default setup
     float fTopViewHeight = 100;
     float fTopLbl_Y = 10;
     float fBottomLbl_Y = 10 + 40 + 10;
-    
     BOOL bIsTitlePresent = YES;
     
     if([IWUtility isNilOrEmptyString:_detailVolumeStructure.strTitle])
@@ -257,9 +220,7 @@
         fTopViewHeight = fTopViewHeight - 10 - 30 - (bIsTitlePresent ? 0 : 10);
     }
     
-    
     CGRect rect = [[UIScreen mainScreen] bounds];
-
     UILabel *lblTop = [[UILabel alloc] initWithFrame:CGRectMake(10, fTopLbl_Y, rect.size.width-20, 40)];
     UILabel *lblBottom = [[UILabel alloc] initWithFrame:CGRectMake(10, fBottomLbl_Y, rect.size.width-20, 30)];
 
@@ -276,13 +237,12 @@
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, fTopViewHeight)];
     headerView.backgroundColor = [UIColor darkGrayColor];
-    
     [headerView addSubview:lblTop];
     [headerView addSubview:lblBottom];
-
     
     _tableViewParts.tableHeaderView = headerView;
 }
+
 
 #pragma mark - Table View Datasource
 
@@ -291,7 +251,6 @@
     if(_detailVolumeStructure.arrBooks && _detailVolumeStructure.arrBooks)
         return _detailVolumeStructure.arrBooks.count;//Volume has books show them as section
         
-    
     return _detailVolumeStructure.arrParts.count;//Volume may contain parts
 }
 
@@ -303,14 +262,12 @@
     {
         IWBookStructure *book = [_detailVolumeStructure.arrBooks objectAtIndex:section];
         NSArray *arrChapAndItem = [self getChaptersAndItemsFromBookArray:book];
-        
         rowCount = arrChapAndItem.count;
     }
     else if(_detailVolumeStructure.arrParts && _detailVolumeStructure.arrParts > 0)//Volume has parts
     {
         IWPartStructure *part = [_detailVolumeStructure.arrParts objectAtIndex:section];
         NSArray *arrChapAndItem = [self getChaptersAndItemsFromPartArray:part];
-        
         rowCount = arrChapAndItem.count;
     }
     else if(_detailVolumeStructure.arrChapters && _detailVolumeStructure.arrChapters > 0)//Volume has direct chapters
@@ -431,7 +388,6 @@
     
     return [arrFinal copy];
 }
-
 
 -(NSArray *)getChaptersAndItemsFromPartArray:(IWPartStructure*) part
 {
@@ -579,6 +535,7 @@
     return strTitle;
 }
 
+
 #pragma mark - Table View Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -664,89 +621,12 @@
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     header.textLabel.textColor = COLOR_SECTION_HEADER_TITLE;
     header.textLabel.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:18];
-    
     BOOL bHasBooks = _detailVolumeStructure.arrBooks.count > 0 ? YES : NO;
     
     header.backgroundView.backgroundColor = bHasBooks ? [UIColor blackColor] : COLOR_SECTION_HEADER;
     header.textLabel.textAlignment = NSTextAlignmentCenter;
 }
 
-
-#pragma mark - Scrollview Delegate
-
-
-/*
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    float           fTopViewHeight  = _fTopViewHeight;
-    UIScrollView *scrollViewBottom  = (UIScrollView*)_tableViewParts;
-    UIScrollView *scrollViewDummy   = _scrollViewTop;
-    
-    if(scrollView == scrollViewDummy)
-    {
-        if(scrollView.contentOffset.y <= fTopViewHeight -1 )
-        {
-            _constraintViewBottomTopSpace.constant = fTopViewHeight - scrollView.contentOffset.y;
-            [scrollViewBottom setContentOffset:CGPointMake(0, 0)];
-        }
-        else
-        {
-            _constraintViewBottomTopSpace.constant = 0;
-            scrollViewDummy.userInteractionEnabled = NO;
-            self.lastContentOffset = 0;
-            [scrollViewBottom setContentOffset:CGPointMake(0, 1)];
-        }
-    }
-    else
-    {
-        if (self.lastContentOffset > scrollView.contentOffset.y)
-        {
-            [self hideNavigationBar:NO];//up
-            
-            if( scrollView.contentOffset.y == 0)
-            {
-                scrollViewDummy.userInteractionEnabled = YES;
-            }
-        }
-        else
-        {
-            [self hideNavigationBar:YES];//down
-            
-            if(_constraintViewBottomTopSpace.constant > 0 || scrollView.contentOffset.y == 0)
-            {
-                scrollViewDummy.userInteractionEnabled = YES;
-                [scrollViewBottom setContentOffset:CGPointMake(0, 0)];
-            }
-        }
-        
-        self.lastContentOffset = scrollView.contentOffset.y;
-    }
-}
-
-
-
-
-
--(void)hideNavigationBar:(BOOL) bShouldHide
-{
-    return;
-    
-    if(self.navigationController.navigationBar.hidden == NO && bShouldHide == YES )
-    {
-        [self.navigationController setNavigationBarHidden: bShouldHide animated:YES];
-        [[UIApplication sharedApplication] setStatusBarHidden:bShouldHide];
-        _constraintViewToolbarHeight.constant = 0;
-        
-    }
-    else if (self.navigationController.navigationBar.hidden == YES && bShouldHide == NO)
-    {
-        [self.navigationController setNavigationBarHidden: bShouldHide animated:YES];
-        [[UIApplication sharedApplication] setStatusBarHidden:bShouldHide];
-        _constraintViewToolbarHeight.constant = 44.0;
-    }
-}
-*/
 
 #pragma mark - Loading Animation
 
@@ -775,16 +655,14 @@
     [UIView transitionWithView: _viewLoading
                       duration: 0.5
                        options: _bShouldFlipHorizontally ?  UIViewAnimationOptionTransitionFlipFromRight : UIViewAnimationOptionTransitionFlipFromBottom
-                    animations:^{
+                    animations:
+                    ^{
                     }
-                    completion:^(BOOL finished) {
-                        
+                    completion:^(BOOL finished)
+                    {
                         _bShouldFlipHorizontally = ! _bShouldFlipHorizontally;
                     }
      ];
 }
-
-
-
 
 @end

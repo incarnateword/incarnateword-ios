@@ -127,7 +127,6 @@
         }
     }
     
-    
     // Remove seperator inset
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
         [cell setSeparatorInset:UIEdgeInsetsMake(0, bIsLastRow ? 1000 :0, 0, 0)];

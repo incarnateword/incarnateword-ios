@@ -11,5 +11,5 @@
 @interface IWChapterDetailsViewController : UIViewController
 
 @property (readwrite) NSString *strChapterPath;
-@property (readwrite) int iItemIndex;
+@property (readwrite) int       iItemIndex;
 @end
