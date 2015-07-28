@@ -14,7 +14,6 @@
 
 -(void)infoViewRemoved;
 
-
 @end
 
 @interface IWInfoViewController : UIViewController

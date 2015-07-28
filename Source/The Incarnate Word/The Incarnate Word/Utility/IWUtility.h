@@ -16,12 +16,14 @@
 
 +(BOOL)isDeviceTypeIpad;
 +(BOOL)isNilOrEmptyString : (NSString *)aString;
+
 +(NSAttributedString*)getMarkdownNSAttributedStringFromNSString:(NSString*)str;
+
 +(BPMarkdownView*)getMarkdownViewOfFrame:(CGRect) rect
              withCustomBPDisplaySettings: (BPDisplaySettings*) customBPSettings;
+
 +(int)getDrawerWidth;
 +(UIColor*)getNavBarColor;
-
 +(UIImage *)getBlurredImage:(UIImage *)image;
 +(UIImage *)imageWithColor:(UIColor *)color;
 +(void)showWebserviceFailedAlert;

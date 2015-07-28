@@ -34,8 +34,8 @@
  ]
  },
  */
-@property(readwrite) NSString *strTitle;
-@property(readwrite) NSArray *arrChapters;
-@property(readwrite) NSArray *arrSections;
+@property(readwrite) NSString   *strTitle;
+@property(readwrite) NSArray    *arrChapters;
+@property(readwrite) NSArray    *arrSections;
 
 @end

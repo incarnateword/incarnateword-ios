@@ -20,9 +20,9 @@
 
  */
 
-@property(readwrite) NSString *strIndex;
-@property(readwrite) NSString *strTitle;
-@property(readwrite) NSString *strUrl;
+@property(readwrite) NSString   *strIndex;
+@property(readwrite) NSString   *strTitle;
+@property(readwrite) NSString   *strUrl;
 
 
 @end

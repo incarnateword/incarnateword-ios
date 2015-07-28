@@ -21,9 +21,9 @@
  {
  */
 
-@property(readwrite) NSString *strTitle;
-@property(readwrite) NSString *strUrl;
-@property(readwrite) NSArray *arrChapterItems;
-@property(readwrite) NSArray *arrChapterSegments;
+@property(readwrite) NSString   *strTitle;
+@property(readwrite) NSString   *strUrl;
+@property(readwrite) NSArray    *arrChapterItems;
+@property(readwrite) NSArray    *arrChapterSegments;
 
 @end

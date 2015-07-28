@@ -34,16 +34,16 @@
  }
  */
 
-@property(readwrite) NSString *strDescription;
-@property(readwrite) NSString *strDate;
-@property(readwrite) NSString *strNextChapter;
-@property(readwrite) NSString *strNextChapterUrl;
-@property(readwrite) NSString *strPrevChapter;
-@property(readwrite) NSString *strPrevChapterUrl;
-@property(readwrite) NSArray  *arrPath;
-@property(readwrite) NSString *strTitle;
-@property(readwrite) NSString *strUrl;
-@property(readwrite) NSString *strText;
+@property(readwrite) NSString   *strDescription;
+@property(readwrite) NSString   *strDate;
+@property(readwrite) NSString   *strNextChapter;
+@property(readwrite) NSString   *strNextChapterUrl;
+@property(readwrite) NSString   *strPrevChapter;
+@property(readwrite) NSString   *strPrevChapterUrl;
+@property(readwrite) NSArray    *arrPath;
+@property(readwrite) NSString   *strTitle;
+@property(readwrite) NSString   *strUrl;
+@property(readwrite) NSString   *strText;
 
 
 @end

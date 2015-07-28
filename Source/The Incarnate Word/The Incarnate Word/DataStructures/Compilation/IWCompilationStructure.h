@@ -27,10 +27,10 @@
  
  */
 
-@property(readwrite) NSString *strTitle;
-@property(readwrite) NSString *strAuthName;
-@property(readwrite) NSString *strUrl;
-@property(readwrite) NSArray *arrVolumes;
+@property(readwrite) NSString   *strTitle;
+@property(readwrite) NSString   *strAuthName;
+@property(readwrite) NSString   *strUrl;
+@property(readwrite) NSArray    *arrVolumes;
 
 
 @end
