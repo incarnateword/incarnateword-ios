@@ -106,6 +106,9 @@
     }];
 }
 
+
+#pragma mark - Gesture handling
+
 -(void)setupTapGesture
 {
     _gestureTapForWholeView = [[UITapGestureRecognizer alloc] initWithTarget:self

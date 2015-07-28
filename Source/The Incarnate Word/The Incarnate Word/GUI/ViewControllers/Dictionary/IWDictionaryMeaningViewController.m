@@ -48,7 +48,6 @@
 {
     [super viewDidLoad];
 
-    
     [self setupVC];
 }
 
@@ -97,10 +96,8 @@
     
     self.navigationItem.title = STR_WEB_SERVICE_FAILED;
     [IWUtility showWebserviceFailedAlert];
-
     [self stopLoadingAnimation];
 }
-
 
 #pragma mark - Update UI
 
@@ -120,7 +117,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
 -(void)addMarkdownView
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
@@ -136,6 +132,7 @@
     _markdownView.layer.cornerRadius = 3.0;
     [_markdownView setMarkdown:_wordMeaningStructure.strDefinition];
 }
+
 
 #pragma mark - Loading Animation
 
@@ -176,9 +173,6 @@
 - (IBAction)btnSharePressed:(id)sender
 {
     NSString *textToShare = @"";//_detailChapterStructure.strTitle;
-    
-
-
     
     NSURL *myWebsite = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",@"http://dictionary.incarnateword.in/entries",_strWord]];
     

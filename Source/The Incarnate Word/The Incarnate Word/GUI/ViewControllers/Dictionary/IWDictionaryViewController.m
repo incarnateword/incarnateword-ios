@@ -52,12 +52,11 @@
 
 @implementation IWDictionaryViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     [self setupVC];
-    
 }
 
 
@@ -79,12 +78,9 @@
     self.view.backgroundColor = COLOR_VIEW_BG;
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-
     [self addKeyboardNotifications];
-    
     [self startLoadingAnimation];
 }
-
 
 - (void) addKeyboardNotifications
 {
@@ -103,49 +99,35 @@
 -(void)keyboardWillShow:(NSNotification *)notification
 {
     _bIsKeyboardShown = YES;
-    
     [self.navigationController setNavigationBarHidden: YES animated:YES];
 
-    
     NSDictionary* keyboardInfo = [notification userInfo];
     NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
     CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
     float keyboardHeight = keyboardFrameBeginRect.size.height ;
     
     _constraintTableViewBottom.constant = keyboardHeight;
-    
     _constraintVIewTopHeight.constant = 44 + 20;
-    
-    
     CGRect rect = [[UIScreen mainScreen] bounds];
     _searchBar.frame = CGRectMake(0, 20, rect.size.width, 44);
 
     if([IWUtility isNilOrEmptyString:_searchBar.text])
         [self disableTableInteraction:YES];
-
+    
     [_viewTop layoutIfNeeded];
-
 }
 
 -(void)keyboardWillHide:(NSNotification *)notification
 {
     _bIsKeyboardShown = NO;
-    
     _constraintTableViewBottom.constant = 0;
     _constraintVIewTopHeight.constant = 44 ;
-
     CGRect rect = [[UIScreen mainScreen] bounds];
     _searchBar.frame = CGRectMake(0, 0, rect.size.width, 44);
-    
     [self disableTableInteraction:NO];
-
     [self.navigationController setNavigationBarHidden: NO animated:YES];
-    
     [_viewTop layoutIfNeeded];
-
 }
-
-
 
 -(void)getData
 {
@@ -153,8 +135,8 @@
     [_dictionaryWebService sendAsyncRequest];
 }
 
-#pragma mark - Webservice Callbacks
 
+#pragma mark - Webservice Callbacks
 
 -(void)requestSucceed:(BaseWebService*)webService response:(id)responseModel
 {
@@ -167,10 +149,8 @@
 -(void)requestFailed:(BaseWebService*)webService error:(WSError*)error
 {
     NSLog(@"Dictionary List Service Failed.");
-    
     self.navigationItem.title = STR_WEB_SERVICE_FAILED;
     [IWUtility showWebserviceFailedAlert];
-
     [self stopLoadingAnimation];
 }
 
@@ -195,7 +175,6 @@
     [_tableViewWordList reloadData];
     [self setupSearchBar];
     [self stopLoadingAnimation];
-
 }
 
 -(void)setupSearchBar
@@ -265,21 +244,15 @@
     return YES;
 }
 
-
 -(void)searchForText:(NSString *)searchText
 {
     NSLog(@"Text : %@",searchText);
 
     if(searchText.length == 0)
     {
-
         [_searchBar setShowsCancelButton:NO animated:YES];
-
         _arrOfAlphabetsCopy = _arrOfAlphabets;
         _arrSliderAlphabetsCopy = _arrSliderAlphabets;
-        
-
-
     }
     else
     {
@@ -331,14 +304,11 @@
     [_tableViewWordList reloadData];
 }
 
-
 -(void)disableTableInteraction:(BOOL)bShouldDisable
 {
-//    _tableViewWordList.userInteractionEnabled = !bShouldDisable;
-//    _tableViewWordList.alpha = bShouldDisable ? 0.7 : 1.0;
     _viewAlpha.hidden = !bShouldDisable;
-
 }
+
 
 #pragma mark - Table View Datasource
 
@@ -366,7 +336,6 @@
     return cell;
 }
 
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return (_bIsKeyboardShown && [IWUtility isNilOrEmptyString:_searchBar.text] == NO) ? 0.0 : 30.0;
@@ -377,6 +346,7 @@
     IWAlphabetStructure *alphabet = [_arrOfAlphabetsCopy objectAtIndex:section];
     return alphabet.strAlphabet.lowercaseString;
 }
+
 
 #pragma mark - Table View Delegate
 
@@ -426,19 +396,12 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.view endEditing:YES];
-//    [_searchBar performSelector: @selector(resignFirstResponder)
-//                     withObject: nil
-//                     afterDelay: 0.1];
-//    
-//    [self.view endEditing:YES];
-    
     IWAlphabetStructure *alphabet = [_arrOfAlphabetsCopy objectAtIndex:indexPath.section];
     IWWordStructure *word = [alphabet.arrWords objectAtIndex:indexPath.row];
-    
     NSString *strUrl = [IWUtility isNilOrEmptyString:word.strUrl] == NO ? word.strUrl : word.strWord;
-    
     [[IWUserActionManager sharedManager] showDictionaryMeaningForWord:strUrl];
 }
+
 
 #pragma mark - Loading Animation
 
@@ -467,12 +430,14 @@
     [UIView transitionWithView: _viewLoading
                       duration: 0.5
                        options: _bShouldFlipHorizontally ?  UIViewAnimationOptionTransitionFlipFromRight : UIViewAnimationOptionTransitionFlipFromBottom
-                    animations:^{
-                    }
-                    completion:^(BOOL finished) {
-                        
-                        _bShouldFlipHorizontally = ! _bShouldFlipHorizontally;
-                    }
+                    animations:
+                                ^{
+                                }
+                    completion:
+                                ^(BOOL finished)
+                                {
+                                    _bShouldFlipHorizontally = ! _bShouldFlipHorizontally;
+                                }
      ];
 }
 @end
