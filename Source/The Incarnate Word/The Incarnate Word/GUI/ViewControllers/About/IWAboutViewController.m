@@ -23,7 +23,6 @@
     BOOL                    _bShouldFlipHorizontally;
     NSTimer                 *_timerLoading;
     float                   _fImageViewHeight;
-    NSNumber                *_rowHeight;
 }
 
 @property (nonatomic, assign) CGFloat lastContentOffset;
@@ -127,18 +126,27 @@
     lbl.attributedText = attrString;
     indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
     
-    CGSize cellSize = [cell systemLayoutSizeFittingSize:CGSizeMake(320, 0) withHorizontalFittingPriority:1000.0 verticalFittingPriority:50.0];
-    _rowHeight = [NSNumber numberWithFloat:cellSize.height];
-    
+    if(IS_OS_8_OR_LATER)
+    {
+        CGSize cellSize = [cell systemLayoutSizeFittingSize:CGSizeMake(320, 0) withHorizontalFittingPriority:1000.0 verticalFittingPriority:50.0];
+        _fRowHeight = cellSize.height;
+    }
+
     return cell;
 }
 
 
 #pragma mark - UITableViewDelegate
 
+//iOS 7
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return _fRowHeight;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [_rowHeight floatValue];
+    return _fRowHeight;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

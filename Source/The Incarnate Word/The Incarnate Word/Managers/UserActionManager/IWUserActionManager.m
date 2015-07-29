@@ -74,12 +74,13 @@ static IWUserActionManager* userActionManager = nil ;
 }
 
 
--(void)showAboutWithPath:(NSString *) strPath andImageName:(NSString*)strImageName
+-(void)showAboutWithPath:(NSString *) strPath andImageName:(NSString*)strImageName andDescriptionHeight:(float) height
 {
     UIStoryboard *sbAbout = [UIStoryboard storyboardWithName:STORYBOARD_ABOUT bundle:nil];
     IWAboutViewController *aboutVC = [sbAbout instantiateViewControllerWithIdentifier:S_ABOUT_ABOUT_VC];
     aboutVC.strAboutPath = strPath;
     aboutVC.strImageName = strImageName;
+    aboutVC.fRowHeight = height;
     [[IWGUIManager sharedManager] rootViewPushViewController:aboutVC forceOnRoot:NO animated:YES];
 }
 

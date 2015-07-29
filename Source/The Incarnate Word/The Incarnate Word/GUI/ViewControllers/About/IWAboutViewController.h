@@ -10,7 +10,8 @@
 
 @interface IWAboutViewController : UIViewController
 
-@property (readwrite) NSString *strAboutPath;
-@property (readwrite) NSString *strImageName;
+@property (readwrite) NSString  *strAboutPath;
+@property (readwrite) NSString  *strImageName;
+@property (readwrite) float     fRowHeight;
 
 @end

@@ -186,7 +186,7 @@
     {
         if(indexPath.row == 0)
         {
-            [[IWUserActionManager sharedManager] showAboutWithPath:@"sa" andImageName:@"aurobindo.jpg"];
+            [[IWUserActionManager sharedManager] showAboutWithPath:@"sa" andImageName:@"aurobindo.jpg" andDescriptionHeight:682];
         }
         else if(indexPath.row == 1)
         {
@@ -201,7 +201,7 @@
     {
         if(indexPath.row == 0)
         {
-            [[IWUserActionManager sharedManager] showAboutWithPath:@"m" andImageName:@"theMother.jpg"];
+            [[IWUserActionManager sharedManager] showAboutWithPath:@"m" andImageName:@"theMother.jpg" andDescriptionHeight:751];
         }
         else if(indexPath.row == 1)
         {
