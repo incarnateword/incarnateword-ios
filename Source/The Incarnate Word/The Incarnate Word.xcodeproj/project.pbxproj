@@ -175,8 +175,6 @@
 		48C2C4E61B07887A00ED333F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48C2C4E81B07887A00ED333F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		48C2C4EB1B07887B00ED333F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		48C2C4F61B07887B00ED333F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		48C2C4F71B07887B00ED333F /* The_Incarnate_WordTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = The_Incarnate_WordTests.m; sourceTree = "<group>"; };
 		48C2C5081B078B1700ED333F /* BaseWebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWebService.h; sourceTree = "<group>"; };
 		48C2C5091B078B1700ED333F /* BaseWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebService.m; sourceTree = "<group>"; };
 		48C2C50A1B078B1700ED333F /* WebServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebServiceDelegate.h; sourceTree = "<group>"; };
@@ -631,7 +629,6 @@
 			isa = PBXGroup;
 			children = (
 				48C2C4DA1B07887A00ED333F /* The Incarnate Word */,
-				48C2C4F41B07887B00ED333F /* The Incarnate WordTests */,
 				48C2C4D91B07887A00ED333F /* Products */,
 				7976ADCF36AF3FAAE399C7E1 /* Pods */,
 				18E6C42358C093672BAEFD31 /* Frameworks */,
@@ -669,23 +666,6 @@
 			children = (
 				48C2C4DC1B07887A00ED333F /* Info.plist */,
 				48C2C4DD1B07887A00ED333F /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		48C2C4F41B07887B00ED333F /* The Incarnate WordTests */ = {
-			isa = PBXGroup;
-			children = (
-				48C2C4F71B07887B00ED333F /* The_Incarnate_WordTests.m */,
-				48C2C4F51B07887B00ED333F /* Supporting Files */,
-			);
-			path = "The Incarnate WordTests";
-			sourceTree = "<group>";
-		};
-		48C2C4F51B07887B00ED333F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				48C2C4F61B07887B00ED333F /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
