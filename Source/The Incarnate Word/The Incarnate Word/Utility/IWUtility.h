@@ -30,4 +30,5 @@
 +(UIImage *)getBlurredImage:(UIImage *)image;
 +(UIImage *)imageWithColor:(UIColor *)color;
 +(void)showWebserviceFailedAlert;
++(float)getHorizontalSpaceBetweenButtons;
 @end

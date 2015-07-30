@@ -144,9 +144,8 @@
 
 -(void)setupUI
 {
-    CGRect rect = [[UIScreen mainScreen] bounds];
 
-    float space = rect.size.width / 3 - 50 -16;
+    float space = [IWUtility getHorizontalSpaceBetweenButtons];
     
     _constraintHorizontalSpaceBtnsBackNext.constant = space;
     _constraintHorizontalSpaceBtnsInfoShare.constant = space ;

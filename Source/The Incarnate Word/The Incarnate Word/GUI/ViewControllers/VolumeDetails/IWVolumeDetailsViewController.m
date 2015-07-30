@@ -123,9 +123,8 @@
     _viewBottom.backgroundColor = COLOR_VIEW_BG;
     _viewToolbar.backgroundColor = COLOR_NAV_BAR;
     
-    CGRect rect = [[UIScreen mainScreen] bounds];
-    float space = rect.size.width / 3 - 50 - 25;
-    _constraintHorizontalSpaceBtnsBackNext.constant = space;
+    
+    _constraintHorizontalSpaceBtnsBackNext.constant = [IWUtility getHorizontalSpaceBetweenButtons];
     
     _swipeleft =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeleft:)];
     _swipeleft.direction=UISwipeGestureRecognizerDirectionLeft;

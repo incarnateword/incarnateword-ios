@@ -139,4 +139,12 @@
     [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
 }
 
++(float)getHorizontalSpaceBetweenButtons
+{
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    float space = rect.size.width / 3 - 50 -16;
+    
+    return space;
+}
+
 @end
