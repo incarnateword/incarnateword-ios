@@ -128,7 +128,7 @@
     
     if(IS_OS_8_OR_LATER)
     {
-        CGSize cellSize = [cell systemLayoutSizeFittingSize:CGSizeMake(320, 0) withHorizontalFittingPriority:1000.0 verticalFittingPriority:50.0];
+        CGSize cellSize = [cell systemLayoutSizeFittingSize:CGSizeMake([[UIScreen mainScreen]bounds].size.width, 0) withHorizontalFittingPriority:1000.0 verticalFittingPriority:50.0];
         _fRowHeight = cellSize.height;
     }
 
