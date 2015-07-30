@@ -123,9 +123,11 @@
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     CGFloat totalTopMargin = 44;
-    CGRect markdownRect = CGRectMake(0,
-                                     0,
-                                     screenWidth,
+    
+    
+    
+    CGRect markdownRect = CGRectMake(5,-3,
+                      screenWidth -4,
                                      screenHeight - totalTopMargin -10);
     _markdownView  = [IWUtility getMarkdownViewOfFrame:markdownRect withCustomBPDisplaySettings:nil];
     [_viewDescription addSubview:_markdownView];
