@@ -122,7 +122,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YND-lf-X3V" userLabel="ViewDescription">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BcV-mx-o3K" userLabel="ViewLoading">
                                 <rect key="frame" x="273" y="274" width="53" height="53"/>
@@ -142,9 +142,8 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Zc-kh-ZXd" userLabel="BtnBack">
-                                        <rect key="frame" x="0.0" y="5" width="50" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="He1-Td-sr1" userLabel="BtnBack_Height"/>
                                             <constraint firstAttribute="width" constant="50" id="ikM-Fa-Kho" userLabel="BtnBack_Width"/>
                                         </constraints>
                                         <state key="normal" image="btn_navbar_back">
@@ -170,11 +169,12 @@
                                 <color key="backgroundColor" red="0.93070023150000003" green="0.93070023150000003" blue="0.93070023150000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="7tb-PH-8v9" userLabel="ViewToolBar_Height"/>
-                                    <constraint firstAttribute="bottom" secondItem="0Zc-kh-ZXd" secondAttribute="bottom" constant="5" id="A8q-7w-X5G" userLabel="BtnBack_Bottom"/>
+                                    <constraint firstAttribute="bottom" secondItem="0Zc-kh-ZXd" secondAttribute="bottom" id="A8q-7w-X5G" userLabel="BtnBack_Bottom"/>
                                     <constraint firstItem="ylE-ZW-G5g" firstAttribute="top" secondItem="Y3e-zZ-aVV" secondAttribute="top" id="C9s-3n-V8I" userLabel="BtnShare_Top"/>
                                     <constraint firstItem="0Zc-kh-ZXd" firstAttribute="leading" secondItem="Y3e-zZ-aVV" secondAttribute="leading" id="TUU-Aw-MfL" userLabel="BtnBack_Leading"/>
                                     <constraint firstAttribute="bottom" secondItem="ylE-ZW-G5g" secondAttribute="bottom" id="hNn-Ye-Brj" userLabel="BtnShare_Bottom"/>
-                                    <constraint firstAttribute="trailing" secondItem="ylE-ZW-G5g" secondAttribute="trailing" constant="3" id="lb2-FL-DP1" userLabel="BtnShare_Trailing"/>
+                                    <constraint firstAttribute="trailing" secondItem="ylE-ZW-G5g" secondAttribute="trailing" id="lb2-FL-DP1" userLabel="BtnShare_Trailing"/>
+                                    <constraint firstItem="0Zc-kh-ZXd" firstAttribute="top" secondItem="Y3e-zZ-aVV" secondAttribute="top" id="sVi-KR-weC" userLabel="BtnBack_Top"/>
                                 </constraints>
                             </view>
                         </subviews>
