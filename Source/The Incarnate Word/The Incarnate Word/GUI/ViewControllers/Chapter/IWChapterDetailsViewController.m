@@ -265,10 +265,7 @@
     }
     self.navigationItem.title = navBarTitle;//_detailChapterStructure.strTitle;
     
-    if([IWUtility isNilOrEmptyString:_detailChapterStructure.strDescription] == NO)
-    {
-        _btnInfo.hidden = NO;
-    }
+    
         
     
 
@@ -290,6 +287,12 @@
     else
     {
          _strDate = @"";
+    }
+    
+    if([IWUtility isNilOrEmptyString:_detailChapterStructure.strDescription] == NO ||
+       [IWUtility isNilOrEmptyString:_strDate] == NO)
+    {
+        _btnInfo.hidden = NO;
     }
     
     NSMutableString *strPath = [[NSMutableString alloc] init];

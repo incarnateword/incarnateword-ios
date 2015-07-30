@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintViewContainerBottom;
 @property (weak, nonatomic) IBOutlet UIView             *viewContainer;
 @property (weak, nonatomic) IBOutlet UIView             *viewAlpha;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintLblDateBottomSpace;
 
 @end
 
@@ -54,14 +55,41 @@
 {
     _lblDate.text = _strDate;
     _lblDate.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:[UIFont systemFontSize] + 4.0];
+    _viewForMarkdown.layer.cornerRadius = 3.0;
+    _viewForMarkdown.backgroundColor = COLOR_NAV_BAR;
+
     [self setupCloseBtn];
-    [self addMarkdownView];
+    
+    if([IWUtility isNilOrEmptyString:_strText] == NO)
+    {
+        [self addMarkdownView];
+    }
+    else
+    {
+        _constraintViewContainerHeight.constant = 120;
+        _fContainerHeight = _constraintViewContainerHeight.constant;
+        _constraintLblDateBottomSpace.constant = 20;
+        
+        
+        [UIView animateWithDuration:0.4 animations:
+         ^{
+             _constraintViewContainerBottom.constant = 0;
+             [_viewContainer layoutIfNeeded];
+             _viewAlpha.alpha = 0.5;
+         }
+                         completion:
+         ^(BOOL finished)
+         {
+         }];
+
+    }
 }
 
 -(void)setupCloseBtn
 {
     _btnClose.layer.cornerRadius = 3.0;
     _btnClose.backgroundColor = COLOR_NAV_BAR;
+    [_btnClose.titleLabel setFont:[UIFont fontWithName:FONT_TITLE_REGULAR size:[UIFont systemFontSize] + 4.0]];
 }
 
 -(void)addMarkdownView
@@ -83,7 +111,6 @@
     
     _markdownView = [IWUtility getMarkdownViewOfFrame:markdownRect withCustomBPDisplaySettings:customBPSettings];
     _markdownView.translatesAutoresizingMaskIntoConstraints = NO;
-    _viewForMarkdown.layer.cornerRadius = 3.0;
     [_markdownView setMarkdown:_strText];
     _markdownView.backgroundColor = [UIColor clearColor];
     _viewForMarkdown.backgroundColor = COLOR_NAV_BAR;
@@ -91,7 +118,6 @@
     
     _constraintViewContainerBottom.constant = -_fContainerHeight;
     
-    [_btnClose.titleLabel setFont:[UIFont fontWithName:FONT_TITLE_REGULAR size:[UIFont systemFontSize] + 4.0]];
     
     [UIView animateWithDuration:0.4 animations:
      ^{

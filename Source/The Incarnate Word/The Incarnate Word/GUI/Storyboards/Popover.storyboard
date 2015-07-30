@@ -86,6 +86,7 @@
                     </view>
                     <connections>
                         <outlet property="btnClose" destination="axv-Jp-YGE" id="Dfn-DK-Ssq"/>
+                        <outlet property="constraintLblDateBottomSpace" destination="akc-aa-pQu" id="pU1-Xu-HIj"/>
                         <outlet property="constraintViewContainerBottom" destination="suA-DO-MyT" id="DbR-mz-hdP"/>
                         <outlet property="constraintViewContainerHeight" destination="R1J-q4-Yeu" id="nBh-CP-Tmw"/>
                         <outlet property="lblDate" destination="RHa-Mo-mQR" id="i9q-Af-TYd"/>
