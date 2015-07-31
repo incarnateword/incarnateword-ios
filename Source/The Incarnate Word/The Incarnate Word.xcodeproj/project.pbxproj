@@ -67,6 +67,7 @@
 		48C2C5121B078B1700ED333F /* HttpCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C2C50F1B078B1700ED333F /* HttpCommunication.m */; };
 		48C2C5171B07906B00ED333F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C2C5161B07906B00ED333F /* Reachability.m */; };
 		48C929E11B6BE70900489131 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C929E01B6BE70900489131 /* Default-568h@2x.png */; };
+		48C929E31B6BEA4500489131 /* ApplicationIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48C929E21B6BEA4500489131 /* ApplicationIcon.jpg */; };
 		48E51FF01B30ABA9008825FC /* Popover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48E51FEF1B30ABA9008825FC /* Popover.storyboard */; };
 		48E51FF41B30ABEF008825FC /* IWInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E51FF31B30ABEF008825FC /* IWInfoViewController.m */; };
 		8AD18642D3A0FF75FC2D3A73 /* libPods-The Incarnate Word.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A76EDDEF6408E3B815FA982A /* libPods-The Incarnate Word.a */; };
@@ -187,6 +188,7 @@
 		48C2C5151B07906B00ED333F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		48C2C5161B07906B00ED333F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		48C929E01B6BE70900489131 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		48C929E21B6BEA4500489131 /* ApplicationIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ApplicationIcon.jpg; sourceTree = "<group>"; };
 		48E51FEF1B30ABA9008825FC /* Popover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Popover.storyboard; sourceTree = "<group>"; };
 		48E51FF21B30ABEF008825FC /* IWInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWInfoViewController.h; sourceTree = "<group>"; };
 		48E51FF31B30ABEF008825FC /* IWInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWInfoViewController.m; sourceTree = "<group>"; };
@@ -620,6 +622,7 @@
 		48A611831B1A0377007AC3B5 /* NonXcasset */ = {
 			isa = PBXGroup;
 			children = (
+				48C929E21B6BEA4500489131 /* ApplicationIcon.jpg */,
 				48BBDA541B3C93A100564E70 /* bg-noise.png */,
 				48A611841B1A03F6007AC3B5 /* aurobindo.jpg */,
 				48A611851B1A03F6007AC3B5 /* theMother.jpg */,
@@ -839,6 +842,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				483D67631B08897700BA9A82 /* LeftDrawer.storyboard in Resources */,
+				48C929E31B6BEA4500489131 /* ApplicationIcon.jpg in Resources */,
 				48E51FF01B30ABA9008825FC /* Popover.storyboard in Resources */,
 				48C2C4E71B07887A00ED333F /* Main.storyboard in Resources */,
 				48BBDA511B3C845E00564E70 /* Monotype Sabon Regular c3c75751-9aa7-4a6f-ba60.otf in Resources */,
