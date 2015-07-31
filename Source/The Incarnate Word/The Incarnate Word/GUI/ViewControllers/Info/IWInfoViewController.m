@@ -56,6 +56,7 @@
     _lblDate.text = _strDate;
     _lblDate.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:[UIFont systemFontSize] + 4.0];
     _viewForMarkdown.layer.cornerRadius = 3.0;
+    [_viewForMarkdown layoutIfNeeded];
     _viewForMarkdown.backgroundColor = COLOR_NAV_BAR;
 
     [self setupCloseBtn];
@@ -88,6 +89,8 @@
 -(void)setupCloseBtn
 {
     _btnClose.layer.cornerRadius = 3.0;
+    [_btnClose layoutIfNeeded];
+
     _btnClose.backgroundColor = COLOR_NAV_BAR;
     [_btnClose.titleLabel setFont:[UIFont fontWithName:FONT_TITLE_REGULAR size:[UIFont systemFontSize] + 4.0]];
 }
