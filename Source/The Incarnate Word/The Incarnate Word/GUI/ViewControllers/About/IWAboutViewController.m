@@ -93,7 +93,9 @@
     [_tableView reloadData];
     CGRect rect = [[UIScreen mainScreen] bounds];
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, 190)];
+    float fImageAspectRatio = 1.7; // width / height
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width,rect.size.width/fImageAspectRatio)];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:headerView.bounds];
     [headerView addSubview:imageView];
     imageView.image = [UIImage imageNamed:_strImageName];
