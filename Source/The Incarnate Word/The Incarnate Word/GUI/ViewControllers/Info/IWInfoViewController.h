@@ -11,7 +11,6 @@
 @protocol InfoViewDelegate <NSObject>
 
 @optional
-
 -(void)infoViewRemoved;
 
 @end
