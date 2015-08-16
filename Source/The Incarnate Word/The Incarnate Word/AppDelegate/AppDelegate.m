@@ -10,7 +10,6 @@
 #import "IWAppManager.h"
 
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
