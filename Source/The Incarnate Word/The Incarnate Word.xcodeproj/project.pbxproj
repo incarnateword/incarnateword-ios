@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		480CAD1E1B8095100072171F /* marked-feature-footnotes in Resources */ = {isa = PBXBuildFile; fileRef = 480CAD1D1B8095100072171F /* marked-feature-footnotes */; };
 		483D67451B0881B200BA9A82 /* IWHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D67441B0881B200BA9A82 /* IWHomeViewController.m */; };
 		483D674A1B0882CF00BA9A82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D67491B0882CF00BA9A82 /* AppDelegate.m */; };
 		483D674F1B0883AF00BA9A82 /* IWAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D674E1B0883AF00BA9A82 /* IWAppManager.m */; };
@@ -83,6 +84,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		480CAD1D1B8095100072171F /* marked-feature-footnotes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "marked-feature-footnotes"; sourceTree = "<group>"; };
 		483D67431B0881B200BA9A82 /* IWHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWHomeViewController.h; sourceTree = "<group>"; };
 		483D67441B0881B200BA9A82 /* IWHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWHomeViewController.m; sourceTree = "<group>"; };
 		483D67481B0882CF00BA9A82 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 		483D67401B0880CB00BA9A82 /* ThirdPartyLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				480CAD1D1B8095100072171F /* marked-feature-footnotes */,
 				B2DCAC4E1B0DEDE40092AD85 /* MarkdownParser */,
 				483D67501B0886E500BA9A82 /* MMDrawerController */,
 			);
@@ -848,6 +851,7 @@
 				48BBDA511B3C845E00564E70 /* Monotype Sabon Regular c3c75751-9aa7-4a6f-ba60.otf in Resources */,
 				48BBDA501B3C845E00564E70 /* Monotype Sabon Italic 37b153ea-bbab-44d7-8332.otf in Resources */,
 				48C929E11B6BE70900489131 /* Default-568h@2x.png in Resources */,
+				480CAD1E1B8095100072171F /* marked-feature-footnotes in Resources */,
 				48BBDA521B3C845E00564E70 /* Monotype Sabon Semi Bold f566a8ba-865f-46da-9251.otf in Resources */,
 				48A611871B1A03F6007AC3B5 /* theMother.jpg in Resources */,
 				48A6117E1B19EAED007AC3B5 /* About.storyboard in Resources */,
