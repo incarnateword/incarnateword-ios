@@ -47,6 +47,7 @@
 @property (weak, nonatomic) IBOutlet UIButton                   *btnShare;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint         *constraintHorizontalSpaceBtnsBackNext;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint         *constraintHorizontalSpaceBtnsInfoShare;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 - (IBAction)btnPrevChapterPressed:(id)sender;
 - (IBAction)btnNextChapterPressed:(id)sender;
@@ -78,9 +79,9 @@
 
     [UIView animateWithDuration:0.5 animations:
      ^{
-        CGRect rect = [self getMarkdownViewRect];
-        rect.origin.x = [UIScreen mainScreen].bounds.size.width;
-        _markdownView.frame = rect;
+//        CGRect rect = [self getMarkdownViewRect];
+//        rect.origin.x = [UIScreen mainScreen].bounds.size.width;
+//        _markdownView.frame = rect;
     
     } completion:^(BOOL finished)
     {
@@ -104,9 +105,9 @@
 
     [UIView animateWithDuration:0.5 animations:^{
         
-        CGRect rect = [self getMarkdownViewRect];
-        rect.origin.x = - [UIScreen mainScreen].bounds.size.width;
-        _markdownView.frame = rect;
+//        CGRect rect = [self getMarkdownViewRect];
+//        rect.origin.x = - [UIScreen mainScreen].bounds.size.width;
+//        _markdownView.frame = rect;
         
     } completion:^(BOOL finished)
      {
@@ -255,6 +256,7 @@
 -(void)updateUI
 {
     _viewBottom.hidden = NO;
+    _webView.scrollView.decelerationRate = 1.5;//UIScrollViewDecelerationRateFast;
     
     NSString *navBarTitle = @"";
     
@@ -313,6 +315,9 @@
 
 -(void)addMarkdownView
 {
+    [_webView loadHTMLString:[IWUtility getHtmlStringUsingJSLibForMarkdownText:_detailChapterStructure.strText] baseURL:nil];
+    
+    return;
     
     [_markdownView removeFromSuperview];
     _markdownView.delegate = nil;

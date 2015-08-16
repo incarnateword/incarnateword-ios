@@ -19,7 +19,19 @@
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="flO-Bb-pZN" userLabel="ViewBottom">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="554"/>
+                                <subviews>
+                                    <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8mv-IE-UgM" userLabel="WebView">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="554"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </webView>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="8mv-IE-UgM" firstAttribute="top" secondItem="flO-Bb-pZN" secondAttribute="top" id="C8y-d7-Ozc" userLabel="WebView_Top"/>
+                                    <constraint firstAttribute="bottom" secondItem="8mv-IE-UgM" secondAttribute="bottom" constant="44" id="OFl-jz-naY" userLabel="WebView_Bottom"/>
+                                    <constraint firstAttribute="trailing" secondItem="8mv-IE-UgM" secondAttribute="trailing" id="hHC-fb-lRs" userLabel="WebView_Trailing"/>
+                                    <constraint firstItem="8mv-IE-UgM" firstAttribute="leading" secondItem="flO-Bb-pZN" secondAttribute="leading" id="hQu-ha-Sa8" userLabel="WebView_Leading"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aiV-Be-19L" userLabel="ViewLoading">
                                 <rect key="frame" x="273" y="274" width="53" height="53"/>
@@ -155,6 +167,7 @@
                         <outlet property="viewForTap" destination="LBM-pz-q2g" id="HJ7-oU-aac"/>
                         <outlet property="viewLoading" destination="aiV-Be-19L" id="IGA-AV-SRm"/>
                         <outlet property="viewToolbar" destination="Mge-yv-s1d" id="WSg-fi-Xph"/>
+                        <outlet property="webView" destination="8mv-IE-UgM" id="ocL-Mj-QOa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="632-mm-TCF" userLabel="First Responder" sceneMemberID="firstResponder"/>
