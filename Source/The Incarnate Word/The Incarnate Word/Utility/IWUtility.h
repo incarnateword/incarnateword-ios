@@ -20,7 +20,29 @@
 +(BOOL)isDeviceTypeIpad;
 +(BOOL)isNilOrEmptyString : (NSString *)aString;
 
+//Markdowns
+
+/**
+ Nimbus Lib
+ https://github.com/NimbusKit/markdown
+ https://github.com/NimbusKit/memorymapping
+ **/
+
 +(NSAttributedString*)getMarkdownNSAttributedStringFromNSString:(NSString*)str;
+
+/**
+ Marked JS lib 
+ https://github.com/chjj/marked
+ https://github.com/prashaantt/marked/tree/feature-footnotes
+ **/
+
++(NSString*)getHtmlStringUsingJSLibForMarkdownText:(NSString*) strMarkdownText;
+
+
+/**
+Bipass Markdown lib
+ https://github.com/Uncodin/bypass-ios
+ **/
 
 +(BPMarkdownView*)getMarkdownViewOfFrame:(CGRect) rect
              withCustomBPDisplaySettings: (BPDisplaySettings*) customBPSettings;

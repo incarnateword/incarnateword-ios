@@ -9,7 +9,7 @@
 #import "IWUtility.h"
 #import "NSAttributedStringMarkdownParser.h"
 #import "IWUIConstants.h"
-
+#import <JavaScriptCore/JavaScriptCore.h>
 
 @implementation IWUtility
 
@@ -145,6 +145,24 @@
     float space = rect.size.width / 3 - 50 -16;
     
     return space;
+}
+
++(NSString*)getHtmlStringUsingJSLibForMarkdownText:(NSString*) strMarkdownText
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"marked-feature-footnotes/lib/marked" ofType:@"js"];
+    NSString *jsScript = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    JSContext *context = [[JSContext alloc] init];
+    [context evaluateScript: jsScript];
+    JSValue  *jsFunction = context[@"marked"];
+    NSLog(@"Parsing Start");
+    JSValue* result = [jsFunction callWithArguments:@[strMarkdownText]];
+    NSLog(@"Parsing End");
+    
+    NSLog(@"JSValue Conversion Start");
+     NSString  *strFinalHtml = [result toString];
+    NSLog(@"JSValue Conversion End");
+    
+    return strFinalHtml;
 }
 
 @end
