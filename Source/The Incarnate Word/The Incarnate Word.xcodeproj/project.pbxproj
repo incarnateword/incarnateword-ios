@@ -1074,8 +1074,8 @@
 			baseConfigurationReference = CBC3A1DCCCAEC9778F8B3679 /* Pods-The Incarnate Word.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
 				INFOPLIST_FILE = "The Incarnate Word/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1090,8 +1090,8 @@
 			baseConfigurationReference = A6D5E233381465EC7C903528 /* Pods-The Incarnate Word.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
 				INFOPLIST_FILE = "The Incarnate Word/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
