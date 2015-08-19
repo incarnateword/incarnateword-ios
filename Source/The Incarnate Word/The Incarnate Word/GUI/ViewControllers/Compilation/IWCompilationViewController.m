@@ -114,10 +114,10 @@
 -(void)setHeaderView
 {
     CGRect rect = [[UIScreen mainScreen] bounds];
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, 70)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, [IWUtility getNumberAsPerScalingFactor:70])];
     headerView.backgroundColor = [UIColor darkGrayColor];
     UILabel *label = [[UILabel alloc] initWithFrame:headerView.bounds];
-    label.font  = [UIFont fontWithName:FONT_TITLE_REGULAR size:19];
+    label.font  = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:19]];
     label.textAlignment = NSTextAlignmentCenter;
     label.text = _compilation.strTitle;
     label.textColor = [UIColor whiteColor];
@@ -139,7 +139,7 @@
     UILabel *labelTitle = (UILabel*)[cell viewWithTag:501];
     IWVolumeStructure *volume = [_compilation.arrVolumes objectAtIndex:indexPath.row];
     
-    UIFont *font = [UIFont fontWithName:FONT_TITLE_REGULAR size:18];
+    UIFont *font = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:18]];
     NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:font
                                                                 forKey:NSFontAttributeName];
     
@@ -153,6 +153,12 @@
 
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [IWUtility getNumberAsPerScalingFactor:44];
+}
+
 
 #pragma mark - Table View Delegate
 

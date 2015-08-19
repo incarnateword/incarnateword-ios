@@ -18,6 +18,7 @@
 @interface IWUtility : NSObject
 
 +(BOOL)isDeviceTypeIpad;
++(float)getNumberAsPerScalingFactor:(float) originalNumber;
 +(BOOL)isNilOrEmptyString : (NSString *)aString;
 
 //Markdowns

@@ -21,6 +21,14 @@
     return NO;
 }
 
++(float)getNumberAsPerScalingFactor:(float) originalNumber
+{
+    if([[UIDevice currentDevice] userInterfaceIdiom]==UIUserInterfaceIdiomPad)
+        return originalNumber*1.5;
+    
+    return originalNumber;
+}
+
 + (BOOL) isNilOrEmptyString : (NSString *)aString
 {
     BOOL status = NO;

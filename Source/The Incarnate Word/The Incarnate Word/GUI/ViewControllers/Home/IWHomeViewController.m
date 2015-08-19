@@ -131,11 +131,11 @@
     {
         UILabel *title = (UILabel*)[cell viewWithTag:201];
         
-        title.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:25];//[UIFont fontWithName:@"CharlotteSansMediumPlain" size:25];
+        title.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:25]];//[UIFont fontWithName:@"CharlotteSansMediumPlain" size:25];
         
-        quote.font = [UIFont fontWithName:FONT_BODY_ITALIC size:15];
+        quote.font = [UIFont fontWithName:FONT_BODY_ITALIC size:[IWUtility getNumberAsPerScalingFactor:15]];
         
-        UIFont *font = [UIFont fontWithName:FONT_BODY_ITALIC size:15];
+        UIFont *font = [UIFont fontWithName:FONT_BODY_ITALIC size:[IWUtility getNumberAsPerScalingFactor:15]];
         NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:font
                                                                     forKey:NSFontAttributeName];
         NSString *str = [NSString stringWithFormat:@"O living power of the incarnate Word,\nAll that the Spirit has dreamed thou canst create:\nThou art the force by which I made the worlds,\nThou art my vision and my will and voice."];
@@ -149,10 +149,10 @@
     }
     else
     {
-        quote.font = [UIFont fontWithName:FONT_BODY_REGULAR size:15];
+        quote.font = [UIFont fontWithName:FONT_BODY_REGULAR size:[IWUtility getNumberAsPerScalingFactor:15]];
         UILabel *by = (UILabel*)[cell viewWithTag:203];
-        by.font = [UIFont fontWithName:FONT_BODY_REGULAR size:13];
-        UIFont *font = [UIFont fontWithName:FONT_BODY_REGULAR size:15];
+        by.font = [UIFont fontWithName:FONT_BODY_REGULAR size:[IWUtility getNumberAsPerScalingFactor:13]];
+        UIFont *font = [UIFont fontWithName:FONT_BODY_REGULAR size:[IWUtility getNumberAsPerScalingFactor:15]];
         NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:font
                                                                     forKey:NSFontAttributeName];
         NSString *str = [_arrBanner objectAtIndex:indexPath.row -1];
@@ -173,23 +173,23 @@
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat cellWidth = screenRect.size.width - 14;
-    CGFloat cellHeight = 150;
+    CGFloat cellHeight = [IWUtility getNumberAsPerScalingFactor:150];
     
     if(indexPath.row == 0)
     {
-        cellHeight = 170;
+        cellHeight = [IWUtility getNumberAsPerScalingFactor:170];
     }
     else if(indexPath.row == 1)
     {
-        cellHeight = 130;
+        cellHeight = [IWUtility getNumberAsPerScalingFactor:130];
     }
     else if(indexPath.row == 2)
     {
-        cellHeight = 270;
+        cellHeight = [IWUtility getNumberAsPerScalingFactor:270];
     }
     else if(indexPath.row == 3)
     {
-        cellHeight = 200;
+        cellHeight = [IWUtility getNumberAsPerScalingFactor:200];
     }
     
     CGSize cellSize =  CGSizeMake(cellWidth , cellHeight);

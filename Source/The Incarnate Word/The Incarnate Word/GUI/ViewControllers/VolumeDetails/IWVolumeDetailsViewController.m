@@ -354,7 +354,7 @@
     
     UILabel *labelTitle = (UILabel*)[cell viewWithTag:201];
     labelTitle.text = strTitle;
-    labelTitle.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:fFontSize];
+    labelTitle.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:fFontSize]];
     
     return cell;
 }
@@ -476,7 +476,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 40.0;
+    return [IWUtility getNumberAsPerScalingFactor:40];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -501,18 +501,18 @@
     }
     
     if([chapOrItem isKindOfClass:[IWPartStructure class]])
-        return 35;
+        return [IWUtility getNumberAsPerScalingFactor:35];
     
     if([chapOrItem isKindOfClass:[IWSectionStructure class]])
-        return 30;
+        return [IWUtility getNumberAsPerScalingFactor:30];
     
     if([chapOrItem isKindOfClass:[IWSubSectionStructrue class]])
-        return 25;
+        return [IWUtility getNumberAsPerScalingFactor:25];
     
     if([chapOrItem isKindOfClass:[IWSegmentStructure class]])
-        return 40;
+        return [IWUtility getNumberAsPerScalingFactor:40];
     
-    return 44.0;
+    return [IWUtility getNumberAsPerScalingFactor:44];
 }
 
 
@@ -619,7 +619,7 @@
 {
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     header.textLabel.textColor = COLOR_SECTION_HEADER_TITLE;
-    header.textLabel.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:18];
+    header.textLabel.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:18]];
     BOOL bHasBooks = _detailVolumeStructure.arrBooks.count > 0 ? YES : NO;
     
     header.backgroundView.backgroundColor = bHasBooks ? [UIColor blackColor] : COLOR_SECTION_HEADER;

@@ -330,7 +330,7 @@
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellWord"];
     UILabel *labelTitle = (UILabel*)[cell viewWithTag:201];
-    labelTitle.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:18];
+    labelTitle.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:18]];
     labelTitle.text = word.strWord;
     
     return cell;
@@ -338,7 +338,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return (_bIsKeyboardShown && [IWUtility isNilOrEmptyString:_searchBar.text] == NO) ? 0.0 : 30.0;
+    return (_bIsKeyboardShown && [IWUtility isNilOrEmptyString:_searchBar.text] == NO) ? 0.0 : [IWUtility getNumberAsPerScalingFactor:30];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -374,7 +374,7 @@
 {
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     header.textLabel.textColor = COLOR_SECTION_HEADER_TITLE;
-    header.textLabel.font = [UIFont fontWithName:FONT_BODY_ITALIC size:25];
+    header.textLabel.font = [UIFont fontWithName:FONT_BODY_ITALIC size:[IWUtility getNumberAsPerScalingFactor:25]];
     header.backgroundView.backgroundColor = COLOR_SECTION_HEADER;
     header.textLabel.textAlignment = NSTextAlignmentLeft;
 }
@@ -389,6 +389,10 @@
     return [_arrSliderAlphabetsCopy indexOfObject:title];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [IWUtility getNumberAsPerScalingFactor:44];
+}
 
 #pragma mark - Table View Delegate
 

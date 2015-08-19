@@ -116,7 +116,7 @@
     UILabel *lbl =  (UILabel*)[cell viewWithTag:201];
    
     NSString *strFinal = [_aboutDataStructure.strDescription stringByReplacingOccurrencesOfString:@"\n---\n" withString:@"\n"];
-    UIFont *font = [UIFont fontWithName:FONT_BODY_REGULAR size:18];
+    UIFont *font = [UIFont fontWithName:FONT_BODY_REGULAR size:[IWUtility getNumberAsPerScalingFactor:18.0]];
     NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:font
                                                                 forKey:NSFontAttributeName];
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:strFinal attributes:attrsDictionary];
@@ -143,7 +143,7 @@
 //iOS 7
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return _fRowHeight;
+    return [IWUtility getNumberAsPerScalingFactor:_fRowHeight];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath

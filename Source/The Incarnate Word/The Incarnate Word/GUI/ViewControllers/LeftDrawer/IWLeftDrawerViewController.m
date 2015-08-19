@@ -76,12 +76,12 @@
     if(section == 0)
         return 0;
     
-    return 40.0;
+    return [IWUtility getNumberAsPerScalingFactor:40.0];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 43.0;
+    return [IWUtility getNumberAsPerScalingFactor:43.0];
 
 }
 
@@ -100,7 +100,7 @@
     
     
     
-    label.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:18];
+    label.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:18.0]];
     
     NSDictionary *dict = [_arrDataSource objectAtIndex:indexPath.section];
     NSArray *arr = [dict objectForKey:MENU_ARRAY];
@@ -146,7 +146,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    CGRect rect = CGRectMake(0, 0, [IWUtility getDrawerWidth], 40);
+    CGRect rect = CGRectMake(0, 0, [IWUtility getDrawerWidth], [IWUtility getNumberAsPerScalingFactor:40.0]);
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     NSDictionary *dict = [_arrDataSource objectAtIndex:section];
     [btn setTitle:[dict objectForKey:MENU_TITLE] forState:UIControlStateNormal];
@@ -155,7 +155,7 @@
     [btn addTarget:self action:@selector(sectionTapped:) forControlEvents:UIControlEventTouchUpInside];
     btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     btn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-    [btn.titleLabel setFont:[UIFont fontWithName:FONT_TITLE_REGULAR size:21.0]];
+    [btn.titleLabel setFont:[UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:21.0]]];
     [btn setTitleColor:COLOR_SECTION_HEADER_TITLE forState:UIControlStateNormal];
     UIView *aView =[[UIView alloc] initWithFrame:rect];
     aView.backgroundColor = section == 0 ? [UIColor lightGrayColor]:COLOR_SECTION_HEADER;//[UIColor colorWithRed:20.0/255 green:15.0/255 blue:5.0/255 alpha:1.0];
