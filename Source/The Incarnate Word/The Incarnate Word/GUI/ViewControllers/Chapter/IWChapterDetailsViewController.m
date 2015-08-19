@@ -18,7 +18,7 @@
 #import "IWInfoViewController.h"
 #import "WebServiceConstants.h"
 
-@interface IWChapterDetailsViewController ()<WebServiceDelegate,UIScrollViewDelegate,InfoViewDelegate>
+@interface IWChapterDetailsViewController ()<WebServiceDelegate,UIScrollViewDelegate,InfoViewDelegate,UIWebViewDelegate>
 {
     IWChapterWebService                     *_chapterWebService;
     IWDetailChapterStructure                *_detailChapterStructure;
@@ -184,6 +184,8 @@
     _swiperight=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swiperight:)];
     _swiperight.direction=UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:_swiperight];
+    
+    _webView.delegate = self;
 }
 
 
@@ -315,7 +317,9 @@
 
 -(void)addMarkdownView
 {
-    [_webView loadHTMLString:[IWUtility getHtmlStringUsingJSLibForMarkdownText:_detailChapterStructure.strText] baseURL:nil];
+    NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_detailChapterStructure.strText];
+    NSLog(@"Called loadHTMLString");
+    [_webView loadHTMLString:strHtmlString baseURL:nil];
     
     return;
     
@@ -328,6 +332,16 @@
     [_markdownView setMarkdown:_detailChapterStructure.strText];
     _markdownView.delegate = self;
     _markdownView.scrollsToTop = YES;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    NSLog(@"webViewDidStartLoad");
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    NSLog(@"webViewDidFinishLoad");
 }
 
 -(CGRect)getMarkdownViewRect
