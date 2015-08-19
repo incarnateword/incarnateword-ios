@@ -1326,15 +1326,15 @@ marked.setOptions = function(opt) {
 marked.defaults = {
   gfm: true,
   tables: true,
-  footnotes: true,//Aditya
-  breaks: false,
+  footnotes: true,//Aditya Original false
+  breaks: true,//Aditya Original false
   pedantic: false,
   sanitize: false,
   smartLists: false,
   silent: false,
   highlight: null,
   langPrefix: 'lang-',
-  smartypants: false,
+  smartypants: true,//Aditya Original false
   headerPrefix: '',
   renderer: new Renderer,
   xhtml: false
