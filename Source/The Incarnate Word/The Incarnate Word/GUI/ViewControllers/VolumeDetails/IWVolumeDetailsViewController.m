@@ -20,8 +20,6 @@
 #import "IWBookStructure.h"
 #import "IWSegmentStructure.h"
 
-#define MATERIAL_VIEW_HEIGHT 100
-
 @interface IWVolumeDetailsViewController ()<WebServiceDelegate,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 {
     IWVolumeWebService                  *_volumeWebService;
@@ -202,34 +200,34 @@
 
 -(void)setHeaderView
 {
-    float fTopViewHeight = 100;
-    float fTopLbl_Y = 10;
-    float fBottomLbl_Y = 10 + 40 + 10;
+    float fTopViewHeight = [IWUtility getNumberAsPerScalingFactor:100];
+    float fTopLbl_Y = [IWUtility getNumberAsPerScalingFactor:10];
+    float fBottomLbl_Y = [IWUtility getNumberAsPerScalingFactor:10] + [IWUtility getNumberAsPerScalingFactor:40] + [IWUtility getNumberAsPerScalingFactor:10];
     BOOL bIsTitlePresent = YES;
     
     if([IWUtility isNilOrEmptyString:_detailVolumeStructure.strTitle])
     {
-        fTopViewHeight = fTopViewHeight - 10 - 40;
-        fBottomLbl_Y = 10;
+        fTopViewHeight = fTopViewHeight - [IWUtility getNumberAsPerScalingFactor:10] - [IWUtility getNumberAsPerScalingFactor:40];
+        fBottomLbl_Y = [IWUtility getNumberAsPerScalingFactor:10];
         bIsTitlePresent = NO;
     }
     
     if([IWUtility isNilOrEmptyString:_detailVolumeStructure.strSubTitle])
     {
-        fTopViewHeight = fTopViewHeight - 10 - 30 - (bIsTitlePresent ? 0 : 10);
+        fTopViewHeight = fTopViewHeight - [IWUtility getNumberAsPerScalingFactor:10] - [IWUtility getNumberAsPerScalingFactor:30] - (bIsTitlePresent ? 0 : [IWUtility getNumberAsPerScalingFactor:10]);
     }
     
     CGRect rect = [[UIScreen mainScreen] bounds];
-    UILabel *lblTop = [[UILabel alloc] initWithFrame:CGRectMake(10, fTopLbl_Y, rect.size.width-20, 40)];
-    UILabel *lblBottom = [[UILabel alloc] initWithFrame:CGRectMake(10, fBottomLbl_Y, rect.size.width-20, 30)];
+    UILabel *lblTop = [[UILabel alloc] initWithFrame:CGRectMake(10, fTopLbl_Y, rect.size.width-20, [IWUtility getNumberAsPerScalingFactor:40])];
+    UILabel *lblBottom = [[UILabel alloc] initWithFrame:CGRectMake(10, fBottomLbl_Y, rect.size.width-20, [IWUtility getNumberAsPerScalingFactor:30])];
 
     lblTop.text = _detailVolumeStructure.strTitle;
-    lblTop.font  = [UIFont fontWithName:FONT_TITLE_REGULAR size:20];
+    lblTop.font  = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:20]];
     lblTop.textAlignment = NSTextAlignmentCenter;
     lblTop.textColor = [UIColor whiteColor];
     
     lblBottom.text = _detailVolumeStructure.strSubTitle;
-    lblBottom.font  = [UIFont fontWithName:FONT_TITLE_REGULAR size:18];
+    lblBottom.font  = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:18]];
     lblBottom.textAlignment = NSTextAlignmentCenter;
     lblBottom.textColor = [UIColor whiteColor];
 
