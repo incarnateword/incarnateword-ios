@@ -146,10 +146,7 @@
 -(void)setupUI
 {
 
-    float space = [IWUtility getHorizontalSpaceBetweenButtons];
-    
-    _constraintHorizontalSpaceBtnsBackNext.constant = space;
-    _constraintHorizontalSpaceBtnsInfoShare.constant = space ;
+    [self setBottomBarButtonSpacing];
    
     _viewLoading.layer.cornerRadius = 3.0;
     _viewLoading.backgroundColor = COLOR_LOADING_VIEW;
@@ -188,6 +185,13 @@
     _webView.delegate = self;
 }
 
+-(void)setBottomBarButtonSpacing
+{
+    float space = [IWUtility getHorizontalSpaceBetweenButtons];
+    
+    _constraintHorizontalSpaceBtnsBackNext.constant = space;
+    _constraintHorizontalSpaceBtnsInfoShare.constant = space ;
+}
 
 -(void)swipeleft:(UISwipeGestureRecognizer*)gestureRecognizer
 {
@@ -485,6 +489,27 @@
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
+}
+
+#pragma mark - Orientation
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self updateUIForOrientationChange];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self updateUIForOrientationChange];
+}
+
+-(void)updateUIForOrientationChange
+{
+    dispatch_async(dispatch_get_main_queue(),
+   ^{
+       [self setBottomBarButtonSpacing];
+   });
 }
 
 @end
