@@ -88,7 +88,7 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lzh-tn-XiN" userLabel="ViewVerticalLine">
                                                     <rect key="frame" x="10" y="10" width="10" height="160"/>
-                                                    <color key="backgroundColor" red="0.86387310606060608" green="0.86387310606060608" blue="0.86387310606060608" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.72819996843434343" green="0.72819996843434343" blue="0.72819996843434343" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="3" id="lOq-Si-OUI" userLabel="ViewVerticalLine_Width"/>
                                                     </constraints>
