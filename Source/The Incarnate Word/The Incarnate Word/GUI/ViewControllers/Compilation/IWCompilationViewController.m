@@ -231,4 +231,18 @@
      ];
 }
 
+
+#pragma mark - Orientation
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self performSelectorOnMainThread:@selector(setHeaderView) withObject:nil waitUntilDone:NO];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self performSelectorOnMainThread:@selector(setHeaderView) withObject:nil waitUntilDone:NO];
+}
+
 @end
