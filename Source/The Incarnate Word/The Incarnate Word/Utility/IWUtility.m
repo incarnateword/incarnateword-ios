@@ -24,7 +24,7 @@
 +(float)getNumberAsPerScalingFactor:(float) originalNumber
 {
     if([[UIDevice currentDevice] userInterfaceIdiom]==UIUserInterfaceIdiomPad)
-        return originalNumber*1.5;
+        return originalNumber*1.3;
     
     return originalNumber;
 }
