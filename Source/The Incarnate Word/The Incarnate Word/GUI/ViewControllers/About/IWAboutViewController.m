@@ -212,4 +212,18 @@
      ];
 }
 
+
+#pragma mark - Orientation
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
+}
+
 @end
