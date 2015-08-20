@@ -179,6 +179,11 @@
 
 -(void)setupSearchBar
 {
+    //Cleanup for orientation re adding of view
+    _searchBar.delegate = nil;
+    [_searchBar removeFromSuperview];
+    _searchBar = nil;
+    
     UIColor *searchBarColor = [UIColor colorWithRed:199.0/255 green:201.0/255 blue:207.0/255 alpha:1.0];
     
     CGRect rect = [[UIScreen mainScreen] bounds];
@@ -443,5 +448,30 @@
                                     _bShouldFlipHorizontally = ! _bShouldFlipHorizontally;
                                 }
      ];
+}
+
+
+#pragma mark - Orientation
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self updateUIForOrientationChange];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self updateUIForOrientationChange];
+}
+
+-(void)updateUIForOrientationChange
+{
+    dispatch_async(dispatch_get_main_queue(),
+   ^{
+       _searchBar.text = @"";
+       [self searchForText:@""];
+       [self.view endEditing:YES];
+       [self setupSearchBar];
+   });
 }
 @end
