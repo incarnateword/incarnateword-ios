@@ -127,15 +127,17 @@
     
     UILabel *quote = (UILabel*)[cell viewWithTag:202];
 
+    float fIPadFontOffset = [IWUtility isDeviceTypeIpad] ? 4 : 0;
+    
     if(indexPath.row == 0)
     {
         UILabel *title = (UILabel*)[cell viewWithTag:201];
         
-        title.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:25]];//[UIFont fontWithName:@"CharlotteSansMediumPlain" size:25];
+        title.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:25]+fIPadFontOffset];//[UIFont fontWithName:@"CharlotteSansMediumPlain" size:25];
         
-        quote.font = [UIFont fontWithName:FONT_BODY_ITALIC size:[IWUtility getNumberAsPerScalingFactor:15]];
+        quote.font = [UIFont fontWithName:FONT_BODY_ITALIC size:[IWUtility getNumberAsPerScalingFactor:15]+fIPadFontOffset];
         
-        UIFont *font = [UIFont fontWithName:FONT_BODY_ITALIC size:[IWUtility getNumberAsPerScalingFactor:15]];
+        UIFont *font = [UIFont fontWithName:FONT_BODY_ITALIC size:[IWUtility getNumberAsPerScalingFactor:15]+fIPadFontOffset];
         NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:font
                                                                     forKey:NSFontAttributeName];
         NSString *str = [NSString stringWithFormat:@"O living power of the incarnate Word,\nAll that the Spirit has dreamed thou canst create:\nThou art the force by which I made the worlds,\nThou art my vision and my will and voice."];
@@ -149,10 +151,10 @@
     }
     else
     {
-        quote.font = [UIFont fontWithName:FONT_BODY_REGULAR size:[IWUtility getNumberAsPerScalingFactor:15]];
+        quote.font = [UIFont fontWithName:FONT_BODY_REGULAR size:[IWUtility getNumberAsPerScalingFactor:15]+fIPadFontOffset];
         UILabel *by = (UILabel*)[cell viewWithTag:203];
-        by.font = [UIFont fontWithName:FONT_BODY_REGULAR size:[IWUtility getNumberAsPerScalingFactor:13]];
-        UIFont *font = [UIFont fontWithName:FONT_BODY_REGULAR size:[IWUtility getNumberAsPerScalingFactor:15]];
+        by.font = [UIFont fontWithName:FONT_BODY_REGULAR size:[IWUtility getNumberAsPerScalingFactor:13]+fIPadFontOffset];
+        UIFont *font = [UIFont fontWithName:FONT_BODY_REGULAR size:[IWUtility getNumberAsPerScalingFactor:15]+fIPadFontOffset];
         NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:font
                                                                     forKey:NSFontAttributeName];
         NSString *str = [_arrBanner objectAtIndex:indexPath.row -1];
@@ -195,6 +197,19 @@
     CGSize cellSize =  CGSizeMake(cellWidth , cellHeight);
     
     return cellSize;
+}
+
+#pragma mark - Orientation
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [_collectionViewQuotes reloadData];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [_collectionViewQuotes reloadData];
 }
 
 @end
