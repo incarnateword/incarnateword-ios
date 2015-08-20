@@ -87,7 +87,7 @@
     
     NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                                [UIColor blackColor],NSForegroundColorAttributeName,
-                                               [UIFont fontWithName:FONT_TITLE_REGULAR size:20.0],NSFontAttributeName,nil];
+                                               [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:20]],NSFontAttributeName,nil];
     
     self.navigationController.navigationBar.titleTextAttributes = navbarTitleTextAttributes;
     
