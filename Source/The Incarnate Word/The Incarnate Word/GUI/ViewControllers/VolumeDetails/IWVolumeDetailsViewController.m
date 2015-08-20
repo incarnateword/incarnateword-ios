@@ -662,4 +662,25 @@
      ];
 }
 
+#pragma mark - Orientation
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self updateUIForOrientationChange];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [self updateUIForOrientationChange];
+}
+
+-(void)updateUIForOrientationChange
+{
+    dispatch_async(dispatch_get_main_queue(),
+   ^{
+       [self setHeaderView];
+       _constraintHorizontalSpaceBtnsBackNext.constant = [IWUtility getHorizontalSpaceBetweenButtons];
+   });
+}
+
 @end
