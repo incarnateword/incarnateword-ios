@@ -159,7 +159,7 @@
     
     _btnInfo.titleLabel.font = [UIFont fontWithName:FONT_BODY_ITALIC size:28.0];
     
-    [self startLoadingAnimation];
+//    [self startLoadingAnimation];
 
     _viewBottom.hidden = YES;
     self.navigationItem.title = @"Loading...";
@@ -312,14 +312,22 @@
     _btnNextChapter.hidden = [IWUtility isNilOrEmptyString:_detailChapterStructure.strNextChapterUrl];
     _btnShare.hidden = NO;
     
-    [self stopLoadingAnimation];
+//    [self stopLoadingAnimation];
 }
 
 -(void)addMarkdownView
 {
-    NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_detailChapterStructure.strText];
-    NSLog(@"Called loadHTMLString");
-    [_webView loadHTMLString:strHtmlString baseURL:nil];
+    [self performSelectorOnMainThread:@selector(startLoadingAnimation) withObject:nil waitUntilDone:NO];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
+   ^{
+        NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_detailChapterStructure.strText];
+        NSLog(@"Called loadHTMLString");
+        [_webView loadHTMLString:strHtmlString baseURL:nil];
+       
+       [self performSelectorOnMainThread:@selector(stopLoadingAnimation) withObject:nil waitUntilDone:NO];
+
+    });
     
     return;
     
