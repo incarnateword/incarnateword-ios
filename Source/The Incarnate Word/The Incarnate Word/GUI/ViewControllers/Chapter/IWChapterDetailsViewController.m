@@ -327,7 +327,9 @@
    ^{
         NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_detailChapterStructure.strText];
         NSLog(@"Called loadHTMLString");
-        [_webView loadHTMLString:strHtmlString baseURL:nil];
+//       NSString *cssPath = [[NSBundle mainBundle] pathForResource:@"chapter" ofType:@"css"];
+
+        [_webView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
        
        [self performSelectorOnMainThread:@selector(stopLoadingAnimation) withObject:nil waitUntilDone:NO];
 
