@@ -51,6 +51,7 @@
 		48A611821B19EE3A007AC3B5 /* IWAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A611811B19EE3A007AC3B5 /* IWAboutViewController.m */; };
 		48A611861B1A03F6007AC3B5 /* aurobindo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48A611841B1A03F6007AC3B5 /* aurobindo.jpg */; };
 		48A611871B1A03F6007AC3B5 /* theMother.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48A611851B1A03F6007AC3B5 /* theMother.jpg */; };
+		48B7C7741B8B916E0088FEC6 /* common.css in Resources */ = {isa = PBXBuildFile; fileRef = 48B7C7731B8B916E0088FEC6 /* common.css */; };
 		48BBDA4D1B3C845E00564E70 /* Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48BBDA451B3C845E00564E70 /* Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf */; };
 		48BBDA4E1B3C845E00564E70 /* Charlotte_Sans_Italic_0309808a-11a3-4582-acdf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48BBDA461B3C845E00564E70 /* Charlotte_Sans_Italic_0309808a-11a3-4582-acdf.otf */; };
 		48BBDA4F1B3C845E00564E70 /* Charlotte_Sans_Medium_b32c1ab1-95e3-47dc-8c04.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48BBDA471B3C845E00564E70 /* Charlotte_Sans_Medium_b32c1ab1-95e3-47dc-8c04.otf */; };
@@ -165,6 +166,7 @@
 		48A611811B19EE3A007AC3B5 /* IWAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWAboutViewController.m; sourceTree = "<group>"; };
 		48A611841B1A03F6007AC3B5 /* aurobindo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aurobindo.jpg; sourceTree = "<group>"; };
 		48A611851B1A03F6007AC3B5 /* theMother.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = theMother.jpg; sourceTree = "<group>"; };
+		48B7C7731B8B916E0088FEC6 /* common.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = common.css; sourceTree = "<group>"; };
 		48BBDA451B3C845E00564E70 /* Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf"; sourceTree = "<group>"; };
 		48BBDA461B3C845E00564E70 /* Charlotte_Sans_Italic_0309808a-11a3-4582-acdf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Charlotte_Sans_Italic_0309808a-11a3-4582-acdf.otf"; sourceTree = "<group>"; };
 		48BBDA471B3C845E00564E70 /* Charlotte_Sans_Medium_b32c1ab1-95e3-47dc-8c04.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Charlotte_Sans_Medium_b32c1ab1-95e3-47dc-8c04.otf"; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 		483D673A1B087F9600BA9A82 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				48B7C7721B8B91580088FEC6 /* CSS */,
 				48674B781B36DA1700C644DC /* Fonts */,
 				48A611831B1A0377007AC3B5 /* NonXcasset */,
 				48C2C4E81B07887A00ED333F /* Images.xcassets */,
@@ -633,6 +636,14 @@
 			path = NonXcasset;
 			sourceTree = "<group>";
 		};
+		48B7C7721B8B91580088FEC6 /* CSS */ = {
+			isa = PBXGroup;
+			children = (
+				48B7C7731B8B916E0088FEC6 /* common.css */,
+			);
+			path = CSS;
+			sourceTree = "<group>";
+		};
 		48C2C4CF1B07887A00ED333F = {
 			isa = PBXGroup;
 			children = (
@@ -861,6 +872,7 @@
 				48BBDA4F1B3C845E00564E70 /* Charlotte_Sans_Medium_b32c1ab1-95e3-47dc-8c04.otf in Resources */,
 				48BBDA4D1B3C845E00564E70 /* Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf in Resources */,
 				488FA3121B1A158A00F9B5FB /* Dictionary.storyboard in Resources */,
+				48B7C7741B8B916E0088FEC6 /* common.css in Resources */,
 				486188061B0A568600A4D292 /* Chapter.storyboard in Resources */,
 				48C2C4E91B07887A00ED333F /* Images.xcassets in Resources */,
 				48BBDA4E1B3C845E00564E70 /* Charlotte_Sans_Italic_0309808a-11a3-4582-acdf.otf in Resources */,
