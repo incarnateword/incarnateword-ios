@@ -169,8 +169,21 @@
     NSLog(@"JSValue Conversion Start");
      NSString  *strFinalHtml = [result toString];
     NSLog(@"JSValue Conversion End");
+    NSString *strCssHead = [NSString stringWithFormat:@"<head>"
+    "<link rel=\"stylesheet\" type=\"text/css\" href=\"%@\">"
+    "</head>"
+    "<body>",CSS_FILE_NAME];
+    NSMutableString *strMutString = [[NSMutableString alloc] initWithString:strCssHead];
+    [strMutString appendString:strFinalHtml];
+    [strMutString appendString:@"</body>"];
     
-    return strFinalHtml;
+    NSLog(@"~~~~~~~~~~~%@~~~~~~~~~~~",[strMutString copy]);
+    return [strMutString copy];
+}
+
++(NSURL*)getCommonCssBaseURL
+{
+  return [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:CSS_FILE_NAME ofType:@""]];
 }
 
 @end
