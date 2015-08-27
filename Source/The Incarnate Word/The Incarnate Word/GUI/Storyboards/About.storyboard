@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf">
-            <string>CharlotteSansW02-Book</string>
-        </mutableArray>
-    </customFonts>
     <scenes>
         <!--About View Controller-->
         <scene sceneID="Mlb-Ga-6St">
@@ -22,44 +17,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Pm-mL-qU7" userLabel="ImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="JAU-d2-qp3" userLabel="Height"/>
+                                </constraints>
+                            </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ptu-tl-yrv" userLabel="ViewMiddle">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Rw2-iX-Z8Z" userLabel="TableView">
+                                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0dG-e7-7Te" userLabel="WebView">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AboutCell" id="dHJ-ha-hdP">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dHJ-ha-hdP" id="EjU-pv-xnc">
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ecy-cM-mul" userLabel="lbl">
-                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                                            <fontDescription key="fontDescription" name="CharlotteSansW02-Book" family="CharlotteSansW02-Book" pointSize="17"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="Ecy-cM-mul" firstAttribute="top" secondItem="EjU-pv-xnc" secondAttribute="top" constant="10" id="9Tr-pk-Oew" userLabel="lbl_Top"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Ecy-cM-mul" secondAttribute="bottom" constant="10" id="F60-XI-J4f" userLabel="lbl_Bottom"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Ecy-cM-mul" secondAttribute="trailing" constant="10" id="GRL-7R-q7q" userLabel="lbl_Trailing"/>
-                                                        <constraint firstItem="Ecy-cM-mul" firstAttribute="leading" secondItem="EjU-pv-xnc" secondAttribute="leading" constant="10" id="tTR-MS-xvh" userLabel="lbl_Leading"/>
-                                                    </constraints>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="V2a-BP-0PK" id="yZW-gQ-86X"/>
-                                            <outlet property="delegate" destination="V2a-BP-0PK" id="sES-t5-a6v"/>
-                                        </connections>
-                                    </tableView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </webView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Rw2-iX-Z8Z" secondAttribute="bottom" id="R0l-rv-bWl" userLabel="TableView_Bottom"/>
-                                    <constraint firstAttribute="trailing" secondItem="Rw2-iX-Z8Z" secondAttribute="trailing" id="WKC-XI-KEq" userLabel="TableView_Trailing"/>
-                                    <constraint firstItem="Rw2-iX-Z8Z" firstAttribute="top" secondItem="ptu-tl-yrv" secondAttribute="top" id="gzd-a6-cWB" userLabel="TableView_Top"/>
-                                    <constraint firstItem="Rw2-iX-Z8Z" firstAttribute="leading" secondItem="ptu-tl-yrv" secondAttribute="leading" id="o0h-H6-ExB" userLabel="TableView_Leading"/>
+                                    <constraint firstAttribute="bottom" secondItem="0dG-e7-7Te" secondAttribute="bottom" id="1Uh-Pi-YZA" userLabel="WebView_Bottom"/>
+                                    <constraint firstItem="0dG-e7-7Te" firstAttribute="top" secondItem="ptu-tl-yrv" secondAttribute="top" id="MUh-II-KzG" userLabel="WebView_Top"/>
+                                    <constraint firstItem="0dG-e7-7Te" firstAttribute="leading" secondItem="ptu-tl-yrv" secondAttribute="leading" id="ZHM-GQ-ADc" userLabel="WebView_Leading"/>
+                                    <constraint firstAttribute="trailing" secondItem="0dG-e7-7Te" secondAttribute="trailing" id="jxy-gu-m2Z" userLabel="WebView_Trailing"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o13-LE-qRg" userLabel="ViewLoading">
@@ -78,18 +54,21 @@
                             </view>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="6Pm-mL-qU7" firstAttribute="leading" secondItem="6i5-el-jB8" secondAttribute="leading" id="Auj-oo-20L" userLabel="ImageView_Leading"/>
                             <constraint firstAttribute="bottom" secondItem="ptu-tl-yrv" secondAttribute="bottom" id="BQ2-Le-637" userLabel="ViewMiddle_Bottom"/>
                             <constraint firstAttribute="centerX" secondItem="o13-LE-qRg" secondAttribute="centerX" id="Fuk-Kj-TOi" userLabel="ViewLoading_VerticallyCentered"/>
+                            <constraint firstAttribute="trailing" secondItem="6Pm-mL-qU7" secondAttribute="trailing" id="KxV-9p-8ES" userLabel="ImageView_Trailing"/>
                             <constraint firstAttribute="centerY" secondItem="o13-LE-qRg" secondAttribute="centerY" id="TnD-dZ-7Nx" userLabel="ViewLoading_HorizontallyCentered"/>
                             <constraint firstItem="ptu-tl-yrv" firstAttribute="leading" secondItem="6i5-el-jB8" secondAttribute="leading" id="Z8T-IE-Wtu" userLabel="ViewMiddle_Leading"/>
                             <constraint firstAttribute="trailing" secondItem="ptu-tl-yrv" secondAttribute="trailing" id="kcK-Wr-q27" userLabel="ViewMiddle_Trailing"/>
-                            <constraint firstItem="ptu-tl-yrv" firstAttribute="top" secondItem="6i5-el-jB8" secondAttribute="top" id="vh5-oV-FsN" userLabel="ViewMiddle_Top"/>
+                            <constraint firstItem="ptu-tl-yrv" firstAttribute="top" secondItem="6Pm-mL-qU7" secondAttribute="bottom" id="woJ-XG-Mqb" userLabel="Vertical Space_ImageView_ViewMiddle"/>
+                            <constraint firstItem="6Pm-mL-qU7" firstAttribute="top" secondItem="6i5-el-jB8" secondAttribute="top" id="yuA-l4-UT8" userLabel="ImageView_Top"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="Rw2-iX-Z8Z" id="qNX-Rf-JlM"/>
+                        <outlet property="imageView" destination="6Pm-mL-qU7" id="VHc-UV-65y"/>
                         <outlet property="viewLoading" destination="o13-LE-qRg" id="2Cq-Rf-Qq0"/>
-                        <outlet property="viewMiddle" destination="ptu-tl-yrv" id="lIb-4u-8sz"/>
+                        <outlet property="webView" destination="0dG-e7-7Te" id="Y8Z-xO-6hj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hiy-wu-ocV" userLabel="First Responder" sceneMemberID="firstResponder"/>
