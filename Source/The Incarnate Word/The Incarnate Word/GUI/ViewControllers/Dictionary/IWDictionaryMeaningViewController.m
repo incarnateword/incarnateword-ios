@@ -15,21 +15,18 @@
 #import "WebServiceConstants.h"
 
 
-@interface IWDictionaryMeaningViewController ()<WebServiceDelegate>
+@interface IWDictionaryMeaningViewController ()<WebServiceDelegate,UIWebViewDelegate>
 {
     IWDictionaryMeaningWebService       *_dictionaryMeaningWebService;
     IWWordMeaningStructure              *_wordMeaningStructure;
-
     BOOL                                _bShouldFlipHorizontally;
     NSTimer                             *_timerLoading;
-    
-    BPMarkdownView                      *_markdownView;
 }
 
 @property (weak, nonatomic) IBOutlet UIView                 *viewLoading;
-@property (strong, nonatomic) IBOutlet UIView               *viewDescription;
 @property (weak, nonatomic) IBOutlet UIView                 *viewToolbar;
 @property (weak, nonatomic) IBOutlet UIButton               *btnShare;
+@property (weak, nonatomic) IBOutlet UIWebView              *webView;
 
 
 -(void)setupVC;
@@ -63,9 +60,7 @@
     _viewLoading.backgroundColor = COLOR_LOADING_VIEW;
 
     _viewLoading.layer.cornerRadius = 3.0;
-    _viewDescription.layer.cornerRadius = 3.0;
 
-    _viewDescription.hidden = YES;
     _btnShare.hidden = YES;
     _viewToolbar.backgroundColor = COLOR_NAV_BAR;
 
@@ -106,10 +101,7 @@
 {
     self.navigationItem.title = _wordMeaningStructure.strWord;
     [self addMarkdownView];
-    _viewDescription.hidden = NO;
     _btnShare.hidden = NO;
-
-    [self stopLoadingAnimation];
 }
 
 - (IBAction)btnBackPressed:(id)sender
@@ -119,20 +111,13 @@
 
 -(void)addMarkdownView
 {
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
-    CGFloat screenHeight = screenRect.size.height;
-    CGFloat totalTopMargin = 44;
-    
-    
-    
-    CGRect markdownRect = CGRectMake(5,-3,
-                      screenWidth -4,
-                                     screenHeight - totalTopMargin -10);
-    _markdownView  = [IWUtility getMarkdownViewOfFrame:markdownRect withCustomBPDisplaySettings:nil];
-    [_viewDescription addSubview:_markdownView];
-    _markdownView.layer.cornerRadius = 3.0;
-    [_markdownView setMarkdown:_wordMeaningStructure.strDefinition];
+    [self performSelectorOnMainThread:@selector(startLoadingAnimation) withObject:nil waitUntilDone:NO];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
+   ^{
+       NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_wordMeaningStructure.strDefinition];
+       [_webView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
+       [self performSelectorOnMainThread:@selector(stopLoadingAnimation) withObject:nil waitUntilDone:NO];
+   });
 }
 
 
@@ -192,7 +177,19 @@
     //
     //    activityVC.excludedActivityTypes = excludeActivities;
     
-    [self presentViewController:activityVC animated:YES completion:nil];
+    if([IWUtility isDeviceTypeIpad])
+    {
+        UIPopoverController *pop = [[UIPopoverController alloc] initWithContentViewController:activityVC];
+        
+        CGRect screenBound = [[UIScreen mainScreen] bounds];
+        CGRect rect = CGRectMake(screenBound.size.width - 65 , screenBound.size.height - 100 , 30, 30);
+        
+        [pop presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+    }
+    else
+    {
+        [self presentViewController:activityVC animated:YES completion:nil];
+    }
 }
 
 @end
