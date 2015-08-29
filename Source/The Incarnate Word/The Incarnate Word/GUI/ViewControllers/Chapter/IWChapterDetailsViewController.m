@@ -134,7 +134,19 @@
 //    
 //    activityVC.excludedActivityTypes = excludeActivities;
     
-    [self presentViewController:activityVC animated:YES completion:nil];
+    if([IWUtility isDeviceTypeIpad])
+    {
+        UIPopoverController *pop = [[UIPopoverController alloc] initWithContentViewController:activityVC];
+        
+        CGRect screenBound = [[UIScreen mainScreen] bounds];
+        CGRect rect = CGRectMake(screenBound.size.width - 65 , screenBound.size.height - 100 , 30, 30);
+        
+        [pop presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+    }
+    else
+    {
+        [self presentViewController:activityVC animated:YES completion:nil];
+    }
 }
 
 -(void)setupVC
