@@ -312,11 +312,7 @@
          _strDate = @"";
     }
     
-    if([IWUtility isNilOrEmptyString:_detailChapterStructure.strDescription] == NO ||
-       [IWUtility isNilOrEmptyString:_strDate] == NO)
-    {
-        _btnInfo.hidden = NO;
-    }
+
     
     NSMutableString *strPath = [[NSMutableString alloc] init];
     
@@ -328,10 +324,20 @@
             [strPath appendString:@" / "];
     }
     
-    _btnNextChapter.hidden = [IWUtility isNilOrEmptyString:_detailChapterStructure.strNextChapterUrl];
-    _btnShare.hidden = NO;
+
     
 //    [self stopLoadingAnimation];
+}
+
+-(void)showButtonsBasedOnContent
+{
+    _btnNextChapter.hidden = [IWUtility isNilOrEmptyString:_detailChapterStructure.strNextChapterUrl];
+    _btnShare.hidden = NO;
+    if([IWUtility isNilOrEmptyString:_detailChapterStructure.strDescription] == NO ||
+       [IWUtility isNilOrEmptyString:_strDate] == NO)
+    {
+        _btnInfo.hidden = NO;
+    }
 }
 
 -(void)addMarkdownView
@@ -347,6 +353,7 @@
         [_webView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
        
        [self performSelectorOnMainThread:@selector(stopLoadingAnimation) withObject:nil waitUntilDone:NO];
+       [self performSelectorOnMainThread:@selector(showButtonsBasedOnContent) withObject:nil waitUntilDone:NO];
 
     });
     
