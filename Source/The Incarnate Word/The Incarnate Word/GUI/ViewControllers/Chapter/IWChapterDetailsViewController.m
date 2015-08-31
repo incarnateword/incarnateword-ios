@@ -244,6 +244,7 @@
 
 -(void)getData
 {
+    [self performSelectorOnMainThread:@selector(startLoadingAnimation) withObject:nil waitUntilDone:NO];
     _chapterWebService = [[IWChapterWebService alloc] initWithPath:_strChapterPath AndDelegate:self];
     [_chapterWebService sendAsyncRequest];
 }
@@ -333,8 +334,8 @@
 
 -(void)addMarkdownView
 {
-    [self performSelectorOnMainThread:@selector(startLoadingAnimation) withObject:nil waitUntilDone:NO];
-    
+//    [self performSelectorOnMainThread:@selector(startLoadingAnimation) withObject:nil waitUntilDone:NO];
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
    ^{
         NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_detailChapterStructure.strText];
