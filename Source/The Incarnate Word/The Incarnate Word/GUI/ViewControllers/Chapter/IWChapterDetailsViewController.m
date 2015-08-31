@@ -168,6 +168,8 @@
     
     _btnInfo.titleLabel.font = [UIFont fontWithName:FONT_BODY_ITALIC size:28.0];
     
+    [_webView loadHTMLString:@"" baseURL:nil];
+    
 //    [self startLoadingAnimation];
 
     _viewBottom.hidden = YES;
