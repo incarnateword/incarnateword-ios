@@ -13,4 +13,5 @@
 @property (readwrite) NSString *strChapterPath;
 @property (readwrite) int       iItemIndex;
 
+
 @end
