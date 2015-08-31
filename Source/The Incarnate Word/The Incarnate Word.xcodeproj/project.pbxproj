@@ -51,7 +51,7 @@
 		48A611821B19EE3A007AC3B5 /* IWAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A611811B19EE3A007AC3B5 /* IWAboutViewController.m */; };
 		48A611861B1A03F6007AC3B5 /* aurobindo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48A611841B1A03F6007AC3B5 /* aurobindo.jpg */; };
 		48A611871B1A03F6007AC3B5 /* theMother.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48A611851B1A03F6007AC3B5 /* theMother.jpg */; };
-		48B7C7741B8B916E0088FEC6 /* common.css in Resources */ = {isa = PBXBuildFile; fileRef = 48B7C7731B8B916E0088FEC6 /* common.css */; };
+		48B7C7741B8B916E0088FEC6 /* iPad.css in Resources */ = {isa = PBXBuildFile; fileRef = 48B7C7731B8B916E0088FEC6 /* iPad.css */; };
 		48BBDA4D1B3C845E00564E70 /* Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48BBDA451B3C845E00564E70 /* Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf */; };
 		48BBDA4E1B3C845E00564E70 /* Charlotte_Sans_Italic_0309808a-11a3-4582-acdf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48BBDA461B3C845E00564E70 /* Charlotte_Sans_Italic_0309808a-11a3-4582-acdf.otf */; };
 		48BBDA4F1B3C845E00564E70 /* Charlotte_Sans_Medium_b32c1ab1-95e3-47dc-8c04.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48BBDA471B3C845E00564E70 /* Charlotte_Sans_Medium_b32c1ab1-95e3-47dc-8c04.otf */; };
@@ -82,6 +82,7 @@
 		B2DCAC591B0DEDE40092AD85 /* MarkdownTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DCAC511B0DEDE40092AD85 /* MarkdownTokenizer.m */; };
 		B2DCAC5A1B0DEDE40092AD85 /* MarkdownTokens.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DCAC531B0DEDE40092AD85 /* MarkdownTokens.m */; };
 		B2DCAC5B1B0DEDE40092AD85 /* NSAttributedStringMarkdownParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DCAC571B0DEDE40092AD85 /* NSAttributedStringMarkdownParser.m */; };
+		D0CF5F0A1B94805700C838D0 /* iPhone.css in Resources */ = {isa = PBXBuildFile; fileRef = D0CF5F091B94805700C838D0 /* iPhone.css */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -166,7 +167,7 @@
 		48A611811B19EE3A007AC3B5 /* IWAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWAboutViewController.m; sourceTree = "<group>"; };
 		48A611841B1A03F6007AC3B5 /* aurobindo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aurobindo.jpg; sourceTree = "<group>"; };
 		48A611851B1A03F6007AC3B5 /* theMother.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = theMother.jpg; sourceTree = "<group>"; };
-		48B7C7731B8B916E0088FEC6 /* common.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = common.css; sourceTree = "<group>"; };
+		48B7C7731B8B916E0088FEC6 /* iPad.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = iPad.css; sourceTree = "<group>"; };
 		48BBDA451B3C845E00564E70 /* Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf"; sourceTree = "<group>"; };
 		48BBDA461B3C845E00564E70 /* Charlotte_Sans_Italic_0309808a-11a3-4582-acdf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Charlotte_Sans_Italic_0309808a-11a3-4582-acdf.otf"; sourceTree = "<group>"; };
 		48BBDA471B3C845E00564E70 /* Charlotte_Sans_Medium_b32c1ab1-95e3-47dc-8c04.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Charlotte_Sans_Medium_b32c1ab1-95e3-47dc-8c04.otf"; sourceTree = "<group>"; };
@@ -218,6 +219,7 @@
 		B2DCAC561B0DEDE40092AD85 /* NSAttributedStringMarkdownParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAttributedStringMarkdownParser.h; sourceTree = "<group>"; };
 		B2DCAC571B0DEDE40092AD85 /* NSAttributedStringMarkdownParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSAttributedStringMarkdownParser.m; sourceTree = "<group>"; };
 		CBC3A1DCCCAEC9778F8B3679 /* Pods-The Incarnate Word.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Incarnate Word.debug.xcconfig"; path = "Pods/Target Support Files/Pods-The Incarnate Word/Pods-The Incarnate Word.debug.xcconfig"; sourceTree = "<group>"; };
+		D0CF5F091B94805700C838D0 /* iPhone.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = iPhone.css; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -639,7 +641,8 @@
 		48B7C7721B8B91580088FEC6 /* CSS */ = {
 			isa = PBXGroup;
 			children = (
-				48B7C7731B8B916E0088FEC6 /* common.css */,
+				D0CF5F091B94805700C838D0 /* iPhone.css */,
+				48B7C7731B8B916E0088FEC6 /* iPad.css */,
 			);
 			path = CSS;
 			sourceTree = "<group>";
@@ -855,6 +858,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0CF5F0A1B94805700C838D0 /* iPhone.css in Resources */,
 				483D67631B08897700BA9A82 /* LeftDrawer.storyboard in Resources */,
 				48C929E31B6BEA4500489131 /* ApplicationIcon.jpg in Resources */,
 				48E51FF01B30ABA9008825FC /* Popover.storyboard in Resources */,
@@ -872,7 +876,7 @@
 				48BBDA4F1B3C845E00564E70 /* Charlotte_Sans_Medium_b32c1ab1-95e3-47dc-8c04.otf in Resources */,
 				48BBDA4D1B3C845E00564E70 /* Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf in Resources */,
 				488FA3121B1A158A00F9B5FB /* Dictionary.storyboard in Resources */,
-				48B7C7741B8B916E0088FEC6 /* common.css in Resources */,
+				48B7C7741B8B916E0088FEC6 /* iPad.css in Resources */,
 				486188061B0A568600A4D292 /* Chapter.storyboard in Resources */,
 				48C2C4E91B07887A00ED333F /* Images.xcassets in Resources */,
 				48BBDA4E1B3C845E00564E70 /* Charlotte_Sans_Italic_0309808a-11a3-4582-acdf.otf in Resources */,
