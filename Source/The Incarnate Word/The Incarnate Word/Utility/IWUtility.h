@@ -14,7 +14,6 @@
 
 #define IS_OS_8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
-#define CSS_FILE_NAME @"common.css"
 
 @interface IWUtility : NSObject
 

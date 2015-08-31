@@ -172,7 +172,7 @@
     NSString *strCssHead = [NSString stringWithFormat:@"<head>"
     "<link rel=\"stylesheet\" type=\"text/css\" href=\"%@\">"
     "</head>"
-    "<body>",CSS_FILE_NAME];
+    "<body>",[IWUtility getCssFileName]];
     NSMutableString *strMutString = [[NSMutableString alloc] initWithString:strCssHead];
     [strMutString appendString:strFinalHtml];
     [strMutString appendString:@"</body>"];
@@ -183,7 +183,15 @@
 
 +(NSURL*)getCommonCssBaseURL
 {
-  return [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:CSS_FILE_NAME ofType:@""]];
+  return [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:[IWUtility getCssFileName] ofType:@""]];
+}
+
++(NSString*)getCssFileName
+{
+    if([IWUtility isDeviceTypeIpad])
+        return @"iPad.css";
+    
+    return @"iPhone.css";
 }
 
 @end
