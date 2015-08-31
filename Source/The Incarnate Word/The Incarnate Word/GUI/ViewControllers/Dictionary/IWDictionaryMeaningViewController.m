@@ -65,7 +65,8 @@
     _viewToolbar.backgroundColor = COLOR_NAV_BAR;
 
     self.view.backgroundColor = COLOR_VIEW_BG;
-    
+    _webView.scrollView.decelerationRate = 1.5;//UIScrollViewDecelerationRateFast;
+
     [self startLoadingAnimation];
 }
 
