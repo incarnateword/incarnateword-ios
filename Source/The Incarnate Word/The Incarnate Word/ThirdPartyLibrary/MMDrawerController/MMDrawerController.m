@@ -25,7 +25,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 CGFloat const MMDrawerDefaultWidth = 280.0f;
-CGFloat const MMDrawerDefaultAnimationVelocity = 840.0f;
+CGFloat const MMDrawerDefaultAnimationVelocity = 1000.0f;//ADITYA Original 840.0f 
 
 NSTimeInterval const MMDrawerDefaultFullAnimationDelay = 0.10f;
 
