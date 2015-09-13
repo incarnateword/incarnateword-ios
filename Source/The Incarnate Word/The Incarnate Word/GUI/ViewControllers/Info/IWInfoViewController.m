@@ -19,7 +19,6 @@
 
 @interface IWInfoViewController ()<UIGestureRecognizerDelegate>
 {
-    BPMarkdownView                          *_markdownView;
     UITapGestureRecognizer                  *_gestureTapForWholeView;
     float                                   _fContainerHeight;
 }
@@ -32,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIView             *viewContainer;
 @property (weak, nonatomic) IBOutlet UIView             *viewAlpha;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintLblDateBottomSpace;
+@property (weak, nonatomic) IBOutlet UIWebView          *webView;
 
 @end
 
@@ -57,7 +57,8 @@
     _lblDate.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:[UIFont systemFontSize] + 4.0];
     _viewForMarkdown.layer.cornerRadius = 3.0;
     [_viewForMarkdown layoutIfNeeded];
-    _viewForMarkdown.backgroundColor = COLOR_NAV_BAR;
+    _viewForMarkdown.backgroundColor = [UIColor whiteColor];
+    _webView.backgroundColor = [UIColor whiteColor];
 
     [self setupCloseBtn];
     
@@ -97,27 +98,15 @@
 
 -(void)addMarkdownView
 {
-    CGRect markdownRect = CGRectMake(MARKDOWNVIEW_SIDE_MARGIN,
-                                     MARKDOWNVIEW_SIDE_MARGIN,
-                                     [UIScreen mainScreen].bounds.size.width - MARKDOWNVIEW_SIDE_MARGIN - 15,
-                                     _fContainerHeight - 80/*([IWUtility isNilOrEmptyString:_strDate] ? 50 : 85)*/);
-    
-    BPDisplaySettings *customBPSettings = [[BPDisplaySettings alloc] init];
-    CGFloat systemFontSize = [UIFont systemFontSize];
-    customBPSettings.defaultFont = [UIFont fontWithName:FONT_TITLE_REGULAR size:systemFontSize + 4.0];
-    customBPSettings.boldFont = [UIFont fontWithName:FONT_TITLE_MEDIUM size:systemFontSize + 4.0];
-    customBPSettings.italicFont =  [UIFont fontWithName:FONT_TITLE_ITALIC size:systemFontSize + 4.0];
-    customBPSettings.monospaceFont = [UIFont fontWithName:FONT_TITLE_REGULAR size:systemFontSize - 2.f];
-    customBPSettings.quoteFont = [UIFont fontWithName:FONT_TITLE_ITALIC size:systemFontSize + 4.0];
 
-    
-    
-    _markdownView = [IWUtility getMarkdownViewOfFrame:markdownRect withCustomBPDisplaySettings:customBPSettings];
-    _markdownView.translatesAutoresizingMaskIntoConstraints = NO;
-    [_markdownView setMarkdown:_strText];
-    _markdownView.backgroundColor = [UIColor clearColor];
-    _viewForMarkdown.backgroundColor = COLOR_NAV_BAR;
-    [_viewForMarkdown addSubview:_markdownView];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
+                   ^{
+                       NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_strText];
+                       NSLog(@"Called loadHTMLString");
+                       //       NSString *cssPath = [[NSBundle mainBundle] pathForResource:@"chapter" ofType:@"css"];
+                       
+                       [_webView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
+                   });
     
     _constraintViewContainerBottom.constant = -_fContainerHeight;
     
@@ -126,7 +115,6 @@
      ^{
          _constraintViewContainerBottom.constant = 0;
          [_viewContainer layoutIfNeeded];
-         _markdownView.frame = markdownRect;
          _viewAlpha.alpha = 0.5;
      }
     completion:

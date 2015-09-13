@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Info View Controller-->
@@ -21,12 +21,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRM-9K-9kd" userLabel="ViewContainer">
-                                <rect key="frame" x="0.0" y="600" width="600" height="250"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fRM-9K-9kd" userLabel="ViewContainer">
+                                <rect key="frame" x="0.0" y="1024" width="768" height="250"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbD-Fh-YCY" userLabel="ViewForMarkdown">
                                         <rect key="frame" x="5" y="0.0" width="590" height="200"/>
                                         <subviews>
+                                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I5C-gU-6bB" userLabel="WebView">
+                                                <rect key="frame" x="0.0" y="0.0" width="590" height="120"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </webView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHa-Mo-mQR" userLabel="lbl">
                                                 <rect key="frame" x="0.0" y="170" width="590" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -42,6 +46,10 @@
                                         <constraints>
                                             <constraint firstItem="RHa-Mo-mQR" firstAttribute="leading" secondItem="gbD-Fh-YCY" secondAttribute="leading" id="APa-Za-IeA" userLabel="lbl_Leading"/>
                                             <constraint firstAttribute="bottom" secondItem="RHa-Mo-mQR" secondAttribute="bottom" id="akc-aa-pQu" userLabel="lbl_Bottom"/>
+                                            <constraint firstItem="I5C-gU-6bB" firstAttribute="leading" secondItem="gbD-Fh-YCY" secondAttribute="leading" id="ehH-D0-MHg" userLabel="WebView_Leading"/>
+                                            <constraint firstAttribute="bottom" secondItem="I5C-gU-6bB" secondAttribute="bottom" constant="80" id="glM-nr-iuy" userLabel="WebView_Bottom"/>
+                                            <constraint firstAttribute="trailing" secondItem="I5C-gU-6bB" secondAttribute="trailing" id="rG7-cv-3eX" userLabel="WebView_Trailing"/>
+                                            <constraint firstItem="I5C-gU-6bB" firstAttribute="top" secondItem="gbD-Fh-YCY" secondAttribute="top" id="szJ-Mg-h0s" userLabel="WebView_Top"/>
                                             <constraint firstAttribute="trailing" secondItem="RHa-Mo-mQR" secondAttribute="trailing" id="uGm-AY-iIy" userLabel="lbl_Trailing"/>
                                         </constraints>
                                     </view>
@@ -93,6 +101,7 @@
                         <outlet property="viewAlpha" destination="wv1-Yi-17t" id="b9D-fP-Xyr"/>
                         <outlet property="viewContainer" destination="fRM-9K-9kd" id="h0w-qp-N4k"/>
                         <outlet property="viewForMarkdown" destination="gbD-Fh-YCY" id="pAq-pu-mvt"/>
+                        <outlet property="webView" destination="I5C-gU-6bB" id="URl-NF-4pv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BQB-e3-fV9" userLabel="First Responder" sceneMemberID="firstResponder"/>
