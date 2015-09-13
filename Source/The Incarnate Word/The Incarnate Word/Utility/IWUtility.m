@@ -157,6 +157,7 @@
 
 +(NSString*)getHtmlStringUsingJSLibForMarkdownText:(NSString*) strMarkdownText
 {
+    NSLog(@"~~~~~~~~~~~START~~~~~~~~~~~");
     NSString *path = [[NSBundle mainBundle] pathForResource:@"marked-feature-footnotes/lib/marked" ofType:@"js"];
     NSString *jsScript = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     JSContext *context = [[JSContext alloc] init];
@@ -176,7 +177,8 @@
     NSMutableString *strMutString = [[NSMutableString alloc] initWithString:strCssHead];
     [strMutString appendString:strFinalHtml];
     [strMutString appendString:@"</body>"];
-    
+    NSLog(@"~~~~~~~~~~~END~~~~~~~~~~~");
+
     NSLog(@"~~~~~~~~~~~%@~~~~~~~~~~~",[strMutString copy]);
     return [strMutString copy];
 }

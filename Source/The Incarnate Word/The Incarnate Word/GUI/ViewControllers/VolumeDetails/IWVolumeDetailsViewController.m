@@ -301,55 +301,55 @@
     UITableViewCell *cell;
     NSString *strTitle = @"";
     float fFontSize = 17;
+    UIColor *color = [UIColor whiteColor];
     
     if([chapOrItem isKindOfClass:[IWPartStructure class]])
     {
         IWPartStructure *book = (IWPartStructure*)chapOrItem;
         cell = [tableView dequeueReusableCellWithIdentifier:@"PartCell"];
         strTitle = book.strTitle;
-        fFontSize = 20;
+//        fFontSize = 20;
+        color = [UIColor colorWithRed:180.0/255 green:180.0/255 blue:180.0/255 alpha:1.0];
     }
     else if([chapOrItem isKindOfClass:[IWSectionStructure class]])
     {
         IWSectionStructure *section = (IWSectionStructure*)chapOrItem;
         cell = [tableView dequeueReusableCellWithIdentifier:@"SectionCell"];
         strTitle = section.strTitle;
-        fFontSize = 19;
-
+//        fFontSize = 19;
+        color = [UIColor colorWithRed:210.0/255 green:210.0/255 blue:210.0/255 alpha:1.0];
     }
     else if([chapOrItem isKindOfClass:[IWSubSectionStructrue class]])
     {
         IWSubSectionStructrue *section = (IWSubSectionStructrue*)chapOrItem;
         cell = [tableView dequeueReusableCellWithIdentifier:@"SubSectionCell"];
         strTitle = section.strTitle;
-        fFontSize = 18;
-
+//        fFontSize = 18;
+        color = [UIColor colorWithRed:240.0/255 green:240.0/255 blue:240.0/255 alpha:1.0];
     }
     else if([chapOrItem isKindOfClass:[IWChapterStructure class]])
     {
         IWChapterStructure *chapter = (IWChapterStructure*)chapOrItem;
         cell = [tableView dequeueReusableCellWithIdentifier:@"ChapterCell"];
         strTitle = chapter.strTitle;
-        fFontSize = 17;
-
+//        fFontSize = 17;
     }
     else if([chapOrItem isKindOfClass:[IWSegmentStructure class]])
     {
         IWSegmentStructure *segment = (IWSegmentStructure*)chapOrItem;
         cell = [tableView dequeueReusableCellWithIdentifier:@"SegmentCell"];
         strTitle = segment.strTitle;
-        fFontSize = 16;
-
+//        fFontSize = 16;
     }
     else if([chapOrItem isKindOfClass:[IWChaterItemStructure class]])
     {
         IWChaterItemStructure *chapter = (IWChaterItemStructure*)chapOrItem;
         cell = [tableView dequeueReusableCellWithIdentifier:@"ChapterItemCell"];
         strTitle = chapter.strTitle;
-        fFontSize = 15;
-
+//        fFontSize = 15;
     }
     
+    [cell.contentView setBackgroundColor:color];
     UILabel *labelTitle = (UILabel*)[cell viewWithTag:201];
     labelTitle.text = strTitle;
     labelTitle.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:fFontSize]];
@@ -498,19 +498,19 @@
         chapOrItem = [self getChaptersAndItemsFromChapterArray:_detailVolumeStructure.arrChapters];
     }
     
-    if([chapOrItem isKindOfClass:[IWPartStructure class]])
-        return [IWUtility getNumberAsPerScalingFactor:35];
+//    if([chapOrItem isKindOfClass:[IWPartStructure class]])
+//        return [IWUtility getNumberAsPerScalingFactor:35];
+//    
+//    if([chapOrItem isKindOfClass:[IWSectionStructure class]])
+//        return [IWUtility getNumberAsPerScalingFactor:30];
+//    
+//    if([chapOrItem isKindOfClass:[IWSubSectionStructrue class]])
+//        return [IWUtility getNumberAsPerScalingFactor:25];
+//    
+//    if([chapOrItem isKindOfClass:[IWSegmentStructure class]])
+//        return [IWUtility getNumberAsPerScalingFactor:40];
     
-    if([chapOrItem isKindOfClass:[IWSectionStructure class]])
-        return [IWUtility getNumberAsPerScalingFactor:30];
-    
-    if([chapOrItem isKindOfClass:[IWSubSectionStructrue class]])
-        return [IWUtility getNumberAsPerScalingFactor:25];
-    
-    if([chapOrItem isKindOfClass:[IWSegmentStructure class]])
-        return [IWUtility getNumberAsPerScalingFactor:40];
-    
-    return [IWUtility getNumberAsPerScalingFactor:44];
+    return [IWUtility getNumberAsPerScalingFactor:40];
 }
 
 
