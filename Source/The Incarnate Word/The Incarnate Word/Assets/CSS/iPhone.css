@@ -60,37 +60,43 @@ blockquote
 
 h1
 {
-    font-family: CharlotteSansW02-Medium;
+    font-family: CharlotteSansW02-Book;
     font-size: 28px;
+    font-weight: normal;
 }
 
 h2
 {
-    font-family: CharlotteSansW02-Medium;
+    font-family: CharlotteSansW02-Book;
     font-size: 25px;
+    font-weight: normal;
 }
 
 h3
 {
-    font-family: CharlotteSansW02-Medium;
+    font-family: CharlotteSansW02-Book;
     font-size: 22px;
+    font-weight: normal;
 }
 
 h4
 {
-    font-family: CharlotteSansW02-Medium;
+    font-family: CharlotteSansW02-Book;
     font-size: 19px;
+    font-weight: normal;
 }
 
 h5
 {
-    font-family: CharlotteSansW02-Medium;
+    font-family: CharlotteSansW02-Book;
     font-size: 16px;
+    font-weight: normal;
 }
 
 h6
 {
-    font-family: CharlotteSansW02-Medium;
+    font-family: CharlotteSansW02-Book;
     font-size: 14px;
+    font-weight: normal;
 }
 
