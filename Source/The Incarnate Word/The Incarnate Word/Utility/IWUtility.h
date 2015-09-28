@@ -37,7 +37,8 @@
  https://github.com/prashaantt/marked/tree/feature-footnotes
  **/
 
-+(NSString*)getHtmlStringUsingJSLibForMarkdownText:(NSString*) strMarkdownText;
++(NSString*)getHtmlStringUsingJSLibForMarkdownText:(NSString*) strMarkdownText
+                                    forTypeHeading:(BOOL)bTypeHeading;
 +(NSURL*)getCommonCssBaseURL;
 
 /**

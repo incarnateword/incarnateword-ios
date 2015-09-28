@@ -94,7 +94,7 @@
        int width = (int)[[UIScreen mainScreen] bounds].size.width - 20;
        NSString *strImageTag = [NSString stringWithFormat:@"<img src=\"%@\" width=\"%d\" align=\"middle\">",_strImageName,width];
        NSMutableString *strFinalString = [[NSMutableString alloc] initWithString:strImageTag];
-       NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_aboutDataStructure.strDescription];
+       NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_aboutDataStructure.strDescription forTypeHeading:NO];
        [strFinalString appendString:strHtmlString];
        [_webView loadHTMLString:[strFinalString copy] baseURL:[IWUtility getCommonCssBaseURL]];
        [self performSelectorOnMainThread:@selector(stopLoadingAnimation) withObject:nil waitUntilDone:NO];

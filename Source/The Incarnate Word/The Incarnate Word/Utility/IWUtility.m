@@ -156,7 +156,11 @@
 }
 
 +(NSString*)getHtmlStringUsingJSLibForMarkdownText:(NSString*) strMarkdownText
+                                    forTypeHeading:(BOOL)bTypeHeading
 {
+    
+    NSString *strTypeOpening = bTypeHeading ? @"<h5>" : @"<body>";
+    NSString *strTypeClosing = bTypeHeading ? @"</h5>" : @"</body>";
     NSLog(@"~~~~~~~~~~~START~~~~~~~~~~~");
     NSString *path = [[NSBundle mainBundle] pathForResource:@"marked-feature-footnotes/lib/marked" ofType:@"js"];
     NSString *jsScript = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
@@ -173,10 +177,10 @@
     NSString *strCssHead = [NSString stringWithFormat:@"<head>"
     "<link rel=\"stylesheet\" type=\"text/css\" href=\"%@\">"
     "</head>"
-    "<body>",[IWUtility getCssFileName]];
+    "%@",[IWUtility getCssFileName],strTypeOpening];
     NSMutableString *strMutString = [[NSMutableString alloc] initWithString:strCssHead];
     [strMutString appendString:strFinalHtml];
-    [strMutString appendString:@"</body>"];
+    [strMutString appendString:[NSString stringWithFormat:@"%@",strTypeClosing]];
     NSLog(@"~~~~~~~~~~~END~~~~~~~~~~~");
 
     NSLog(@"~~~~~~~~~~~%@~~~~~~~~~~~",[strMutString copy]);

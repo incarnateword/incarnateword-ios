@@ -115,7 +115,7 @@
     [self performSelectorOnMainThread:@selector(startLoadingAnimation) withObject:nil waitUntilDone:NO];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
    ^{
-       NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_wordMeaningStructure.strDefinition];
+       NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_wordMeaningStructure.strDefinition forTypeHeading:NO];
        [_webView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
        [self performSelectorOnMainThread:@selector(stopLoadingAnimation) withObject:nil waitUntilDone:NO];
    });

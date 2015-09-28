@@ -346,7 +346,7 @@
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
    ^{
-        NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_detailChapterStructure.strText];
+        NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_detailChapterStructure.strText forTypeHeading:NO];
         NSLog(@"Called loadHTMLString");
 //       NSString *cssPath = [[NSBundle mainBundle] pathForResource:@"chapter" ofType:@"css"];
 
