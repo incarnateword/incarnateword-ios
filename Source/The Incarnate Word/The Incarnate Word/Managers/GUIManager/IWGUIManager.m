@@ -103,6 +103,13 @@ static IWGUIManager* guiManager = nil ;
          }
      }];
     
+    __weak IWGUIManager *weakSelf = self;
+    
+    [self.drawerController setGestureCompletionBlock:^(MMDrawerController *drawerController, UIGestureRecognizer *gesture)
+    {
+        [weakSelf drawerEndEditingForLeftDrawer];
+    }];
+    
     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
     
     if(floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
@@ -116,6 +123,11 @@ static IWGUIManager* guiManager = nil ;
     
     [window setRootViewController:self.drawerController];
     [window makeKeyAndVisible];
+}
+
+-(void) drawerEndEditingForLeftDrawer
+{
+    [self.drawerController.leftDrawerViewController.view endEditing:YES];
 }
 
 
@@ -136,6 +148,12 @@ static IWGUIManager* guiManager = nil ;
 {
     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
     MMDrawerController *drawerVC = (MMDrawerController*) window.rootViewController;
+    
+    if(drawerVC.openSide == MMDrawerSideLeft)
+    {
+        [self drawerEndEditingForLeftDrawer];
+    }
+    
     [drawerVC toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 

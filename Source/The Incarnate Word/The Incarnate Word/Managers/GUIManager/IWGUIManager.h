@@ -18,16 +18,19 @@
 
 #pragma mark - Root view navigation
 
-- (void) rootViewPushViewController:(UIViewController *)viewController forceOnRoot:(BOOL) forceOnRoot animated:(BOOL) animate;
-- (void) rootViewShowModalViewController:(UIViewController *)viewController forceOnRoot:(BOOL) forceOnRoot;
+-(void) rootViewPushViewController:(UIViewController *)viewController
+                       forceOnRoot:(BOOL) forceOnRoot
+                          animated:(BOOL) animate;
+
+-(void) rootViewShowModalViewController:(UIViewController *)viewController
+                            forceOnRoot:(BOOL) forceOnRoot;
 
 
 #pragma mark - Drawer Utiliy
 
-- (void) drawerHideLeft;
-- (void) drawerToggleLeft;
-- (void) drawerEnableAccess:(BOOL)bShouldEnableAccess;
-
+-(void) drawerHideLeft;
+-(void) drawerToggleLeft;
+-(void) drawerEnableAccess:(BOOL)bShouldEnableAccess;
 
 #pragma mark - Utiliy
 
