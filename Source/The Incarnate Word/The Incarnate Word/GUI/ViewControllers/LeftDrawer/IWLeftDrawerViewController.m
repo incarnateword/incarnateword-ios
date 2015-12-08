@@ -17,12 +17,18 @@
 
 @interface IWLeftDrawerViewController()<UITableViewDataSource,UITableViewDelegate>
 {
-    NSArray *_arrDataSource;
+    NSArray         *_arrDataSource;
+    UISearchBar     *_searchBar;
+    BOOL            _bIsKeyboardShown;
+
 }
 
-@property (weak, nonatomic) IBOutlet UITableView *tableViewMenu;
+@property (weak, nonatomic) IBOutlet UITableView            *tableViewMenu;
+@property (weak, nonatomic) IBOutlet UIView                 *viewTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint     *constraintTableViewBottom;
 
 -(void)setupDataSource;
+-(void)setupSearchBar;
 
 @end
 
@@ -62,8 +68,147 @@
 {
     _tableViewMenu.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.view setBackgroundColor:COLOR_VIEW_BG];
+    [self setupSearchBar];
+    [self addKeyboardNotifications];
 
 }
+
+-(void)setupSearchBar
+{
+    //Cleanup for orientation re adding of view
+    _searchBar.delegate = nil;
+    [_searchBar removeFromSuperview];
+    _searchBar = nil;
+    
+    UIColor *searchBarColor = [UIColor colorWithRed:199.0/255 green:201.0/255 blue:207.0/255 alpha:1.0];
+    
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, [IWUtility getDrawerWidth], 44)];
+    _searchBar.placeholder = @"Search";
+    _searchBar.translucent = YES;
+    _searchBar.delegate = self;
+    _searchBar.showsCancelButton = NO;
+    
+    //Background color
+    _searchBar.barTintColor = searchBarColor;
+    
+    //Remove border
+    _searchBar.layer.borderWidth = 1;
+    _searchBar.layer.borderColor = searchBarColor.CGColor;
+    //_searchBar.searchBarStyle = UISearchBarStyleProminent;//Removes border
+    
+    //Cursor color
+    [[UITextField appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor blackColor]];
+    
+    //Cancel button text color
+    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                                                  [UIColor blackColor],
+                                                                                                  NSForegroundColorAttributeName,
+                                                                                                  nil]
+                                                                                        forState:UIControlStateNormal];
+    //Placeholder text color
+    [[UILabel appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor darkGrayColor]];
+    
+    //Text Field Bg Color
+    //[[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setBackgroundColor:[UIColor whiteColor]];
+    
+    [_viewTop addSubview:_searchBar];
+    _viewTop.backgroundColor = searchBarColor;
+}
+
+
+- (void) addKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+
+#pragma mark - Keyboard notification methods
+
+-(void)keyboardWillShow:(NSNotification *)notification
+{
+    _bIsKeyboardShown = YES;
+    [self.navigationController setNavigationBarHidden: YES animated:YES];
+    
+    NSDictionary* keyboardInfo = [notification userInfo];
+    NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
+    float keyboardHeight = keyboardFrameBeginRect.size.height ;
+    
+    _constraintTableViewBottom.constant = keyboardHeight;
+//    _constraintVIewTopHeight.constant = 44 + 20;
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    _searchBar.frame = CGRectMake(0, 0, [IWUtility getDrawerWidth], 44);
+    
+//    if([IWUtility isNilOrEmptyString:_searchBar.text])
+//        [self disableTableInteraction:YES];
+    
+    [_viewTop layoutIfNeeded];
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification
+{
+    _bIsKeyboardShown = NO;
+    _constraintTableViewBottom.constant = 0;
+//    _constraintVIewTopHeight.constant = 44 ;
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    _searchBar.frame = CGRectMake(0, 0, [IWUtility getDrawerWidth], 44);
+//    [self disableTableInteraction:NO];
+    [self.navigationController setNavigationBarHidden: NO animated:YES];
+    [_viewTop layoutIfNeeded];
+}
+
+#pragma mark - UISearchBar Delegate
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText// called when text changes (including clear)
+{
+    [self searchForText:searchText];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar// called when keyboard search button pressed
+{
+    [self searchForText:searchBar.text];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    _searchBar.text = @"";
+    [self searchForText:@""];
+    
+    [_searchBar performSelector: @selector(resignFirstResponder)
+                     withObject: nil
+                     afterDelay: 0.1];
+    
+    [self.view endEditing:YES];
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar*)searchBar
+{
+    [_searchBar setShowsCancelButton:YES animated:YES];
+    return YES;
+}
+
+-(void)searchForText:(NSString *)searchText
+{
+    NSLog(@"Text : %@",searchText);
+    
+    if(searchText.length == 0)
+    {
+        [_searchBar setShowsCancelButton:NO animated:YES];
+    }
+    else
+    {
+        [_searchBar setShowsCancelButton:YES animated:YES];
+    }
+}
+
+#pragma mark - UITableView Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
