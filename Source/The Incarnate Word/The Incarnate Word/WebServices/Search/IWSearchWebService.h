@@ -10,6 +10,6 @@
 
 @interface IWSearchWebService : BaseWebService
 
--(id)initWithDelegate:(id<WebServiceDelegate>)delegate;
+-(id)initWithSearchString:(NSString*) strSearch AndDelegate:(id<WebServiceDelegate>)delegate;
 
 @end
