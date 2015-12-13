@@ -10,17 +10,22 @@
 #import "IWUserActionManager.h"
 #import "IWUtility.h"
 #import "IWUIConstants.h"
+#import "IWSearchStructure.h"
+#import "IWSearchWebService.h"
 
 #define MENU_TITLE @"MENU_TITLE"
 #define MENU_ARRAY @"MENU_ARRAY"
 #define TAG_OFFSET_SECTION_HEADER_BUTTON 200
 
-@interface IWLeftDrawerViewController()<UITableViewDataSource,UITableViewDelegate>
+@interface IWLeftDrawerViewController()<UITableViewDataSource,UITableViewDelegate,WebServiceDelegate>
 {
-    NSArray         *_arrDataSource;
-    UISearchBar     *_searchBar;
-    BOOL            _bIsKeyboardShown;
-
+    NSArray                 *_arrDataSource;
+    UISearchBar             *_searchBar;
+    BOOL                    _bIsKeyboardShown;
+    IWSearchWebService      *_searchWebService;
+    NSMutableArray          *_arrSearchResult;
+    BOOL                    _bIsSearchOn;
+    
 }
 
 @property (weak, nonatomic) IBOutlet UITableView            *tableViewMenu;
@@ -154,6 +159,10 @@
 
 -(void)keyboardWillHide:(NSNotification *)notification
 {
+    _searchBar.text = @"";
+    _bIsSearchOn = NO;
+    [_tableViewMenu reloadData];
+    
     _bIsKeyboardShown = NO;
     _constraintTableViewBottom.constant = 0;
 //    _constraintVIewTopHeight.constant = 44 ;
@@ -168,6 +177,9 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText// called when text changes (including clear)
 {
+    _bIsSearchOn = YES;
+    [_tableViewMenu reloadData];
+    
     [self searchForText:searchText];
 }
 
@@ -186,6 +198,9 @@
                      afterDelay: 0.1];
     
     [self.view endEditing:YES];
+
+    _bIsSearchOn = NO;
+    [_tableViewMenu reloadData];
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar*)searchBar
@@ -198,22 +213,59 @@
 {
     NSLog(@"Text : %@",searchText);
     
-    if(searchText.length == 0)
+    [_searchBar setShowsCancelButton:YES animated:YES];
+    
+    if(_arrSearchResult)
     {
-        [_searchBar setShowsCancelButton:NO animated:YES];
+        [_arrSearchResult removeAllObjects];
     }
     else
     {
-        [_searchBar setShowsCancelButton:YES animated:YES];
+        _arrSearchResult = [[NSMutableArray alloc] init];
     }
+    
+    if(searchText.length != 0)
+    {
+        [self getData];
+    }
+    else
+    {
+        [_tableViewMenu reloadData];
+    }
+}
+
+-(void)getData
+{
+    _searchWebService = [[IWSearchWebService alloc] initWithDelegate:self];
+    [_searchWebService sendAsyncRequest];
+}
+
+#pragma mark - Webservice Callbacks
+
+
+-(void)requestSucceed:(BaseWebService*)webService response:(id)responseModel
+{
+    NSLog(@"SearchWebservice Success.");
+
+    if([responseModel isKindOfClass:[NSArray class]])
+    {
+        [_arrSearchResult addObjectsFromArray:responseModel];
+    }
+    
+    [_tableViewMenu reloadData];
+}
+
+-(void)requestFailed:(BaseWebService*)webService error:(WSError*)error
+{
+    NSLog(@"SearchWebservice Failed.");
+    [IWUtility showWebserviceFailedAlert];
 }
 
 #pragma mark - UITableView Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return _arrDataSource.count;
-    
+    return _bIsSearchOn ? 0 : _arrDataSource.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -226,15 +278,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [IWUtility getNumberAsPerScalingFactor:43.0];
+    return [IWUtility getNumberAsPerScalingFactor:_bIsSearchOn ? 150 : 43.0];
 
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSDictionary *dict = [_arrDataSource objectAtIndex:section];
-    NSArray *arr = [dict objectForKey:MENU_ARRAY];
-    return arr.count;
+    if(_bIsSearchOn)
+    {
+        return _arrSearchResult.count;
+    }
+    else
+    {
+        NSDictionary *dict = [_arrDataSource objectAtIndex:section];
+        NSArray *arr = [dict objectForKey:MENU_ARRAY];
+        return arr.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -320,48 +379,55 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    if(indexPath.section == 0)
+    if(_bIsSearchOn)
     {
-        if(indexPath.row == 0)
-        {
-            [[IWUserActionManager sharedManager] showHomeScreen];
-        }
+    
     }
-    else if(indexPath.section == 1)
+    else
     {
-        if(indexPath.row == 0)
+        if(indexPath.section == 0)
         {
-            [[IWUserActionManager sharedManager] showAboutWithPath:@"sa" andImageName:@"aurobindo.jpg" andDescriptionHeight:682];
+            if(indexPath.row == 0)
+            {
+                [[IWUserActionManager sharedManager] showHomeScreen];
+            }
         }
-        else if(indexPath.row == 1)
+        else if(indexPath.section == 1)
         {
-            [[IWUserActionManager sharedManager] showCompilationWithPath:@"sabcl" andForceOnRoot:YES];
+            if(indexPath.row == 0)
+            {
+                [[IWUserActionManager sharedManager] showAboutWithPath:@"sa" andImageName:@"aurobindo.jpg" andDescriptionHeight:682];
+            }
+            else if(indexPath.row == 1)
+            {
+                [[IWUserActionManager sharedManager] showCompilationWithPath:@"sabcl" andForceOnRoot:YES];
+            }
+            else if(indexPath.row == 2)
+            {
+                [[IWUserActionManager sharedManager] showCompilationWithPath:@"cwsa" andForceOnRoot:YES];
+            }
         }
-        else if(indexPath.row == 2)
+        else if(indexPath.section == 2)
         {
-            [[IWUserActionManager sharedManager] showCompilationWithPath:@"cwsa" andForceOnRoot:YES];
+            if(indexPath.row == 0)
+            {
+                [[IWUserActionManager sharedManager] showAboutWithPath:@"m" andImageName:@"theMother.jpg" andDescriptionHeight:751];
+            }
+            else if(indexPath.row == 1)
+            {
+                [[IWUserActionManager sharedManager] showCompilationWithPath:@"cwm" andForceOnRoot:YES];
+            }
+            else if(indexPath.row == 2)
+            {
+                [[IWUserActionManager sharedManager] showCompilationWithPath:@"agenda" andForceOnRoot:YES];
+            }
         }
-    }
-    else if(indexPath.section == 2)
-    {
-        if(indexPath.row == 0)
+        else if(indexPath.section == 3)
         {
-            [[IWUserActionManager sharedManager] showAboutWithPath:@"m" andImageName:@"theMother.jpg" andDescriptionHeight:751];
-        }
-        else if(indexPath.row == 1)
-        {
-            [[IWUserActionManager sharedManager] showCompilationWithPath:@"cwm" andForceOnRoot:YES];
-        }
-        else if(indexPath.row == 2)
-        {
-            [[IWUserActionManager sharedManager] showCompilationWithPath:@"agenda" andForceOnRoot:YES];
-        }
-    }
-    else if(indexPath.section == 3)
-    {
-        if(indexPath.row == 0)
-        {
-            [[IWUserActionManager sharedManager] showDictionary];
+            if(indexPath.row == 0)
+            {
+                [[IWUserActionManager sharedManager] showDictionary];
+            }
         }
     }
 }
