@@ -161,9 +161,9 @@
 
 -(void)keyboardWillHide:(NSNotification *)notification
 {
-    _searchBar.text = @"";
-    _bIsSearchOn = NO;
-    [_tableViewMenu reloadData];
+//    _searchBar.text = @"";
+//    _bIsSearchOn = NO;
+//    [_tableViewMenu reloadData];
     
     _bIsKeyboardShown = NO;
     _constraintTableViewBottom.constant = 0;
@@ -182,11 +182,12 @@
     _bIsSearchOn = YES;
     [_tableViewMenu reloadData];
     
-    [self searchForText:searchText];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar// called when keyboard search button pressed
 {
+    [_arrSearchResult removeAllObjects];
+    [_tableViewMenu reloadData];
     [self searchForText:searchBar.text];
 }
 
@@ -238,7 +239,7 @@
 
 -(void)getData
 {
-    _searchWebService = [[IWSearchWebService alloc] initWithDelegate:self];
+    _searchWebService = [[IWSearchWebService alloc] initWithSearchString:_searchBar.text AndDelegate:self];
     [_searchWebService sendAsyncRequest];
 }
 
@@ -269,7 +270,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return _bIsSearchOn ? 0 : _arrDataSource.count;
+    return _bIsSearchOn ? 1 : _arrDataSource.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -282,7 +283,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [IWUtility getNumberAsPerScalingFactor:_bIsSearchOn ? 150 : 43.0];
+    return [IWUtility getNumberAsPerScalingFactor:_bIsSearchOn ? 100 : 43.0];
 
 }
 
@@ -302,19 +303,40 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell_Menu"];
-    UILabel *label = (UILabel*)[cell viewWithTag:201];
-    
-    
-    
-    
-    label.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:18.0]];
-    
-    NSDictionary *dict = [_arrDataSource objectAtIndex:indexPath.section];
-    NSArray *arr = [dict objectForKey:MENU_ARRAY];
-    
-    NSString *strTitle = [arr objectAtIndex:indexPath.row];
-    label.text = strTitle;
+    NSString  *strCellId    = _bIsSearchOn == YES ? @"Cell_Search":@"Cell_Menu";
+    UITableViewCell *cell   = [tableView dequeueReusableCellWithIdentifier:strCellId];
+    UILabel *lblTitle       = (UILabel*)[cell viewWithTag:201];
+    lblTitle.font           = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:18.0]];
+
+    if([strCellId isEqualToString:@"Cell_Menu"])
+    {
+        NSDictionary *dict  = [_arrDataSource objectAtIndex:indexPath.section];
+        NSArray *arr        = [dict objectForKey:MENU_ARRAY];
+        
+        NSString *strTitle  = [arr objectAtIndex:indexPath.row];
+        lblTitle.text       = strTitle;
+    }
+    else
+    {
+        IWSearchItemStructure *searchItem   = [_arrSearchResult objectAtIndex:indexPath.row];
+        lblTitle.text = searchItem.strTitle;
+        
+        UILabel *lblText    = (UILabel*)[cell viewWithTag:202];
+        lblText.font        = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:18.0]];
+        
+        NSMutableString *strMut = [[NSMutableString alloc] init];
+        
+        for(NSString *str in searchItem.arrHighlightText)
+        {
+            [strMut appendString:str];
+            [strMut appendString:@"... "];
+        }
+        
+        strMut = [[strMut stringByReplacingOccurrencesOfString:@"<em>" withString:@""] mutableCopy];
+        strMut = [[strMut stringByReplacingOccurrencesOfString:@"</em>" withString:@""] mutableCopy];
+        
+        lblText.attributedText = [IWUtility getMarkdownNSAttributedStringFromNSString:[strMut copy]];
+    }
     
     return cell;
 }
@@ -385,7 +407,11 @@
     
     if(_bIsSearchOn)
     {
-    
+        if([_searchBar isFirstResponder])
+            [_searchBar resignFirstResponder];
+        
+        IWSearchItemStructure *searchItem = [_arrSearchResult objectAtIndex:indexPath.row];
+        [[IWUserActionManager sharedManager] showChapterWithPath:searchItem.strChapterUrl andItemIndex:0];
     }
     else
     {
