@@ -25,7 +25,7 @@
 		483D67781B089C6F00BA9A82 /* Compilation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483D67771B089C6F00BA9A82 /* Compilation.storyboard */; };
 		483D677D1B08A01F00BA9A82 /* IWCompilationStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D677C1B08A01F00BA9A82 /* IWCompilationStructure.m */; };
 		483D67801B08A03100BA9A82 /* IWVolumeStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D677F1B08A03100BA9A82 /* IWVolumeStructure.m */; };
-		486053731C18B1F500A3D8EA /* IWSearchStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 486053721C18B1F500A3D8EA /* IWSearchStructure.m */; };
+		486053731C18B1F500A3D8EA /* IWSearchItemStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 486053721C18B1F500A3D8EA /* IWSearchItemStructure.m */; };
 		4861540C1B242B9C006379F5 /* IWSectionStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 4861540B1B242B9C006379F5 /* IWSectionStructure.m */; };
 		486188061B0A568600A4D292 /* Chapter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486188051B0A568600A4D292 /* Chapter.storyboard */; };
 		4861880A1B0A59B100A4D292 /* IWChapterWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 486188091B0A59B100A4D292 /* IWChapterWebService.m */; };
@@ -123,8 +123,8 @@
 		483D677C1B08A01F00BA9A82 /* IWCompilationStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWCompilationStructure.m; sourceTree = "<group>"; };
 		483D677E1B08A03100BA9A82 /* IWVolumeStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWVolumeStructure.h; sourceTree = "<group>"; };
 		483D677F1B08A03100BA9A82 /* IWVolumeStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWVolumeStructure.m; sourceTree = "<group>"; };
-		486053711C18B1F500A3D8EA /* IWSearchStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWSearchStructure.h; sourceTree = "<group>"; };
-		486053721C18B1F500A3D8EA /* IWSearchStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWSearchStructure.m; sourceTree = "<group>"; };
+		486053711C18B1F500A3D8EA /* IWSearchItemStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWSearchItemStructure.h; sourceTree = "<group>"; };
+		486053721C18B1F500A3D8EA /* IWSearchItemStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWSearchItemStructure.m; sourceTree = "<group>"; };
 		4861540A1B242B9C006379F5 /* IWSectionStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWSectionStructure.h; sourceTree = "<group>"; };
 		4861540B1B242B9C006379F5 /* IWSectionStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWSectionStructure.m; sourceTree = "<group>"; };
 		486188051B0A568600A4D292 /* Chapter.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chapter.storyboard; sourceTree = "<group>"; };
@@ -474,8 +474,8 @@
 		486053701C18B1B800A3D8EA /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				486053711C18B1F500A3D8EA /* IWSearchStructure.h */,
-				486053721C18B1F500A3D8EA /* IWSearchStructure.m */,
+				486053711C18B1F500A3D8EA /* IWSearchItemStructure.h */,
+				486053721C18B1F500A3D8EA /* IWSearchItemStructure.m */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -980,7 +980,7 @@
 				487869661B08D4CB00429141 /* IWDetailVolumeStructure.m in Sources */,
 				483D676E1B088BFD00BA9A82 /* IWUtility.m in Sources */,
 				488FA3161B1A1E7500F9B5FB /* IWDictionaryViewController.m in Sources */,
-				486053731C18B1F500A3D8EA /* IWSearchStructure.m in Sources */,
+				486053731C18B1F500A3D8EA /* IWSearchItemStructure.m in Sources */,
 				483D674F1B0883AF00BA9A82 /* IWAppManager.m in Sources */,
 				48A611791B19E631007AC3B5 /* IWAboutWebService.m in Sources */,
 				483D67801B08A03100BA9A82 /* IWVolumeStructure.m in Sources */,

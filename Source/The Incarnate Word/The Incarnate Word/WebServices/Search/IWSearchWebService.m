@@ -7,7 +7,7 @@
 //
 
 #import "IWSearchWebService.h"
-#include "IWSearchStructure.h"
+#include "IWSearchItemStructure.h"
 
 @implementation IWSearchWebService
 
@@ -104,7 +104,7 @@
         
         for (NSDictionary *dict in list)
         {
-            IWSearchStructure *searchItem = [[IWSearchStructure alloc] init];
+            IWSearchItemStructure *searchItem = [[IWSearchItemStructure alloc] init];
             
             if([dict objectForKey:@"_source"])
             {

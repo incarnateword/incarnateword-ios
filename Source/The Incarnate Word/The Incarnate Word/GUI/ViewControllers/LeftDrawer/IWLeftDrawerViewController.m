@@ -10,7 +10,7 @@
 #import "IWUserActionManager.h"
 #import "IWUtility.h"
 #import "IWUIConstants.h"
-#import "IWSearchStructure.h"
+#import "IWSearchItemStructure.h"
 #import "IWSearchWebService.h"
 
 #define MENU_TITLE @"MENU_TITLE"
