@@ -2,7 +2,7 @@
 //  IWSearchStructure.m
 //  The Incarnate Word
 //
-//  Created by Aditya Deshmane on 10/12/15.
+//  Created by Aditya Deshmane on 13/12/15.
 //  Copyright © 2015 Revealing Hour Creations. All rights reserved.
 //
 
@@ -11,4 +11,3 @@
 @implementation IWSearchStructure
 
 @end
-

@@ -73,6 +73,7 @@
 		48C929E31B6BEA4500489131 /* ApplicationIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48C929E21B6BEA4500489131 /* ApplicationIcon.jpg */; };
 		48E51FF01B30ABA9008825FC /* Popover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48E51FEF1B30ABA9008825FC /* Popover.storyboard */; };
 		48E51FF41B30ABEF008825FC /* IWInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E51FF31B30ABEF008825FC /* IWInfoViewController.m */; };
+		48EC97381C1D9FA400FB5533 /* IWSearchStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EC97371C1D9FA400FB5533 /* IWSearchStructure.m */; };
 		48EF3C1F1C1D49A300528265 /* IWSearchWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EF3C1E1C1D49A300528265 /* IWSearchWebService.m */; };
 		8AD18642D3A0FF75FC2D3A73 /* libPods-The Incarnate Word.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A76EDDEF6408E3B815FA982A /* libPods-The Incarnate Word.a */; };
 		B20EC21D1B1EFBF100691285 /* IWDictionaryMeaningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20EC21C1B1EFBF100691285 /* IWDictionaryMeaningViewController.m */; };
@@ -201,6 +202,8 @@
 		48E51FEF1B30ABA9008825FC /* Popover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Popover.storyboard; sourceTree = "<group>"; };
 		48E51FF21B30ABEF008825FC /* IWInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWInfoViewController.h; sourceTree = "<group>"; };
 		48E51FF31B30ABEF008825FC /* IWInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWInfoViewController.m; sourceTree = "<group>"; };
+		48EC97361C1D9FA400FB5533 /* IWSearchStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWSearchStructure.h; sourceTree = "<group>"; };
+		48EC97371C1D9FA400FB5533 /* IWSearchStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWSearchStructure.m; sourceTree = "<group>"; };
 		48EF3C1D1C1D49A300528265 /* IWSearchWebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWSearchWebService.h; sourceTree = "<group>"; };
 		48EF3C1E1C1D49A300528265 /* IWSearchWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWSearchWebService.m; sourceTree = "<group>"; };
 		A6D5E233381465EC7C903528 /* Pods-The Incarnate Word.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Incarnate Word.release.xcconfig"; path = "Pods/Target Support Files/Pods-The Incarnate Word/Pods-The Incarnate Word.release.xcconfig"; sourceTree = "<group>"; };
@@ -476,6 +479,8 @@
 			children = (
 				486053711C18B1F500A3D8EA /* IWSearchItemStructure.h */,
 				486053721C18B1F500A3D8EA /* IWSearchItemStructure.m */,
+				48EC97361C1D9FA400FB5533 /* IWSearchStructure.h */,
+				48EC97371C1D9FA400FB5533 /* IWSearchStructure.m */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -983,6 +988,7 @@
 				486053731C18B1F500A3D8EA /* IWSearchItemStructure.m in Sources */,
 				483D674F1B0883AF00BA9A82 /* IWAppManager.m in Sources */,
 				48A611791B19E631007AC3B5 /* IWAboutWebService.m in Sources */,
+				48EC97381C1D9FA400FB5533 /* IWSearchStructure.m in Sources */,
 				483D67801B08A03100BA9A82 /* IWVolumeStructure.m in Sources */,
 				487E62F01B10EE230013F91E /* IWChaterItemStructure.m in Sources */,
 				483D67611B0886E500BA9A82 /* UIViewController+MMDrawerController.m in Sources */,

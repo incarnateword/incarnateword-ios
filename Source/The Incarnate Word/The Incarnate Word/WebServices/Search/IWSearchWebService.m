@@ -7,7 +7,8 @@
 //
 
 #import "IWSearchWebService.h"
-#include "IWSearchItemStructure.h"
+#import "IWSearchItemStructure.h"
+#import "IWSearchStructure.h"
 
 @implementation IWSearchWebService
 
@@ -130,7 +131,11 @@
             [arrSearchResult addObject:searchItem];
         }
         
-        [self sendResponse:[arrSearchResult copy]];
+        IWSearchStructure   *searchResult = [IWSearchStructure new];
+        searchResult.arrSearchItems = [arrSearchResult copy];
+        searchResult.iCountRecord = [[[response objectForKey:@"query"] objectForKey:@"records"] intValue];
+        searchResult.iPageSize = [[[response objectForKey:@"query"] objectForKey:@"size"] intValue];
+        [self sendResponse:searchResult];
     }
 }
 

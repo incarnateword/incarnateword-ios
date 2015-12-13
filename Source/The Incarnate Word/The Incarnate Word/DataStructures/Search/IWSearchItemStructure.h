@@ -13,8 +13,7 @@
 @property(nonatomic)    NSString *strTitle;
 @property(nonatomic)    NSArray  *arrHighlightText;
 @property(nonatomic)    NSString *strChapterUrl;
-@property(nonatomic)    int iCountRecord;
-@property(nonatomic)    int iPageSize;
+
 
 
 @end

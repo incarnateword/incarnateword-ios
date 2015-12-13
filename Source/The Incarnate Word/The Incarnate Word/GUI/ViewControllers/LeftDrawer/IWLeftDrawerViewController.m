@@ -12,9 +12,11 @@
 #import "IWUIConstants.h"
 #import "IWSearchItemStructure.h"
 #import "IWSearchWebService.h"
+#import "IWSearchStructure.h"
 
-#define MENU_TITLE @"MENU_TITLE"
-#define MENU_ARRAY @"MENU_ARRAY"
+#define MENU_TITLE  @"MENU_TITLE"
+#define MENU_ARRAY  @"MENU_ARRAY"
+
 #define TAG_OFFSET_SECTION_HEADER_BUTTON 200
 
 @interface IWLeftDrawerViewController()<UITableViewDataSource,UITableViewDelegate,WebServiceDelegate>
@@ -247,9 +249,11 @@
 {
     NSLog(@"SearchWebservice Success.");
 
-    if([responseModel isKindOfClass:[NSArray class]])
+    if([responseModel isKindOfClass:[IWSearchStructure class]])
     {
-        [_arrSearchResult addObjectsFromArray:responseModel];
+        IWSearchStructure *searchResult = responseModel;
+        
+        [_arrSearchResult addObjectsFromArray:searchResult.arrSearchItems];
     }
     
     [_tableViewMenu reloadData];
