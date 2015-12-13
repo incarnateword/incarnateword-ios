@@ -73,6 +73,7 @@
 		48C929E31B6BEA4500489131 /* ApplicationIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48C929E21B6BEA4500489131 /* ApplicationIcon.jpg */; };
 		48E51FF01B30ABA9008825FC /* Popover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48E51FEF1B30ABA9008825FC /* Popover.storyboard */; };
 		48E51FF41B30ABEF008825FC /* IWInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E51FF31B30ABEF008825FC /* IWInfoViewController.m */; };
+		48EF3C1F1C1D49A300528265 /* IWSearchWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EF3C1E1C1D49A300528265 /* IWSearchWebService.m */; };
 		8AD18642D3A0FF75FC2D3A73 /* libPods-The Incarnate Word.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A76EDDEF6408E3B815FA982A /* libPods-The Incarnate Word.a */; };
 		B20EC21D1B1EFBF100691285 /* IWDictionaryMeaningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20EC21C1B1EFBF100691285 /* IWDictionaryMeaningViewController.m */; };
 		B20EC2201B1EFC3700691285 /* IWDictionaryMeaningWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = B20EC21F1B1EFC3700691285 /* IWDictionaryMeaningWebService.m */; };
@@ -200,6 +201,8 @@
 		48E51FEF1B30ABA9008825FC /* Popover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Popover.storyboard; sourceTree = "<group>"; };
 		48E51FF21B30ABEF008825FC /* IWInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWInfoViewController.h; sourceTree = "<group>"; };
 		48E51FF31B30ABEF008825FC /* IWInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWInfoViewController.m; sourceTree = "<group>"; };
+		48EF3C1D1C1D49A300528265 /* IWSearchWebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWSearchWebService.h; sourceTree = "<group>"; };
+		48EF3C1E1C1D49A300528265 /* IWSearchWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWSearchWebService.m; sourceTree = "<group>"; };
 		A6D5E233381465EC7C903528 /* Pods-The Incarnate Word.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Incarnate Word.release.xcconfig"; path = "Pods/Target Support Files/Pods-The Incarnate Word/Pods-The Incarnate Word.release.xcconfig"; sourceTree = "<group>"; };
 		A76EDDEF6408E3B815FA982A /* libPods-The Incarnate Word.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-The Incarnate Word.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20EC21B1B1EFBF100691285 /* IWDictionaryMeaningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWDictionaryMeaningViewController.h; sourceTree = "<group>"; };
@@ -750,6 +753,7 @@
 		48C2C5181B07930700ED333F /* WebServices */ = {
 			isa = PBXGroup;
 			children = (
+				48EF3C1C1C1D497700528265 /* Search */,
 				488FA31A1B1A1FF200F9B5FB /* Dictionary */,
 				48A611761B19E5FF007AC3B5 /* About */,
 				486188071B0A598C00A4D292 /* Chapter */,
@@ -766,6 +770,15 @@
 				48E51FF31B30ABEF008825FC /* IWInfoViewController.m */,
 			);
 			path = Info;
+			sourceTree = "<group>";
+		};
+		48EF3C1C1C1D497700528265 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				48EF3C1D1C1D49A300528265 /* IWSearchWebService.h */,
+				48EF3C1E1C1D49A300528265 /* IWSearchWebService.m */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		7976ADCF36AF3FAAE399C7E1 /* Pods */ = {
@@ -963,6 +976,7 @@
 				4878696A1B08D69100429141 /* IWChapterStructure.m in Sources */,
 				4878696F1B08D73100429141 /* IWCompilationWebService.m in Sources */,
 				48C2C5121B078B1700ED333F /* HttpCommunication.m in Sources */,
+				48EF3C1F1C1D49A300528265 /* IWSearchWebService.m in Sources */,
 				487869661B08D4CB00429141 /* IWDetailVolumeStructure.m in Sources */,
 				483D676E1B088BFD00BA9A82 /* IWUtility.m in Sources */,
 				488FA3161B1A1E7500F9B5FB /* IWDictionaryViewController.m in Sources */,
@@ -1104,13 +1118,13 @@
 			baseConfigurationReference = CBC3A1DCCCAEC9778F8B3679 /* Pods-The Incarnate Word.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
 				INFOPLIST_FILE = "The Incarnate Word/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c9848734-0bab-4b6b-b6fb-ed9568a2a0db";
+				PROVISIONING_PROFILE = "793dedc2-fd43-44f7-8cf6-8806417f15ee";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1120,13 +1134,13 @@
 			baseConfigurationReference = A6D5E233381465EC7C903528 /* Pods-The Incarnate Word.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
 				INFOPLIST_FILE = "The Incarnate Word/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c9848734-0bab-4b6b-b6fb-ed9568a2a0db";
+				PROVISIONING_PROFILE = "793dedc2-fd43-44f7-8cf6-8806417f15ee";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
