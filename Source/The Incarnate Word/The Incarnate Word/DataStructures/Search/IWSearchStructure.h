@@ -10,36 +10,45 @@
 
 @interface IWSearchStructure : NSObject
 
+@property(nonatomic)    NSString *strTitle;
+@property(nonatomic)    NSArray  *arrHighlightText;
+@property(nonatomic)    NSString *strChapterUrl;
+@property(nonatomic)    int iCountRecord;
+@property(nonatomic)    int iPageSize;
+
+
 @end
 /*
  {
- "query": {
+ "query": 
+ {
  "query": "india",
  "results": [{
- "_source": {
- "nxtt": "Nations Other than India",
- "nxtu": "/cwm/13/nations-other-than-india",
- "path": [{
- "t": "CWM",
- "u": "/cwm"
- }, {
- "t": "Words of the Mother - I",
- "u": "/cwm/13"
- }, {
- "t": "India"
- }],
- "prvt": "Talk of 30 March 1972",
- "prvu": "/cwm/13/talk-of-30-march-1972",
- "subt": null,
- "t": "India",
- "url": "/cwm/13/india",
- "yr": null,
- "yre": null,
- "yrs": null
- },
+            "_source": 
+            {
+             "nxtt": "Nations Other than India",
+             "nxtu": "/cwm/13/nations-other-than-india",
+             "path": [{
+             "t": "CWM",
+             "u": "/cwm"
+             }, {
+             "t": "Words of the Mother - I",
+             "u": "/cwm/13"
+             }, {
+             "t": "India"
+                    }],
+             "prvt": "Talk of 30 March 1972",
+             "prvu": "/cwm/13/talk-of-30-march-1972",
+             "subt": null,
+             "t": "India",
+             "url": "/cwm/13/india",
+             "yr": null,
+             "yre": null,
+             "yrs": null
+            },
  "highlight": {
- "txt": ["(*On 2 June 1947 Lord Louis Mountbatten, the Viceroy of \u003cem\u003eIndia\u003c/em\u003e, delivered a radio speech proposing", " the partition of Pakistan from \u003cem\u003eIndia\u003c/em\u003e, and of certain other parts of \u003cem\u003eIndia\u003c/em\u003e into Hindu and Muslim", " spite of all, \u003cem\u003eIndia\u003c/em\u003e has a single soul and while we have to wait till we can speak of an \u003cem\u003eIndia\u003c/em\u003e one", " and indivisible, our cry must be:\n\nLet the soul of \u003cem\u003eIndia\u003c/em\u003e live forever!\n\n*3 June 1947*\n\n---\n\nThe Soul", " of \u003cem\u003eIndia\u003c/em\u003e is one and indivisible. \u003cem\u003eIndia\u003c/em\u003e is conscious of her mission in the world. She is waiting for"]
- }
+             "txt": ["(*On 2 June 1947 Lord Louis Mountbatten, the Viceroy of \u003cem\u003eIndia\u003c/em\u003e, delivered a radio speech proposing", " the partition of Pakistan from \u003cem\u003eIndia\u003c/em\u003e, and of certain other parts of \u003cem\u003eIndia\u003c/em\u003e into Hindu and Muslim", " spite of all, \u003cem\u003eIndia\u003c/em\u003e has a single soul and while we have to wait till we can speak of an \u003cem\u003eIndia\u003c/em\u003e one", " and indivisible, our cry must be:\n\nLet the soul of \u003cem\u003eIndia\u003c/em\u003e live forever!\n\n*3 June 1947*\n\n---\n\nThe Soul", " of \u003cem\u003eIndia\u003c/em\u003e is one and indivisible. \u003cem\u003eIndia\u003c/em\u003e is conscious of her mission in the world. She is waiting for"]
+            }
  }, {
  "_index": "chapters",
  "_type": "chapter",
