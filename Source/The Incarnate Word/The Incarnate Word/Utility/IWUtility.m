@@ -96,7 +96,7 @@
 
 +(int)getDrawerWidth
 {
-    return [IWUtility isDeviceTypeIpad] ? 420 : [[UIScreen mainScreen] bounds].size.width -30;
+    return [IWUtility isDeviceTypeIpad] ? [[UIScreen mainScreen] bounds].size.width -250 : [[UIScreen mainScreen] bounds].size.width -30;
 }
 
 +(UIColor*)getNavBarColor
