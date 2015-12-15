@@ -186,6 +186,10 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar// called when keyboard search button pressed
 {
+    [_searchBar performSelector: @selector(resignFirstResponder)
+                     withObject: nil
+                     afterDelay: 0.1];
+    
     [_arrSearchResult removeAllObjects];
     [_tableViewMenu reloadData];
     [self searchForText:searchBar.text];
@@ -320,9 +324,11 @@
     {
         IWSearchItemStructure *searchItem   = [_arrSearchResult objectAtIndex:indexPath.row];
         lblTitle.text = searchItem.strTitle;
+        lblTitle.font           = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:17.0]];
+
         
         UILabel *lblText    = (UILabel*)[cell viewWithTag:202];
-        lblText.font        = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:18.0]];
+        lblText.font        = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:16.0]];
         
         NSMutableString *strMut = [[NSMutableString alloc] init];
         
