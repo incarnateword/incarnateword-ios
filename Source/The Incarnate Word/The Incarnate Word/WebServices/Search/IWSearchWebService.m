@@ -98,10 +98,11 @@
 -(void)parseResponse:(NSDictionary*)response
 {
     NSArray *list = [[response objectForKey:@"query"] objectForKey:@"results"];
-    
+    NSMutableArray  *arrSearchResult = [[NSMutableArray alloc] init];
+    IWSearchStructure   *searchResult = [IWSearchStructure new];
+
     if(list && list.count > 0)
     {
-        NSMutableArray  *arrSearchResult = [[NSMutableArray alloc] init];
         
         for (NSDictionary *dict in list)
         {
@@ -136,12 +137,13 @@
             [arrSearchResult addObject:searchItem];
         }
         
-        IWSearchStructure   *searchResult = [IWSearchStructure new];
         searchResult.arrSearchItems = [arrSearchResult copy];
         searchResult.iCountRecord = [[[response objectForKey:@"query"] objectForKey:@"records"] intValue];
         searchResult.iPageSize = [[[response objectForKey:@"query"] objectForKey:@"size"] intValue];
-        [self sendResponse:searchResult];
     }
+
+    [self sendResponse:searchResult];
+
 }
 
 
