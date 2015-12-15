@@ -107,13 +107,6 @@
         {
             IWSearchItemStructure *searchItem = [[IWSearchItemStructure alloc] init];
             
-            if([dict objectForKey:@"_source"])
-            {
-                NSDictionary *dictSource    = [dict objectForKey:@"_source"];
-                searchItem.strTitle         = [dictSource objectForKey:@"t"];
-                searchItem.strChapterUrl    = [dictSource objectForKey:@"url"];
-            }
-            
             if([dict objectForKey:@"highlight"])
             {
                 NSDictionary *dictHighlight = [dict objectForKey:@"highlight"];
@@ -125,6 +118,18 @@
                 else if([dictHighlight objectForKey:@"items.txt"])
                 {
                     searchItem.arrHighlightText = [dictHighlight objectForKey:@"items.txt"];
+                }
+            }
+            
+            if([dict objectForKey:@"_source"])
+            {
+                NSDictionary *dictSource    = [dict objectForKey:@"_source"];
+                searchItem.strTitle         = [dictSource objectForKey:@"t"];
+                searchItem.strChapterUrl    = [dictSource objectForKey:@"url"];
+                
+                if(searchItem.arrHighlightText == nil && [dictSource objectForKey:@"txt"] )
+                {
+                    searchItem.arrHighlightText = [[NSArray alloc] initWithObjects:[dictSource objectForKey:@"txt"], nil];
                 }
             }
             
