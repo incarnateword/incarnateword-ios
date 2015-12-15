@@ -106,6 +106,20 @@
                                     <outlet property="delegate" destination="jOn-Gv-mna" id="xeA-UV-NPH"/>
                                 </connections>
                             </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZ0-Dt-PRK" userLabel="ViewLoading">
+                                <rect key="frame" x="123" y="274" width="53" height="53"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="oXB-7Q-kRI" userLabel="ActivityIndicator">
+                                        <rect key="frame" x="9" y="9" width="37" height="37"/>
+                                        <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="53" id="N82-QO-U9k" userLabel="ViewLoading_Width"/>
+                                    <constraint firstAttribute="height" constant="53" id="d6b-cR-1oj" userLabel="ViewLoading_Height"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.94826897089999995" blue="0.807783739" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -115,7 +129,9 @@
                             <constraint firstAttribute="trailing" secondItem="4w6-sj-O6T" secondAttribute="trailing" id="mDF-Uu-bnr" userLabel="TableViewMenu_Trailing"/>
                             <constraint firstAttribute="trailing" secondItem="jGt-oK-RlX" secondAttribute="trailing" id="mQu-8D-EhJ"/>
                             <constraint firstItem="jGt-oK-RlX" firstAttribute="top" secondItem="7RM-qW-8bA" secondAttribute="top" constant="20" id="nBk-zb-dlK"/>
+                            <constraint firstItem="IZ0-Dt-PRK" firstAttribute="centerX" secondItem="7RM-qW-8bA" secondAttribute="centerX" id="qW1-3u-7dN"/>
                             <constraint firstAttribute="bottom" secondItem="4w6-sj-O6T" secondAttribute="bottom" id="sOv-Zq-VvL" userLabel="TableViewMenu_Bottom"/>
+                            <constraint firstItem="IZ0-Dt-PRK" firstAttribute="centerY" secondItem="7RM-qW-8bA" secondAttribute="centerY" id="tWn-18-VIC"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -123,6 +139,7 @@
                     <connections>
                         <outlet property="constraintTableViewBottom" destination="sOv-Zq-VvL" id="PhJ-ny-wgb"/>
                         <outlet property="tableViewMenu" destination="4w6-sj-O6T" id="Mvc-0X-NCy"/>
+                        <outlet property="viewLoading" destination="IZ0-Dt-PRK" id="gCr-qW-Ngl"/>
                         <outlet property="viewTop" destination="jGt-oK-RlX" id="uWc-4z-fsh"/>
                     </connections>
                 </viewController>

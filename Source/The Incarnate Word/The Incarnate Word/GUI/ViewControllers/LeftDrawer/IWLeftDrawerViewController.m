@@ -28,11 +28,15 @@
     NSMutableArray          *_arrSearchResult;
     BOOL                    _bIsSearchOn;
     
+    
+    BOOL                                    _bShouldFlipHorizontally;
+    NSTimer                                 *_timerLoading;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView            *tableViewMenu;
 @property (weak, nonatomic) IBOutlet UIView                 *viewTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint     *constraintTableViewBottom;
+@property (weak, nonatomic) IBOutlet UIView                 *viewLoading;
 
 -(void)setupDataSource;
 -(void)setupSearchBar;
@@ -73,6 +77,9 @@
 
 -(void)setupUI
 {
+    _viewLoading.layer.cornerRadius = 3.0;
+    _viewLoading.backgroundColor = COLOR_LOADING_VIEW;
+    
     _tableViewMenu.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.view setBackgroundColor:COLOR_VIEW_BG];
     [self setupSearchBar];
@@ -186,6 +193,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar// called when keyboard search button pressed
 {
+    [self startLoadingAnimation];
     [_searchBar performSelector: @selector(resignFirstResponder)
                      withObject: nil
                      afterDelay: 0.1];
@@ -197,6 +205,11 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(),
+                   ^{
+                       [self stopLoadingAnimation];
+                   });
+    
     _searchBar.text = @"";
     [self searchForText:@""];
     
@@ -262,13 +275,22 @@
     }
     
     [_tableViewMenu reloadData];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(),
+                   ^{
+                       [self stopLoadingAnimation];
+                   });
 }
 
 -(void)requestFailed:(BaseWebService*)webService error:(WSError*)error
 {
     NSLog(@"SearchWebservice Failed.");
     [IWUtility showWebserviceFailedAlert];
-}
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(),
+                   ^{
+                       [self stopLoadingAnimation];
+                   });}
 
 #pragma mark - UITableView Delegate
 
@@ -468,5 +490,38 @@
     }
 }
 
+#pragma mark - Loading Animation
 
+-(void)startLoadingAnimation
+{
+    _viewLoading.hidden = NO;
+    _timerLoading = [NSTimer scheduledTimerWithTimeInterval: 0.6
+                                                     target: self
+                                                   selector: @selector(animateLoading)
+                                                   userInfo: nil
+                                                    repeats: YES];
+}
+
+-(void)stopLoadingAnimation
+{
+    if(_timerLoading && [_timerLoading isValid])
+        [_timerLoading invalidate];
+    
+    _timerLoading = nil;
+    _viewLoading.hidden = YES;
+}
+
+-(void)animateLoading
+{
+    [UIView transitionWithView: _viewLoading
+                      duration: 0.4
+                       options: _bShouldFlipHorizontally ?  UIViewAnimationOptionTransitionFlipFromRight : UIViewAnimationOptionTransitionFlipFromBottom
+                    animations:^{
+                    }
+                    completion:^(BOOL finished) {
+                        
+                        _bShouldFlipHorizontally = ! _bShouldFlipHorizontally;
+                    }
+     ];
+}
 @end
