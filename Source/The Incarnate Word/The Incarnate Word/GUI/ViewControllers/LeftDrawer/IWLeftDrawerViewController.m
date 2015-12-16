@@ -17,7 +17,9 @@
 #define MENU_TITLE  @"MENU_TITLE"
 #define MENU_ARRAY  @"MENU_ARRAY"
 
-#define TAG_OFFSET_SECTION_HEADER_BUTTON 200
+#define TAG_OFFSET_SECTION_HEADER_BUTTON    200
+#define HEIGHT_SEARCH_RESULT_VIEW           20
+#define HEIGHT_LOADING_MORE_ITEM_VIEW       20
 
 @interface IWLeftDrawerViewController()<UITableViewDataSource,UITableViewDelegate,WebServiceDelegate>
 {
@@ -27,16 +29,22 @@
     IWSearchWebService      *_searchWebService;
     NSMutableArray          *_arrSearchResult;
     BOOL                    _bIsSearchOn;
+    NSString                *_strSearchString;
+    BOOL                    _bSearchRequestIsInProgress;
+    int                     _iTotalNumberOfRecords;
     
+    BOOL                    _bShouldFlipHorizontally;
+    NSTimer                 *_timerLoading;
     
-    BOOL                                    _bShouldFlipHorizontally;
-    NSTimer                                 *_timerLoading;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView            *tableViewMenu;
 @property (weak, nonatomic) IBOutlet UIView                 *viewTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint     *constraintTableViewBottom;
 @property (weak, nonatomic) IBOutlet UIView                 *viewLoading;
+@property (weak, nonatomic) IBOutlet UILabel                *lblCount;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintViewSearchResultHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintViewLoadingMoreItemHeight;
 
 -(void)setupDataSource;
 -(void)setupSearchBar;
@@ -79,6 +87,9 @@
 {
     _viewLoading.layer.cornerRadius = 3.0;
     _viewLoading.backgroundColor = COLOR_LOADING_VIEW;
+    
+    _constraintViewSearchResultHeight.constant = 0;
+    _constraintViewLoadingMoreItemHeight.constant = 0;
     
     _tableViewMenu.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.view setBackgroundColor:COLOR_VIEW_BG];
@@ -187,12 +198,14 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText// called when text changes (including clear)
 {
     _bIsSearchOn = YES;
-    [_tableViewMenu reloadData];
-    
+    _constraintViewSearchResultHeight.constant = HEIGHT_SEARCH_RESULT_VIEW;
 }
+
+
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar// called when keyboard search button pressed
 {
+    _lblCount.text = @"";
     [self startLoadingAnimation];
     [_searchBar performSelector: @selector(resignFirstResponder)
                      withObject: nil
@@ -205,10 +218,8 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(),
-                   ^{
-                       [self stopLoadingAnimation];
-                   });
+    _lblCount.text = @"";
+    [self stopLoadingAnimation];
     
     _searchBar.text = @"";
     [self searchForText:@""];
@@ -220,6 +231,7 @@
     [self.view endEditing:YES];
 
     _bIsSearchOn = NO;
+    _constraintViewSearchResultHeight.constant = 0;
     [_tableViewMenu reloadData];
 }
 
@@ -256,8 +268,26 @@
 
 -(void)getData
 {
-    _searchWebService = [[IWSearchWebService alloc] initWithSearchString:_searchBar.text AndDelegate:self];
+    _iTotalNumberOfRecords = 0;
+    _bSearchRequestIsInProgress = YES;
+    _strSearchString = _searchBar.text;
+    _searchWebService = [[IWSearchWebService alloc] initWithSearchString:_strSearchString
+                                                           AndStartIndex:0
+                                                             AndDelegate:self];
     [_searchWebService sendAsyncRequest];
+}
+
+-(void)lazyLoadPage
+{
+    if(_bSearchRequestIsInProgress == NO && _arrSearchResult.count < _iTotalNumberOfRecords)
+    {
+        _bSearchRequestIsInProgress = YES;
+        _constraintViewLoadingMoreItemHeight.constant = HEIGHT_LOADING_MORE_ITEM_VIEW;
+        _searchWebService = [[IWSearchWebService alloc] initWithSearchString:_strSearchString
+                                                               AndStartIndex:(int)_arrSearchResult.count
+                                                                 AndDelegate:self];
+        [_searchWebService sendAsyncRequest];
+    }
 }
 
 #pragma mark - Webservice Callbacks
@@ -266,31 +296,36 @@
 -(void)requestSucceed:(BaseWebService*)webService response:(id)responseModel
 {
     NSLog(@"SearchWebservice Success.");
+    
+    _bSearchRequestIsInProgress = NO;
+    _constraintViewLoadingMoreItemHeight.constant = 0;
 
     if([responseModel isKindOfClass:[IWSearchStructure class]])
     {
         IWSearchStructure *searchResult = responseModel;
+        _iTotalNumberOfRecords = searchResult.iCountRecord;
         
         [_arrSearchResult addObjectsFromArray:searchResult.arrSearchItems];
+        _lblCount.text = [NSString stringWithFormat:@"%lu of %d results",(unsigned long)_arrSearchResult.count,searchResult.iCountRecord];
+
     }
     
     [_tableViewMenu reloadData];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(),
-                   ^{
-                       [self stopLoadingAnimation];
-                   });
+
 }
 
 -(void)requestFailed:(BaseWebService*)webService error:(WSError*)error
 {
     NSLog(@"SearchWebservice Failed.");
+    _bSearchRequestIsInProgress = NO;
+    _constraintViewLoadingMoreItemHeight.constant = 0;
+
+    
     [IWUtility showWebserviceFailedAlert];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(),
-                   ^{
-                       [self stopLoadingAnimation];
-                   });}
+    [self stopLoadingAnimation];
+}
 
 #pragma mark - UITableView Delegate
 
@@ -356,8 +391,11 @@
         
         for(NSString *str in searchItem.arrHighlightText)
         {
-            [strMut appendString:str];
-            [strMut appendString:@"... "];
+            if([str isKindOfClass:[NSNull class]] == NO)
+            {
+                [strMut appendString:str];
+                [strMut appendString:@"... "];
+            }
         }
         
         strMut = [[strMut stringByReplacingOccurrencesOfString:@"<em>" withString:@""] mutableCopy];
@@ -398,6 +436,12 @@
     // Explictly set your cell's layout margins
     if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
         [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+    if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row)
+    {
+        //end of loading
+        [self stopLoadingAnimation];
     }
 }
 
@@ -490,6 +534,7 @@
     }
 }
 
+
 #pragma mark - Loading Animation
 
 -(void)startLoadingAnimation
@@ -524,4 +569,25 @@
                     }
      ];
 }
+
+#pragma mark - ScrollView Delegate
+
+-(void)scrollViewDidScroll: (UIScrollView*)scrollView
+{
+    if(_bIsSearchOn)
+    {
+        float scrollViewHeight = scrollView.frame.size.height;
+        float scrollContentSizeHeight = scrollView.contentSize.height;
+        float scrollOffset = scrollView.contentOffset.y;
+        
+        if (scrollOffset == 0)//Top
+        {
+        }
+        else if (scrollOffset + scrollViewHeight == scrollContentSizeHeight)//Bottom
+        {
+            [self lazyLoadPage];
+        }
+    }
+}
+
 @end
