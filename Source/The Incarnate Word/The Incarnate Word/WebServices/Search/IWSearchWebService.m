@@ -13,9 +13,11 @@
 @implementation IWSearchWebService
 
 
--(id)initWithSearchString:(NSString*) strSearch AndDelegate:(id<WebServiceDelegate>)delegate;
+-(id)initWithSearchString:(NSString*) strSearch
+            AndStartIndex:(int) start
+              AndDelegate:(id<WebServiceDelegate>)delegate
 {
-    self = [super initWithRequest:[NSString stringWithFormat:@"search.json?q=%@",strSearch] header:nil body:nil RequestType:@"GET"];
+    self = [super initWithRequest:[NSString stringWithFormat:@"search.json?q=%@&start=%d",strSearch,start] header:nil body:nil RequestType:@"GET"];
     
     if (self)
     {
