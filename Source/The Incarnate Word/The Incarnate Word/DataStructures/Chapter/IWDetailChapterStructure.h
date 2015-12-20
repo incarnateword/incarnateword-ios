@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IWDetailChapterStructure : NSObject
+@interface IWDetailChapterStructure : NSObject<NSCoding>
 
 /*
  {
