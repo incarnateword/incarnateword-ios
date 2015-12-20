@@ -105,3 +105,7 @@
 #define STR_NO_NETWORK_ALERT_TITLE @"Error"
 #define STR_NO_NETWORK_ALERT_MESSAGE @"Could not connect to server. Please check network connection and try again later."
 
+/************* NOTIFICATION ****************/
+
+#define NOTIF_LEFT_DRAWER_CLOSED @"NOTIF_LEFT_DRAWER_CLOSED"
+

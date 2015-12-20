@@ -43,8 +43,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint     *constraintTableViewBottom;
 @property (weak, nonatomic) IBOutlet UIView                 *viewLoading;
 @property (weak, nonatomic) IBOutlet UILabel                *lblCount;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintViewSearchResultHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintViewLoadingMoreItemHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint     *constraintViewSearchResultHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint     *constraintViewLoadingMoreItemHeight;
 
 -(void)setupDataSource;
 -(void)setupSearchBar;
@@ -60,6 +60,8 @@
     
     [self setupDataSource];
     [self setupUI];
+    [self registerNotifications];
+    
 }
 
 -(void)setupDataSource
@@ -96,6 +98,53 @@
     [self setupSearchBar];
     [self addKeyboardNotifications];
 
+}
+
+
+-(void)updateTableContent
+{
+    if(_bIsSearchOn)
+    {
+        _constraintViewSearchResultHeight.constant = HEIGHT_SEARCH_RESULT_VIEW;
+        
+        if(_iTotalNumberOfRecords != 0)
+        {
+        
+            _lblCount.text = [NSString stringWithFormat:@"%lu of %d results",
+                              (unsigned long)_arrSearchResult.count,
+                              _iTotalNumberOfRecords];
+        }
+        else
+        {
+            _lblCount.text = @"";
+        }
+    }
+    else
+    {
+        _constraintViewSearchResultHeight.constant = 0;
+    }
+    [_tableViewMenu reloadData];
+}
+
+-(void)clearSearchData
+{
+    _iTotalNumberOfRecords = 0;
+    [_arrSearchResult removeAllObjects];
+    _strSearchString = @"";
+}
+
+-(void)registerNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(notifLeftDrawerClosed:)
+                                                 name:NOTIF_LEFT_DRAWER_CLOSED
+                                               object:nil];
+}
+
+-(void)notifLeftDrawerClosed:(NSNotification*) notification
+{
+    _bIsSearchOn = NO;
+    [self updateTableContent];
 }
 
 -(void)setupSearchBar
@@ -199,26 +248,30 @@
 {
     _bIsSearchOn = YES;
     _constraintViewSearchResultHeight.constant = HEIGHT_SEARCH_RESULT_VIEW;
+    
+    if(searchText == nil || [searchText isEqualToString:@""])
+    {
+        [self clearSearchData];
+        [self updateTableContent];
+    }
 }
 
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar// called when keyboard search button pressed
 {
-    _lblCount.text = @"";
     [self startLoadingAnimation];
     [_searchBar performSelector: @selector(resignFirstResponder)
                      withObject: nil
                      afterDelay: 0.1];
     
-    [_arrSearchResult removeAllObjects];
-    [_tableViewMenu reloadData];
+    [self clearSearchData];
+    [self updateTableContent];
     [self searchForText:searchBar.text];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    _lblCount.text = @"";
     [self stopLoadingAnimation];
     
     _searchBar.text = @"";
@@ -231,12 +284,15 @@
     [self.view endEditing:YES];
 
     _bIsSearchOn = NO;
-    _constraintViewSearchResultHeight.constant = 0;
-    [_tableViewMenu reloadData];
+    [self clearSearchData];
+    [self updateTableContent];
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar*)searchBar
 {
+    _bIsSearchOn = YES;
+    [self updateTableContent];
+    NSLog(@"~~~~~~~~~~~~~~~~~~~~~~~");
     [_searchBar setShowsCancelButton:YES animated:YES];
     return YES;
 }
@@ -262,7 +318,7 @@
     }
     else
     {
-        [_tableViewMenu reloadData];
+        [self updateTableContent];
     }
 }
 
@@ -306,13 +362,15 @@
         _iTotalNumberOfRecords = searchResult.iCountRecord;
         
         [_arrSearchResult addObjectsFromArray:searchResult.arrSearchItems];
-        _lblCount.text = [NSString stringWithFormat:@"%lu of %d results",(unsigned long)_arrSearchResult.count,searchResult.iCountRecord];
+
 
     }
+    else
+    {
     
-    [_tableViewMenu reloadData];
+    }
     
-
+    [self updateTableContent];
 }
 
 -(void)requestFailed:(BaseWebService*)webService error:(WSError*)error
@@ -482,8 +540,14 @@
         if([_searchBar isFirstResponder])
             [_searchBar resignFirstResponder];
         
+        _bIsSearchOn = NO;
+        
+        [self updateTableContent];
+        
         IWSearchItemStructure *searchItem = [_arrSearchResult objectAtIndex:indexPath.row];
         [[IWUserActionManager sharedManager] showChapterWithPath:searchItem.strChapterUrl andItemIndex:0];
+        
+        
     }
     else
     {

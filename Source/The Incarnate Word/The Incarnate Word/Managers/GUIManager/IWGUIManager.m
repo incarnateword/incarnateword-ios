@@ -128,6 +128,8 @@ static IWGUIManager* guiManager = nil ;
 -(void) drawerEndEditingForLeftDrawer
 {
     [self.drawerController.leftDrawerViewController.view endEditing:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIF_LEFT_DRAWER_CLOSED object:nil];
 }
 
 
