@@ -207,6 +207,8 @@
 
 -(void)keyboardWillShow:(NSNotification *)notification
 {
+    [_searchBar setShowsCancelButton:YES animated:YES];
+
     _bIsKeyboardShown = YES;
     [self.navigationController setNavigationBarHidden: YES animated:YES];
     
@@ -272,6 +274,8 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
+    [_searchBar setShowsCancelButton:NO animated:YES];
+
     [self stopLoadingAnimation];
     
     _searchBar.text = @"";
@@ -292,7 +296,7 @@
 {
     _bIsSearchOn = YES;
     [self updateTableContent];
-    NSLog(@"~~~~~~~~~~~~~~~~~~~~~~~");
+
     [_searchBar setShowsCancelButton:YES animated:YES];
     return YES;
 }
@@ -300,8 +304,6 @@
 -(void)searchForText:(NSString *)searchText
 {
     NSLog(@"Text : %@",searchText);
-    
-    [_searchBar setShowsCancelButton:YES animated:YES];
     
     if(_arrSearchResult)
     {
