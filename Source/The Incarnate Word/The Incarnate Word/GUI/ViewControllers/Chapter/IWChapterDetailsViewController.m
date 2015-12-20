@@ -8,7 +8,6 @@
 
 #import "IWChapterDetailsViewController.h"
 #import "IWChapterWebService.h"
-#import "IWDetailChapterStructure.h"
 #import "IWUtility.h"
 #import "IWPathStructure.h"
 #import "BPMarkdownView.h"
@@ -17,11 +16,11 @@
 #import "IWGUIManager.h"
 #import "IWInfoViewController.h"
 #import "WebServiceConstants.h"
+#import "IWUserActionManager.h"
 
 @interface IWChapterDetailsViewController ()<WebServiceDelegate,UIScrollViewDelegate,InfoViewDelegate,UIWebViewDelegate>
 {
     IWChapterWebService                     *_chapterWebService;
-    IWDetailChapterStructure                *_detailChapterStructure;
     
     BOOL                                    _bShouldFlipHorizontally;
     NSTimer                                 *_timerLoading;
@@ -33,6 +32,8 @@
     UISwipeGestureRecognizer                *_swipeleft,*_swiperight;
     IWInfoViewController                    *_infoVC;
     NSString                                *_strDate;
+    
+    IWDetailChapterStructure                *_detailChapterStructure;
 }
 
 @property (nonatomic, assign) CGFloat                           lastContentOffset;
@@ -246,9 +247,17 @@
 
 -(void)getData
 {
-    [self performSelectorOnMainThread:@selector(startLoadingAnimation) withObject:nil waitUntilDone:NO];
-    _chapterWebService = [[IWChapterWebService alloc] initWithPath:_strChapterPath AndDelegate:self];
-    [_chapterWebService sendAsyncRequest];
+    if(_offlineDetailChapterStructure)
+    {
+        _detailChapterStructure = _offlineDetailChapterStructure;
+        [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
+    }
+    else
+    {
+        [self performSelectorOnMainThread:@selector(startLoadingAnimation) withObject:nil waitUntilDone:NO];
+        _chapterWebService = [[IWChapterWebService alloc] initWithPath:_strChapterPath AndDelegate:self];
+        [_chapterWebService sendAsyncRequest];
+    }
 }
 
 #pragma mark - Webservice Callbacks
@@ -258,6 +267,15 @@
 {
     NSLog(@"ChapterWebService Success.");
     _detailChapterStructure = (IWDetailChapterStructure*)responseModel;
+    
+    if(_detailChapterStructure)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
+        ^{
+            [[IWUserActionManager sharedManager] saveChapter:_detailChapterStructure];
+        });
+    }
+    
     [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
 }
 

@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IWDetailChapterStructure.h"
 
 @interface IWChapterDetailsViewController : UIViewController
 
-@property (readwrite) NSString *strChapterPath;
-@property (readwrite) int       iItemIndex;
+@property(nonatomic) NSString *strChapterPath;
+@property(nonatomic) int       iItemIndex;
+
+@property(nonatomic) IWDetailChapterStructure *offlineDetailChapterStructure;
 
 
 @end
