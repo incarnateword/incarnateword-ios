@@ -16,6 +16,7 @@
 #import "IWUtility.h"
 #import "IWUIConstants.h"
 #import "IWHomeViewController.h"
+#import "IWOfflineChapterListViewController.h"
 
 @interface IWGUIManager()<UINavigationControllerDelegate>
 {
@@ -262,6 +263,13 @@ static IWGUIManager* guiManager = nil ;
     if ([viewController class] == [IWHomeViewController class])
     {
         return ;
+    }
+    
+    if(navigationController.viewControllers.count >= 2)
+    {
+        UIViewController *vc = [navigationController.viewControllers objectAtIndex:navigationController.viewControllers.count - 2];
+        if([vc isKindOfClass:[IWOfflineChapterListViewController class]])
+            return;
     }
     
     UIButton *customLeftBtn = [UIButton buttonWithType:UIButtonTypeCustom];

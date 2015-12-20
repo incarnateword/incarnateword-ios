@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		480C9D2B1C26B9CA00AE7B80 /* IWOfflineChapterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 480C9D2A1C26B9CA00AE7B80 /* IWOfflineChapterListViewController.m */; };
 		480CAD1E1B8095100072171F /* marked-feature-footnotes in Resources */ = {isa = PBXBuildFile; fileRef = 480CAD1D1B8095100072171F /* marked-feature-footnotes */; };
 		483D67451B0881B200BA9A82 /* IWHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D67441B0881B200BA9A82 /* IWHomeViewController.m */; };
 		483D674A1B0882CF00BA9A82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D67491B0882CF00BA9A82 /* AppDelegate.m */; };
@@ -89,6 +90,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		480C9D291C26B9CA00AE7B80 /* IWOfflineChapterListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWOfflineChapterListViewController.h; sourceTree = "<group>"; };
+		480C9D2A1C26B9CA00AE7B80 /* IWOfflineChapterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWOfflineChapterListViewController.m; sourceTree = "<group>"; };
 		480CAD1D1B8095100072171F /* marked-feature-footnotes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "marked-feature-footnotes"; sourceTree = "<group>"; };
 		483D67431B0881B200BA9A82 /* IWHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWHomeViewController.h; sourceTree = "<group>"; };
 		483D67441B0881B200BA9A82 /* IWHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWHomeViewController.m; sourceTree = "<group>"; };
@@ -591,6 +594,8 @@
 			children = (
 				487869811B09042B00429141 /* IWChapterDetailsViewController.h */,
 				487869821B09042B00429141 /* IWChapterDetailsViewController.m */,
+				480C9D291C26B9CA00AE7B80 /* IWOfflineChapterListViewController.h */,
+				480C9D2A1C26B9CA00AE7B80 /* IWOfflineChapterListViewController.m */,
 			);
 			path = Chapter;
 			sourceTree = "<group>";
@@ -961,6 +966,7 @@
 				483D675F1B0886E500BA9A82 /* MMDrawerVisualState.m in Sources */,
 				483D67761B08997B00BA9A82 /* IWUserActionManager.m in Sources */,
 				48C2C5101B078B1700ED333F /* BaseWebService.m in Sources */,
+				480C9D2B1C26B9CA00AE7B80 /* IWOfflineChapterListViewController.m in Sources */,
 				48C2C5111B078B1700ED333F /* WSError.m in Sources */,
 				488FA3211B1A237100F9B5FB /* IWAlphabetStructure.m in Sources */,
 				4861880E1B0A5BEF00A4D292 /* IWPathStructure.m in Sources */,

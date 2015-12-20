@@ -67,6 +67,8 @@
 ///////////////// CHAPTER ///////////////
 
 #define S_CHAP_CHAPTER_DETAILS_VC @"CHAPTER_DETAILS_VC"
+#define S_CHAP_OFFLINE_CHAPTER_LIST_VC @"OFFLINE_CHAPTER_LIST_VC"
+
 
 ///////////////// ABOUT ///////////////
 
