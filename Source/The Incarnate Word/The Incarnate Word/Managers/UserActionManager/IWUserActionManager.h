@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IWDetailChapterStructure.h"
 
 @interface IWUserActionManager : NSObject
 
@@ -18,10 +19,17 @@
 
 -(void)showVolumeWithPath:(NSString *) strPath;
 -(void)showChapterWithPath:(NSString *) strPath andItemIndex:(int) iItemIndex;
+-(void)showChapterWithChapterStructure:(IWDetailChapterStructure*) detailChapterStructure;
 -(void)showAboutWithPath:(NSString *) strPath andImageName:(NSString*)strImageName andDescriptionHeight:(float) height;
 -(void)showDictionary;
+-(void)showOfflineChapters;
 -(void)showDictionaryMeaningForWord:(NSString*)strWord;
 -(void)showHomeScreen;
 -(void)toggleLeftDrawer;
+
+
+//TODO: Move to data manager
+-(void)saveChapter:(IWDetailChapterStructure*) detailChapterStructure;
+-(NSArray*)getOfflineChapters;
 
 @end

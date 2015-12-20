@@ -15,6 +15,8 @@
 #import "IWAboutViewController.h"
 #import "IWDictionaryViewController.h"
 #import "IWDictionaryMeaningViewController.h"
+#import "IWOfflineChapterListViewController.h"
+
 
 @implementation IWUserActionManager
 
@@ -73,6 +75,14 @@ static IWUserActionManager* userActionManager = nil ;
     [[IWGUIManager sharedManager] rootViewPushViewController:chapterViewController forceOnRoot:NO animated:YES];
 }
 
+-(void)showChapterWithChapterStructure:(IWDetailChapterStructure*) detailChapterStructure;
+{
+    UIStoryboard *sbChapter = [UIStoryboard storyboardWithName:STORYBOARD_CHAPTER bundle:nil];
+    IWChapterDetailsViewController *chapterViewController = [sbChapter instantiateViewControllerWithIdentifier:S_CHAP_CHAPTER_DETAILS_VC];
+    chapterViewController.offlineDetailChapterStructure = detailChapterStructure;
+    [[IWGUIManager sharedManager] rootViewPushViewController:chapterViewController forceOnRoot:NO animated:YES];
+}
+
 
 -(void)showAboutWithPath:(NSString *) strPath andImageName:(NSString*)strImageName andDescriptionHeight:(float) height
 {
@@ -89,6 +99,13 @@ static IWUserActionManager* userActionManager = nil ;
     UIStoryboard *sbDict = [UIStoryboard storyboardWithName:STORYBOARD_DICTIONARY bundle:nil];
     IWDictionaryViewController *dictVC = [sbDict instantiateViewControllerWithIdentifier:S_DICTIONARY_DICTIONARY_VC];
     [[IWGUIManager sharedManager] rootViewPushViewController:dictVC forceOnRoot:NO animated:YES];
+}
+
+-(void)showOfflineChapters
+{
+    UIStoryboard *sbChapter = [UIStoryboard storyboardWithName:STORYBOARD_CHAPTER bundle:nil];
+    IWOfflineChapterListViewController  *offlineList = [sbChapter instantiateViewControllerWithIdentifier:S_CHAP_OFFLINE_CHAPTER_LIST_VC];
+    [[IWGUIManager sharedManager] rootViewPushViewController:offlineList forceOnRoot:NO animated:YES];
 }
 
 -(void)showDictionaryMeaningForWord:(NSString*)strWord
@@ -109,5 +126,31 @@ static IWUserActionManager* userActionManager = nil ;
 {
     [[IWGUIManager sharedManager] drawerToggleLeft];
 }
+
+#pragma mark - Data Manager
+
+-(void)saveChapter:(IWDetailChapterStructure*) detailChapterStructure
+{
+    NSMutableArray *arrTemp = [[NSMutableArray alloc] init];
+    
+    NSArray *arrExistingList = [self getOfflineChapters];
+    
+    if(arrExistingList.count > 0)
+        [arrTemp addObjectsFromArray:arrExistingList];
+    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:detailChapterStructure];
+    [arrTemp addObject:data];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[arrTemp copy] forKey:@"UserDefaultKeyArrayChapter"];
+    [userDefaults synchronize];
+}
+
+-(NSArray*)getOfflineChapters
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults objectForKey:@"UserDefaultKeyArrayChapter"];
+}
+
 
 @end
