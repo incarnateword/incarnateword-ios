@@ -131,26 +131,45 @@ static IWUserActionManager* userActionManager = nil ;
 
 -(void)saveChapter:(IWDetailChapterStructure*) detailChapterStructure
 {
-    NSMutableArray *arrTemp = [[NSMutableArray alloc] init];
+    NSMutableDictionary *dictTemp = [[NSMutableDictionary alloc] init];
     
-    NSArray *arrExistingList = [self getOfflineChapters];
+    NSDictionary *dictExistingList = [self getOfflineChapters];
     
-    if(arrExistingList.count > 0)
-        [arrTemp addObjectsFromArray:arrExistingList];
+    if(dictExistingList)
+    {
+        dictTemp = [[NSMutableDictionary alloc] initWithDictionary:dictExistingList];
+    }
     
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:detailChapterStructure];
-    [arrTemp addObject:data];
+    [dictTemp setObject:data forKey:detailChapterStructure.strUrl];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[arrTemp copy] forKey:@"UserDefaultKeyArrayChapter"];
+    [userDefaults setObject:[dictTemp copy] forKey:@"UserDefaultKeyArrayChapter"];
     [userDefaults synchronize];
 }
 
--(NSArray*)getOfflineChapters
+-(NSDictionary*)getOfflineChapters
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     return [userDefaults objectForKey:@"UserDefaultKeyArrayChapter"];
 }
+
+-(IWDetailChapterStructure*)getOfflineChapterWithUrl:(NSString*)strUrl
+{
+    IWDetailChapterStructure *detailChapterStructure = nil;
+    NSDictionary *dictExistingList = [self getOfflineChapters];
+    
+    if([dictExistingList objectForKey:strUrl])
+    {
+        if([NSKeyedUnarchiver unarchiveObjectWithData:[dictExistingList objectForKey:strUrl]])
+        {
+            detailChapterStructure = [NSKeyedUnarchiver unarchiveObjectWithData:[dictExistingList objectForKey:strUrl]];
+        }
+    }
+    
+    return detailChapterStructure;
+}
+
 
 
 @end

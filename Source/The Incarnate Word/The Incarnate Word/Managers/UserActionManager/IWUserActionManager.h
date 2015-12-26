@@ -30,6 +30,7 @@
 
 //TODO: Move to data manager
 -(void)saveChapter:(IWDetailChapterStructure*) detailChapterStructure;
--(NSArray*)getOfflineChapters;
+-(IWDetailChapterStructure*)getOfflineChapterWithUrl:(NSString*)strUrl;
+-(NSDictionary*)getOfflineChapters;
 
 @end
