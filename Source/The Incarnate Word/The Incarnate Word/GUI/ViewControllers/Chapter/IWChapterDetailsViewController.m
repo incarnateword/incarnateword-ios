@@ -73,6 +73,8 @@
 - (IBAction)btnPrevChapterPressed:(id)sender
 {
     _strChapterPath = _detailChapterStructure.strPrevChapterUrl;
+    _offlineDetailChapterStructure = nil;
+
     _iItemIndex = 0;
     _btnInfo.hidden = YES;
     _btnShare.hidden = YES;
@@ -99,6 +101,7 @@
         return;
     
     _strChapterPath = _detailChapterStructure.strNextChapterUrl;
+    _offlineDetailChapterStructure = nil;
     _iItemIndex = 0;
     _btnInfo.hidden = YES;
     _btnShare.hidden = YES;
