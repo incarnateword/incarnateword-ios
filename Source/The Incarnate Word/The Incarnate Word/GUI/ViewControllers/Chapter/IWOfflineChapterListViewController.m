@@ -43,7 +43,7 @@
 
 -(void)getData
 {
-    _arrChapters = [[NSArray alloc] initWithArray:[[IWUserActionManager sharedManager]getOfflineChapters]];
+    _arrChapters = [[NSArray alloc] initWithArray:[[IWUserActionManager sharedManager]getOfflineChapters].allValues];
     [_tableViewChapterList reloadData];
 }
 

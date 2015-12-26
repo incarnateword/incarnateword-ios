@@ -247,6 +247,12 @@
 
 -(void)getData
 {
+    if(_offlineDetailChapterStructure == nil)
+    {
+        NSString *strPath = [_strChapterPath hasPrefix:@"/"] ? _strChapterPath : [NSString stringWithFormat:@"/%@",_strChapterPath];
+        _offlineDetailChapterStructure = [[IWUserActionManager sharedManager] getOfflineChapterWithUrl:strPath];
+    }
+    
     if(_offlineDetailChapterStructure)
     {
         _detailChapterStructure = _offlineDetailChapterStructure;
@@ -268,13 +274,7 @@
     NSLog(@"ChapterWebService Success.");
     _detailChapterStructure = (IWDetailChapterStructure*)responseModel;
     
-    if(_detailChapterStructure)
-    {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
-        ^{
-            [[IWUserActionManager sharedManager] saveChapter:_detailChapterStructure];
-        });
-    }
+
     
     [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
 }
@@ -358,23 +358,41 @@
     }
 }
 
+
+
+
 -(void)addMarkdownView
 {
 //    [self performSelectorOnMainThread:@selector(startLoadingAnimation) withObject:nil waitUntilDone:NO];
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
-   ^{
-        NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_detailChapterStructure.strText forTypeHeading:NO];
-        NSLog(@"Called loadHTMLString");
-//       NSString *cssPath = [[NSBundle mainBundle] pathForResource:@"chapter" ofType:@"css"];
-
-        [_webView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
-       
-       [self performSelectorOnMainThread:@selector(stopLoadingAnimation) withObject:nil waitUntilDone:NO];
-       [self performSelectorOnMainThread:@selector(showButtonsBasedOnContent) withObject:nil waitUntilDone:NO];
-
-    });
+    if([IWUtility isNilOrEmptyString:_detailChapterStructure.strTextParsed])
+    {
     
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
+       ^{
+            NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_detailChapterStructure.strText forTypeHeading:NO];
+            NSLog(@"Called loadHTMLString");
+    //       NSString *cssPath = [[NSBundle mainBundle] pathForResource:@"chapter" ofType:@"css"];
+
+            [_webView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
+           
+           _detailChapterStructure.strTextParsed = strHtmlString;
+            [[IWUserActionManager sharedManager] saveChapter:_detailChapterStructure];
+           
+           [self performSelectorOnMainThread:@selector(stopLoadingAnimation) withObject:nil waitUntilDone:NO];
+           [self performSelectorOnMainThread:@selector(showButtonsBasedOnContent) withObject:nil waitUntilDone:NO];
+
+        });
+    }
+    else
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
+           ^{
+               [_webView loadHTMLString:_offlineDetailChapterStructure.strTextParsed baseURL:[IWUtility getCommonCssBaseURL]];
+               [self performSelectorOnMainThread:@selector(stopLoadingAnimation) withObject:nil waitUntilDone:NO];
+               [self performSelectorOnMainThread:@selector(showButtonsBasedOnContent) withObject:nil waitUntilDone:NO];
+           });
+    }
     return;
     
     [_markdownView removeFromSuperview];
