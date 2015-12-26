@@ -22,6 +22,7 @@
     [encoder encodeObject:_strTitle forKey:@"strTitle"];
     [encoder encodeObject:_strUrl forKey:@"strUrl"];
     [encoder encodeObject:_strText forKey:@"strText"];
+    [encoder encodeObject:_strTextParsed forKey:@"strTextParsed"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -38,6 +39,7 @@
         _strTitle = [decoder decodeObjectForKey:@"strTitle"];
         _strUrl = [decoder decodeObjectForKey:@"strUrl"];
         _strText = [decoder decodeObjectForKey:@"strText"];
+        _strTextParsed = [decoder decodeObjectForKey:@"strTextParsed"];
     }
     
     return self;
