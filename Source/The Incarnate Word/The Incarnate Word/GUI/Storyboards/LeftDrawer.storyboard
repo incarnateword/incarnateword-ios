@@ -4,6 +4,11 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf">
+            <string>CharlotteSansW02-Book</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Left Drawer View Controller-->
         <scene sceneID="eVE-uZ-DO3">
@@ -44,7 +49,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="46" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4w6-sj-O6T" userLabel="TableViewMenu">
-                                <rect key="frame" x="0.0" y="84" width="300" height="496"/>
+                                <rect key="frame" x="0.0" y="84" width="300" height="492"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -125,20 +130,20 @@
                                     <outlet property="delegate" destination="jOn-Gv-mna" id="xeA-UV-NPH"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OcV-zg-G0A" userLabel="LoadingMore">
-                                <rect key="frame" x="0.0" y="580" width="300" height="20"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OcV-zg-G0A" userLabel="LoadingMore">
+                                <rect key="frame" x="0.0" y="578" width="300" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wfc-7p-74W" userLabel="labelCount">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="20"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="24"/>
+                                        <fontDescription key="fontDescription" name="CharlotteSansW02-Book" family="CharlotteSansW02-Book" pointSize="19"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.76773595328282829" green="0.76773595328282829" blue="0.76773595328282829" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Wfc-7p-74W" firstAttribute="top" secondItem="OcV-zg-G0A" secondAttribute="top" id="3c3-jm-6XU"/>
                                     <constraint firstItem="Wfc-7p-74W" firstAttribute="leading" secondItem="OcV-zg-G0A" secondAttribute="leading" id="4wn-Jb-gEM"/>
-                                    <constraint firstAttribute="height" constant="20" id="IR1-B3-3ww"/>
+                                    <constraint firstAttribute="height" constant="24" id="IR1-B3-3ww"/>
                                     <constraint firstAttribute="bottom" secondItem="Wfc-7p-74W" secondAttribute="bottom" id="eNN-6D-wbH"/>
                                     <constraint firstAttribute="trailing" secondItem="Wfc-7p-74W" secondAttribute="trailing" id="hWg-p0-MKX"/>
                                 </constraints>
