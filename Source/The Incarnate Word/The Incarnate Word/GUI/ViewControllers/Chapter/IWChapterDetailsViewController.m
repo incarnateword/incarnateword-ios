@@ -288,7 +288,7 @@
     [IWUtility showWebserviceFailedAlert];
 
     NSLog(@"ChapterWebService Failed.");
-    [self stopLoadingAnimation];
+    [self performSelectorOnMainThread:@selector(stopLoadingAnimation) withObject:nil waitUntilDone:NO];
 }
 
 
