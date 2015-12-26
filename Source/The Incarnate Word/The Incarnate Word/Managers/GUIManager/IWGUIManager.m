@@ -88,7 +88,7 @@ static IWGUIManager* guiManager = nil ;
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView | MMCloseDrawerGestureModePanningCenterView |MMCloseDrawerGestureModeTapCenterView];
     
     [self.drawerController setCenterHiddenInteractionMode:MMDrawerOpenCenterInteractionModeNone];
-    self.drawerController.showsShadow = YES;
+    self.drawerController.showsShadow = NO;
     self.drawerController.centerHiddenInteractionMode = MMDrawerOpenCenterInteractionModeNavigationBarOnly;
     
     [self.drawerController setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible)
