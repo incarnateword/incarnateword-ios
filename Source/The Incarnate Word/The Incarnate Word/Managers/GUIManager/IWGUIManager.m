@@ -218,7 +218,7 @@ static IWGUIManager* guiManager = nil ;
                        
                        if(drawerVC.openSide == MMDrawerSideLeft)
                        {
-                           [drawerVC toggleDrawerSide:MMDrawerSideLeft animated:NO completion:nil];
+                           [drawerVC toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
                        }
                        
                        if(forceOnRoot == YES)

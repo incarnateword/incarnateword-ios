@@ -551,7 +551,7 @@
         
         _bIsSearchOn = NO;
         
-        [self updateTableContent];
+        [self performSelector:@selector(updateTableContent) withObject:nil afterDelay:1.0];
         
         IWSearchItemStructure *searchItem = [_arrSearchResult objectAtIndex:indexPath.row];
         [[IWUserActionManager sharedManager] showChapterWithPath:searchItem.strChapterUrl andItemIndex:0];
