@@ -131,6 +131,8 @@ static IWUserActionManager* userActionManager = nil ;
 
 -(void)saveChapter:(IWDetailChapterStructure*) detailChapterStructure
 {
+    return;//AppStore
+    
     NSMutableDictionary *dictTemp = [[NSMutableDictionary alloc] init];
     
     NSDictionary *dictExistingList = [self getOfflineChapters];
@@ -156,6 +158,8 @@ static IWUserActionManager* userActionManager = nil ;
 
 -(IWDetailChapterStructure*)getOfflineChapterWithUrl:(NSString*)strUrl
 {
+    return nil;//AppStore
+    
     IWDetailChapterStructure *detailChapterStructure = nil;
     NSDictionary *dictExistingList = [self getOfflineChapters];
     
