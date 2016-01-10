@@ -87,7 +87,7 @@
     [dict4 setObject:[[NSArray alloc] initWithObjects:@"Chapters", nil] forKey:MENU_ARRAY];
 
 
-    _arrDataSource = [[NSArray alloc] initWithObjects:[dict0 copy],[dict1 copy],[dict2 copy],[dict3 copy],[dict4 copy], nil];
+    _arrDataSource = [[NSArray alloc] initWithObjects:[dict0 copy],[dict1 copy],[dict2 copy],[dict3 copy],/*[dict4 copy],*/ nil];
 }
 
 -(void)setupUI
