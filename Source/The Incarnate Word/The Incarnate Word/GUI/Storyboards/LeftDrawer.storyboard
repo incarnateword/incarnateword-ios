@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf">
@@ -35,7 +35,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVI-KD-wOG" userLabel="labelCount">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -165,6 +165,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.94826897089999995" blue="0.807783739" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="IZ0-Dt-PRK" firstAttribute="leading" secondItem="7RM-qW-8bA" secondAttribute="leading" constant="123" id="3Wg-hY-LQF"/>
                             <constraint firstItem="4w6-sj-O6T" firstAttribute="top" secondItem="KUI-Kn-KM7" secondAttribute="bottom" id="51j-n3-7Dt"/>
                             <constraint firstItem="OcV-zg-G0A" firstAttribute="leading" secondItem="7RM-qW-8bA" secondAttribute="leading" id="I5Q-ug-e8M"/>
                             <constraint firstItem="KUI-Kn-KM7" firstAttribute="leading" secondItem="7RM-qW-8bA" secondAttribute="leading" id="LlF-Wm-W26"/>
@@ -178,13 +179,13 @@
                             <constraint firstAttribute="trailing" secondItem="jGt-oK-RlX" secondAttribute="trailing" id="mQu-8D-EhJ"/>
                             <constraint firstItem="KUI-Kn-KM7" firstAttribute="top" secondItem="jGt-oK-RlX" secondAttribute="bottom" id="mYy-e1-jBy"/>
                             <constraint firstItem="jGt-oK-RlX" firstAttribute="top" secondItem="7RM-qW-8bA" secondAttribute="top" constant="20" id="nBk-zb-dlK"/>
-                            <constraint firstItem="IZ0-Dt-PRK" firstAttribute="centerX" secondItem="7RM-qW-8bA" secondAttribute="centerX" id="qW1-3u-7dN"/>
                             <constraint firstItem="IZ0-Dt-PRK" firstAttribute="centerY" secondItem="7RM-qW-8bA" secondAttribute="centerY" id="tWn-18-VIC"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="300" height="600"/>
                     <connections>
+                        <outlet property="constraintViewLoadingLeading" destination="3Wg-hY-LQF" id="hkd-5N-ywF"/>
                         <outlet property="constraintViewLoadingMoreItemHeight" destination="IR1-B3-3ww" id="aqh-XS-XWQ"/>
                         <outlet property="constraintViewSearchResultHeight" destination="y7B-Vl-lcA" id="URU-OT-guX"/>
                         <outlet property="lblCount" destination="GVI-KD-wOG" id="9ym-GR-Kj2"/>

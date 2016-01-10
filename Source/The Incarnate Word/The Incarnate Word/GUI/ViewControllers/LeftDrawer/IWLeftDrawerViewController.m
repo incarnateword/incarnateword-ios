@@ -45,6 +45,7 @@
 @property (weak, nonatomic) IBOutlet UILabel                *lblCount;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint     *constraintViewSearchResultHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint     *constraintViewLoadingMoreItemHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintViewLoadingLeading;
 
 -(void)setupDataSource;
 -(void)setupSearchBar;
@@ -97,6 +98,7 @@
     
     _constraintViewSearchResultHeight.constant = 0;
     _constraintViewLoadingMoreItemHeight.constant = 0;
+    _constraintViewLoadingLeading.constant = [[[UIApplication sharedApplication] delegate] window].bounds.size.width/2 - 53/2;
     
     _tableViewMenu.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.view setBackgroundColor:COLOR_VIEW_BG];
