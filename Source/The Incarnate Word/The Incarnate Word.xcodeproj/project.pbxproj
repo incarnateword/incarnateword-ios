@@ -71,7 +71,6 @@
 		48C2C5121B078B1700ED333F /* HttpCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C2C50F1B078B1700ED333F /* HttpCommunication.m */; };
 		48C2C5171B07906B00ED333F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C2C5161B07906B00ED333F /* Reachability.m */; };
 		48C929E11B6BE70900489131 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C929E01B6BE70900489131 /* Default-568h@2x.png */; };
-		48C929E31B6BEA4500489131 /* ApplicationIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48C929E21B6BEA4500489131 /* ApplicationIcon.jpg */; };
 		48E51FF01B30ABA9008825FC /* Popover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48E51FEF1B30ABA9008825FC /* Popover.storyboard */; };
 		48E51FF41B30ABEF008825FC /* IWInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E51FF31B30ABEF008825FC /* IWInfoViewController.m */; };
 		48EC97381C1D9FA400FB5533 /* IWSearchStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EC97371C1D9FA400FB5533 /* IWSearchStructure.m */; };
@@ -86,6 +85,7 @@
 		B2DCAC591B0DEDE40092AD85 /* MarkdownTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DCAC511B0DEDE40092AD85 /* MarkdownTokenizer.m */; };
 		B2DCAC5A1B0DEDE40092AD85 /* MarkdownTokens.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DCAC531B0DEDE40092AD85 /* MarkdownTokens.m */; };
 		B2DCAC5B1B0DEDE40092AD85 /* NSAttributedStringMarkdownParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DCAC571B0DEDE40092AD85 /* NSAttributedStringMarkdownParser.m */; };
+		D087B92A1C4CCC5000B3E15A /* ApplicationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D087B9291C4CCC5000B3E15A /* ApplicationIcon.png */; };
 		D0CF5F0A1B94805700C838D0 /* iPhone.css in Resources */ = {isa = PBXBuildFile; fileRef = D0CF5F091B94805700C838D0 /* iPhone.css */; };
 /* End PBXBuildFile section */
 
@@ -201,7 +201,6 @@
 		48C2C5151B07906B00ED333F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		48C2C5161B07906B00ED333F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		48C929E01B6BE70900489131 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		48C929E21B6BEA4500489131 /* ApplicationIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ApplicationIcon.jpg; sourceTree = "<group>"; };
 		48E51FEF1B30ABA9008825FC /* Popover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Popover.storyboard; sourceTree = "<group>"; };
 		48E51FF21B30ABEF008825FC /* IWInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWInfoViewController.h; sourceTree = "<group>"; };
 		48E51FF31B30ABEF008825FC /* IWInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWInfoViewController.m; sourceTree = "<group>"; };
@@ -231,6 +230,7 @@
 		B2DCAC561B0DEDE40092AD85 /* NSAttributedStringMarkdownParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAttributedStringMarkdownParser.h; sourceTree = "<group>"; };
 		B2DCAC571B0DEDE40092AD85 /* NSAttributedStringMarkdownParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSAttributedStringMarkdownParser.m; sourceTree = "<group>"; };
 		CBC3A1DCCCAEC9778F8B3679 /* Pods-The Incarnate Word.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Incarnate Word.debug.xcconfig"; path = "Pods/Target Support Files/Pods-The Incarnate Word/Pods-The Incarnate Word.debug.xcconfig"; sourceTree = "<group>"; };
+		D087B9291C4CCC5000B3E15A /* ApplicationIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ApplicationIcon.png; sourceTree = "<group>"; };
 		D0CF5F091B94805700C838D0 /* iPhone.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = iPhone.css; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -656,7 +656,7 @@
 		48A611831B1A0377007AC3B5 /* NonXcasset */ = {
 			isa = PBXGroup;
 			children = (
-				48C929E21B6BEA4500489131 /* ApplicationIcon.jpg */,
+				D087B9291C4CCC5000B3E15A /* ApplicationIcon.png */,
 				48BBDA541B3C93A100564E70 /* bg-noise.png */,
 				48A611841B1A03F6007AC3B5 /* aurobindo.jpg */,
 				48A611851B1A03F6007AC3B5 /* theMother.jpg */,
@@ -896,7 +896,6 @@
 			files = (
 				D0CF5F0A1B94805700C838D0 /* iPhone.css in Resources */,
 				483D67631B08897700BA9A82 /* LeftDrawer.storyboard in Resources */,
-				48C929E31B6BEA4500489131 /* ApplicationIcon.jpg in Resources */,
 				48E51FF01B30ABA9008825FC /* Popover.storyboard in Resources */,
 				48C2C4E71B07887A00ED333F /* Main.storyboard in Resources */,
 				48BBDA511B3C845E00564E70 /* Monotype Sabon Regular c3c75751-9aa7-4a6f-ba60.otf in Resources */,
@@ -909,6 +908,7 @@
 				48C2C4EC1B07887B00ED333F /* LaunchScreen.xib in Resources */,
 				48A611861B1A03F6007AC3B5 /* aurobindo.jpg in Resources */,
 				483D67781B089C6F00BA9A82 /* Compilation.storyboard in Resources */,
+				D087B92A1C4CCC5000B3E15A /* ApplicationIcon.png in Resources */,
 				48BBDA4F1B3C845E00564E70 /* Charlotte_Sans_Medium_b32c1ab1-95e3-47dc-8c04.otf in Resources */,
 				48BBDA4D1B3C845E00564E70 /* Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf in Resources */,
 				488FA3121B1A158A00F9B5FB /* Dictionary.storyboard in Resources */,
