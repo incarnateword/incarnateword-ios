@@ -614,19 +614,19 @@
     }
 }
 
-- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if(_bIsSearchOn)
-    {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        [self setCellColor:[UIColor darkGrayColor] ForCell:cell];  //highlight colour
-    }
-}
+//- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return YES;
+//}
+//
+//- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if(_bIsSearchOn)
+//    {
+//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//        [self setCellColor:[UIColor darkGrayColor] ForCell:cell];  //highlight colour
+//    }
+//}
 
 //- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
 //    // Reset Colour.
