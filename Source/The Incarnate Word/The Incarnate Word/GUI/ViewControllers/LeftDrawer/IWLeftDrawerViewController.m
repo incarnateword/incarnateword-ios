@@ -460,7 +460,7 @@
         {
             if([str isKindOfClass:[NSNull class]] == NO)
             {
-                [strMut appendString:str];
+                [strMut appendString:[str stringByReplacingOccurrencesOfString:@"\n" withString:@" "]];
                 [strMut appendString:@"... "];
             }
         }
