@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ApplicationIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="vtS-Fy-sss" userLabel="ImgAppIcon">
-                    <rect key="frame" x="155" y="75" width="170" height="170"/>
+                    <rect key="frame" x="155" y="155" width="170" height="170"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="170" id="5hc-7a-tcq"/>
                         <constraint firstAttribute="height" constant="170" id="Qno-PV-twW"/>
@@ -22,7 +21,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="vtS-Fy-sss" secondAttribute="centerY" multiplier="3/2" id="Dex-k2-cXN"/>
+                <constraint firstItem="vtS-Fy-sss" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="gpu-x6-7rR"/>
                 <constraint firstAttribute="centerX" secondItem="vtS-Fy-sss" secondAttribute="centerX" id="sPd-h1-v1B"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
