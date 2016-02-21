@@ -17,6 +17,7 @@
 #import "IWInfoViewController.h"
 #import "WebServiceConstants.h"
 #import "IWUserActionManager.h"
+#import <WebKit/WebKit.h>
 
 @interface IWChapterDetailsViewController ()<WebServiceDelegate,UIScrollViewDelegate,InfoViewDelegate,UIWebViewDelegate>
 {
@@ -48,7 +49,9 @@
 @property (weak, nonatomic) IBOutlet UIButton                   *btnShare;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint         *constraintHorizontalSpaceBtnsBackNext;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint         *constraintHorizontalSpaceBtnsInfoShare;
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+//@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIView                     *containerWebVIew;
+@property(strong,nonatomic) WKWebView                           *wkWebView;
 
 - (IBAction)btnPrevChapterPressed:(id)sender;
 - (IBAction)btnNextChapterPressed:(id)sender;
@@ -67,7 +70,31 @@
 {
     [super viewDidLoad];
     
+    [self setupWKWebView];
     [self setupVC];
+}
+
+
+-(void)setupWKWebView
+{
+    _wkWebView = [WKWebView new];
+    [_containerWebVIew addSubview:_wkWebView];
+    
+    
+    _wkWebView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    UIView *subview = _wkWebView;
+    
+    [_containerWebVIew addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[subview]-0-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(subview)]];
+    
+    [_containerWebVIew addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[subview]-0-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(subview)]];
+
 }
 
 - (IBAction)btnPrevChapterPressed:(id)sender
@@ -172,7 +199,9 @@
     
     _btnInfo.titleLabel.font = [UIFont fontWithName:FONT_BODY_ITALIC size:28.0];
     
-    [_webView loadHTMLString:@"" baseURL:nil];
+//    [_webView loadHTMLString:@"" baseURL:nil];
+    
+    [_wkWebView loadHTMLString:@"" baseURL:nil];
     
 //    [self startLoadingAnimation];
 
@@ -200,7 +229,8 @@
     _swiperight.direction=UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:_swiperight];
     
-    _webView.delegate = self;
+//    _webView.delegate = self;
+    
 }
 
 -(void)setBottomBarButtonSpacing
@@ -298,7 +328,9 @@
 -(void)updateUI
 {
     _viewBottom.hidden = NO;
-    _webView.scrollView.decelerationRate = 1.5;//UIScrollViewDecelerationRateFast;
+//    _webView.scrollView.decelerationRate = 1.5;//UIScrollViewDecelerationRateFast;
+    
+    _wkWebView.scrollView.decelerationRate = 1.5;
     
     NSString *navBarTitle = @"";
     
@@ -377,7 +409,9 @@
             NSLog(@"Called loadHTMLString");
     //       NSString *cssPath = [[NSBundle mainBundle] pathForResource:@"chapter" ofType:@"css"];
 
-            [_webView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
+//            [_webView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
+           
+           [_wkWebView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
            
            _detailChapterStructure.strTextParsed = strHtmlString;
             [[IWUserActionManager sharedManager] saveChapter:_detailChapterStructure];
@@ -391,7 +425,10 @@
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
            ^{
-               [_webView loadHTMLString:_offlineDetailChapterStructure.strTextParsed baseURL:[IWUtility getCommonCssBaseURL]];
+//               [_webView loadHTMLString:_offlineDetailChapterStructure.strTextParsed baseURL:[IWUtility getCommonCssBaseURL]];
+               
+               [_wkWebView loadHTMLString:_offlineDetailChapterStructure.strTextParsed baseURL:[IWUtility getCommonCssBaseURL]];
+
                [self performSelectorOnMainThread:@selector(stopLoadingAnimation) withObject:nil waitUntilDone:NO];
                [self performSelectorOnMainThread:@selector(showButtonsBasedOnContent) withObject:nil waitUntilDone:NO];
            });
@@ -409,6 +446,8 @@
     _markdownView.scrollsToTop = YES;
 }
 
+/*
+
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     NSLog(@"webViewDidStartLoad");
@@ -418,7 +457,8 @@
 {
     NSLog(@"webViewDidFinishLoad");
 }
-
+ 
+*/
 -(CGRect)getMarkdownViewRect
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];

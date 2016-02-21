@@ -10,6 +10,7 @@
 #import "NSAttributedStringMarkdownParser.h"
 #import "IWUIConstants.h"
 #import <JavaScriptCore/JavaScriptCore.h>
+#import <WebKit/WebKit.h>
 
 @implementation IWUtility
 

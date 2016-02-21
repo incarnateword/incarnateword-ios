@@ -1133,7 +1133,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
 				INFOPLIST_FILE = "The Incarnate Word/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.incarnateword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1150,7 +1150,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
 				INFOPLIST_FILE = "The Incarnate Word/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.incarnateword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
