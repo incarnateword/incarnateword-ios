@@ -20,10 +20,27 @@
 
 /* Apply to whole html as text is wrapped in body tag */
 
+@font-face
+{
+    font-family: 'MonotypeSabonW04-Regular';
+    src: local('MonotypeSabonW04-Regular'),url('Monotype Sabon Regular c3c75751-9aa7-4a6f-ba60.otf') format('opentype');
+}
+@font-face
+{
+    font-family: 'MonotypeSabonW04-Italic';
+    src: local('MonotypeSabonW04-Italic'),url('Monotype Sabon Italic 37b153ea-bbab-44d7-8332.otf') format('opentype');
+}
+
+@font-face
+{
+    font-family: 'CharlotteSansW02-Book';
+    src: local('CharlotteSansW02-Book'),url('Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf') format('opentype');
+}
+
 body
 {
     font-family: MonotypeSabonW04-Regular;
-    font-size: 18px;
+    font-size: 38px;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -61,42 +78,42 @@ blockquote
 h1
 {
     font-family: CharlotteSansW02-Book;
-    font-size: 28px;
+    font-size: 48px;
     font-weight: normal;
 }
 
 h2
 {
     font-family: CharlotteSansW02-Book;
-    font-size: 25px;
+    font-size: 45px;
     font-weight: normal;
 }
 
 h3
 {
     font-family: CharlotteSansW02-Book;
-    font-size: 22px;
+    font-size: 42px;
     font-weight: normal;
 }
 
 h4
 {
     font-family: CharlotteSansW02-Book;
-    font-size: 19px;
+    font-size: 39px;
     font-weight: normal;
 }
 
 h5
 {
     font-family: CharlotteSansW02-Book;
-    font-size: 16px;
+    font-size: 36px;
     font-weight: normal;
 }
 
 h6
 {
     font-family: CharlotteSansW02-Book;
-    font-size: 14px;
+    font-size: 34px;
     font-weight: normal;
 }
 
