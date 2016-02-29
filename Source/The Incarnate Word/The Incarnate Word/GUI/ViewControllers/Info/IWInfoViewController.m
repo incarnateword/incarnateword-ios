@@ -11,6 +11,8 @@
 #import "IWGUIManager.h"
 #import "BPMarkdownView.h"
 #import "IWUIConstants.h"
+#import <WebKit/WebKit.h>
+
 
 #define MARKDOWNVIEW_HEIGHT 350
 #define MARKDOWNVIEW_SIDE_MARGIN 5
@@ -32,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UIView             *viewAlpha;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintLblDateBottomSpace;
 @property (weak, nonatomic) IBOutlet UIWebView          *webView;
+@property(strong,nonatomic) WKWebView                   *wkWebView;
+
 
 @end
 
@@ -42,8 +46,34 @@
     [super viewDidLoad];
     
     [self setupData];
+    [self setupWKWebView];
     [self setupUI];
     [self setupTapGesture];
+}
+
+-(void)setupWKWebView
+{
+    _wkWebView = [WKWebView new];
+    [_viewForMarkdown addSubview:_wkWebView];
+    
+    
+    _wkWebView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    UIView *subview = _wkWebView;
+    
+    [_viewForMarkdown addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[subview]-0-|"
+                                                                              options:0
+                                                                              metrics:nil
+                                                                                views:NSDictionaryOfVariableBindings(subview)]];
+    
+    [_viewForMarkdown addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[subview]-80-|"
+                                                                              options:0
+                                                                              metrics:nil
+                                                                                views:NSDictionaryOfVariableBindings(subview)]];
+    
+    _wkWebView.scrollView.decelerationRate = 1.5;
+
+    
 }
 
 -(void)setupData
@@ -58,7 +88,8 @@
     _viewForMarkdown.layer.cornerRadius = 3.0;
     [_viewForMarkdown layoutIfNeeded];
     _viewForMarkdown.backgroundColor = [UIColor whiteColor];
-    _webView.backgroundColor = [UIColor whiteColor];
+//    _webView.backgroundColor = [UIColor whiteColor];
+    _wkWebView.backgroundColor = [UIColor whiteColor];
 
     [self setupCloseBtn];
     
@@ -105,7 +136,9 @@
                        NSLog(@"Called loadHTMLString");
                        //       NSString *cssPath = [[NSBundle mainBundle] pathForResource:@"chapter" ofType:@"css"];
                        
-                       [_webView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
+//                       [_webView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
+                       [_wkWebView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
+
                    });
     
     _constraintViewContainerBottom.constant = -_fContainerHeight;

@@ -14,6 +14,8 @@
 #import "IWCompilationStructure.h"
 #import "IWUserActionManager.h"
 #import "IWUIConstants.h"
+#import <WebKit/WebKit.h>
+
 
 @interface IWAboutViewController ()<WebServiceDelegate>
 {
@@ -29,6 +31,8 @@
 @property (weak, nonatomic) IBOutlet UIView                     *viewLoading;
 @property (weak, nonatomic) IBOutlet UIWebView                  *webView;
 @property (weak, nonatomic) IBOutlet UIImageView                *imageView;
+@property (weak, nonatomic) IBOutlet UIView                     *viewMiddle;
+@property(strong,nonatomic) WKWebView                           *wkWebView;
 
 -(void)setupUI;
 -(void)getData;
@@ -42,6 +46,7 @@
 {
     [super viewDidLoad];
     
+    [self setupWKWebView];
     [self setupUI];
     [self getData];
 }
@@ -52,9 +57,35 @@
     self.navigationItem.title = @"Loading...";
     _viewLoading.layer.cornerRadius = 3.0;
     _viewLoading.backgroundColor = COLOR_LOADING_VIEW;
-    _webView.scrollView.decelerationRate = 1.5;//UIScrollViewDecelerationRateFast;
+//    _webView.scrollView.decelerationRate = 1.5;//UIScrollViewDecelerationRateFast;
+    _wkWebView.scrollView.decelerationRate = 1.5;
+
 
     [self startLoadingAnimation];
+}
+
+-(void)setupWKWebView
+{
+    _wkWebView = [WKWebView new];
+    [_viewMiddle addSubview:_wkWebView];
+    
+    
+    _wkWebView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    UIView *subview = _wkWebView;
+    
+    [_viewMiddle addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[subview]-0-|"
+                                                                              options:0
+                                                                              metrics:nil
+                                                                                views:NSDictionaryOfVariableBindings(subview)]];
+    
+    [_viewMiddle addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[subview]-0-|"
+                                                                              options:0
+                                                                              metrics:nil
+                                                                                views:NSDictionaryOfVariableBindings(subview)]];
+    
+
+    
 }
 
 -(void)getData
@@ -96,7 +127,9 @@
        NSMutableString *strFinalString = [[NSMutableString alloc] initWithString:strImageTag];
        NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_aboutDataStructure.strDescription forTypeHeading:NO];
        [strFinalString appendString:strHtmlString];
-       [_webView loadHTMLString:[strFinalString copy] baseURL:[IWUtility getCommonCssBaseURL]];
+//       [_webView loadHTMLString:[strFinalString copy] baseURL:[IWUtility getCommonCssBaseURL]];
+       [_wkWebView loadHTMLString:strFinalString baseURL:[IWUtility getCommonCssBaseURL]];
+
        [self performSelectorOnMainThread:@selector(stopLoadingAnimation) withObject:nil waitUntilDone:NO];
    });
 }

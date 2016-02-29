@@ -13,6 +13,8 @@
 #import "BPMarkdownView.h"
 #import "IWUIConstants.h"
 #import "WebServiceConstants.h"
+#import <WebKit/WebKit.h>
+
 
 
 @interface IWDictionaryMeaningViewController ()<WebServiceDelegate,UIWebViewDelegate>
@@ -27,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView                 *viewToolbar;
 @property (weak, nonatomic) IBOutlet UIButton               *btnShare;
 @property (weak, nonatomic) IBOutlet UIWebView              *webView;
+@property(strong,nonatomic) WKWebView                       *wkWebView;
 
 
 -(void)setupVC;
@@ -50,8 +53,31 @@
 
 -(void)setupVC
 {
+    [self setupWKWebView];
     [self setupUI];
     [self getData];
+}
+
+-(void)setupWKWebView
+{
+    _wkWebView = [WKWebView new];
+    [self.view addSubview:_wkWebView];
+    
+    
+    _wkWebView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    UIView *subview = _wkWebView;
+    
+    [self.view  addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[subview]-0-|"
+                                                                              options:0
+                                                                              metrics:nil
+                                                                                views:NSDictionaryOfVariableBindings(subview)]];
+    
+    [self.view  addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[subview]-44-|"
+                                                                              options:0
+                                                                              metrics:nil
+                                                                                views:NSDictionaryOfVariableBindings(subview)]];
+    
 }
 
 -(void)setupUI
@@ -65,7 +91,8 @@
     _viewToolbar.backgroundColor = COLOR_NAV_BAR;
 
     self.view.backgroundColor = COLOR_VIEW_BG;
-    _webView.scrollView.decelerationRate = 1.5;//UIScrollViewDecelerationRateFast;
+//    _webView.scrollView.decelerationRate = 1.5;//UIScrollViewDecelerationRateFast;
+    _wkWebView.scrollView.decelerationRate = 1.5;//UIScrollViewDecelerationRateFast;
 
     [self startLoadingAnimation];
 }
@@ -116,7 +143,9 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
    ^{
        NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_wordMeaningStructure.strDefinition forTypeHeading:NO];
-       [_webView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
+//       [_webView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
+       [_wkWebView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
+
        [self performSelectorOnMainThread:@selector(stopLoadingAnimation) withObject:nil waitUntilDone:NO];
    });
 }
