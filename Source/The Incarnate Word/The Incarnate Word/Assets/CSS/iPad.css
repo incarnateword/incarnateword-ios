@@ -40,7 +40,7 @@
 body
 {
     font-family: MonotypeSabonW04-Regular;
-    font-size: 44px;
+    font-size: 30px;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -78,42 +78,42 @@ blockquote
 h1
 {
     font-family: CharlotteSansW02-Book;
-    font-size: 60px;
+    font-size: 40px;
     font-weight: normal;
 }
 
 h2
 {
     font-family: CharlotteSansW02-Book;
-    font-size: 56px;
+    font-size: 37px;
     font-weight: normal;
 }
 
 h3
 {
     font-family: CharlotteSansW02-Book;
-    font-size: 52px;
+    font-size: 34px;
     font-weight: normal;
 }
 
 h4
 {
     font-family: CharlotteSansW02-Book;
-    font-size: 48px;
+    font-size: 31px;
     font-weight: normal;
 }
 
 h5
 {
     font-family: CharlotteSansW02-Book;
-    font-size: 44px;
+    font-size: 32px;
     font-weight: normal;
 }
 
 h6
 {
     font-family: CharlotteSansW02-Book;
-    font-size: 40px;
+    font-size: 26px;
     font-weight: normal;
 }
 
