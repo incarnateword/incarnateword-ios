@@ -122,8 +122,8 @@
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
    ^{
-       int width = (int)[[UIScreen mainScreen] bounds].size.width - 20;
-       NSString *strImageTag = [NSString stringWithFormat:@"<img src=\"%@\" width=\"%d\" align=\"middle\">",_strImageName,width];
+       //int width = (int)[[UIScreen mainScreen] bounds].size.width - 20;
+       NSString *strImageTag = [NSString stringWithFormat:@"<img src=\"%@\" width=\"%d%@\" align=\"middle\">",_strImageName,100,@"%"];
        NSMutableString *strFinalString = [[NSMutableString alloc] initWithString:strImageTag];
        NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_aboutDataStructure.strDescription forTypeHeading:NO];
        [strFinalString appendString:strHtmlString];
