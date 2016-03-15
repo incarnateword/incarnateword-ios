@@ -18,6 +18,8 @@
 #import "IWOfflineChapterListViewController.h"
 
 
+#define kUserDefaultKeyOfflineChapterDetailStructure  @"UserDefaultKeyOfflineChapterDetailStructure"
+
 @implementation IWUserActionManager
 
 static IWUserActionManager* userActionManager = nil ;
@@ -131,7 +133,7 @@ static IWUserActionManager* userActionManager = nil ;
 
 -(void)saveChapter:(IWDetailChapterStructure*) detailChapterStructure
 {
-    return;//AppStore
+    //return;//AppStore
     
     NSMutableDictionary *dictTemp = [[NSMutableDictionary alloc] init];
     
@@ -146,19 +148,15 @@ static IWUserActionManager* userActionManager = nil ;
     [dictTemp setObject:data forKey:detailChapterStructure.strUrl];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[dictTemp copy] forKey:@"UserDefaultKeyArrayChapter"];
+    [userDefaults setObject:[dictTemp copy] forKey:kUserDefaultKeyOfflineChapterDetailStructure];
     [userDefaults synchronize];
 }
 
--(NSDictionary*)getOfflineChapters
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return [userDefaults objectForKey:@"UserDefaultKeyArrayChapter"];
-}
+
 
 -(IWDetailChapterStructure*)getOfflineChapterWithUrl:(NSString*)strUrl
 {
-    return nil;//AppStore
+    //return nil;//AppStore
     
     IWDetailChapterStructure *detailChapterStructure = nil;
     NSDictionary *dictExistingList = [self getOfflineChapters];
@@ -172,6 +170,12 @@ static IWUserActionManager* userActionManager = nil ;
     }
     
     return detailChapterStructure;
+}
+
+-(NSDictionary*)getOfflineChapters
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults objectForKey:kUserDefaultKeyOfflineChapterDetailStructure];
 }
 
 
