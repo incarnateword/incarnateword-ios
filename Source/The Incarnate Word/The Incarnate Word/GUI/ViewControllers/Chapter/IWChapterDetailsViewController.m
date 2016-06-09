@@ -107,17 +107,34 @@
     _btnShare.hidden = YES;
     _btnNextChapter.hidden = YES;
 
-    [UIView animateWithDuration:0.5 animations:
+    [self setupVC];
+    
+    UIView *tempUIView=[[UIView alloc]initWithFrame:self.view.bounds];
+    tempUIView.backgroundColor=[UIColor whiteColor];
+    
+    [UIView animateWithDuration:1.0
+                     animations:
      ^{
-//        CGRect rect = [self getMarkdownViewRect];
-//        rect.origin.x = [UIScreen mainScreen].bounds.size.width;
-//        _markdownView.frame = rect;
-    
-    } completion:^(BOOL finished)
-    {
-        [self setupVC];
-    }];
-    
+         CATransition  * animation = [CATransition animation];
+         [animation setDelegate:self];
+         [animation setDuration:1.2f];
+         animation.startProgress =0.0;
+         animation.endProgress   = 1.0;
+         [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
+         [animation setType:@"pageCurl"];
+         [animation setSubtype:@"fromLeft"];
+         [animation setRemovedOnCompletion:YES];
+         [animation setFillMode: @"extended"];
+         [animation setRemovedOnCompletion: YES];
+         [[_wkWebView layer] addAnimation:animation
+                                   forKey:@"pageFlipAnimation"];
+         [_wkWebView addSubview:tempUIView];
+     }
+                     completion:^(BOOL finished)
+     {
+         [tempUIView removeFromSuperview];
+     }
+     ];
 }
 
 - (IBAction)btnNextChapterPressed:(id)sender
@@ -134,16 +151,36 @@
     _btnShare.hidden = YES;
     _btnNextChapter.hidden = YES;
 
-    [UIView animateWithDuration:0.5 animations:^{
-        
-//        CGRect rect = [self getMarkdownViewRect];
-//        rect.origin.x = - [UIScreen mainScreen].bounds.size.width;
-//        _markdownView.frame = rect;
-        
-    } completion:^(BOOL finished)
-     {
-         [self setupVC];
-     }];
+
+    [self setupVC];
+    
+    
+    UIView *tempUIView=[[UIView alloc]initWithFrame:self.view.bounds];
+    tempUIView.backgroundColor=[UIColor whiteColor];
+    
+    [UIView animateWithDuration:1.0
+                     animations:
+                                ^{
+                                     CATransition  * animation = [CATransition animation];
+                                     [animation setDelegate:self];
+                                     [animation setDuration:1.2f];
+                                     animation.startProgress =0.0;
+                                     animation.endProgress   = 1.0;
+                                     [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
+                                     [animation setType:@"pageCurl"];
+                                     [animation setSubtype:@"fromRight"];
+                                     [animation setRemovedOnCompletion:YES];
+                                     [animation setFillMode: @"extended"];
+                                     [animation setRemovedOnCompletion: YES];
+                                     [[_wkWebView layer] addAnimation:animation
+                                                                        forKey:@"pageFlipAnimation"];
+                                     [_wkWebView addSubview:tempUIView];
+                                }
+                                completion:^(BOOL finished)
+                                {
+                                    [tempUIView removeFromSuperview];
+                                }
+     ];
 }
 
 - (IBAction)btnSharePressed:(id)sender
