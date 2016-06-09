@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -25,14 +25,14 @@
                                 <rect key="frame" x="0.0" y="1024" width="768" height="250"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbD-Fh-YCY" userLabel="ViewForMarkdown">
-                                        <rect key="frame" x="5" y="0.0" width="590" height="200"/>
+                                        <rect key="frame" x="10" y="0.0" width="580" height="180"/>
                                         <subviews>
                                             <webView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I5C-gU-6bB" userLabel="WebView">
-                                                <rect key="frame" x="0.0" y="0.0" width="590" height="120"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="580" height="100"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </webView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHa-Mo-mQR" userLabel="lbl">
-                                                <rect key="frame" x="0.0" y="170" width="590" height="30"/>
+                                                <rect key="frame" x="0.0" y="150" width="580" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="3Ym-Fc-3vj" userLabel="lbl_Height"/>
@@ -54,14 +54,13 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axv-Jp-YGE" userLabel="BtnClose">
-                                        <rect key="frame" x="5" y="205" width="590" height="40"/>
+                                        <rect key="frame" x="10" y="190" width="580" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="eq8-Ov-AVI" userLabel="BtnClose_Height"/>
+                                            <constraint firstAttribute="height" constant="50" id="eq8-Ov-AVI" userLabel="BtnClose_Height"/>
                                         </constraints>
                                         <state key="normal" title="Close">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="btnCloseClicked:" destination="hdx-RV-PaD" eventType="touchUpInside" id="adm-gu-Jye"/>
@@ -70,14 +69,14 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="axv-Jp-YGE" secondAttribute="trailing" constant="5" id="8HI-xV-ThP" userLabel="BtnClose_Trailing"/>
-                                    <constraint firstAttribute="bottom" secondItem="axv-Jp-YGE" secondAttribute="bottom" constant="5" id="B7I-tS-uM7" userLabel="BtnClose_Bottom"/>
+                                    <constraint firstAttribute="trailing" secondItem="axv-Jp-YGE" secondAttribute="trailing" constant="10" id="8HI-xV-ThP" userLabel="BtnClose_Trailing"/>
+                                    <constraint firstAttribute="bottom" secondItem="axv-Jp-YGE" secondAttribute="bottom" constant="10" id="B7I-tS-uM7" userLabel="BtnClose_Bottom"/>
                                     <constraint firstItem="gbD-Fh-YCY" firstAttribute="top" secondItem="fRM-9K-9kd" secondAttribute="top" id="BRf-rt-uyT" userLabel="ViewForMarkdown_Top"/>
-                                    <constraint firstItem="axv-Jp-YGE" firstAttribute="top" secondItem="gbD-Fh-YCY" secondAttribute="bottom" constant="5" id="EKQ-DI-QtD" userLabel="VerticalSpace_ViewForMarkdown_BtnClose"/>
-                                    <constraint firstItem="axv-Jp-YGE" firstAttribute="leading" secondItem="fRM-9K-9kd" secondAttribute="leading" constant="5" id="IBe-Pd-0vB" userLabel="BtnClose_Leading"/>
-                                    <constraint firstItem="gbD-Fh-YCY" firstAttribute="leading" secondItem="fRM-9K-9kd" secondAttribute="leading" constant="5" id="OqK-jZ-dRM" userLabel="ViewForMarkdown_Leading"/>
+                                    <constraint firstItem="axv-Jp-YGE" firstAttribute="top" secondItem="gbD-Fh-YCY" secondAttribute="bottom" constant="10" id="EKQ-DI-QtD" userLabel="VerticalSpace_ViewForMarkdown_BtnClose"/>
+                                    <constraint firstItem="axv-Jp-YGE" firstAttribute="leading" secondItem="fRM-9K-9kd" secondAttribute="leading" constant="10" id="IBe-Pd-0vB" userLabel="BtnClose_Leading"/>
+                                    <constraint firstItem="gbD-Fh-YCY" firstAttribute="leading" secondItem="fRM-9K-9kd" secondAttribute="leading" constant="10" id="OqK-jZ-dRM" userLabel="ViewForMarkdown_Leading"/>
                                     <constraint firstAttribute="height" constant="250" id="R1J-q4-Yeu" userLabel="ViewContainer_Height"/>
-                                    <constraint firstAttribute="trailing" secondItem="gbD-Fh-YCY" secondAttribute="trailing" constant="5" id="exK-FY-hE3" userLabel="ViewForMarkdown_Trailing"/>
+                                    <constraint firstAttribute="trailing" secondItem="gbD-Fh-YCY" secondAttribute="trailing" constant="10" id="exK-FY-hE3" userLabel="ViewForMarkdown_Trailing"/>
                                 </constraints>
                             </view>
                         </subviews>

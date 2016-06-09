@@ -14,10 +14,8 @@
 #import <WebKit/WebKit.h>
 
 
-#define MARKDOWNVIEW_HEIGHT 350
-#define MARKDOWNVIEW_SIDE_MARGIN 5
-#define MARKDOWNVIEW_BOTTOM_MARGIN 45
-
+#define DURATION_ANIMATION  0.25
+#define CORNER_RADIUS       10.0
 
 @interface IWInfoViewController ()<UIGestureRecognizerDelegate>
 {
@@ -45,13 +43,18 @@
 {
     [super viewDidLoad];
     
-    [self setupData];
-    [self setupWKWebView];
+    [self setupHeight];
+    [self addWKWebView];
     [self setupUI];
     [self setupTapGesture];
 }
 
--(void)setupWKWebView
+-(void)setupHeight
+{
+    _fContainerHeight = _constraintViewContainerHeight.constant;
+}
+
+-(void)addWKWebView
 {
     _wkWebView = [WKWebView new];
     [_viewForMarkdown addSubview:_wkWebView];
@@ -61,37 +64,41 @@
     
     UIView *subview = _wkWebView;
     
-    [_viewForMarkdown addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[subview]-0-|"
+    [_viewForMarkdown addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[subview]-10-|"
                                                                               options:0
                                                                               metrics:nil
                                                                                 views:NSDictionaryOfVariableBindings(subview)]];
     
-    [_viewForMarkdown addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[subview]-80-|"
+    [_viewForMarkdown addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[subview]-80-|"
                                                                               options:0
                                                                               metrics:nil
                                                                                 views:NSDictionaryOfVariableBindings(subview)]];
     
-    _wkWebView.scrollView.decelerationRate = 1.5;
-
-    
+    _wkWebView.scrollView.decelerationRate = SCROLL_DECELERATION_RATE;
 }
 
--(void)setupData
-{
-    _fContainerHeight = _constraintViewContainerHeight.constant;
-}
+
 
 -(void)setupUI
 {
-    _lblDate.text = _strDate;
-    _lblDate.font = [UIFont fontWithName:FONT_TITLE_REGULAR size:[UIFont systemFontSize] + 4.0];
-    _viewForMarkdown.layer.cornerRadius = 3.0;
+    //Set Date
+    _lblDate.text   = _strDate;
+    _lblDate.font   = [UIFont fontWithName:FONT_TITLE_REGULAR size:[UIFont systemFontSize] + 4.0];
+    
+    //Configure Container
+    _viewForMarkdown.layer.cornerRadius = CORNER_RADIUS;
     [_viewForMarkdown layoutIfNeeded];
     _viewForMarkdown.backgroundColor = [UIColor whiteColor];
-//    _webView.backgroundColor = [UIColor whiteColor];
+    
+    //WKWebView
     _wkWebView.backgroundColor = [UIColor whiteColor];
-
-    [self setupCloseBtn];
+    _wkWebView.alpha = 0.0;
+    
+    //Close Button
+    _btnClose.layer.cornerRadius = CORNER_RADIUS;
+    [_btnClose layoutIfNeeded];
+    _btnClose.backgroundColor = [UIColor whiteColor];
+    [_btnClose.titleLabel setFont:[UIFont fontWithName:FONT_TITLE_REGULAR size:[UIFont systemFontSize] + 4.0]];
     
     if([IWUtility isNilOrEmptyString:_strText] == NO)
     {
@@ -101,10 +108,10 @@
     {
         _constraintViewContainerHeight.constant = 120;
         _fContainerHeight = _constraintViewContainerHeight.constant;
-        _constraintLblDateBottomSpace.constant = 20;
+        _constraintLblDateBottomSpace.constant = 10;
         
         
-        [UIView animateWithDuration:0.4 animations:
+        [UIView animateWithDuration:DURATION_ANIMATION animations:
          ^{
              _constraintViewContainerBottom.constant = 0;
              [_viewContainer layoutIfNeeded];
@@ -113,47 +120,41 @@
                          completion:
          ^(BOOL finished)
          {
+             _wkWebView.alpha = 1.0;
          }];
 
     }
 }
 
--(void)setupCloseBtn
-{
-    _btnClose.layer.cornerRadius = 3.0;
-    [_btnClose layoutIfNeeded];
 
-    _btnClose.backgroundColor = COLOR_NAV_BAR;
-    [_btnClose.titleLabel setFont:[UIFont fontWithName:FONT_TITLE_REGULAR size:[UIFont systemFontSize] + 4.0]];
-}
 
 -(void)addMarkdownView
 {
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
-                   ^{
-                       NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_strText forTypeHeading:YES];
-                       NSLog(@"Called loadHTMLString");
-                       //       NSString *cssPath = [[NSBundle mainBundle] pathForResource:@"chapter" ofType:@"css"];
-                       
-//                       [_webView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
-                       [_wkWebView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
 
-                   });
+   NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_strText forTypeHeading:YES];
+   NSLog(@"Called loadHTMLString");
+   [_wkWebView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
     
     _constraintViewContainerBottom.constant = -_fContainerHeight;
     
-    
-    [UIView animateWithDuration:0.4 animations:
-     ^{
-         _constraintViewContainerBottom.constant = 0;
-         [_viewContainer layoutIfNeeded];
-         _viewAlpha.alpha = 0.5;
-     }
-    completion:
-     ^(BOOL finished)
-    {
-    }];
+    [UIView animateWithDuration:DURATION_ANIMATION
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseOut//Out - Slow at end
+                     animations:
+                                ^{
+                                    _constraintViewContainerBottom.constant = 0;
+                                    [_viewContainer layoutIfNeeded];
+                                    _viewAlpha.alpha = 0.5;
+                                }
+                                completion:^(BOOL finished)
+                                {
+                                    [UIView animateWithDuration:0.4 animations:
+                                     ^{
+                                         _wkWebView.alpha = 1.0;
+                                     }];
+                                 }
+     ];
 }
 
 
@@ -194,17 +195,21 @@
     {
         [_delegateInfoView infoViewRemoved];
     }
-
-    [UIView animateWithDuration:0.4 animations:
-     ^{
-         _constraintViewContainerBottom.constant = -_fContainerHeight;
-         _viewAlpha.alpha = 0.0;
-         [_viewContainer layoutIfNeeded];
-     }
-    completion:^(BOOL finished)
-     {
-         [self.view removeFromSuperview];
-     }];
+    
+    [UIView animateWithDuration:DURATION_ANIMATION
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseOut//Out - Slow at end
+                     animations:
+                                 ^{
+                                     _constraintViewContainerBottom.constant = -_fContainerHeight;
+                                     _viewAlpha.alpha = 0.0;
+                                     [_viewContainer layoutIfNeeded];
+                                 }
+                                completion:^(BOOL finished)
+                                 {
+                                     [self.view removeFromSuperview];
+                                 }
+     ];
 }
 
 @end
