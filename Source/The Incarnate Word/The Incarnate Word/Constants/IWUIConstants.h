@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 Revealing Hour Creations. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
+
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 
@@ -33,6 +36,7 @@
 /*******************************/
 
 
+#define SCROLL_DECELERATION_RATE UIScrollViewDecelerationRateFast
 
 
 /******* Storyboard view id *******/

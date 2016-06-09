@@ -58,7 +58,7 @@
     _viewLoading.layer.cornerRadius = 3.0;
     _viewLoading.backgroundColor = COLOR_LOADING_VIEW;
 //    _webView.scrollView.decelerationRate = 1.5;//UIScrollViewDecelerationRateFast;
-    _wkWebView.scrollView.decelerationRate = 1.5;
+    _wkWebView.scrollView.decelerationRate = SCROLL_DECELERATION_RATE;
 
 
     [self startLoadingAnimation];

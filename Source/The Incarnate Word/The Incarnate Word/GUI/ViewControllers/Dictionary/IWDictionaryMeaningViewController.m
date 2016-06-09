@@ -92,7 +92,7 @@
 
     self.view.backgroundColor = COLOR_VIEW_BG;
 //    _webView.scrollView.decelerationRate = 1.5;//UIScrollViewDecelerationRateFast;
-    _wkWebView.scrollView.decelerationRate = 1.5;//UIScrollViewDecelerationRateFast;
+    _wkWebView.scrollView.decelerationRate = SCROLL_DECELERATION_RATE;//UIScrollViewDecelerationRateFast;
 
     [self startLoadingAnimation];
 }

@@ -330,7 +330,7 @@
     _viewBottom.hidden = NO;
 //    _webView.scrollView.decelerationRate = 1.5;//UIScrollViewDecelerationRateFast;
     
-    _wkWebView.scrollView.decelerationRate = 1.5;
+    _wkWebView.scrollView.decelerationRate = SCROLL_DECELERATION_RATE;
     
     NSString *navBarTitle = @"";
     
