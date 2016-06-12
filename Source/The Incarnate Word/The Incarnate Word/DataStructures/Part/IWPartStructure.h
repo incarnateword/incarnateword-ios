@@ -38,4 +38,6 @@
 @property(readwrite) NSArray    *arrChapters;
 @property(readwrite) NSArray    *arrSections;
 
+-(NSArray *)getChaptersAndItemsFromPartArray;
+
 @end

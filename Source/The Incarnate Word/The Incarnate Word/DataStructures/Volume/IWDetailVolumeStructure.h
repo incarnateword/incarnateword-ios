@@ -80,13 +80,14 @@
  
  */
 
-@property(readwrite) NSString   *strIndex;// "vol": 1
-@property(readwrite) NSString   *strTitle;//"alt": "Bande Mataram",
-@property(readwrite) NSString   *strCompilationName;// "cmpn": "Sri Aurobindo Birth Centenary Library",
-@property(readwrite) NSString   *strSubTitle;//"subt": "Early Political Writings - 1 (1890-May 1908)",
-@property(readwrite) NSArray    *arrBooks;
-@property(readwrite) NSArray    *arrParts;
-@property(readwrite) NSArray    *arrChapters;
-@property(readwrite) NSString   *strUrlNextVolume;
-@property(readwrite) NSString   *strUrlPrevVolume;
+@property(nonatomic) NSString   *strIndex;// "vol": 1
+@property(nonatomic) NSString   *strTitle;//"alt": "Bande Mataram",
+@property(nonatomic) NSString   *strCompilationName;// "cmpn": "Sri Aurobindo Birth Centenary Library",
+@property(nonatomic) NSString   *strSubTitle;//"subt": "Early Political Writings - 1 (1890-May 1908)",
+@property(nonatomic) NSArray    *arrBooks;
+@property(nonatomic) NSArray    *arrParts;
+@property(nonatomic) NSArray    *arrChapters;
+@property(nonatomic) NSString   *strUrlNextVolume;
+@property(nonatomic) NSString   *strUrlPrevVolume;
+@property(nonatomic) NSString   *strUrlCurrentVolume;
 @end

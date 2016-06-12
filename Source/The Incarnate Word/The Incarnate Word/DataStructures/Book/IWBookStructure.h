@@ -14,4 +14,7 @@
 @property(readwrite) NSArray    *arrChapters;
 @property(readwrite) NSArray    *arrParts;
 
+
+-(NSArray *)getChaptersAndItemsFromBookArray;
+
 @end
