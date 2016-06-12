@@ -258,13 +258,13 @@
     if(_detailVolumeStructure.arrBooks && _detailVolumeStructure.arrBooks)//Volume has books
     {
         IWBookStructure *book = [_detailVolumeStructure.arrBooks objectAtIndex:section];
-        NSArray *arrChapAndItem = [self getChaptersAndItemsFromBookArray:book];
+        NSArray *arrChapAndItem = [book getChaptersAndItemsFromBookArray];
         rowCount = arrChapAndItem.count;
     }
     else if(_detailVolumeStructure.arrParts && _detailVolumeStructure.arrParts > 0)//Volume has parts
     {
         IWPartStructure *part = [_detailVolumeStructure.arrParts objectAtIndex:section];
-        NSArray *arrChapAndItem = [self getChaptersAndItemsFromPartArray:part];
+        NSArray *arrChapAndItem = [part getChaptersAndItemsFromPartArray];
         rowCount = arrChapAndItem.count;
     }
     else if(_detailVolumeStructure.arrChapters && _detailVolumeStructure.arrChapters > 0)//Volume has direct chapters
@@ -283,13 +283,13 @@
     if(_detailVolumeStructure.arrBooks && _detailVolumeStructure.arrBooks)//Volume has books
     {
         IWBookStructure *book = [_detailVolumeStructure.arrBooks objectAtIndex:indexPath.section];
-        NSArray *arrChapAndItem = [self getChaptersAndItemsFromBookArray:book];
+        NSArray *arrChapAndItem = [book getChaptersAndItemsFromBookArray];
         chapOrItem = [arrChapAndItem objectAtIndex:indexPath.row];
     }
     else if(_detailVolumeStructure.arrParts && _detailVolumeStructure.arrParts > 0)//Volume has parts
     {
         IWPartStructure *part = [_detailVolumeStructure.arrParts objectAtIndex:indexPath.section];
-        NSArray *arrChapAndItem = [self getChaptersAndItemsFromPartArray:part];
+        NSArray *arrChapAndItem = [part getChaptersAndItemsFromPartArray];
         chapOrItem = [arrChapAndItem objectAtIndex:indexPath.row];
     }
     else if(_detailVolumeStructure.arrChapters && _detailVolumeStructure.arrChapters > 0)//Volume has direct chapters
@@ -357,80 +357,8 @@
     return cell;
 }
 
--(NSArray *)getChaptersAndItemsFromBookArray:(IWBookStructure *) book
-{
-    NSMutableArray *arrFinal = [[NSMutableArray alloc] init];
-    
-    if(book.arrParts && book.arrParts > 0)//Book has parts
-    {
-        for(IWPartStructure *part in book.arrParts)
-        {
-            //If volume has book then add dummy part as Book will be sections and not part
-            IWPartStructure *dummyPart = [[IWPartStructure alloc] init];
-            dummyPart.strTitle = part.strTitle;
-            [arrFinal addObject:dummyPart];
-            
-            NSArray *arrPartContent =  [self getChaptersAndItemsFromPartArray:part];
-            [arrFinal addObjectsFromArray:arrPartContent];
-        }
-    }
-    else//Book has direct chapters
-    {
-        if(book.arrChapters && book.arrChapters > 0)
-        {
-            NSArray *arrChapContent = [self getChaptersAndItemsFromChapterArray:book.arrChapters];
-            [arrFinal addObjectsFromArray:arrChapContent];
-        }
-    }
-    
-    return [arrFinal copy];
-}
 
--(NSArray *)getChaptersAndItemsFromPartArray:(IWPartStructure*) part
-{
-    NSMutableArray *arrFinal = [[NSMutableArray alloc] init];
-    
-    if(part.arrSections && part.arrSections > 0)
-    {
-        for(IWSectionStructure * section in part.arrSections)
-        {
-            //1. Add dummy SECTION
-            IWSectionStructure *dummySection = [[IWSectionStructure alloc] init];
-            dummySection.strTitle = section.strTitle;
-            [arrFinal addObject:dummySection];
-            
-            //2. Check subsection
-            if(section.arrSubSections && section.arrSubSections > 0)
-            {
-                for (IWSubSectionStructrue *subSection in section.arrSubSections)
-                {
-                    //2A. Add dummy SUB_SECTION
-                    IWSubSectionStructrue *dummySubSection = [[IWSubSectionStructrue alloc] init];
-                    dummySubSection.strTitle = subSection.strTitle;
-                    [arrFinal addObject:dummySubSection];
-                    
-                    //2B. Add CHAPTERS from subsections
-                    NSArray *arrChap = [self getChaptersAndItemsFromChapterArray:subSection.arrChapters];
-                    [arrFinal addObjectsFromArray:arrChap];
-                }
-            }
-            //3. Check chapters
-            else if(section.arrChapters && section.arrChapters > 0)
-            {
-                //3A. Add CHAPTERS
-                NSArray *arrChap = [self getChaptersAndItemsFromChapterArray:section.arrChapters];
-                [arrFinal addObjectsFromArray:arrChap];
-            }
-        }
-    }
-    else if(part.arrChapters && part.arrChapters > 0)
-    {
-        NSArray *arrChap = [self getChaptersAndItemsFromChapterArray:part.arrChapters];
-        [arrFinal addObjectsFromArray:arrChap];
-    }
-    
-    return [arrFinal copy];
-}
+
 
 -(NSArray *)getChaptersAndItemsFromChapterArray:(NSArray*) arrChapters
 {
@@ -484,13 +412,13 @@
     if(_detailVolumeStructure.arrBooks && _detailVolumeStructure.arrBooks > 0)
     {
         IWBookStructure *book = [_detailVolumeStructure.arrBooks objectAtIndex:indexPath.section];
-        NSArray *arrChapAndItem = [self getChaptersAndItemsFromBookArray:book];
+        NSArray *arrChapAndItem = [book getChaptersAndItemsFromBookArray];
         chapOrItem = [arrChapAndItem objectAtIndex:indexPath.row];
     }
     else if(_detailVolumeStructure.arrParts && _detailVolumeStructure.arrParts > 0)
     {
         IWPartStructure *part = [_detailVolumeStructure.arrParts objectAtIndex:indexPath.section];
-        NSArray *arrChapAndItem = [self getChaptersAndItemsFromPartArray:part];
+        NSArray *arrChapAndItem = [part getChaptersAndItemsFromPartArray];
         chapOrItem = [arrChapAndItem objectAtIndex:indexPath.row];
     }
     else if(_detailVolumeStructure.arrChapters && _detailVolumeStructure.arrChapters > 0)
@@ -550,13 +478,13 @@
     if(_detailVolumeStructure.arrBooks && _detailVolumeStructure.arrBooks > 0)//Volumes has books
     {
         IWBookStructure *book = [_detailVolumeStructure.arrBooks objectAtIndex:indexPath.section];
-        NSArray *arrChapAndItem = [self getChaptersAndItemsFromBookArray:book];
+        NSArray *arrChapAndItem = [book getChaptersAndItemsFromBookArray];
         chapOrItem = [arrChapAndItem objectAtIndex:indexPath.row];
     }
     else if(_detailVolumeStructure.arrParts && _detailVolumeStructure.arrParts > 0)//Volume has parts
     {
         IWPartStructure *part = [_detailVolumeStructure.arrParts objectAtIndex:indexPath.section];
-        NSArray *arrChapAndItem = [self getChaptersAndItemsFromPartArray:part];
+        NSArray *arrChapAndItem = [part getChaptersAndItemsFromPartArray];
         chapOrItem = [arrChapAndItem objectAtIndex:indexPath.row];
     }
     else if(_detailVolumeStructure.arrChapters && _detailVolumeStructure.arrChapters > 0)//Volume has direct chapters
