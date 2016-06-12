@@ -544,6 +544,8 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
+    [[IWUserActionManager sharedManager] resetCurrentCompilation];
+    
     if(_bIsSearchOn)
     {
         if([_searchBar isFirstResponder])
@@ -555,8 +557,6 @@
         
         IWSearchItemStructure *searchItem = [_arrSearchResult objectAtIndex:indexPath.row];
         [[IWUserActionManager sharedManager] showChapterWithPath:searchItem.strChapterUrl andItemIndex:0];
-        
-        
     }
     else
     {
@@ -575,11 +575,11 @@
             }
             else if(indexPath.row == 1)
             {
-                [[IWUserActionManager sharedManager] showCompilationWithPath:@"sabcl" andForceOnRoot:YES];
+                [[IWUserActionManager sharedManager] showFirstChapterForCompilationWithPath:@"sabcl"];
             }
             else if(indexPath.row == 2)
             {
-                [[IWUserActionManager sharedManager] showCompilationWithPath:@"cwsa" andForceOnRoot:YES];
+                [[IWUserActionManager sharedManager] showFirstChapterForCompilationWithPath:@"cwsa"];
             }
         }
         else if(indexPath.section == 2)
@@ -590,11 +590,11 @@
             }
             else if(indexPath.row == 1)
             {
-                [[IWUserActionManager sharedManager] showCompilationWithPath:@"cwm" andForceOnRoot:YES];
+                [[IWUserActionManager sharedManager] showFirstChapterForCompilationWithPath:@"cwm"];
             }
             else if(indexPath.row == 2)
             {
-                [[IWUserActionManager sharedManager] showCompilationWithPath:@"agenda" andForceOnRoot:YES];
+                [[IWUserActionManager sharedManager] showFirstChapterForCompilationWithPath:@"agenda"];
             }
         }
         else if(indexPath.section == 3)

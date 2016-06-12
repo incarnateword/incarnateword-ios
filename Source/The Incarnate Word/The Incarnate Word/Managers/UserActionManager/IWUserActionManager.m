@@ -16,9 +16,34 @@
 #import "IWDictionaryViewController.h"
 #import "IWDictionaryMeaningViewController.h"
 #import "IWOfflineChapterListViewController.h"
+#import "IWCompilationWebService.h"
+#import "IWUtility.h"
+#import "IWCompilationStructure.h"
+#import "IWVolumeStructure.h"
+#import "IWVolumeWebService.h"
+#import "IWDetailVolumeStructure.h"
+
+#import "IWSectionStructure.h"
+#import "IWSubSectionStructrue.h"
+#import "IWPartStructure.h"
+#import "IWSegmentStructure.h"
+#import "IWBookStructure.h"
+#import "IWChapterStructure.h"
+#import "IWChaterItemStructure.h"
 
 
 #define kUserDefaultKeyOfflineChapterDetailStructure  @"UserDefaultKeyOfflineChapterDetailStructure"
+
+@interface IWUserActionManager()<WebServiceDelegate>
+{
+    IWCompilationWebService             *_compilationWebService;
+    IWVolumeWebService                  *_volumeWebService;
+    NSString *_strVolumePath;
+}
+
+@property(nonatomic)    NSString *strCurrentCompilation;
+
+@end
 
 @implementation IWUserActionManager
 
@@ -51,6 +76,11 @@ static IWUserActionManager* userActionManager = nil ;
     return userActionManager ;
 }
 
+-(void)resetCurrentCompilation
+{
+    _strCurrentCompilation = nil;
+}
+
 -(void)showCompilationWithPath:(NSString *) strPath
                 andForceOnRoot:(BOOL)bShouldForceOnRoot
 {
@@ -58,6 +88,159 @@ static IWUserActionManager* userActionManager = nil ;
     IWCompilationViewController *compilationViewController = [sbCompilation instantiateViewControllerWithIdentifier:S_COMP_COMPILATION_VC];
     compilationViewController.strCompilationPath = strPath;
     [[IWGUIManager sharedManager] rootViewPushViewController:compilationViewController forceOnRoot:bShouldForceOnRoot animated:YES];
+}
+
+-(void)showCompilationForChapter
+{
+    [self showCompilationWithPath:_strCurrentCompilation andForceOnRoot:NO];
+}
+
+
+-(void)showFirstChapterForCompilationWithPath:(NSString *) strPath
+{
+    _strCurrentCompilation = strPath;
+    [self getCompilationData];
+}
+
+
+-(void)getCompilationData
+{
+    _compilationWebService = [[IWCompilationWebService alloc] initWithPath:_strCurrentCompilation AndDelegate:self];
+    [_compilationWebService sendAsyncRequest];
+}
+
+
+-(void)getVolumeData:(NSString *) strVolumePath
+{
+    _strVolumePath = strVolumePath;
+    _volumeWebService = [[IWVolumeWebService alloc] initWithPath:strVolumePath AndDelegate:self];
+    [_volumeWebService sendAsyncRequest];
+}
+
+#pragma mark - Webservice Callbacks
+
+-(void)requestSucceed:(BaseWebService*)webService response:(id)responseModel
+{
+    
+    if(webService == _compilationWebService)
+    {
+        NSLog(@"CompilationWebService Success.");
+        IWCompilationStructure *compilation = (IWCompilationStructure*)responseModel;
+        IWVolumeStructure *volume = [compilation.arrVolumes objectAtIndex:0];
+        [self getVolumeData:volume.strUrl];
+    }
+    else if(webService == _volumeWebService)
+    {
+        NSLog(@"VolumeWebService Success.");
+        IWDetailVolumeStructure *detailVolumeStructure = (IWDetailVolumeStructure*)responseModel;
+        [self showFirstChapterForVolume:detailVolumeStructure];
+    }
+}
+
+-(void)requestFailed:(BaseWebService*)webService error:(WSError*)error
+{
+    if(webService == _compilationWebService)
+    {
+        NSLog(@"CompilationWebService Failed.");
+    }
+    else if(webService == _volumeWebService)
+    {
+        NSLog(@"VolumeWebService Failed.");
+    }
+
+    [IWUtility showWebserviceFailedAlert];
+}
+
+
+
+-(void)showFirstChapterForVolume:(IWDetailVolumeStructure*) detailVolumeStructure
+{
+    id chapOrItem;
+    
+    if(detailVolumeStructure.arrBooks && detailVolumeStructure.arrBooks > 0)//Volumes has books
+    {
+        IWBookStructure *book = [detailVolumeStructure.arrBooks objectAtIndex:0];
+        NSArray *arrChapAndItem = [book getChaptersAndItemsFromBookArray];
+        chapOrItem = [arrChapAndItem objectAtIndex:0];
+    }
+    else if(detailVolumeStructure.arrParts && detailVolumeStructure.arrParts > 0)//Volume has parts
+    {
+        IWPartStructure *part = [detailVolumeStructure.arrParts objectAtIndex:0];
+        NSArray *arrChapAndItem = [part getChaptersAndItemsFromPartArray];
+        chapOrItem = [arrChapAndItem objectAtIndex:0];
+    }
+    else if(detailVolumeStructure.arrChapters && detailVolumeStructure.arrChapters > 0)//Volume has direct chapters
+    {
+        chapOrItem = [self getChaptersAndItemsFromChapterArray:detailVolumeStructure.arrChapters];
+    }
+    
+    NSString *strUrl = nil;
+    int iItemIndex = 0;
+    
+    if([chapOrItem isKindOfClass:[IWSectionStructure class]] ||
+       [chapOrItem isKindOfClass:[IWSubSectionStructrue class]]||
+       [chapOrItem isKindOfClass:[IWPartStructure class]] ||
+       [chapOrItem isKindOfClass:[IWSegmentStructure class]] )
+    {
+        //Do nothing
+    }
+    if([chapOrItem isKindOfClass:[IWChapterStructure class]])
+    {
+        IWChapterStructure *chapter = (IWChapterStructure*)chapOrItem;
+        strUrl = chapter.strUrl;
+    }
+    else if([chapOrItem isKindOfClass:[IWChaterItemStructure class]])
+    {
+        IWChaterItemStructure *chapterItem = (IWChaterItemStructure*)chapOrItem;
+        strUrl = chapterItem.strUrlParentChapter;
+        iItemIndex = chapterItem.iItemIndex;
+    }
+    
+    if(strUrl)
+    {
+        [[IWUserActionManager sharedManager] showChapterWithPath:[NSString stringWithFormat:@"%@/%@",_strVolumePath,strUrl]
+                                                    andItemIndex:iItemIndex];
+    }
+}
+
+-(NSArray *)getChaptersAndItemsFromChapterArray:(NSArray*) arrChapters
+{
+    NSMutableArray *arrChapAndItems = [[NSMutableArray alloc] init];
+    
+    for(IWChapterStructure *chap in arrChapters)
+    {
+        [arrChapAndItems addObject:chap];
+        
+        /* Hide chapter segments and items as clicking on them will not take to that location in chapter
+         
+         if(chap.arrChapterSegments && chap.arrChapterSegments.count > 0)
+         {
+         for (IWSegmentStructure *segment in chap.arrChapterSegments)
+         {
+         IWSegmentStructure *dummySegment = [[IWSegmentStructure alloc] init];
+         dummySegment.strTitle = segment.strTitle;
+         dummySegment.strUrl =  segment.strUrl;
+         
+         [arrChapAndItems addObject:dummySegment];
+         
+         for(IWChaterItemStructure *chapItem in segment.arrItems)
+         {
+         [arrChapAndItems addObject:chapItem];
+         }
+         }
+         }
+         else if(chap.arrChapterItems && chap.arrChapterItems.count > 0)
+         {
+         for(IWChaterItemStructure *chapItem in chap.arrChapterItems)
+         {
+         [arrChapAndItems addObject:chapItem];
+         }
+         }
+         
+         */
+    }
+    
+    return [arrChapAndItems copy];
 }
 
 -(void)showVolumeWithPath:(NSString *) strPath
@@ -74,7 +257,7 @@ static IWUserActionManager* userActionManager = nil ;
     IWChapterDetailsViewController *chapterViewController = [sbChapter instantiateViewControllerWithIdentifier:S_CHAP_CHAPTER_DETAILS_VC];
     chapterViewController.strChapterPath = strPath;
     chapterViewController.iItemIndex = iItemIndex;
-    [[IWGUIManager sharedManager] rootViewPushViewController:chapterViewController forceOnRoot:NO animated:YES];
+    [[IWGUIManager sharedManager] rootViewPushViewController:chapterViewController forceOnRoot:YES animated:YES];
 }
 
 -(void)showChapterWithChapterStructure:(IWDetailChapterStructure*) detailChapterStructure;

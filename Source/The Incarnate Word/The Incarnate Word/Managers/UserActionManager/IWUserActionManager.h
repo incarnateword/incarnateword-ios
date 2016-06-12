@@ -11,11 +11,17 @@
 
 @interface IWUserActionManager : NSObject
 
+
 +(IWUserActionManager*)sharedManager;
 
 
 -(void)showCompilationWithPath:(NSString *) strPath
                 andForceOnRoot:(BOOL)bShouldForceOnRoot;
+
+-(void)showCompilationForChapter;
+
+-(void)showFirstChapterForCompilationWithPath:(NSString *) strPath;
+
 
 -(void)showVolumeWithPath:(NSString *) strPath;
 -(void)showChapterWithPath:(NSString *) strPath andItemIndex:(int) iItemIndex;
@@ -32,5 +38,8 @@
 -(void)saveChapter:(IWDetailChapterStructure*) detailChapterStructure;
 -(IWDetailChapterStructure*)getOfflineChapterWithUrl:(NSString*)strUrl;
 -(NSDictionary*)getOfflineChapters;
+
+
+-(void)resetCurrentCompilation;
 
 @end
