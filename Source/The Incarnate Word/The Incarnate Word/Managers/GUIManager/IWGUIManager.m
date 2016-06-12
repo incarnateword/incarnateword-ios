@@ -17,6 +17,10 @@
 #import "IWUIConstants.h"
 #import "IWHomeViewController.h"
 #import "IWOfflineChapterListViewController.h"
+#import "IWChapterDetailsViewController.h"
+#import "IWUserActionManager.h"
+#import "IWCompilationViewController.h"
+#import "IWVolumeDetailsViewController.h"
 
 @interface IWGUIManager()<UINavigationControllerDelegate>
 {
@@ -255,12 +259,13 @@ static IWGUIManager* guiManager = nil ;
                    });
 }
 
-#pragma mark -
-#pragma mark UINavigationController delegate
+#pragma mark - UINavigationController delegate
 
 -(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if ([viewController class] == [IWHomeViewController class])
+    if ([viewController class] == [IWHomeViewController class] ||
+        [viewController class] == [IWCompilationViewController class]||
+        [viewController class] == [IWVolumeDetailsViewController class])
     {
         return ;
     }
@@ -274,7 +279,7 @@ static IWGUIManager* guiManager = nil ;
     
     UIButton *customLeftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     customLeftBtn.bounds = CGRectMake( 10, 0, 40, 40 );
-    [customLeftBtn addTarget:self action:@selector(btnDrawerClicked) forControlEvents:UIControlEventTouchUpInside];
+    [customLeftBtn addTarget:self action:@selector(btnLeftDrawerClicked) forControlEvents:UIControlEventTouchUpInside];
     [customLeftBtn setImage:[UIImage imageNamed:@"btn_navbar_drawer"] forState:UIControlStateNormal];
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:customLeftBtn];
     
@@ -292,11 +297,40 @@ static IWGUIManager* guiManager = nil ;
     
     viewController.navigationItem.leftBarButtonItems = [NSArray
                                                         arrayWithObjects:negativeSpacerLeft, leftButton, nil];
+    
+    if ([viewController class] == [IWChapterDetailsViewController class])
+    {
+        UIButton *customRighBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        customRighBtn.bounds = CGRectMake( 40, 0, 40, 40 );
+        [customRighBtn addTarget:self action:@selector(btnRightDrawerClicked) forControlEvents:UIControlEventTouchUpInside];
+        [customRighBtn setImage:[UIImage imageNamed:@"btn_navbar_drawer"] forState:UIControlStateNormal];
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:customRighBtn];
+        
+        UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
+                                               initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                               target:nil action:nil];
+        if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") )
+        {
+            negativeSpacerRight.width = -9;
+        }
+        else
+        {
+            negativeSpacerRight.width = -5;
+        }
+        
+        viewController.navigationItem.rightBarButtonItems = [NSArray
+                                                            arrayWithObjects:negativeSpacerRight,rightButton,nil];
+    }
 }
 
--(void)btnDrawerClicked
+-(void)btnLeftDrawerClicked
 {
     [self drawerToggleLeft];
+}
+
+-(void)btnRightDrawerClicked
+{
+    [[IWUserActionManager sharedManager] showCompilationForChapter];
 }
 
 -(IWInfoViewController*)getInfoViewControllerForText:(NSString*) strText
