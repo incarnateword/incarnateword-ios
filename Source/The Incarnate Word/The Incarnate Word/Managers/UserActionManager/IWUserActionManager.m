@@ -31,6 +31,7 @@
 #import "IWChapterStructure.h"
 #import "IWChaterItemStructure.h"
 
+#import "IWGUIManager.h"
 
 #define kUserDefaultKeyOfflineChapterDetailStructure  @"UserDefaultKeyOfflineChapterDetailStructure"
 
@@ -98,6 +99,8 @@ static IWUserActionManager* userActionManager = nil ;
 
 -(void)showFirstChapterForCompilationWithPath:(NSString *) strPath
 {
+    [[IWGUIManager sharedManager] addActivityIndicatorOverWindow];
+
     _strCurrentCompilation = strPath;
     [self getCompilationData];
 }
@@ -149,12 +152,18 @@ static IWUserActionManager* userActionManager = nil ;
     }
 
     [IWUtility showWebserviceFailedAlert];
+    
+    [[IWGUIManager sharedManager] removeActivityIndicatorOverWindow];
+
 }
 
 
 
 -(void)showFirstChapterForVolume:(IWDetailVolumeStructure*) detailVolumeStructure
 {
+    
+    [[IWGUIManager sharedManager] removeActivityIndicatorOverWindow];
+
     id chapOrItem;
     
     if(detailVolumeStructure.arrBooks && detailVolumeStructure.arrBooks > 0)//Volumes has books

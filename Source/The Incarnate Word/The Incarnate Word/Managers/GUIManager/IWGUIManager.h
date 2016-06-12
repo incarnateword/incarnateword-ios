@@ -41,5 +41,7 @@
 
 -(IWInfoViewController*)getInfoViewControllerForText:(NSString*) strText;
 
+-(void)addActivityIndicatorOverWindow;
+-(void)removeActivityIndicatorOverWindow;
 
 @end

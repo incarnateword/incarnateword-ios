@@ -22,9 +22,13 @@
 #import "IWCompilationViewController.h"
 #import "IWVolumeDetailsViewController.h"
 
+#import "The_Incarnate_Word-Swift.h"
+@class IWCustomSpinnerViewController;
+
 @interface IWGUIManager()<UINavigationControllerDelegate>
 {
-    
+    IWCustomSpinnerViewController *_customSpinnerVC;
+
 }
 
 @property (nonatomic,strong) MMDrawerController             *drawerController;
@@ -340,6 +344,37 @@ static IWGUIManager* guiManager = nil ;
     infoVC.strText = strText;
     
     return infoVC;
+}
+
+
+-(void)addActivityIndicatorOverWindow
+{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+    [self removeActivityIndicatorOverWindow];
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Utility" bundle:nil];
+    _customSpinnerVC = [sb instantiateViewControllerWithIdentifier:@"IWCustomSpinnerViewController"];
+    
+    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    
+    [window addSubview:_customSpinnerVC.view];
+    _customSpinnerVC.view.frame = window.bounds;
+        
+        });
+}
+
+-(void)removeActivityIndicatorOverWindow
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+
+    if(_customSpinnerVC)
+        [_customSpinnerVC.view removeFromSuperview];
+    
+    _customSpinnerVC = nil;
+    
+});
+
 }
 
 @end
