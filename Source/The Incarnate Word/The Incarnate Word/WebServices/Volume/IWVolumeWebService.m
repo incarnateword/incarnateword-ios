@@ -175,7 +175,7 @@
         volume.strSubTitle = [dictVolume objectForKey:@"subt"];
         volume.strUrlPrevVolume = [dictVolume objectForKey:@"prvu"];
         volume.strUrlNextVolume = [dictVolume objectForKey:@"nxtu"];
-        
+        volume.strUrlCurrentVolume  = [dictVolume objectForKey:@"curl"];
         NSDictionary *dictTOC = [dictVolume objectForKey:@"toc"];
         
         if(dictTOC)
@@ -239,6 +239,9 @@
     
     for(NSDictionary *dictPart in arrPartsDict)
     {
+        if([dictPart isKindOfClass:[NSDictionary class]] == NO)
+            continue;
+        
         IWPartStructure *part = [[IWPartStructure alloc] init];
         part.strTitle = [dictPart objectForKey:@"partt"];
         
