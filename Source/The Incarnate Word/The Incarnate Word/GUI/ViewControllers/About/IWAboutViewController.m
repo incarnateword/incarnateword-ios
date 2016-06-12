@@ -17,7 +17,7 @@
 #import <WebKit/WebKit.h>
 
 
-@interface IWAboutViewController ()<WebServiceDelegate>
+@interface IWAboutViewController ()<WebServiceDelegate,UIScrollViewDelegate>
 {
     IWAboutWebService       *_aboutWebService;
     IWAboutStructure        *_aboutDataStructure;
@@ -68,7 +68,8 @@
 {
     _wkWebView = [WKWebView new];
     [_viewMiddle addSubview:_wkWebView];
-    
+    _wkWebView.scrollView.delegate = self;
+
     
     _wkWebView.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -87,6 +88,14 @@
 
     
 }
+
+#pragma mark - Scrollview Delegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    scrollView.decelerationRate = SCROLL_DECELERATION_RATE;
+}
+
 
 -(void)getData
 {

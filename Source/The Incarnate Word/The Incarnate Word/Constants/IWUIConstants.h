@@ -36,7 +36,7 @@
 /*******************************/
 
 
-#define SCROLL_DECELERATION_RATE UIScrollViewDecelerationRateFast
+#define SCROLL_DECELERATION_RATE 1.5
 
 
 /******* Storyboard view id *******/

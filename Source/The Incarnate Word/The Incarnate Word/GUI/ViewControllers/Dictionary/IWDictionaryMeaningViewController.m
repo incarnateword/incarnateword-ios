@@ -61,6 +61,8 @@
 -(void)setupWKWebView
 {
     _wkWebView = [WKWebView new];
+    _wkWebView.scrollView.delegate = self;
+
     [self.view addSubview:_wkWebView];
     
     
@@ -79,6 +81,14 @@
                                                                                 views:NSDictionaryOfVariableBindings(subview)]];
     
 }
+
+#pragma mark - Scrollview Delegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    scrollView.decelerationRate = SCROLL_DECELERATION_RATE;
+}
+
 
 -(void)setupUI
 {

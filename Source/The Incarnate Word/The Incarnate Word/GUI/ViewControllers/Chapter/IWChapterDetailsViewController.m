@@ -78,6 +78,7 @@
 -(void)setupWKWebView
 {
     _wkWebView = [WKWebView new];
+    _wkWebView.scrollView.delegate = self;
     [_containerWebVIew addSubview:_wkWebView];
     
     
@@ -552,35 +553,11 @@
 
 #pragma mark - Scrollview Delegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    _bIsScrollingInProgress = YES;
-    
-    if (self.lastContentOffset > scrollView.contentOffset.y)
-    {
-        [self hideNavigationBar:NO];
-        NSLog(@"Up");
-    }
-    else if (self.lastContentOffset < scrollView.contentOffset.y)
-    {
-        [self hideNavigationBar:YES];
-        NSLog(@"Down");
-    }
-    
-    self.lastContentOffset = scrollView.contentOffset.y;
+    scrollView.decelerationRate = SCROLL_DECELERATION_RATE;
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    NSLog(@"END DRAG..");
-    _bIsScrollingInProgress = NO;
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    NSLog(@"END DECELERATION..");
-    _bIsScrollingInProgress = NO;
-}
 
 -(void)hideNavigationBar:(BOOL) bShouldHide
 {
