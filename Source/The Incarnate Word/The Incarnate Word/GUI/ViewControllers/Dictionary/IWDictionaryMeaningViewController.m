@@ -68,7 +68,7 @@
     
     UIView *subview = _wkWebView;
     
-    [self.view  addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[subview]-0-|"
+    [self.view  addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[subview]-10-|"
                                                                               options:0
                                                                               metrics:nil
                                                                                 views:NSDictionaryOfVariableBindings(subview)]];
