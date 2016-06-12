@@ -31,6 +31,8 @@
 		486188061B0A568600A4D292 /* Chapter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486188051B0A568600A4D292 /* Chapter.storyboard */; };
 		4861880A1B0A59B100A4D292 /* IWChapterWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 486188091B0A59B100A4D292 /* IWChapterWebService.m */; };
 		4861880E1B0A5BEF00A4D292 /* IWPathStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 4861880D1B0A5BEF00A4D292 /* IWPathStructure.m */; };
+		486DC23E1D0DBC570019DD10 /* Utility.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486DC23D1D0DBC570019DD10 /* Utility.storyboard */; };
+		486DC2431D0DBD380019DD10 /* IWCustomSpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486DC2421D0DBD380019DD10 /* IWCustomSpinnerViewController.swift */; };
 		487422511B2490FC004975DB /* IWSubSectionStructrue.m in Sources */ = {isa = PBXBuildFile; fileRef = 487422501B2490FC004975DB /* IWSubSectionStructrue.m */; };
 		487422551B24A3DE004975DB /* IWBookStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 487422541B24A3DE004975DB /* IWBookStructure.m */; };
 		487869661B08D4CB00429141 /* IWDetailVolumeStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 487869651B08D4CB00429141 /* IWDetailVolumeStructure.m */; };
@@ -136,6 +138,9 @@
 		486188091B0A59B100A4D292 /* IWChapterWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWChapterWebService.m; sourceTree = "<group>"; };
 		4861880C1B0A5BEF00A4D292 /* IWPathStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWPathStructure.h; sourceTree = "<group>"; };
 		4861880D1B0A5BEF00A4D292 /* IWPathStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWPathStructure.m; sourceTree = "<group>"; };
+		486DC23D1D0DBC570019DD10 /* Utility.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Utility.storyboard; sourceTree = "<group>"; };
+		486DC2411D0DBD370019DD10 /* The Incarnate Word-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "The Incarnate Word-Bridging-Header.h"; sourceTree = "<group>"; };
+		486DC2421D0DBD380019DD10 /* IWCustomSpinnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWCustomSpinnerViewController.swift; sourceTree = "<group>"; };
 		4874224F1B2490FC004975DB /* IWSubSectionStructrue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWSubSectionStructrue.h; sourceTree = "<group>"; };
 		487422501B2490FC004975DB /* IWSubSectionStructrue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWSubSectionStructrue.m; sourceTree = "<group>"; };
 		487422531B24A3DE004975DB /* IWBookStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWBookStructure.h; sourceTree = "<group>"; };
@@ -304,6 +309,7 @@
 				48A6117D1B19EAED007AC3B5 /* About.storyboard */,
 				488FA3111B1A158A00F9B5FB /* Dictionary.storyboard */,
 				48E51FEF1B30ABA9008825FC /* Popover.storyboard */,
+				486DC23D1D0DBC570019DD10 /* Utility.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -311,6 +317,7 @@
 		483D673E1B087FFD00BA9A82 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				486DC23F1D0DBCE40019DD10 /* GUIUtility */,
 				48E51FF11B30ABD8008825FC /* Info */,
 				488FA3131B1A1E5100F9B5FB /* Dictionary */,
 				48A6117F1B19EE20007AC3B5 /* About */,
@@ -529,6 +536,23 @@
 				48BBDA4B1B3C845E00564E70 /* Monotype Sabon Semi Bold Italic 3554968c-1c22-469d-8fe9.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		486DC23F1D0DBCE40019DD10 /* GUIUtility */ = {
+			isa = PBXGroup;
+			children = (
+				486DC2401D0DBCE40019DD10 /* CustomSpinner */,
+			);
+			path = GUIUtility;
+			sourceTree = "<group>";
+		};
+		486DC2401D0DBCE40019DD10 /* CustomSpinner */ = {
+			isa = PBXGroup;
+			children = (
+				486DC2421D0DBD380019DD10 /* IWCustomSpinnerViewController.swift */,
+				486DC2411D0DBD370019DD10 /* The Incarnate Word-Bridging-Header.h */,
+			);
+			path = CustomSpinner;
 			sourceTree = "<group>";
 		};
 		487422521B24A3C1004975DB /* Book */ = {
@@ -863,11 +887,13 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = IW;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Revealing Hour Creations";
 				TargetAttributes = {
 					48C2C4D71B07887A00ED333F = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = TFNQ597FMS;
 					};
 				};
 			};
@@ -919,6 +945,7 @@
 				48BBDA531B3C845E00564E70 /* Monotype Sabon Semi Bold Italic 3554968c-1c22-469d-8fe9.otf in Resources */,
 				48BBDA551B3C93A100564E70 /* bg-noise.png in Resources */,
 				487869741B08DC1B00429141 /* Volume.storyboard in Resources */,
+				486DC23E1D0DBC570019DD10 /* Utility.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -988,6 +1015,7 @@
 				4878696F1B08D73100429141 /* IWCompilationWebService.m in Sources */,
 				48C2C5121B078B1700ED333F /* HttpCommunication.m in Sources */,
 				48EF3C1F1C1D49A300528265 /* IWSearchWebService.m in Sources */,
+				486DC2431D0DBD380019DD10 /* IWCustomSpinnerViewController.swift in Sources */,
 				487869661B08D4CB00429141 /* IWDetailVolumeStructure.m in Sources */,
 				483D676E1B088BFD00BA9A82 /* IWUtility.m in Sources */,
 				488FA3161B1A1E7500F9B5FB /* IWDictionaryViewController.m in Sources */,
@@ -1130,14 +1158,18 @@
 			baseConfigurationReference = CBC3A1DCCCAEC9778F8B3679 /* Pods-The Incarnate Word.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = "The Incarnate Word/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.incarnateword.internal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "793dedc2-fd43-44f7-8cf6-8806417f15ee";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "The Incarnate Word/GUI/ViewControllers/GUIUtility/CustomSpinner/The Incarnate Word-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1147,14 +1179,17 @@
 			baseConfigurationReference = A6D5E233381465EC7C903528 /* Pods-The Incarnate Word.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = "The Incarnate Word/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.incarnateword.internal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "793dedc2-fd43-44f7-8cf6-8806417f15ee";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "The Incarnate Word/GUI/ViewControllers/GUIUtility/CustomSpinner/The Incarnate Word-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
