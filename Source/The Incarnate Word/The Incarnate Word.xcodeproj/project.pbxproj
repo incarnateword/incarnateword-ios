@@ -45,6 +45,8 @@
 		4878697F1B09010300429141 /* IWDetailChapterStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 4878697E1B09010300429141 /* IWDetailChapterStructure.m */; };
 		487869831B09042B00429141 /* IWChapterDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 487869821B09042B00429141 /* IWChapterDetailsViewController.m */; };
 		487E62F01B10EE230013F91E /* IWChaterItemStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 487E62EF1B10EE230013F91E /* IWChaterItemStructure.m */; };
+		488B1EF31D1C65A20078A604 /* AdvanceSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 488B1EF21D1C65A20078A604 /* AdvanceSearch.storyboard */; };
+		488B1EF61D1C68AF0078A604 /* IWAdvanceSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B1EF51D1C68AF0078A604 /* IWAdvanceSearchViewController.swift */; };
 		488FA3121B1A158A00F9B5FB /* Dictionary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 488FA3111B1A158A00F9B5FB /* Dictionary.storyboard */; };
 		488FA3161B1A1E7500F9B5FB /* IWDictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 488FA3151B1A1E7500F9B5FB /* IWDictionaryViewController.m */; };
 		488FA31D1B1A1FF200F9B5FB /* IWDictionaryWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 488FA31C1B1A1FF200F9B5FB /* IWDictionaryWebService.m */; };
@@ -164,6 +166,8 @@
 		487869821B09042B00429141 /* IWChapterDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWChapterDetailsViewController.m; sourceTree = "<group>"; };
 		487E62EE1B10EE230013F91E /* IWChaterItemStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWChaterItemStructure.h; sourceTree = "<group>"; };
 		487E62EF1B10EE230013F91E /* IWChaterItemStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWChaterItemStructure.m; sourceTree = "<group>"; };
+		488B1EF21D1C65A20078A604 /* AdvanceSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AdvanceSearch.storyboard; sourceTree = "<group>"; };
+		488B1EF51D1C68AF0078A604 /* IWAdvanceSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWAdvanceSearchViewController.swift; sourceTree = "<group>"; };
 		488FA3111B1A158A00F9B5FB /* Dictionary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dictionary.storyboard; sourceTree = "<group>"; };
 		488FA3141B1A1E7500F9B5FB /* IWDictionaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWDictionaryViewController.h; sourceTree = "<group>"; };
 		488FA3151B1A1E7500F9B5FB /* IWDictionaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWDictionaryViewController.m; sourceTree = "<group>"; };
@@ -310,6 +314,7 @@
 				488FA3111B1A158A00F9B5FB /* Dictionary.storyboard */,
 				48E51FEF1B30ABA9008825FC /* Popover.storyboard */,
 				486DC23D1D0DBC570019DD10 /* Utility.storyboard */,
+				488B1EF21D1C65A20078A604 /* AdvanceSearch.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -317,6 +322,7 @@
 		483D673E1B087FFD00BA9A82 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				488B1EF41D1C68560078A604 /* AdvanceSearch */,
 				486DC23F1D0DBCE40019DD10 /* GUIUtility */,
 				48E51FF11B30ABD8008825FC /* Info */,
 				488FA3131B1A1E5100F9B5FB /* Dictionary */,
@@ -624,6 +630,14 @@
 			path = Chapter;
 			sourceTree = "<group>";
 		};
+		488B1EF41D1C68560078A604 /* AdvanceSearch */ = {
+			isa = PBXGroup;
+			children = (
+				488B1EF51D1C68AF0078A604 /* IWAdvanceSearchViewController.swift */,
+			);
+			path = AdvanceSearch;
+			sourceTree = "<group>";
+		};
 		488FA3131B1A1E5100F9B5FB /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
@@ -921,6 +935,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0CF5F0A1B94805700C838D0 /* iPhone.css in Resources */,
+				488B1EF31D1C65A20078A604 /* AdvanceSearch.storyboard in Resources */,
 				483D67631B08897700BA9A82 /* LeftDrawer.storyboard in Resources */,
 				48E51FF01B30ABA9008825FC /* Popover.storyboard in Resources */,
 				48C2C4E71B07887A00ED333F /* Main.storyboard in Resources */,
@@ -1010,6 +1025,7 @@
 				483D674A1B0882CF00BA9A82 /* AppDelegate.m in Sources */,
 				48A611821B19EE3A007AC3B5 /* IWAboutViewController.m in Sources */,
 				488FA3241B1A23FC00F9B5FB /* IWWordStructure.m in Sources */,
+				488B1EF61D1C68AF0078A604 /* IWAdvanceSearchViewController.swift in Sources */,
 				B2DCAC591B0DEDE40092AD85 /* MarkdownTokenizer.m in Sources */,
 				4878696A1B08D69100429141 /* IWChapterStructure.m in Sources */,
 				4878696F1B08D73100429141 /* IWCompilationWebService.m in Sources */,
