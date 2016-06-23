@@ -162,7 +162,6 @@ static IWUserActionManager* userActionManager = nil ;
 -(void)showFirstChapterForVolume:(IWDetailVolumeStructure*) detailVolumeStructure
 {
     
-    [[IWGUIManager sharedManager] removeActivityIndicatorOverWindow];
 
     id chapOrItem;
     

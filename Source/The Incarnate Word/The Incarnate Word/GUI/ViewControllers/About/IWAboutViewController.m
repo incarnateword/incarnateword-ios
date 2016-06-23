@@ -195,4 +195,12 @@
     [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
 }
 
+-(void)dealloc
+{
+    [self stopLoadingAnimation];
+    _wkWebView.scrollView.delegate = nil;
+    
+    NSLog(@"DEALLOC~~~~~~~~~~~~");
+}
+
 @end

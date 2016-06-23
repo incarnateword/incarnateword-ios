@@ -146,33 +146,40 @@ static IWGUIManager* guiManager = nil ;
 
 - (void) drawerHideLeft
 {
-    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-    MMDrawerController *drawerVC = (MMDrawerController*) window.rootViewController;
-    
-    if(drawerVC.openSide == MMDrawerSideLeft)
-    {
-        [drawerVC toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-    }
+    dispatch_async(dispatch_get_main_queue(),
+   ^{
+        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+        MMDrawerController *drawerVC = (MMDrawerController*) window.rootViewController;
+        
+        if(drawerVC.openSide == MMDrawerSideLeft)
+        {
+            [drawerVC toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+        }
+   });
 }
 
 - (void) drawerToggleLeft
 {
-    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-    MMDrawerController *drawerVC = (MMDrawerController*) window.rootViewController;
-    
-    if(drawerVC.openSide == MMDrawerSideLeft)
-    {
-        [self drawerEndEditingForLeftDrawer];
-    }
-    
-    [drawerVC toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+    dispatch_async(dispatch_get_main_queue(),
+   ^{
+        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+        MMDrawerController *drawerVC = (MMDrawerController*) window.rootViewController;
+        
+        if(drawerVC.openSide == MMDrawerSideLeft)
+        {
+            [self drawerEndEditingForLeftDrawer];
+        }
+        
+        [drawerVC toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+    });
+
 }
 
 -(void) forceOnRoot:(UINavigationController *) centerNavController
 {
     //Dismiss View controller that was presented modally if any
     if(nil != centerNavController.presentedViewController)
-        [centerNavController dismissViewControllerAnimated:YES completion:nil];
+        [centerNavController dismissViewControllerAnimated:NO completion:nil];
     
     //POP to root view controller
     [centerNavController popToRootViewControllerAnimated:NO] ;
@@ -366,15 +373,13 @@ static IWGUIManager* guiManager = nil ;
 
 -(void)removeActivityIndicatorOverWindow
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-
-    if(_customSpinnerVC)
-        [_customSpinnerVC.view removeFromSuperview];
-    
-    _customSpinnerVC = nil;
-    
-});
-
+    dispatch_async(dispatch_get_main_queue(),
+   ^{
+        if(_customSpinnerVC)
+            [_customSpinnerVC.view removeFromSuperview];
+        
+        _customSpinnerVC = nil;
+   });
 }
 
 @end

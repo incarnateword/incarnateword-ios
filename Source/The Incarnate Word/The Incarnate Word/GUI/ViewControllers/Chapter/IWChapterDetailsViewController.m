@@ -18,6 +18,8 @@
 #import "WebServiceConstants.h"
 #import "IWUserActionManager.h"
 #import <WebKit/WebKit.h>
+#import "IWGUIManager.h"
+
 
 @interface IWChapterDetailsViewController ()<WebServiceDelegate,UIScrollViewDelegate,InfoViewDelegate,UIWebViewDelegate>
 {
@@ -528,6 +530,8 @@
 
 -(void)stopLoadingAnimation
 {
+    [[IWGUIManager sharedManager] removeActivityIndicatorOverWindow];
+    
     if(_timerLoading && [_timerLoading isValid])
         [_timerLoading invalidate];
     
@@ -627,6 +631,14 @@
    ^{
        [self setBottomBarButtonSpacing];
    });
+}
+
+-(void)dealloc
+{
+    [self stopLoadingAnimation];
+    _wkWebView.scrollView.delegate = nil;
+
+    NSLog(@"DEALLOC~~~~~~~~~~~~");
 }
 
 @end
