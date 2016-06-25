@@ -24,14 +24,15 @@
 
 /******* Storyboard Names *******/
 
-#define STORYBOARD_MAIN @"Main"
-#define STORYBOARD_LEFT_DRAWER @"LeftDrawer"
-#define STORYBOARD_COMPILATION @"Compilation"
-#define STORYBOARD_VOLUME @"Volume"
-#define STORYBOARD_CHAPTER @"Chapter"
-#define STORYBOARD_ABOUT @"About"
-#define STORYBOARD_DICTIONARY @"Dictionary"
-#define STORYBOARD_POPOVER @"Popover"
+#define STORYBOARD_MAIN             @"Main"
+#define STORYBOARD_LEFT_DRAWER      @"LeftDrawer"
+#define STORYBOARD_COMPILATION      @"Compilation"
+#define STORYBOARD_VOLUME           @"Volume"
+#define STORYBOARD_CHAPTER          @"Chapter"
+#define STORYBOARD_ABOUT            @"About"
+#define STORYBOARD_DICTIONARY       @"Dictionary"
+#define STORYBOARD_POPOVER          @"Popover"
+#define STORYBOARD_ADVANCE_SEARCH   @"AdvanceSearch"
 
 /*******************************/
 

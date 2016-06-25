@@ -31,6 +31,9 @@
 #import "IWChapterStructure.h"
 #import "IWChaterItemStructure.h"
 
+#import "The_Incarnate_Word-Swift.h"
+@class IWAdvanceSearchViewController;
+
 #import "IWGUIManager.h"
 
 #define kUserDefaultKeyOfflineChapterDetailStructure  @"UserDefaultKeyOfflineChapterDetailStructure"
@@ -318,6 +321,14 @@ static IWUserActionManager* userActionManager = nil ;
 -(void)toggleLeftDrawer
 {
     [[IWGUIManager sharedManager] drawerToggleLeft];
+}
+
+-(void)showAdvanceSearch
+{
+    UIStoryboard *sbDict = [UIStoryboard storyboardWithName:STORYBOARD_ADVANCE_SEARCH bundle:nil];
+    IWAdvanceSearchViewController *advanceSearchVC = [sbDict instantiateViewControllerWithIdentifier:@"IWAdvanceSearchViewController"];
+    [[IWGUIManager sharedManager] rootViewPushViewController:advanceSearchVC forceOnRoot:YES animated:YES];
+
 }
 
 #pragma mark - Data Manager

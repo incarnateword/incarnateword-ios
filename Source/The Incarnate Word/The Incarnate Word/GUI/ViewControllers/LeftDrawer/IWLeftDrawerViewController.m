@@ -45,7 +45,7 @@
 @property (weak, nonatomic) IBOutlet UILabel                *lblCount;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint     *constraintViewSearchResultHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint     *constraintViewLoadingMoreItemHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintViewLoadingLeading;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint     *constraintViewLoadingLeading;
 
 -(void)setupDataSource;
 -(void)setupSearchBar;
@@ -411,7 +411,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [IWUtility getNumberAsPerScalingFactor:_bIsSearchOn ? 100 : 43.0];
+    return [IWUtility getNumberAsPerScalingFactor:(_bIsSearchOn && indexPath.row!=0) ? 100 : 43.0];
 
 }
 
@@ -419,7 +419,7 @@
 {
     if(_bIsSearchOn)
     {
-        return _arrSearchResult.count;
+        return _arrSearchResult.count+1;
     }
     else
     {
@@ -431,12 +431,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString  *strCellId    = _bIsSearchOn == YES ? @"Cell_Search":@"Cell_Menu";
+    NSString  *strCellId    = (_bIsSearchOn == YES && indexPath.row !=0) ? @"Cell_Search":@"Cell_Menu";
     UITableViewCell *cell   = [tableView dequeueReusableCellWithIdentifier:strCellId];
     UILabel *lblTitle       = (UILabel*)[cell viewWithTag:201];
     lblTitle.font           = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:18.0]];
 
-    if([strCellId isEqualToString:@"Cell_Menu"])
+    if(_bIsSearchOn == NO)
     {
         NSDictionary *dict  = [_arrDataSource objectAtIndex:indexPath.section];
         NSArray *arr        = [dict objectForKey:MENU_ARRAY];
@@ -446,29 +446,36 @@
     }
     else
     {
-        IWSearchItemStructure *searchItem   = [_arrSearchResult objectAtIndex:indexPath.row];
-        lblTitle.text = searchItem.strTitle;
-        lblTitle.font           = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:17.0]];
-
         
         UILabel *lblText    = (UILabel*)[cell viewWithTag:202];
         lblText.font        = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:16.0]];
         
-        NSMutableString *strMut = [[NSMutableString alloc] init];
-        
-        for(NSString *str in searchItem.arrHighlightText)
+        if(indexPath.row == 0)
         {
-            if([str isKindOfClass:[NSNull class]] == NO)
-            {
-                [strMut appendString:[str stringByReplacingOccurrencesOfString:@"\n" withString:@" "]];
-                [strMut appendString:@"... "];
-            }
+            lblTitle.text       = @"Advance Search";
         }
-        
-        strMut = [[strMut stringByReplacingOccurrencesOfString:@"<em>" withString:@""] mutableCopy];
-        strMut = [[strMut stringByReplacingOccurrencesOfString:@"</em>" withString:@""] mutableCopy];
-        
-        lblText.attributedText = [IWUtility getMarkdownNSAttributedStringFromNSString:[strMut copy]];
+        else
+        {
+            IWSearchItemStructure *searchItem   = [_arrSearchResult objectAtIndex:indexPath.row-1];
+            lblTitle.text = searchItem.strTitle;
+            lblTitle.font           = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:17.0]];
+
+            NSMutableString *strMut = [[NSMutableString alloc] init];
+            
+            for(NSString *str in searchItem.arrHighlightText)
+            {
+                if([str isKindOfClass:[NSNull class]] == NO)
+                {
+                    [strMut appendString:[str stringByReplacingOccurrencesOfString:@"\n" withString:@" "]];
+                    [strMut appendString:@"... "];
+                }
+            }
+            
+            strMut = [[strMut stringByReplacingOccurrencesOfString:@"<em>" withString:@""] mutableCopy];
+            strMut = [[strMut stringByReplacingOccurrencesOfString:@"</em>" withString:@""] mutableCopy];
+            
+            lblText.attributedText = [IWUtility getMarkdownNSAttributedStringFromNSString:[strMut copy]];
+        }
     }
     
     return cell;
@@ -555,8 +562,19 @@
         
         [self performSelector:@selector(updateTableContent) withObject:nil afterDelay:1.0];
         
-        IWSearchItemStructure *searchItem = [_arrSearchResult objectAtIndex:indexPath.row];
-        [[IWUserActionManager sharedManager] showChapterWithPath:searchItem.strChapterUrl andItemIndex:0];
+        
+        if(indexPath.row ==0)
+        {
+            NSLog(@"~~~ Advance Search ~~~");
+            [[IWUserActionManager sharedManager] showAdvanceSearch];
+
+        }
+        else
+        {
+            
+            IWSearchItemStructure *searchItem = [_arrSearchResult objectAtIndex:indexPath.row-1];
+            [[IWUserActionManager sharedManager] showChapterWithPath:searchItem.strChapterUrl andItemIndex:0];
+        }
     }
     else
     {
