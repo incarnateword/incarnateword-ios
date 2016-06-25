@@ -314,7 +314,7 @@ static IWGUIManager* guiManager = nil ;
         UIButton *customRighBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         customRighBtn.bounds = CGRectMake( 40, 0, 40, 40 );
         [customRighBtn addTarget:self action:@selector(btnRightDrawerClicked) forControlEvents:UIControlEventTouchUpInside];
-        [customRighBtn setImage:[UIImage imageNamed:@"btn_navbar_drawer"] forState:UIControlStateNormal];
+        [customRighBtn setImage:[UIImage imageNamed:@"btn_navbar_content"] forState:UIControlStateNormal];
         UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:customRighBtn];
         
         UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
