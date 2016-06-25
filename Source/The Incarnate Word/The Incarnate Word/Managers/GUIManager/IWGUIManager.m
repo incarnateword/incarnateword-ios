@@ -241,7 +241,7 @@ static IWGUIManager* guiManager = nil ;
                            [self forceOnRoot:centerNavController];
                        }
                        
-                       [centerNavController pushViewController:viewController animated:NO];
+                       [centerNavController pushViewController:viewController animated:YES];
                    });
 }
 
@@ -358,7 +358,6 @@ static IWGUIManager* guiManager = nil ;
 {
     
     dispatch_async(dispatch_get_main_queue(), ^{
-    [self removeActivityIndicatorOverWindow];
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Utility" bundle:nil];
     _customSpinnerVC = [sb instantiateViewControllerWithIdentifier:@"IWCustomSpinnerViewController"];
@@ -373,8 +372,8 @@ static IWGUIManager* guiManager = nil ;
 
 -(void)removeActivityIndicatorOverWindow
 {
-    dispatch_async(dispatch_get_main_queue(),
-   ^{
+    dispatch_after(DISPATCH_TIME_NOW*1, dispatch_get_main_queue(),
+    ^{
         if(_customSpinnerVC)
             [_customSpinnerVC.view removeFromSuperview];
         
