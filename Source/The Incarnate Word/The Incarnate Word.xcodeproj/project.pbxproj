@@ -52,6 +52,7 @@
 		488FA31D1B1A1FF200F9B5FB /* IWDictionaryWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 488FA31C1B1A1FF200F9B5FB /* IWDictionaryWebService.m */; };
 		488FA3211B1A237100F9B5FB /* IWAlphabetStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 488FA3201B1A237100F9B5FB /* IWAlphabetStructure.m */; };
 		488FA3241B1A23FC00F9B5FB /* IWWordStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 488FA3231B1A23FC00F9B5FB /* IWWordStructure.m */; };
+		4895E1871D2065CC00BEBD3F /* IWAdvanceSearchContainerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895E1861D2065CC00BEBD3F /* IWAdvanceSearchContainerTableViewController.swift */; };
 		48A611791B19E631007AC3B5 /* IWAboutWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A611781B19E631007AC3B5 /* IWAboutWebService.m */; };
 		48A6117E1B19EAED007AC3B5 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48A6117D1B19EAED007AC3B5 /* About.storyboard */; };
 		48A611821B19EE3A007AC3B5 /* IWAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A611811B19EE3A007AC3B5 /* IWAboutViewController.m */; };
@@ -177,6 +178,7 @@
 		488FA3201B1A237100F9B5FB /* IWAlphabetStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWAlphabetStructure.m; sourceTree = "<group>"; };
 		488FA3221B1A23FC00F9B5FB /* IWWordStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWWordStructure.h; sourceTree = "<group>"; };
 		488FA3231B1A23FC00F9B5FB /* IWWordStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWWordStructure.m; sourceTree = "<group>"; };
+		4895E1861D2065CC00BEBD3F /* IWAdvanceSearchContainerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWAdvanceSearchContainerTableViewController.swift; sourceTree = "<group>"; };
 		48A611771B19E631007AC3B5 /* IWAboutWebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWAboutWebService.h; sourceTree = "<group>"; };
 		48A611781B19E631007AC3B5 /* IWAboutWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWAboutWebService.m; sourceTree = "<group>"; };
 		48A6117D1B19EAED007AC3B5 /* About.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
@@ -634,6 +636,7 @@
 			isa = PBXGroup;
 			children = (
 				488B1EF51D1C68AF0078A604 /* IWAdvanceSearchViewController.swift */,
+				4895E1861D2065CC00BEBD3F /* IWAdvanceSearchContainerTableViewController.swift */,
 			);
 			path = AdvanceSearch;
 			sourceTree = "<group>";
@@ -1044,6 +1047,7 @@
 				483D67611B0886E500BA9A82 /* UIViewController+MMDrawerController.m in Sources */,
 				4878697C1B08E86D00429141 /* IWPartStructure.m in Sources */,
 				483D675D1B0886E500BA9A82 /* MMDrawerBarButtonItem.m in Sources */,
+				4895E1871D2065CC00BEBD3F /* IWAdvanceSearchContainerTableViewController.swift in Sources */,
 				483D67661B0889CB00BA9A82 /* IWGUIManager.m in Sources */,
 				487422511B2490FC004975DB /* IWSubSectionStructrue.m in Sources */,
 				4861880A1B0A59B100A4D292 /* IWChapterWebService.m in Sources */,
@@ -1175,8 +1179,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = "The Incarnate Word/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1196,8 +1200,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = "The Incarnate Word/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
