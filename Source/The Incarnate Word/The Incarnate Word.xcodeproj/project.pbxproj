@@ -52,6 +52,7 @@
 		488FA31D1B1A1FF200F9B5FB /* IWDictionaryWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 488FA31C1B1A1FF200F9B5FB /* IWDictionaryWebService.m */; };
 		488FA3211B1A237100F9B5FB /* IWAlphabetStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 488FA3201B1A237100F9B5FB /* IWAlphabetStructure.m */; };
 		488FA3241B1A23FC00F9B5FB /* IWWordStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 488FA3231B1A23FC00F9B5FB /* IWWordStructure.m */; };
+		4890FC371D2301BC001921C2 /* IWAdvanceSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4890FC361D2301BC001921C2 /* IWAdvanceSearchResultViewController.swift */; };
 		4895E1871D2065CC00BEBD3F /* IWAdvanceSearchContainerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895E1861D2065CC00BEBD3F /* IWAdvanceSearchContainerTableViewController.swift */; };
 		48A611791B19E631007AC3B5 /* IWAboutWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A611781B19E631007AC3B5 /* IWAboutWebService.m */; };
 		48A6117E1B19EAED007AC3B5 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48A6117D1B19EAED007AC3B5 /* About.storyboard */; };
@@ -178,6 +179,7 @@
 		488FA3201B1A237100F9B5FB /* IWAlphabetStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWAlphabetStructure.m; sourceTree = "<group>"; };
 		488FA3221B1A23FC00F9B5FB /* IWWordStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWWordStructure.h; sourceTree = "<group>"; };
 		488FA3231B1A23FC00F9B5FB /* IWWordStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWWordStructure.m; sourceTree = "<group>"; };
+		4890FC361D2301BC001921C2 /* IWAdvanceSearchResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWAdvanceSearchResultViewController.swift; sourceTree = "<group>"; };
 		4895E1861D2065CC00BEBD3F /* IWAdvanceSearchContainerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWAdvanceSearchContainerTableViewController.swift; sourceTree = "<group>"; };
 		48A611771B19E631007AC3B5 /* IWAboutWebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWAboutWebService.h; sourceTree = "<group>"; };
 		48A611781B19E631007AC3B5 /* IWAboutWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWAboutWebService.m; sourceTree = "<group>"; };
@@ -637,6 +639,7 @@
 			children = (
 				488B1EF51D1C68AF0078A604 /* IWAdvanceSearchViewController.swift */,
 				4895E1861D2065CC00BEBD3F /* IWAdvanceSearchContainerTableViewController.swift */,
+				4890FC361D2301BC001921C2 /* IWAdvanceSearchResultViewController.swift */,
 			);
 			path = AdvanceSearch;
 			sourceTree = "<group>";
@@ -1009,6 +1012,7 @@
 			files = (
 				488FA31D1B1A1FF200F9B5FB /* IWDictionaryWebService.m in Sources */,
 				483D675F1B0886E500BA9A82 /* MMDrawerVisualState.m in Sources */,
+				4890FC371D2301BC001921C2 /* IWAdvanceSearchResultViewController.swift in Sources */,
 				483D67761B08997B00BA9A82 /* IWUserActionManager.m in Sources */,
 				48C2C5101B078B1700ED333F /* BaseWebService.m in Sources */,
 				480C9D2B1C26B9CA00AE7B80 /* IWOfflineChapterListViewController.m in Sources */,

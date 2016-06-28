@@ -17,4 +17,11 @@ class IWAdvanceSearchViewController: UIViewController
         super.viewDidLoad()
         
     }
+    
+    @IBAction func buttonAdvanceSearchClicked(sender: AnyObject)
+    {
+        let vc:UIViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("IWAdvanceSearchResultViewController"))!
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

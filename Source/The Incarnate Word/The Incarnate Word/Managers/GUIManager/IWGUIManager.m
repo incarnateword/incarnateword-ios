@@ -277,6 +277,7 @@ static IWGUIManager* guiManager = nil ;
     if ([viewController class] == [IWHomeViewController class] ||
         [viewController class] == [IWCompilationViewController class]||
         [viewController class] == [IWVolumeDetailsViewController class]||
+        [viewController class] == [IWAdvanceSearchResultViewController class]||
         [viewController class] == [IWAdvanceSearchViewController class])
     {
         return ;
