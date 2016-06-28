@@ -26,6 +26,29 @@
     }
     return self ;
 }
+
+//http://incarnateword.in/search?q=india&auth=m&comp=cwm&vol=01
+
+-(id)initWithSearchString:(NSString*) strSearch
+                AndAuther:(NSString*) strAuther
+           AndCompilation:(NSString*) strCollection
+                AndVolume:(NSString*) strVolume
+            AndStartIndex:(int) start
+              AndDelegate:(id<WebServiceDelegate>)delegate
+{
+    self = [super initWithRequest:[NSString stringWithFormat:@"search.json?q=%@&start=%d&auth=%@&comp=%@&vol=%@",strSearch,start,strAuther,strCollection,strVolume]
+                           header:nil
+                             body:nil
+                      RequestType:@"GET"];
+    
+    if (self)
+    {
+        //        [self setCustomBaseUrl:@"http://dictionary.incarnateword.in"];
+        self.delegate = delegate;
+    }
+    return self ;
+}
+
 /*
  {
  "query":

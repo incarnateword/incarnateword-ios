@@ -14,4 +14,11 @@
             AndStartIndex:(int) start
               AndDelegate:(id<WebServiceDelegate>)delegate;
 
+
+-(id)initWithSearchString:(NSString*) strSearch
+                AndAuther:(NSString*) strAuther
+           AndCompilation:(NSString*) strCollection
+                AndVolume:(NSString*) strVolume
+            AndStartIndex:(int) start
+              AndDelegate:(id<WebServiceDelegate>)delegate;
 @end
