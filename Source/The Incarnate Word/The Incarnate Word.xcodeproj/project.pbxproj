@@ -33,6 +33,7 @@
 		4861880E1B0A5BEF00A4D292 /* IWPathStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 4861880D1B0A5BEF00A4D292 /* IWPathStructure.m */; };
 		486DC23E1D0DBC570019DD10 /* Utility.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486DC23D1D0DBC570019DD10 /* Utility.storyboard */; };
 		486DC2431D0DBD380019DD10 /* IWCustomSpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486DC2421D0DBD380019DD10 /* IWCustomSpinnerViewController.swift */; };
+		487381D01D2D786A00D0A257 /* IWSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487381CF1D2D786A00D0A257 /* IWSelectionViewController.swift */; };
 		487422511B2490FC004975DB /* IWSubSectionStructrue.m in Sources */ = {isa = PBXBuildFile; fileRef = 487422501B2490FC004975DB /* IWSubSectionStructrue.m */; };
 		487422551B24A3DE004975DB /* IWBookStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 487422541B24A3DE004975DB /* IWBookStructure.m */; };
 		487869661B08D4CB00429141 /* IWDetailVolumeStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 487869651B08D4CB00429141 /* IWDetailVolumeStructure.m */; };
@@ -145,6 +146,7 @@
 		486DC23D1D0DBC570019DD10 /* Utility.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Utility.storyboard; sourceTree = "<group>"; };
 		486DC2411D0DBD370019DD10 /* The Incarnate Word-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "The Incarnate Word-Bridging-Header.h"; sourceTree = "<group>"; };
 		486DC2421D0DBD380019DD10 /* IWCustomSpinnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWCustomSpinnerViewController.swift; sourceTree = "<group>"; };
+		487381CF1D2D786A00D0A257 /* IWSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWSelectionViewController.swift; sourceTree = "<group>"; };
 		4874224F1B2490FC004975DB /* IWSubSectionStructrue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWSubSectionStructrue.h; sourceTree = "<group>"; };
 		487422501B2490FC004975DB /* IWSubSectionStructrue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWSubSectionStructrue.m; sourceTree = "<group>"; };
 		487422531B24A3DE004975DB /* IWBookStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWBookStructure.h; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 				488B1EF51D1C68AF0078A604 /* IWAdvanceSearchViewController.swift */,
 				4895E1861D2065CC00BEBD3F /* IWAdvanceSearchContainerTableViewController.swift */,
 				4890FC361D2301BC001921C2 /* IWAdvanceSearchResultViewController.swift */,
+				487381CF1D2D786A00D0A257 /* IWSelectionViewController.swift */,
 			);
 			path = AdvanceSearch;
 			sourceTree = "<group>";
@@ -1059,6 +1062,7 @@
 				4861540C1B242B9C006379F5 /* IWSectionStructure.m in Sources */,
 				B2DCAC5A1B0DEDE40092AD85 /* MarkdownTokens.m in Sources */,
 				483D677D1B08A01F00BA9A82 /* IWCompilationStructure.m in Sources */,
+				487381D01D2D786A00D0A257 /* IWSelectionViewController.swift in Sources */,
 				B20EC2201B1EFC3700691285 /* IWDictionaryMeaningWebService.m in Sources */,
 				B2DCAC581B0DEDE40092AD85 /* fmemopen.c in Sources */,
 				B2CB97741B2593CD0050214A /* IWSegmentStructure.m in Sources */,
