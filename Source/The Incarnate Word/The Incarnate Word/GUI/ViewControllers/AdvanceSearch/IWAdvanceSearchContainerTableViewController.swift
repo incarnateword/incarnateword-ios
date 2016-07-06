@@ -11,10 +11,8 @@ import UIKit
 
 class IWAdvanceSearchContainerTableViewController: UITableViewController
 {
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
     }
 }

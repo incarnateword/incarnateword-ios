@@ -23,7 +23,6 @@
 #import "IWVolumeDetailsViewController.h"
 
 #import "The_Incarnate_Word-Swift.h"
-@class IWCustomSpinnerViewController;
 
 @interface IWGUIManager()<UINavigationControllerDelegate>
 {

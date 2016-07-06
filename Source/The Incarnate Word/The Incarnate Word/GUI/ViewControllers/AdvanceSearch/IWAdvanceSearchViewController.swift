@@ -20,8 +20,15 @@ class IWAdvanceSearchViewController: UIViewController
     
     @IBAction func buttonAdvanceSearchClicked(sender: AnyObject)
     {
-        let vc:UIViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("IWAdvanceSearchResultViewController"))!
+        let vc = (self.storyboard?.instantiateViewControllerWithIdentifier("IWAdvanceSearchResultViewController"))! as? IWAdvanceSearchResultViewController
         
-        self.navigationController?.pushViewController(vc, animated: true)
+        //http://incarnateword.in/search?q=mother&auth=sa&comp=sabcl&vol=01
+        vc!.strSearch = "mother"
+        vc!.strAuther = "sa"
+        vc!.strCollection = "sabcl"
+        vc!.strVolume = "01"
+        
+        
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
 }
