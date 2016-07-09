@@ -12,7 +12,7 @@ import UIKit
 
 protocol SelectionViewDelegate
 {
-    func selectionViewSelectedItems() -> [AnyObject]
+    func selectionViewSelectedItems(selectionItems:[AnyObject])
 }
 
 
@@ -25,7 +25,38 @@ public class IWSelectionViewController: UIViewController,UITableViewDataSource,U
     
     override public func viewDidLoad()
     {
+
         super.viewDidLoad()
+
+        
+        let buttonleft = UIBarButtonItem(
+            title: "Cancel",
+            style: .Plain,
+            target: self,
+            action: #selector(buttonCancelClicked)
+        )
+        self.navigationItem.leftBarButtonItem = buttonleft
+
+        
+        let buttonRight = UIBarButtonItem(
+            title: "Done",
+            style: .Plain,
+            target: self,
+            action: #selector(buttonDoneClicked)
+        )
+        
+        self.navigationItem.rightBarButtonItem = buttonRight
+    }
+    
+    @IBAction func buttonCancelClicked()
+    {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    
+    @IBAction func buttonDoneClicked()
+    {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     // MARK: TableView Callbacks
@@ -37,6 +68,8 @@ public class IWSelectionViewController: UIViewController,UITableViewDataSource,U
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath)
+        
+        cell.textLabel?.text = arrDataSource[indexPath.row] as? String
         
         return cell
     }

@@ -11,9 +11,10 @@ import UIKit
 
 
 
-class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate
+class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,SelectionViewDelegate
 {
     var vcContainerTable:IWAdvanceSearchContainerTableViewController!
+    var vcSelection:IWSelectionViewController?
     
     
     //MARK: View Life Cycle
@@ -27,6 +28,8 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate
     {
         super.viewDidLoad()
         
+        vcSelection = (self.storyboard?.instantiateViewControllerWithIdentifier("IWSelectionViewController"))! as? IWSelectionViewController
+
     }
     
     
@@ -63,15 +66,30 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate
     func cellSelectedAuther()
     {
         print("Auther Cell Selected")
+        vcSelection?.arrDataSource = ["One","Two"]
+        self.navigationController?.pushViewController(vcSelection!, animated: true)
     }
     
     func cellSelectedCompilation()
     {
         print("Compilation Cell Selected")
+        vcSelection?.arrDataSource = ["One","Two"]
+        self.navigationController?.pushViewController(vcSelection!, animated: true)
     }
     
     func cellSelectedVolume()
     {
         print("Volume Cell Selected")
+        vcSelection?.arrDataSource = ["One","Two"]
+        self.navigationController?.pushViewController(vcSelection!, animated: true)
     }
+    
+    
+    //MARK: ContainerViewDelegate
+    
+    func selectionViewSelectedItems(selectionItems:[AnyObject])
+    {
+
+    }
+
 }

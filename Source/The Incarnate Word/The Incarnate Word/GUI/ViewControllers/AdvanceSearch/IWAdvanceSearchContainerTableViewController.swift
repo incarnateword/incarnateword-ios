@@ -22,7 +22,7 @@ class IWAdvanceSearchContainerTableViewController: UITableViewController
     @IBOutlet weak var cellCompilation: UITableViewCell!
     @IBOutlet weak var cellVolume: UITableViewCell!
     
-    internal var delegateContainerView:ContainerViewDelegate?
+    var delegateContainerView:ContainerViewDelegate?
     
     override func viewDidLoad()
     {

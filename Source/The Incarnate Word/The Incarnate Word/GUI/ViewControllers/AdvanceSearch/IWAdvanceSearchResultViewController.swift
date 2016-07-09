@@ -27,6 +27,12 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         super.init(coder: aDecoder)
     }
     
+    public override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+    }
+ 
+    
     override public func viewDidLoad()
     {
         super.viewDidLoad()
@@ -34,9 +40,9 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         webServiceSerch = IWSearchWebService.init(searchString: strSearch, andAuther: strAuther, andCompilation: strCollection, andVolume: strVolume, andStartIndex: 0, andDelegate: self)
         webServiceSerch?.sendAsyncRequest()
         
-        
     }
 
+    
     // MARK: TableView Callbacks
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
