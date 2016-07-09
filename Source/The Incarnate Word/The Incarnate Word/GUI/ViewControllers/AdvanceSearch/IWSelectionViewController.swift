@@ -84,7 +84,7 @@ class IWSelectionViewController: UIViewController,UITableViewDataSource,UITableV
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath)
         
-        var label:UILabel = cell.viewWithTag(501) as! UILabel
+        let label:UILabel = cell.viewWithTag(501) as! UILabel
         
         label.text = ""
         label.text = arrDataSource[indexPath.row] as? String

@@ -24,7 +24,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     var _listType:EnumSelectionListType = .SelectionListTypeAuthor
     var _strSearch:String = ""
     var _strAuther:String = ""
-    var _strCollection:String = ""
+    var _strCompilation:String = ""
     var _strVolume:String = ""
     
     
@@ -84,8 +84,16 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         _listType = .SelectionListTypeAuthor
     }
     
-    func cellSelectedVolume()
+
+    
+    func cellSelectedCompilation()
     {
+
+        
+        
+        _listType = .SelectionListTypeCollection
+
+        
         //Birth Centenary Library   sabcl
         //Complete Works            cwsa
         
@@ -93,8 +101,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         //Agenda            agenda
         
         print("Compilation Cell Selected")
-        _listType = .SelectionListTypeVolume
-
+        
         if _strAuther == "Sri Aurobindo"
         {
             vcSelection?.arrDataSource = ["Birth Centenary Library","Complete Works"]
@@ -107,15 +114,13 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         self.navigationController?.pushViewController(vcSelection!, animated: true)
     }
     
-    func cellSelectedCompilation()
+    func cellSelectedVolume()
     {
         print("Volume Cell Selected")
+
+        _listType = .SelectionListTypeVolume
         vcSelection?.arrDataSource = ["One","Two"]
         self.navigationController?.pushViewController(vcSelection!, animated: true)
-        
-        
-        _listType = .SelectionListTypeCollection
-
     }
     
     /*
@@ -254,22 +259,32 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         case .SelectionListTypeAuthor  :
             
             _strAuther = selectionItems[0] as! String
-            
+            _strCompilation = ""
+            _strVolume = ""
             break;
             
         case .SelectionListTypeCollection  :
             
-            _strCollection = selectionItems[0] as! String
-
+            _strCompilation = selectionItems[0] as! String
+            _strVolume = ""
             break;
             
         case .SelectionListTypeVolume  :
             
-            _strVolume = selectionItems[0] as! String
+             _strVolume = selectionItems[0] as! String
+
 
             break;
 
         }
+        
+        
+        vcContainerTable.cellAuther.detailTextLabel?.text = _strAuther
+        vcContainerTable.cellCompilation.detailTextLabel?.text = _strCompilation
+        vcContainerTable.cellVolume.detailTextLabel?.text = _strVolume
+
+
+
         
     }
 
