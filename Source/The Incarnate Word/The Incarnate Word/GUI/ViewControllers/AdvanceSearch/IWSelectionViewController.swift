@@ -16,19 +16,18 @@ protocol SelectionViewDelegate
 }
 
 
-public class IWSelectionViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
+class IWSelectionViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 {
-    public var arrDataSource:[AnyObject]    = []
+    var arrDataSource:[AnyObject]    = []
     var arrSelectionList:[AnyObject]        = []
+    var delegateSelectionView: SelectionViewDelegate?;
     
     @IBOutlet weak var tableViewList: UITableView!
     
-    override public func viewDidLoad()
+    override func viewDidLoad()
     {
-
         super.viewDidLoad()
 
-        
         let buttonleft = UIBarButtonItem(
             title: "Cancel",
             style: .Plain,
@@ -46,6 +45,17 @@ public class IWSelectionViewController: UIViewController,UITableViewDataSource,U
         )
         
         self.navigationItem.rightBarButtonItem = buttonRight
+        
+        tableViewList.tableFooterView = UIView()
+
+    }
+    
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        tableViewList.reloadData()
+        arrSelectionList.removeAll()
     }
     
     @IBAction func buttonCancelClicked()
@@ -56,21 +66,42 @@ public class IWSelectionViewController: UIViewController,UITableViewDataSource,U
     
     @IBAction func buttonDoneClicked()
     {
+        
+        if (delegateSelectionView != nil)
+        {
+            delegateSelectionView?.selectionViewSelectedItems(arrSelectionList)
+        }
         self.navigationController?.popViewControllerAnimated(true)
     }
     
     // MARK: TableView Callbacks
-     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+      func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return arrDataSource.count
     }
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath)
         
-        cell.textLabel?.text = arrDataSource[indexPath.row] as? String
+        var label:UILabel = cell.viewWithTag(501) as! UILabel
+        
+        label.text = ""
+        label.text = arrDataSource[indexPath.row] as? String
         
         return cell
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        if arrSelectionList.count == 0
+        {
+            arrSelectionList = [arrDataSource[indexPath.row]]
+        }
+        else
+        {
+            arrSelectionList.append(arrDataSource[indexPath.row])
+        }
+    }
+    
 }

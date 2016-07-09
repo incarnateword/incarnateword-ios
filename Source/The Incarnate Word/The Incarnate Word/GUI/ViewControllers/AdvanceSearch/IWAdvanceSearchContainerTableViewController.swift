@@ -27,6 +27,8 @@ class IWAdvanceSearchContainerTableViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        self.tableView.tableFooterView = UIView()
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
@@ -48,5 +50,17 @@ class IWAdvanceSearchContainerTableViewController: UITableViewController
                 delegateContainerView?.cellSelectedVolume!()
             }
         }
+    }
+    
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        if( indexPath.row > 2)
+        {
+            return 0
+        }
+        
+        return 44
+        
     }
 }
