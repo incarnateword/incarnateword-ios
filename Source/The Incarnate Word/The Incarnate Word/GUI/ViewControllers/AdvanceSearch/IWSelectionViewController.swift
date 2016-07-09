@@ -9,10 +9,17 @@
 import Foundation
 import UIKit
 
+
+protocol SelectionViewDelegate
+{
+    func selectionViewSelectedItems() -> [AnyObject]
+}
+
+
 public class IWSelectionViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 {
-    public var arrDataSource:[AnyObject]       = []
-    public var arrSelectionList:[AnyObject]    = []
+    public var arrDataSource:[AnyObject]    = []
+    var arrSelectionList:[AnyObject]        = []
     
     @IBOutlet weak var tableViewList: UITableView!
     
@@ -22,7 +29,7 @@ public class IWSelectionViewController: UIViewController,UITableViewDataSource,U
     }
     
     // MARK: TableView Callbacks
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return arrDataSource.count
     }
