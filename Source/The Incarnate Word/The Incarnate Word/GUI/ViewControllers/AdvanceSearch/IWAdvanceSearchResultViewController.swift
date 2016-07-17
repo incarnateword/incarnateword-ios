@@ -94,6 +94,7 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         print("Response: \(responseModel) ")
         
         let searchResult = responseModel as! IWSearchStructure;
+        
        arrSearchResult = NSArray().arrayByAddingObjectsFromArray(searchResult.arrSearchItems)
         
         tableViewResult.performSelectorOnMainThread(#selector(tableViewResult.reloadData), withObject: nil, waitUntilDone: false)

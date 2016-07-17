@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,SelectionViewDelegate
+class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,SelectionViewDelegate,UISearchBarDelegate
 {
     enum EnumSelectionListType
     {
@@ -18,6 +18,8 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         case SelectionListTypeCollection
         case SelectionListTypeVolume
     }
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var vcContainerTable:IWAdvanceSearchContainerTableViewController!
     var vcSelection:IWSelectionViewController?
@@ -41,6 +43,9 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         
         vcSelection = (self.storyboard?.instantiateViewControllerWithIdentifier("IWSelectionViewController"))! as? IWSelectionViewController
         vcSelection?.delegateSelectionView = self
+        searchBar.returnKeyType = .Done
+        searchBar.showsCancelButton = false
+        
 
     }
     
@@ -64,10 +69,31 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         let vc = (self.storyboard?.instantiateViewControllerWithIdentifier("IWAdvanceSearchResultViewController"))! as? IWAdvanceSearchResultViewController
         
         //http://incarnateword.in/search?q=mother&auth=sa&comp=sabcl&vol=01
-        vc!.strSearch       = "mother"
-        vc!.strAuther       = "sa"
-        vc!.strCollection   = "sabcl"
-        vc!.strVolume       = "01"
+        vc!.strSearch       = searchBar.text!
+        vc!.strAuther       = _strAuther == "" ? "" :(_strAuther == "Sri Aurobindo" ? "sa": "m")
+        
+        var strTempCollection:String = ""
+        
+        if(_strCompilation == "Birth Centenary Library")
+        {
+            strTempCollection = "sabcl"
+        }
+        else if(_strCompilation == "Complete Works")
+        {
+            strTempCollection = "cwsa"
+        }
+        else if(_strCompilation == "Collected Works")
+        {
+            strTempCollection = "cwm"
+        }
+        else if(_strCompilation == "Agenda")
+        {
+            strTempCollection = "agenda"
+        }
+        vc!.strCollection   = strTempCollection
+        
+        var arr:[String] = _strVolume.componentsSeparatedByString(":")
+        vc!.strVolume       = arr.count > 0 ? arr[0] : ""
         
         self.navigationController?.pushViewController(vc!, animated: true)
     }
@@ -77,11 +103,12 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
 
     func cellSelectedAuther()
     {
+        _listType = .SelectionListTypeAuthor
+
         print("Auther Cell Selected")
         vcSelection?.arrDataSource = ["Sri Aurobindo","The Mother"]
         self.navigationController?.pushViewController(vcSelection!, animated: true)
         
-        _listType = .SelectionListTypeAuthor
     }
     
 
@@ -116,10 +143,131 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     
     func cellSelectedVolume()
     {
+        _listType = .SelectionListTypeVolume
+
         print("Volume Cell Selected")
 
-        _listType = .SelectionListTypeVolume
         vcSelection?.arrDataSource = ["One","Two"]
+        
+        if _strCompilation == "Birth Centenary Library"
+        {
+        
+            vcSelection?.arrDataSource =
+
+            ["Any",
+            "01: Bande Mataram",
+            "02: Karmayogin",
+            "03: The Harmony of Virtue",
+            "04: Writings in Bengali",
+            "05: Collected Poems",
+            "06: Collected Plays and Short Stories - I",
+            "07: Collected Plays and Short Stories - II",
+            "08: Translations",
+            "09: The Future Poetry",
+            "10: The Secret of the Veda",
+            "11: Hymns to the Mystic Fire",
+            "12: The Upanishads",
+            "13: Essays on the Gita",
+            "14: The Foundations of Indian Culture",
+            "15: Social and Political Thought",
+            "16: The Supramental Manifestation",
+            "17: The Hour of God",
+            "18: The Life Divine - I",
+            "19: The Life Divine - II",
+            "20: The Synthesis of Yoga - I",
+            "21: The Synthesis of Yoga - II",
+            "22: Letters on Yoga - I",
+            "23: Letters on Yoga - II",
+            "24: Letters on Yoga - III",
+            "25: The Mother",
+            "26: On Himself",
+            "27: Supplement",
+            "28: Savitri - I",
+            "29: Savitri - II"]
+            
+        }
+        else if _strCompilation == "Complete Works"
+        {
+            vcSelection?.arrDataSource =
+                
+            ["Any",
+            "01: Early Cultural Writings",
+            "02: Collected Poems",
+            "03: Collected Plays and Stories - I",
+            "04: Collected Plays and Stories - II",
+            "05: Translations",
+            "06: Bande Mataram - I",
+            "07: Bande Mataram - II",
+            "08: Karmayogin",
+            "10: Record of Yoga - I",
+            "11: Record of Yoga - II",
+            "12: Essays Divine and Human",
+            "13: Essays in Philosophy and Yoga",
+            "15: The Secret of the Veda",
+            "16: Hymns to the Mystic Fire",
+            "17: Isha Upanishad",
+            "18: Kena and Other Upanishads",
+            "19: Essays on the Gita",
+            "20: The Renaissance in India",
+            "21: The Life Divine - I",
+            "22: The Life Divine - II",
+            "23: The Synthesis of Yoga - I",
+            "24: The Synthesis of Yoga - II",
+            "25: The Human Cycle",
+            "26: The Future Poetry",
+            "27: Letters on Poetry and Art",
+            "28: Letters on Yoga - I",
+            "29: Letters on Yoga - II",
+            "30: Letters on Yoga - III",
+            "31: Letters on Yoga - IV",
+            "32: The Mother with Letters on The Mother",
+            "33: Savitri - I",
+            "34: Savitri - II",
+            "35: Letters on Himself and the Ashram",
+            "36: Autobiographical Notes and Other Writings of Historical Interest"]
+        }
+        else if _strCompilation == "Collected Works"
+        {
+            vcSelection?.arrDataSource =
+            ["Any",
+            "01: Prayers and Meditations",
+            "02: Words of Long Ago",
+            "03: Questions and Answers (1929 - 1931)",
+            "04: Questions and Answers (1950 - 1951)",
+            "05: Questions and Answers (1953)",
+            "06: Questions and Answers (1954)",
+            "07: Questions and Answers (1955)",
+            "08: Questions and Answers (1956)",
+            "09: Questions and Answers (1957 - 1958)",
+            "10: On Thoughts and Aphorisms",
+            "11: Notes on the Way",
+            "12: On Education",
+            "13: Words of the Mother - I",
+            "14: Words of the Mother - II",
+            "15: Words of the Mother - III",
+            "16: Some Answers from the Mother",
+            "17: More Answers from the Mother"]
+        }
+        else if _strCompilation == "Agenda"
+        {
+            vcSelection?.arrDataSource =
+            ["Any",
+            "01: 1951-1960",
+            "02: 1961",
+            "03: 1962",
+            "04: 1963",
+            "05: 1964",
+            "06: 1965",
+            "07: 1966",
+            "08: 1967",
+            "09: 1968",
+            "10: 1969",
+            "11: 1970",
+            "12: 1971",
+            "13: 1972-1973"]
+        }
+        
+        
         self.navigationController?.pushViewController(vcSelection!, animated: true)
     }
     
@@ -272,20 +420,29 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         case .SelectionListTypeVolume  :
             
              _strVolume = selectionItems[0] as! String
-
-
             break;
-
         }
         
         
         vcContainerTable.cellAuther.detailTextLabel?.text = _strAuther
         vcContainerTable.cellCompilation.detailTextLabel?.text = _strCompilation
         vcContainerTable.cellVolume.detailTextLabel?.text = _strVolume
-
-
-
-        
     }
 
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+    }
 }
