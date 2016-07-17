@@ -60,7 +60,7 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         let searchItem:IWSearchItemStructure = arrSearchResult[indexPath.row] as! IWSearchItemStructure
         let  lblTitle:UILabel       = cell.viewWithTag(201) as! UILabel
         let  lblText:UILabel       = cell.viewWithTag(202) as! UILabel
-        lblTitle.text = searchItem.strTitle;
+        lblTitle.text = " "+searchItem.strTitle;
         
         var strMut:String = ""
         
@@ -95,9 +95,12 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         
         let searchResult = responseModel as! IWSearchStructure;
         
-       arrSearchResult = NSArray().arrayByAddingObjectsFromArray(searchResult.arrSearchItems)
-        
-        tableViewResult.performSelectorOnMainThread(#selector(tableViewResult.reloadData), withObject: nil, waitUntilDone: false)
+        if (searchResult.arrSearchItems != nil)
+        {
+           arrSearchResult = NSArray().arrayByAddingObjectsFromArray(searchResult.arrSearchItems)
+            
+            tableViewResult.performSelectorOnMainThread(#selector(tableViewResult.reloadData), withObject: nil, waitUntilDone: false)
+        }
     }
     
     public func requestFailed(webService: BaseWebService!, error: WSError!)

@@ -24,11 +24,10 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     var vcContainerTable:IWAdvanceSearchContainerTableViewController!
     var vcSelection:IWSelectionViewController?
     var _listType:EnumSelectionListType = .SelectionListTypeAuthor
-    var _strSearch:String = ""
+    internal var _strSearch:String?
     var _strAuther:String = ""
     var _strCompilation:String = ""
     var _strVolume:String = ""
-    
     
     //MARK: View Life Cycle
     
@@ -45,8 +44,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         vcSelection?.delegateSelectionView = self
         searchBar.returnKeyType = .Done
         searchBar.showsCancelButton = false
-        
-
+        searchBar.text = _strSearch
     }
     
     

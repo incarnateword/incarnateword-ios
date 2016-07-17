@@ -32,7 +32,7 @@
 -(void)showDictionaryMeaningForWord:(NSString*)strWord;
 -(void)showHomeScreen;
 -(void)toggleLeftDrawer;
--(void)showAdvanceSearch;
+-(void)showAdvanceSearch:(NSString*) strSearchSting;
 
 //TODO: Move to data manager
 -(void)saveChapter:(IWDetailChapterStructure*) detailChapterStructure;

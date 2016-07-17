@@ -323,10 +323,11 @@ static IWUserActionManager* userActionManager = nil ;
     [[IWGUIManager sharedManager] drawerToggleLeft];
 }
 
--(void)showAdvanceSearch
+-(void)showAdvanceSearch:(NSString*) strSearchSting;
 {
     UIStoryboard *sbDict = [UIStoryboard storyboardWithName:STORYBOARD_ADVANCE_SEARCH bundle:nil];
     IWAdvanceSearchViewController *advanceSearchVC = [sbDict instantiateViewControllerWithIdentifier:@"IWAdvanceSearchViewController"];
+    advanceSearchVC._strSearch = strSearchSting;
     [[IWGUIManager sharedManager] rootViewPushViewController:advanceSearchVC forceOnRoot:YES animated:YES];
 
 }

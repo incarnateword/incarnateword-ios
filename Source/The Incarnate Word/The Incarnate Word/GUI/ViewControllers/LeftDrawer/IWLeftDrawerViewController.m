@@ -566,7 +566,7 @@
         if(indexPath.row ==0)
         {
             NSLog(@"~~~ Advance Search ~~~");
-            [[IWUserActionManager sharedManager] showAdvanceSearch];
+            [[IWUserActionManager sharedManager] showAdvanceSearch:_searchBar.text];
 
         }
         else
