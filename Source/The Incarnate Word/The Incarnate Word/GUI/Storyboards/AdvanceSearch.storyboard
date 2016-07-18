@@ -4,6 +4,11 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf">
+            <string>CharlotteSansW02-Book</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Advance Search View Controller-->
         <scene sceneID="j7W-bB-f4J">
@@ -282,8 +287,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0C-UJ-tKx" userLabel="ViewSearchResultCount">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fkm-Fc-1vz" userLabel="labelCount">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Fkm-Fc-1vz" secondAttribute="trailing" id="AjY-Jy-uZo"/>
+                                    <constraint firstAttribute="height" constant="20" id="JME-dB-ycn"/>
+                                    <constraint firstItem="Fkm-Fc-1vz" firstAttribute="leading" secondItem="c0C-UJ-tKx" secondAttribute="leading" id="Plb-Of-fE3"/>
+                                    <constraint firstItem="Fkm-Fc-1vz" firstAttribute="top" secondItem="c0C-UJ-tKx" secondAttribute="top" id="el3-au-xeA"/>
+                                    <constraint firstAttribute="bottom" secondItem="Fkm-Fc-1vz" secondAttribute="bottom" id="pcK-T5-MRU"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HZP-Sm-RBe">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomCell" id="8RX-ZE-KnK">
@@ -327,16 +351,43 @@
                                     <outlet property="delegate" destination="iH5-LN-vkJ" id="E20-AB-P6B"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lIh-cF-wJ7" userLabel="LoadingMore">
+                                <rect key="frame" x="0.0" y="576" width="600" height="24"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ajg-Ck-xwa" userLabel="labelCount">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="24"/>
+                                        <fontDescription key="fontDescription" name="CharlotteSansW02-Book" family="CharlotteSansW02-Book" pointSize="19"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.7677359533" green="0.7677359533" blue="0.7677359533" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Ajg-Ck-xwa" firstAttribute="top" secondItem="lIh-cF-wJ7" secondAttribute="top" id="D9F-vI-Huy"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ajg-Ck-xwa" secondAttribute="trailing" id="SW2-bg-sb7"/>
+                                    <constraint firstItem="Ajg-Ck-xwa" firstAttribute="leading" secondItem="lIh-cF-wJ7" secondAttribute="leading" id="UnA-hu-edy"/>
+                                    <constraint firstAttribute="height" constant="24" id="dFM-j3-Ulf"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ajg-Ck-xwa" secondAttribute="bottom" id="s14-nr-BFX"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="MRU-UN-Hlo" firstAttribute="top" secondItem="HZP-Sm-RBe" secondAttribute="bottom" id="6Me-z3-SxE"/>
                             <constraint firstAttribute="trailing" secondItem="HZP-Sm-RBe" secondAttribute="trailing" id="6eE-d2-dpr"/>
-                            <constraint firstItem="HZP-Sm-RBe" firstAttribute="top" secondItem="UAg-eK-hLQ" secondAttribute="top" id="oY9-jn-WBn"/>
+                            <constraint firstItem="lIh-cF-wJ7" firstAttribute="leading" secondItem="UAg-eK-hLQ" secondAttribute="leading" id="8oa-0o-yfA"/>
+                            <constraint firstItem="c0C-UJ-tKx" firstAttribute="top" secondItem="UAg-eK-hLQ" secondAttribute="top" id="Isc-Cw-OXC"/>
+                            <constraint firstItem="c0C-UJ-tKx" firstAttribute="leading" secondItem="UAg-eK-hLQ" secondAttribute="leading" id="RGS-oa-uK4"/>
+                            <constraint firstAttribute="trailing" secondItem="c0C-UJ-tKx" secondAttribute="trailing" id="dor-EM-uat"/>
+                            <constraint firstAttribute="trailing" secondItem="lIh-cF-wJ7" secondAttribute="trailing" id="fBc-Gv-WFm"/>
+                            <constraint firstItem="MRU-UN-Hlo" firstAttribute="top" secondItem="lIh-cF-wJ7" secondAttribute="bottom" id="giK-WO-o9r"/>
+                            <constraint firstItem="lIh-cF-wJ7" firstAttribute="top" secondItem="HZP-Sm-RBe" secondAttribute="bottom" id="jf7-Yg-eS7"/>
+                            <constraint firstItem="HZP-Sm-RBe" firstAttribute="top" secondItem="c0C-UJ-tKx" secondAttribute="bottom" id="rMf-AV-lQj"/>
                             <constraint firstItem="HZP-Sm-RBe" firstAttribute="leading" secondItem="UAg-eK-hLQ" secondAttribute="leading" id="rvA-tc-z2U"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="constraintHeightViewLoadingMore" destination="dFM-j3-Ulf" id="9uU-XI-XeT"/>
+                        <outlet property="constraintHeightViewSearchResult" destination="JME-dB-ycn" id="Vdn-bC-wpV"/>
+                        <outlet property="labelCount" destination="Fkm-Fc-1vz" id="tbd-Hw-qRz"/>
                         <outlet property="tableViewResult" destination="HZP-Sm-RBe" id="Vmp-fM-E2P"/>
                     </connections>
                 </viewController>

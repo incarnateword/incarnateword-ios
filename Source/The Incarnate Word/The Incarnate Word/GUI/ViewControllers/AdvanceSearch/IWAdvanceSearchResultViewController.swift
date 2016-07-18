@@ -20,7 +20,10 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
     var _bSearchRequestIsInProgress:Bool = false;
     var _iTotalNumberOfRecords:Int = 0;
 
+    @IBOutlet weak var constraintHeightViewSearchResult: NSLayoutConstraint!
+    @IBOutlet weak var constraintHeightViewLoadingMore: NSLayoutConstraint!
     @IBOutlet weak var tableViewResult: UITableView!
+    @IBOutlet weak var labelCount: UILabel!
     
     // MARK: View Life Cycle
     
@@ -41,6 +44,8 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         
         _bSearchRequestIsInProgress = true
         _iTotalNumberOfRecords = 0;
+        constraintHeightViewLoadingMore.constant = 0;
+        constraintHeightViewLoadingMore.constant = 0;
 
         webServiceSerch = IWSearchWebService.init(searchString: strSearch, andAuther: strAuther, andCompilation: strCollection, andVolume: strVolume, andStartIndex: 0, andDelegate: self)
         webServiceSerch?.sendAsyncRequest()
@@ -86,6 +91,12 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         
         return cell
     }
+    
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        let searchItem:IWSearchItemStructure = arrSearchResult[indexPath.row] as! IWSearchItemStructure
+        IWUserActionManager.sharedManager().showChapterWithPath(searchItem.strChapterUrl, andItemIndex: 0)
+    }
 
     // MARK: WebService Delegate
     
@@ -106,10 +117,29 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
             
           self.updateTableContent()
         }
+        
+        constraintHeightViewLoadingMore.constant = 0
     }
     
     func updateTableContent()
     {
+        
+//        _constraintViewSearchResultHeight.constant = HEIGHT_SEARCH_RESULT_VIEW;
+        
+        if(_iTotalNumberOfRecords != 0)
+        {
+            constraintHeightViewSearchResult.constant = 20
+            labelCount.text = String(format: "%d of %d results", arrSearchResult.count,_iTotalNumberOfRecords)
+            
+
+
+        }
+        else
+        {
+            labelCount.text = "";
+        }
+        
+        
         tableViewResult.performSelectorOnMainThread(#selector(tableViewResult.reloadData), withObject: nil, waitUntilDone: false)
 
     }
@@ -117,7 +147,7 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
     public func requestFailed(webService: BaseWebService!, error: WSError!)
     {
         _bSearchRequestIsInProgress = false
-
+        constraintHeightViewLoadingMore.constant = 0
     }
     
     //MARK: ScrollView Delegate
@@ -143,6 +173,7 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
     {
         if(_bSearchRequestIsInProgress == false && arrSearchResult.count < _iTotalNumberOfRecords)
         {
+            constraintHeightViewLoadingMore.constant = 24
             _bSearchRequestIsInProgress = true;
 //            _constraintViewLoadingMoreItemHeight.constant = HEIGHT_LOADING_MORE_ITEM_VIEW;
             webServiceSerch = IWSearchWebService.init(searchString: strSearch, andAuther: strAuther, andCompilation: strCollection, andVolume: strVolume, andStartIndex: Int32(arrSearchResult.count), andDelegate: self)

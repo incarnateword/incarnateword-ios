@@ -130,13 +130,15 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         if _strAuther == "Sri Aurobindo"
         {
             vcSelection?.arrDataSource = ["Birth Centenary Library","Complete Works"]
+            self.navigationController?.pushViewController(vcSelection!, animated: true)
+
         }
         else if _strAuther == "The Mother"
         {
             vcSelection?.arrDataSource = ["Collected Works","Agenda"]
+            self.navigationController?.pushViewController(vcSelection!, animated: true)
         }
         
-        self.navigationController?.pushViewController(vcSelection!, animated: true)
     }
     
     func cellSelectedVolume()
@@ -145,7 +147,6 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
 
         print("Volume Cell Selected")
 
-        vcSelection?.arrDataSource = ["One","Two"]
         
         if _strCompilation == "Birth Centenary Library"
         {
@@ -183,6 +184,8 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
             "28: Savitri - I",
             "29: Savitri - II"]
             
+            self.navigationController?.pushViewController(vcSelection!, animated: true)
+
         }
         else if _strCompilation == "Complete Works"
         {
@@ -223,10 +226,14 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
             "34: Savitri - II",
             "35: Letters on Himself and the Ashram",
             "36: Autobiographical Notes and Other Writings of Historical Interest"]
+            
+            self.navigationController?.pushViewController(vcSelection!, animated: true)
+            
         }
         else if _strCompilation == "Collected Works"
         {
             vcSelection?.arrDataSource =
+                
             ["Any",
             "01: Prayers and Meditations",
             "02: Words of Long Ago",
@@ -245,10 +252,15 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
             "15: Words of the Mother - III",
             "16: Some Answers from the Mother",
             "17: More Answers from the Mother"]
+            
+            self.navigationController?.pushViewController(vcSelection!, animated: true)
+            
         }
         else if _strCompilation == "Agenda"
         {
+            
             vcSelection?.arrDataSource =
+                
             ["Any",
             "01: 1951-1960",
             "02: 1961",
@@ -263,10 +275,10 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
             "11: 1970",
             "12: 1971",
             "13: 1972-1973"]
+            
+            self.navigationController?.pushViewController(vcSelection!, animated: true)
+            
         }
-        
-        
-        self.navigationController?.pushViewController(vcSelection!, animated: true)
     }
     
     /*

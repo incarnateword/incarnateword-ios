@@ -7,3 +7,4 @@
 #import "IWSearchWebService.h"
 #import "IWSearchStructure.h"
 #import "IWSearchItemStructure.h"
+#import "IWUserActionManager.h"
