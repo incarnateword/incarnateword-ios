@@ -105,6 +105,11 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
 
         print("Auther Cell Selected")
         vcSelection?.arrDataSource = ["Sri Aurobindo","The Mother"]
+        
+        if _strAuther != ""
+        {
+            vcSelection?.arrPreviousSelection = [_strAuther]
+        }
         self.navigationController?.pushViewController(vcSelection!, animated: true)
         
     }
@@ -127,6 +132,11 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         
         print("Compilation Cell Selected")
         
+        if _strCompilation != ""
+        {
+            vcSelection?.arrPreviousSelection = [_strCompilation]
+        }
+        
         if _strAuther == "Sri Aurobindo"
         {
             vcSelection?.arrDataSource = ["Birth Centenary Library","Complete Works"]
@@ -146,6 +156,11 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         _listType = .SelectionListTypeVolume
 
         print("Volume Cell Selected")
+        
+        if _strVolume != ""
+        {
+            vcSelection?.arrPreviousSelection = [_strVolume]
+        }
 
         
         if _strCompilation == "Birth Centenary Library"

@@ -21,6 +21,7 @@ class IWSelectionViewController: UIViewController,UITableViewDataSource,UITableV
     var arrDataSource:[AnyObject]    = []
     var arrSelectionList:[AnyObject]        = []
     var delegateSelectionView: SelectionViewDelegate?;
+    var arrPreviousSelection:[AnyObject] = []
     
     @IBOutlet weak var tableViewList: UITableView!
     
@@ -56,16 +57,21 @@ class IWSelectionViewController: UIViewController,UITableViewDataSource,UITableV
         super.viewWillAppear(animated)
         tableViewList.reloadData()
         arrSelectionList.removeAll()
+        arrSelectionList += arrPreviousSelection
+        
     }
     
     @IBAction func buttonCancelClicked()
     {
+        arrPreviousSelection.removeAll()
+
         self.navigationController?.popViewControllerAnimated(true)
     }
     
     
     @IBAction func buttonDoneClicked()
     {
+        arrPreviousSelection.removeAll()
         
         if (delegateSelectionView != nil)
         {
@@ -84,10 +90,23 @@ class IWSelectionViewController: UIViewController,UITableViewDataSource,UITableV
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath)
         
-        let label:UILabel = cell.viewWithTag(501) as! UILabel
+        var label:UILabel = cell.viewWithTag(501) as! UILabel
+        var imageViewCheck:UIImageView = cell.viewWithTag(201) as! UIImageView
         
-        label.text = ""
-        label.text = arrDataSource[indexPath.row] as? String
+        
+        imageViewCheck.image = nil
+        let title:String = (arrDataSource[indexPath.row] as? String)!
+        
+        for str in arrSelectionList
+        {
+            if str as! String == title
+            {
+                imageViewCheck.image = UIImage(named:"btn_navbar_drawer")
+                break
+            }
+        }
+        
+        label.text = title
         
         return cell
     }
@@ -100,7 +119,18 @@ class IWSelectionViewController: UIViewController,UITableViewDataSource,UITableV
         }
         else
         {
-            arrSelectionList.append(arrDataSource[indexPath.row])
+            let title = arrDataSource[indexPath.row] as! String
+            
+            if let index = (arrSelectionList as! [String]).indexOf(title)
+            {
+                arrSelectionList.removeAtIndex(index)
+            }
+            else
+            {
+                arrSelectionList += [title]
+            }
+            
+            tableView.reloadData()
         }
     }
     
