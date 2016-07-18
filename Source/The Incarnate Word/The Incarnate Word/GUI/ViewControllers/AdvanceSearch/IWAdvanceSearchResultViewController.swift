@@ -17,6 +17,8 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
     var strVolume:String = "";
     var webServiceSerch:IWSearchWebService?;
     var arrSearchResult = [AnyObject]()
+    var _bSearchRequestIsInProgress:Bool = false;
+    var _iTotalNumberOfRecords:Int = 0;
 
     @IBOutlet weak var tableViewResult: UITableView!
     
@@ -37,6 +39,9 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
     {
         super.viewDidLoad()
         
+        _bSearchRequestIsInProgress = true
+        _iTotalNumberOfRecords = 0;
+
         webServiceSerch = IWSearchWebService.init(searchString: strSearch, andAuther: strAuther, andCompilation: strCollection, andVolume: strVolume, andStartIndex: 0, andDelegate: self)
         webServiceSerch?.sendAsyncRequest()
         
@@ -77,34 +82,73 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         strMut = strMut.stringByReplacingOccurrencesOfString("<em>", withString: "")
         strMut = strMut.stringByReplacingOccurrencesOfString("</em>", withString: "")
 
-
-        
         lblText.text = strMut;
         
-        
-        
         return cell
-        
     }
 
     // MARK: WebService Delegate
     
     public func requestSucceed(webService: BaseWebService!, response responseModel: AnyObject!)
     {
+        _bSearchRequestIsInProgress = false
+
         print("Response: \(responseModel) ")
         
         let searchResult = responseModel as! IWSearchStructure;
-        
+        let totalRecordInt32:Int32 = searchResult.iCountRecord
+        _iTotalNumberOfRecords = Int(totalRecordInt32);
+
         if (searchResult.arrSearchItems != nil)
         {
-           arrSearchResult = NSArray().arrayByAddingObjectsFromArray(searchResult.arrSearchItems)
+           arrSearchResult += searchResult.arrSearchItems
             
-            tableViewResult.performSelectorOnMainThread(#selector(tableViewResult.reloadData), withObject: nil, waitUntilDone: false)
+            
+          self.updateTableContent()
         }
+    }
+    
+    func updateTableContent()
+    {
+        tableViewResult.performSelectorOnMainThread(#selector(tableViewResult.reloadData), withObject: nil, waitUntilDone: false)
+
     }
     
     public func requestFailed(webService: BaseWebService!, error: WSError!)
     {
-        
+        _bSearchRequestIsInProgress = false
+
     }
+    
+    //MARK: ScrollView Delegate
+    
+    public func scrollViewDidScroll(scrollView: UIScrollView)
+    {
+        
+        let scrollViewHeight = scrollView.frame.size.height;
+        let scrollContentSizeHeight = scrollView.contentSize.height;
+        let scrollOffset = scrollView.contentOffset.y;
+        
+        if (scrollOffset == 0)//Top
+        {
+        }
+        else
+        if (scrollOffset + scrollViewHeight) == scrollContentSizeHeight//Bottom
+        {
+            self.lazyLoadPage()
+        }
+    }
+    
+    public func lazyLoadPage()
+    {
+        if(_bSearchRequestIsInProgress == false && arrSearchResult.count < _iTotalNumberOfRecords)
+        {
+            _bSearchRequestIsInProgress = true;
+//            _constraintViewLoadingMoreItemHeight.constant = HEIGHT_LOADING_MORE_ITEM_VIEW;
+            webServiceSerch = IWSearchWebService.init(searchString: strSearch, andAuther: strAuther, andCompilation: strCollection, andVolume: strVolume, andStartIndex: Int32(arrSearchResult.count), andDelegate: self)
+            webServiceSerch?.sendAsyncRequest()
+        }
+    }
+
+
 }

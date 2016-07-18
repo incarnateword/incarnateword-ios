@@ -91,7 +91,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         vc!.strCollection   = strTempCollection
         
         var arr:[String] = _strVolume.componentsSeparatedByString(":")
-        vc!.strVolume       = arr.count > 0 ? arr[0] : ""
+        vc!.strVolume       = arr.count >= 2 ? arr[0] : ""
         
         self.navigationController?.pushViewController(vc!, animated: true)
     }
