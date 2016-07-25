@@ -59,7 +59,7 @@
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C7C-cC-Cfx">
                                 <rect key="frame" x="15" y="543" width="570" height="44"/>
-                                <color key="backgroundColor" red="0.7677359533" green="0.7677359533" blue="0.7677359533" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="nfO-Ad-KLz"/>
                                 </constraints>

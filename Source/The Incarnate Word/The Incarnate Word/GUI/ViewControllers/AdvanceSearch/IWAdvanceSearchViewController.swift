@@ -48,6 +48,10 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         
         vcContainerTable.cellCompilation.contentView.alpha = 0.5
         vcContainerTable.cellVolume.contentView.alpha = 0.5
+        
+        
+        let attr = NSDictionary(object: UIFont(name: FONT_TITLE_REGULAR, size: 16.0)!, forKey: NSFontAttributeName)
+        UISegmentedControl.appearance().setTitleTextAttributes(attr as [NSObject : AnyObject] , forState: .Normal)
     }
     
     
