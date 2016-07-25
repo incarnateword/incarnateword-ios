@@ -45,6 +45,9 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         searchBar.returnKeyType = .Done
         searchBar.showsCancelButton = false
         searchBar.text = _strSearch
+        
+        vcContainerTable.cellCompilation.contentView.alpha = 0.5
+        vcContainerTable.cellVolume.contentView.alpha = 0.5
     }
     
     
@@ -64,6 +67,11 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     
     @IBAction func buttonAdvanceSearchClicked(sender: AnyObject)
     {
+        if searchBar.text == nil || searchBar.text ==  ""
+        {
+            return
+        }
+        
         let vc = (self.storyboard?.instantiateViewControllerWithIdentifier("IWAdvanceSearchResultViewController"))! as? IWAdvanceSearchResultViewController
         
         //http://incarnateword.in/search?q=mother&auth=sa&comp=sabcl&vol=01
@@ -434,12 +442,17 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
             _strAuther = selectionItems[0] as! String
             _strCompilation = ""
             _strVolume = ""
+            vcContainerTable.cellCompilation.contentView.alpha = 1.0
+            vcContainerTable.cellVolume.contentView.alpha = 0.5
+            
             break;
             
         case .SelectionListTypeCollection  :
             
             _strCompilation = selectionItems[0] as! String
             _strVolume = ""
+            
+            vcContainerTable.cellVolume.contentView.alpha = 1.0
             break;
             
         case .SelectionListTypeVolume  :
