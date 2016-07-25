@@ -229,25 +229,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="501" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnA-cJ-mSG">
-                                                    <rect key="frame" x="60" y="0.0" width="540" height="44"/>
+                                                    <rect key="frame" x="41" y="0.0" width="559" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="201" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="um7-8e-W0Y">
-                                                    <rect key="frame" x="10" y="5" width="34" height="34"/>
+                                                <imageView userInteractionEnabled="NO" tag="201" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="um7-8e-W0Y">
+                                                    <rect key="frame" x="10" y="5" width="15" height="12"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="34" id="HMs-Lt-maV"/>
-                                                        <constraint firstAttribute="height" constant="34" id="kY5-7v-8wu"/>
+                                                        <constraint firstAttribute="width" constant="15" id="HMs-Lt-maV" userLabel="width = 13"/>
+                                                        <constraint firstAttribute="height" constant="12" id="kY5-7v-8wu"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="fnA-cJ-mSG" secondAttribute="trailing" id="2M3-U6-b4L"/>
-                                                <constraint firstItem="um7-8e-W0Y" firstAttribute="top" secondItem="8IC-SU-eBo" secondAttribute="top" constant="5" id="OXr-jz-alv"/>
                                                 <constraint firstAttribute="bottom" secondItem="fnA-cJ-mSG" secondAttribute="bottom" constant="1" id="Q9B-qv-xsU"/>
-                                                <constraint firstItem="fnA-cJ-mSG" firstAttribute="leading" secondItem="um7-8e-W0Y" secondAttribute="trailing" constant="16" id="XLn-8d-iPZ"/>
-                                                <constraint firstItem="um7-8e-W0Y" firstAttribute="leading" secondItem="8IC-SU-eBo" secondAttribute="leading" constant="10" id="oFg-xk-gDq"/>
+                                                <constraint firstItem="fnA-cJ-mSG" firstAttribute="leading" secondItem="um7-8e-W0Y" secondAttribute="trailing" constant="10" id="XLn-8d-iPZ"/>
+                                                <constraint firstItem="um7-8e-W0Y" firstAttribute="leading" secondItem="8IC-SU-eBo" secondAttribute="leading" constant="15" id="oFg-xk-gDq"/>
+                                                <constraint firstItem="um7-8e-W0Y" firstAttribute="centerY" secondItem="8IC-SU-eBo" secondAttribute="centerY" id="p3a-Kd-ddp"/>
                                                 <constraint firstItem="fnA-cJ-mSG" firstAttribute="top" secondItem="8IC-SU-eBo" secondAttribute="top" id="seK-Qp-9zO"/>
                                             </constraints>
                                         </tableViewCellContentView>

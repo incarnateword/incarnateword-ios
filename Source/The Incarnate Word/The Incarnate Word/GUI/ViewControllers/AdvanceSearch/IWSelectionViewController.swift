@@ -90,8 +90,8 @@ class IWSelectionViewController: UIViewController,UITableViewDataSource,UITableV
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath)
         
-        var label:UILabel = cell.viewWithTag(501) as! UILabel
-        var imageViewCheck:UIImageView = cell.viewWithTag(201) as! UIImageView
+        let label:UILabel = cell.viewWithTag(501) as! UILabel
+        let imageViewCheck:UIImageView = cell.viewWithTag(201) as! UIImageView
         
         
         imageViewCheck.image = nil
@@ -101,7 +101,7 @@ class IWSelectionViewController: UIViewController,UITableViewDataSource,UITableV
         {
             if str as! String == title
             {
-                imageViewCheck.image = UIImage(named:"btn_navbar_drawer")
+                imageViewCheck.image = UIImage(named:"ic_check")
                 break
             }
         }
@@ -113,6 +113,8 @@ class IWSelectionViewController: UIViewController,UITableViewDataSource,UITableV
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         if arrSelectionList.count == 0
         {
             arrSelectionList = [arrDataSource[indexPath.row]]
@@ -129,9 +131,10 @@ class IWSelectionViewController: UIViewController,UITableViewDataSource,UITableV
             {
                 arrSelectionList += [title]
             }
-            
-            tableView.reloadData()
         }
+        
+        tableView.reloadData()
+
     }
     
 }
