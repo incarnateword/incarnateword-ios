@@ -73,6 +73,16 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     {
         if searchBar.text == nil || searchBar.text ==  ""
         {
+            
+            // create the alert
+            let alert = UIAlertController(title: "Error", message: "Please enter search text.", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            
+            // show the alert
+            self.presentViewController(alert, animated: true, completion: nil)
+            
             return
         }
         

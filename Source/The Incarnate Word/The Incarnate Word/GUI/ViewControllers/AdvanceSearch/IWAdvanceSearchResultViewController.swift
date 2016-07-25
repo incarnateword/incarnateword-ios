@@ -86,8 +86,37 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         
         strMut = strMut.stringByReplacingOccurrencesOfString("<em>", withString: "")
         strMut = strMut.stringByReplacingOccurrencesOfString("</em>", withString: "")
+        
+        
+        let strStrongStart:String = "<strong>",strStrongEnd:String = "</strong>"
+        
+        var attributedString = NSMutableAttributedString(string:strMut.copy() as! String)
 
-        lblText.text = strMut;
+        
+        if strMut.rangeOfString(strStrongStart) != nil && strMut.rangeOfString(strStrongEnd) != nil
+        {
+            let r1:Range  = strMut.rangeOfString(strStrongStart)!
+            let r2:Range  = strMut.rangeOfString(strStrongEnd)!
+            
+            strMut = strMut.stringByReplacingOccurrencesOfString(strStrongStart, withString: "")
+            strMut = strMut.stringByReplacingOccurrencesOfString(strStrongEnd, withString: "")
+            
+            let index = strStrongStart.characters.count + strStrongEnd.characters.count + 1
+            
+            let rSub:Range = r1.startIndex ... r2.endIndex.advancedBy(-index)
+            
+            let sub:String = strMut.substringWithRange(rSub)
+     
+            let searchQuery = sub
+            
+            attributedString = NSMutableAttributedString(string:strMut.copy() as! String)
+            
+            let range = (strMut.copy() as! NSString).rangeOfString(searchQuery)
+                
+            attributedString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(lblText.font.pointSize), range: range)
+        }
+        
+        lblText.attributedText = attributedString
         
         return cell
     }
