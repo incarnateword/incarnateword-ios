@@ -16,6 +16,12 @@ import UIKit
     optional func cellSelectedVolume()
 }
 
+enum EnumSelectedSegment
+{
+    case SelectedSegmentFilter
+    case SelectedSegmentGoToDate
+}
+
 class IWAdvanceSearchContainerTableViewController: UITableViewController
 {
     @IBOutlet weak var cellAuther: UITableViewCell!
@@ -23,6 +29,9 @@ class IWAdvanceSearchContainerTableViewController: UITableViewController
     @IBOutlet weak var cellVolume: UITableViewCell!
     
     var delegateContainerView:ContainerViewDelegate?
+    var _selectedSegment:EnumSelectedSegment = .SelectedSegmentFilter
+
+    
     
     override func viewDidLoad()
     {

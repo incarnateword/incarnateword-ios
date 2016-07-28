@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,SelectionViewDelegate,UISearchBarDelegate
+class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,SelectionViewDelegate,UISearchBarDelegate,UITableViewDelegate
 {
     enum EnumSelectionListType
     {
@@ -19,11 +19,17 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         case SelectionListTypeVolume
     }
     
+
+    
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+
     
     var vcContainerTable:IWAdvanceSearchContainerTableViewController!
     var vcSelection:IWSelectionViewController?
     var _listType:EnumSelectionListType = .SelectionListTypeAuthor
+    var _selectedSegment:EnumSelectedSegment = .SelectedSegmentFilter
+    
     internal var _strSearch:String?
     var _strAuther:String = ""
     var _strCompilation:String = ""
@@ -54,6 +60,17 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         UISegmentedControl.appearance().setTitleTextAttributes(attr as [NSObject : AnyObject] , forState: .Normal)
     }
     
+    @IBAction func segmentControlValueChanged(sender: AnyObject)
+    {
+        if segmentControl.selectedSegmentIndex == 0
+        {
+            _selectedSegment = .SelectedSegmentFilter
+        }
+        else if segmentControl.selectedSegmentIndex == 1
+        {
+            _selectedSegment = .SelectedSegmentGoToDate
+        }
+    }
     
     //MARK: Segue
     
@@ -497,4 +514,8 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
     }
+    
+    
+
+
 }
