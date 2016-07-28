@@ -272,7 +272,10 @@
                     <connections>
                         <outlet property="cellAuther" destination="hxr-Tf-blS" id="iIB-YT-5Sf"/>
                         <outlet property="cellCompilation" destination="czb-ai-PtI" id="I8F-bf-Kf6"/>
+                        <outlet property="cellDate" destination="HeG-PB-stm" id="wI5-2G-zLa"/>
+                        <outlet property="cellMonth" destination="Ond-en-fW7" id="hqU-Iq-dQg"/>
                         <outlet property="cellVolume" destination="wII-XA-x5W" id="a5F-cp-qMu"/>
+                        <outlet property="cellYear" destination="HuA-T9-V2b" id="8B1-Cj-kkc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6f-YW-JnH" userLabel="First Responder" sceneMemberID="firstResponder"/>

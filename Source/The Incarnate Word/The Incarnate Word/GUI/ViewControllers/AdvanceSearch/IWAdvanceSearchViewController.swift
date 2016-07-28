@@ -17,6 +17,9 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         case SelectionListTypeAuthor
         case SelectionListTypeCollection
         case SelectionListTypeVolume
+        case SelectionListTypeYear
+        case SelectionListTypeMonth
+        case SelectionListTypeDate
     }
     
 
@@ -34,6 +37,10 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     var _strAuther:String = ""
     var _strCompilation:String = ""
     var _strVolume:String = ""
+    
+    var _strYear:String = ""
+    var _strMonth:String = ""
+    var _strDate:String = ""
     
     //MARK: View Life Cycle
     
@@ -460,8 +467,155 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
      </select>
      
      */
-    //MARK: ContainerViewDelegate
     
+    
+    func cellSelectedYear()
+    {
+        _listType = .SelectionListTypeYear
+        
+        print("Year Cell Selected")
+        
+        if _strYear != ""
+        {
+            vcSelection?.arrPreviousSelection = [_strYear]
+        }
+        
+        vcSelection?.arrDataSource =
+        ["Any",
+        "1973",
+        "1972",
+        "1971",
+        "1970",
+        "1969",
+        "1968",
+        "1967",
+        "1966",
+        "1965",
+        "1964",
+        "1963",
+        "1962",
+        "1961",
+        "1960",
+        "1959",
+        "1958",
+        "1957",
+        "1956",
+        "1955",
+        "1954",
+        "1953",
+        "1952",
+        "1951",
+        "1950",
+        "1949",
+        "1948",
+        "1947",
+        "1946",
+        "1945",
+        "1944",
+        "1943",
+        "1942",
+        "1941",
+        "1940",
+        "1939",
+        "1938",
+        "1937",
+        "1936",
+        "1935",
+        "1934",
+        "1933",
+        "1932",
+        "1931",
+        "1930",
+        "1929",
+        "1928",
+        "1927",
+        "1926",
+        "1925",
+        "1924",
+        "1923",
+        "1922",
+        "1921",
+        "1920",
+        "1919",
+        "1918",
+        "1917",
+        "1916",
+        "1915",
+        "1914",
+        "1913",
+        "1912",
+        "1911",
+        "1910",
+        "1909",
+        "1908",
+        "1907",
+        "1906",
+        "1905",
+        "1904",
+        "1903",
+        "1902",
+        "1901",
+        "1900",
+        "1899",
+        "1898",
+        "1897",
+        "1896",
+        "1895",
+        "1894",
+        "1893"]
+        
+        self.navigationController?.pushViewController(vcSelection!, animated: true)
+
+    }
+    
+    func cellSelectedMonth()
+    {
+        _listType = .SelectionListTypeMonth
+        
+        print("Year Cell Selected")
+        
+        if _strMonth != ""
+        {
+            vcSelection?.arrPreviousSelection = [_strMonth]
+        }
+        
+        vcSelection?.arrDataSource =
+            ["January",
+             "February",
+             "March",
+             "April",
+             "May",
+             "June",
+             "July",
+             "August",
+             "September",
+             "October",
+             "November",
+             "December"]
+        
+        self.navigationController?.pushViewController(vcSelection!, animated: true)
+    }
+    
+    func cellSelectedDate()
+    {
+    /*
+         
+         NSCalendar *calendar = [NSCalendar currentCalendar];
+         NSDateComponents *components = [[[NSDateComponents alloc] init] autorelease];
+         
+         // Set your year and month here
+         [components setYear:2015];
+         [components setMonth:1];
+         
+         NSDate *date = [calendar dateFromComponents:components];
+         NSRange range = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:date];
+         
+         NSLog(@"%d", (int)range.length);
+         */
+    }
+    
+    //MARK: ContainerViewDelegate
+
     func selectionViewSelectedItems(selectionItems:[AnyObject])
     {
         if selectionItems.count == 0
@@ -491,7 +645,22 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
             
         case .SelectionListTypeVolume  :
             
-             _strVolume = selectionItems[0] as! String
+            _strVolume = selectionItems[0] as! String
+            break;
+            
+        case .SelectionListTypeYear  :
+            
+            _strYear = selectionItems[0] as! String
+            break;
+            
+        case .SelectionListTypeMonth  :
+            
+            _strMonth = selectionItems[0] as! String
+            break;
+            
+        case .SelectionListTypeDate  :
+            
+            _strDate = selectionItems[0] as! String
             break;
         }
         
@@ -499,6 +668,10 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         vcContainerTable.cellAuther.detailTextLabel?.text = _strAuther
         vcContainerTable.cellCompilation.detailTextLabel?.text = _strCompilation
         vcContainerTable.cellVolume.detailTextLabel?.text = _strVolume
+        
+        vcContainerTable.cellYear.detailTextLabel?.text = _strYear
+        vcContainerTable.cellMonth.detailTextLabel?.text = _strMonth
+        vcContainerTable.cellDate.detailTextLabel?.text = _strDate
     }
 
     

@@ -14,6 +14,9 @@ import UIKit
     optional func cellSelectedAuther()
     optional func cellSelectedCompilation()
     optional func cellSelectedVolume()
+    optional func cellSelectedYear()
+    optional func cellSelectedMonth()
+    optional func cellSelectedDate()
 }
 
 enum EnumSelectedSegment
@@ -27,6 +30,10 @@ class IWAdvanceSearchContainerTableViewController: UITableViewController
     @IBOutlet weak var cellAuther: UITableViewCell!
     @IBOutlet weak var cellCompilation: UITableViewCell!
     @IBOutlet weak var cellVolume: UITableViewCell!
+    
+    @IBOutlet weak var cellYear: UITableViewCell!
+    @IBOutlet weak var cellMonth: UITableViewCell!
+    @IBOutlet weak var cellDate: UITableViewCell!
     
     var delegateContainerView:ContainerViewDelegate?
     var _selectedSegment:EnumSelectedSegment = .SelectedSegmentFilter
@@ -61,6 +68,18 @@ class IWAdvanceSearchContainerTableViewController: UITableViewController
             {
                 delegateContainerView?.cellSelectedVolume!()
             }
+            else if cell === cellYear
+            {
+                delegateContainerView?.cellSelectedYear!()
+            }
+            else if cell === cellMonth
+            {
+                delegateContainerView?.cellSelectedMonth!()
+            }
+            else if cell === cellDate
+            {
+                delegateContainerView?.cellSelectedDate!()
+            }
         }
     }
     
@@ -77,7 +96,7 @@ class IWAdvanceSearchContainerTableViewController: UITableViewController
         
         if(_selectedSegment == .SelectedSegmentGoToDate)
         {
-            if indexPath.row == 0 || indexPath.row == 3 || indexPath.row == 4 
+            if indexPath.row == 0 || indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5
             {
                 return 44
             }
