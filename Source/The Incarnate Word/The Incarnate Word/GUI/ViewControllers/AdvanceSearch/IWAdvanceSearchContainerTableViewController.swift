@@ -31,7 +31,10 @@ class IWAdvanceSearchContainerTableViewController: UITableViewController
     var delegateContainerView:ContainerViewDelegate?
     var _selectedSegment:EnumSelectedSegment = .SelectedSegmentFilter
 
-    
+    func updateTableContent()
+    {
+        self.tableView.reloadData()
+    }
     
     override func viewDidLoad()
     {
@@ -64,12 +67,23 @@ class IWAdvanceSearchContainerTableViewController: UITableViewController
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        if( indexPath.row > 2)
+        if(_selectedSegment == .SelectedSegmentFilter)
         {
-            return 0
+            if indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2
+            {
+                return 44
+            }
         }
         
-        return 44
+        if(_selectedSegment == .SelectedSegmentGoToDate)
+        {
+            if indexPath.row == 0 || indexPath.row == 3 || indexPath.row == 4 
+            {
+                return 44
+            }
+        }
+        
+        return 0
         
     }
 }

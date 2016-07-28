@@ -70,6 +70,9 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         {
             _selectedSegment = .SelectedSegmentGoToDate
         }
+        
+        vcContainerTable._selectedSegment = _selectedSegment
+        vcContainerTable.updateTableContent()
     }
     
     //MARK: Segue
