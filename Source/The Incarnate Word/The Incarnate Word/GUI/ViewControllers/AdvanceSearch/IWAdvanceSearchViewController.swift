@@ -572,7 +572,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     {
         _listType = .SelectionListTypeMonth
         
-        print("Year Cell Selected")
+        print("Month Cell Selected")
         
         if _strMonth != ""
         {
@@ -598,20 +598,62 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     
     func cellSelectedDate()
     {
-    /*
-         
-         NSCalendar *calendar = [NSCalendar currentCalendar];
-         NSDateComponents *components = [[[NSDateComponents alloc] init] autorelease];
-         
-         // Set your year and month here
-         [components setYear:2015];
-         [components setMonth:1];
-         
-         NSDate *date = [calendar dateFromComponents:components];
-         NSRange range = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:date];
-         
-         NSLog(@"%d", (int)range.length);
-         */
+        
+        let calendar:NSCalendar = NSCalendar.currentCalendar()
+        var components:NSDateComponents = NSDateComponents()
+        
+        
+        let number = Int(_strYear)
+        
+        components.year = number!
+        
+        let arrTemp:[String] =
+        
+        ["January",
+         "February",
+         "March",
+         "April",
+         "May",
+         "June",
+         "July",
+         "August",
+         "September",
+         "October",
+         "November",
+         "December"]
+        
+        components.month = arrTemp.indexOf(_strMonth)! + 1;
+        var date:NSDate = calendar.dateFromComponents(components)!
+        var range:NSRange = calendar.rangeOfUnit(.Day, inUnit: .Month , forDate: date)
+        
+        print(range.length)
+        
+
+        _listType = .SelectionListTypeDate
+        
+        print("Date Cell Selected")
+        
+        if _strDate != ""
+        {
+            vcSelection?.arrPreviousSelection = [_strDate]
+        }
+        
+        
+        var arrDate:[String] = []
+        
+        var i = 1
+        
+        while i <= range.length
+        {
+            arrDate.append(String(i))
+            i+=1
+        }
+        
+        vcSelection?.arrDataSource = arrDate
+ 
+        
+        self.navigationController?.pushViewController(vcSelection!, animated: true)
+        
     }
     
     //MARK: ContainerViewDelegate
