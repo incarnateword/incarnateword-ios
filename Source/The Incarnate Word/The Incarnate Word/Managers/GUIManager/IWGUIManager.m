@@ -274,10 +274,11 @@ static IWGUIManager* guiManager = nil ;
 -(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if ([viewController class] == [IWHomeViewController class] ||
-        [viewController class] == [IWCompilationViewController class]||
+//        [viewController class] == [IWCompilationViewController class]||
         [viewController class] == [IWVolumeDetailsViewController class]||
         [viewController class] == [IWAdvanceSearchResultViewController class]||
         [viewController class] == [IWSelectionViewController class]||
+        [viewController class] == [IWChapterDetailsViewController class]||
         [viewController class] == [IWAdvanceSearchViewController class])
     {
         return ;

@@ -281,7 +281,7 @@ static IWUserActionManager* userActionManager = nil ;
     IWChapterDetailsViewController *chapterViewController = [sbChapter instantiateViewControllerWithIdentifier:S_CHAP_CHAPTER_DETAILS_VC];
     chapterViewController.strChapterPath = strPath;
     chapterViewController.iItemIndex = iItemIndex;
-    [[IWGUIManager sharedManager] rootViewPushViewController:chapterViewController forceOnRoot:YES animated:YES];
+    [[IWGUIManager sharedManager] rootViewPushViewController:chapterViewController forceOnRoot:NO animated:YES];
 }
 
 -(void)showChapterWithChapterStructure:(IWDetailChapterStructure*) detailChapterStructure;
