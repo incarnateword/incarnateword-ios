@@ -19,8 +19,10 @@
                 andForceOnRoot:(BOOL)bShouldForceOnRoot;
 
 -(void)showCompilationForChapter;
+-(void)showVolumeForChapter;
 
 -(void)showFirstChapterForCompilationWithPath:(NSString *) strPath;
+-(void)showFirstChapterForVolumePath:(NSString *) strPath;
 
 
 -(void)showVolumeWithPath:(NSString *) strPath;

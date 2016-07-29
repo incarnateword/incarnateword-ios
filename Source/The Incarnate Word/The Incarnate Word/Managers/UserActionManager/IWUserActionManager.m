@@ -46,6 +46,7 @@
 }
 
 @property(nonatomic)    NSString *strCurrentCompilation;
+@property(nonatomic)    NSString *strCurrentVolume;
 
 @end
 
@@ -99,6 +100,10 @@ static IWUserActionManager* userActionManager = nil ;
     [self showCompilationWithPath:_strCurrentCompilation andForceOnRoot:NO];
 }
 
+-(void)showVolumeForChapter
+{
+    [self showVolumeWithPath:_strCurrentVolume];
+}
 
 -(void)showFirstChapterForCompilationWithPath:(NSString *) strPath
 {
@@ -108,6 +113,14 @@ static IWUserActionManager* userActionManager = nil ;
     [self getCompilationData];
 }
 
+
+-(void)showFirstChapterForVolumePath:(NSString *) strPath
+{
+    [[IWGUIManager sharedManager] addActivityIndicatorOverWindow];
+    
+    _strCurrentVolume = strPath;
+    [self getVolumeData:strPath];
+}
 
 -(void)getCompilationData
 {

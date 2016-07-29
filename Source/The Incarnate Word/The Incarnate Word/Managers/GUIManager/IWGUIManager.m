@@ -343,7 +343,7 @@ static IWGUIManager* guiManager = nil ;
 
 -(void)btnRightDrawerClicked
 {
-    [[IWUserActionManager sharedManager] showCompilationForChapter];
+    [[IWUserActionManager sharedManager] showVolumeForChapter];
 }
 
 -(IWInfoViewController*)getInfoViewControllerForText:(NSString*) strText

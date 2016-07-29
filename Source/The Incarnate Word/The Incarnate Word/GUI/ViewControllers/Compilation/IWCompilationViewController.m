@@ -172,7 +172,8 @@
 {
     [self.navigationController setNavigationBarHidden: NO animated:YES];
     IWVolumeStructure *volume = [_compilation.arrVolumes objectAtIndex:index];
-    [[IWUserActionManager sharedManager] showVolumeWithPath:[NSString stringWithFormat:@"%@",volume.strUrl]];
+//    [[IWUserActionManager sharedManager] showVolumeWithPath:[NSString stringWithFormat:@"%@",volume.strUrl]];
+    [[IWUserActionManager sharedManager] showFirstChapterForVolumePath:[NSString stringWithFormat:@"%@",volume.strUrl]];
 }
 
 

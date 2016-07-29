@@ -593,26 +593,34 @@
             }
             else if(indexPath.row == 1)
             {
-                [[IWUserActionManager sharedManager] showFirstChapterForCompilationWithPath:@"sabcl"];
+                [[IWUserActionManager sharedManager] showCompilationWithPath:@"sabcl" andForceOnRoot:YES];
+                
+                //[[IWUserActionManager sharedManager] showFirstChapterForCompilationWithPath:@"sabcl"];
             }
             else if(indexPath.row == 2)
             {
-                [[IWUserActionManager sharedManager] showFirstChapterForCompilationWithPath:@"cwsa"];
+                [[IWUserActionManager sharedManager] showCompilationWithPath:@"cwsa" andForceOnRoot:YES];
+                
+                //[[IWUserActionManager sharedManager] showFirstChapterForCompilationWithPath:@"cwsa"];
             }
         }
         else if(indexPath.section == 2)
         {
             if(indexPath.row == 0)
             {
-                [[IWUserActionManager sharedManager] showAboutWithPath:@"m" andImageName:@"theMother.jpg" andDescriptionHeight:751];
+                  [[IWUserActionManager sharedManager] showAboutWithPath:@"m" andImageName:@"theMother.jpg" andDescriptionHeight:751];
             }
             else if(indexPath.row == 1)
             {
-                [[IWUserActionManager sharedManager] showFirstChapterForCompilationWithPath:@"cwm"];
+                  [[IWUserActionManager sharedManager] showCompilationWithPath:@"cwm" andForceOnRoot:YES];
+ 
+//                [[IWUserActionManager sharedManager] showFirstChapterForCompilationWithPath:@"cwm"];
             }
             else if(indexPath.row == 2)
             {
-                [[IWUserActionManager sharedManager] showFirstChapterForCompilationWithPath:@"agenda"];
+                [[IWUserActionManager sharedManager] showCompilationWithPath:@"agenda" andForceOnRoot:YES];
+
+                //[[IWUserActionManager sharedManager] showFirstChapterForCompilationWithPath:@"agenda"];
             }
         }
         else if(indexPath.section == 3)
