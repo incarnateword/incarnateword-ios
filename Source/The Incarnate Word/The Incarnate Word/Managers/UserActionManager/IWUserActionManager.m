@@ -42,6 +42,7 @@
 {
     IWCompilationWebService             *_compilationWebService;
     IWVolumeWebService                  *_volumeWebService;
+    IWChapterDetailsViewController      *_chapterViewController;
     NSString *_strVolumePath;
 }
 
@@ -304,6 +305,7 @@ static IWUserActionManager* userActionManager = nil ;
     
     if(strUrl)
     {
+        _chapterViewController = nil;
         [[IWUserActionManager sharedManager] showChapterWithPath:[NSString stringWithFormat:@"%@/%@",_strVolumePath,strUrl]
                                                     andItemIndex:iItemIndex];
     }
@@ -359,11 +361,22 @@ static IWUserActionManager* userActionManager = nil ;
 
 -(void)showChapterWithPath:(NSString *) strPath andItemIndex:(int) iItemIndex;
 {
-    UIStoryboard *sbChapter = [UIStoryboard storyboardWithName:STORYBOARD_CHAPTER bundle:nil];
-    IWChapterDetailsViewController *chapterViewController = [sbChapter instantiateViewControllerWithIdentifier:S_CHAP_CHAPTER_DETAILS_VC];
-    chapterViewController.strChapterPath = strPath;
-    chapterViewController.iItemIndex = iItemIndex;
-    [[IWGUIManager sharedManager] rootViewPushViewController:chapterViewController forceOnRoot:NO animated:YES];
+    if(_chapterViewController)
+    {
+        _chapterViewController.strChapterPath = strPath;
+        _chapterViewController.iItemIndex = iItemIndex;
+        _chapterViewController.offlineDetailChapterStructure = nil;
+        
+        [_chapterViewController setupVC];
+    }
+    else
+    {
+        UIStoryboard *sbChapter = [UIStoryboard storyboardWithName:STORYBOARD_CHAPTER bundle:nil];
+        _chapterViewController = [sbChapter instantiateViewControllerWithIdentifier:S_CHAP_CHAPTER_DETAILS_VC];
+        _chapterViewController.strChapterPath = strPath;
+        _chapterViewController.iItemIndex = iItemIndex;
+        [[IWGUIManager sharedManager] rootViewPushViewController:_chapterViewController forceOnRoot:NO animated:YES];
+    }
 }
 
 -(void)showChapterWithChapterStructure:(IWDetailChapterStructure*) detailChapterStructure;

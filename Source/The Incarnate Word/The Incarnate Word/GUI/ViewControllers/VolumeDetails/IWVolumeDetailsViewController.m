@@ -523,6 +523,8 @@
     {
         [[IWUserActionManager sharedManager] showChapterWithPath:[NSString stringWithFormat:@"%@/%@",_strVolumePath,strUrl]
                                                     andItemIndex:iItemIndex];
+        [self.navigationController popViewControllerAnimated:YES];
+
     }
 }
 

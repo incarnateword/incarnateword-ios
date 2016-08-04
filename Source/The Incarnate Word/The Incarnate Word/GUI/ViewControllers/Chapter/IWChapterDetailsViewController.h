@@ -16,5 +16,6 @@
 
 @property(nonatomic) IWDetailChapterStructure *offlineDetailChapterStructure;
 
+-(void)setupVC;
 
 @end
