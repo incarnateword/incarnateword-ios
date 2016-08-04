@@ -116,7 +116,7 @@ static IWUserActionManager* userActionManager = nil ;
 
 -(void)showFirstChapterForVolumePath:(NSString *) strPath
 {
-    [[IWGUIManager sharedManager] addActivityIndicatorOverWindow];
+//    [[IWGUIManager sharedManager] addActivityIndicatorOverWindow];
     
     _strCurrentVolume = strPath;
     [self getVolumeData:strPath];
@@ -185,13 +185,81 @@ static IWUserActionManager* userActionManager = nil ;
     {
         IWBookStructure *book = [detailVolumeStructure.arrBooks objectAtIndex:0];
         NSArray *arrChapAndItem = [book getChaptersAndItemsFromBookArray];
-        chapOrItem = [arrChapAndItem objectAtIndex:0];
+        
+        for (id item in arrChapAndItem)
+        {
+            if([item isKindOfClass:[IWChapterStructure class]])
+            {
+                chapOrItem = item;
+                break;
+            }
+            else if([item isKindOfClass:[IWPartStructure class]])
+            {
+                IWPartStructure *part = (IWPartStructure*)item;
+                
+                if(part.arrChapters.count> 0)
+                {
+                    chapOrItem = part.arrChapters.firstObject;
+                    break;
+                }
+                
+                if(part.arrSections.count> 0)
+                {
+                    IWSectionStructure *section = part.arrSections.firstObject;
+                    
+                    if(section.arrChapters.count > 0)
+                    {
+                        chapOrItem = section.arrChapters.firstObject;
+                        break;
+                    }
+                }
+            }
+            else if([item isKindOfClass:[IWSectionStructure class]])
+            {
+                IWSectionStructure *section = item;
+                
+                if(section.arrChapters.count > 0)
+                {
+                    chapOrItem = section.arrChapters.firstObject;
+                    break;
+                }
+            }
+        }
+        
     }
     else if(detailVolumeStructure.arrParts && detailVolumeStructure.arrParts > 0)//Volume has parts
     {
         IWPartStructure *part = [detailVolumeStructure.arrParts objectAtIndex:0];
         NSArray *arrChapAndItem = [part getChaptersAndItemsFromPartArray];
-        chapOrItem = [arrChapAndItem objectAtIndex:0];
+
+        for (id item in arrChapAndItem)
+        {
+            if([item isKindOfClass:[IWChapterStructure class]])
+            {
+                chapOrItem = item;
+                break;
+            }
+            else if([item isKindOfClass:[IWSectionStructure class]])
+            {
+                IWSectionStructure *section = (IWSectionStructure*)chapOrItem;
+                
+                if(section.arrChapters.count > 0)
+                {
+                    chapOrItem = section.arrChapters.firstObject;
+                    break;
+                }
+            }
+            else if([item isKindOfClass:[IWSubSectionStructrue class]])
+            {
+                IWSubSectionStructrue *subSection = (IWSubSectionStructrue*)chapOrItem;
+                
+                if(subSection.arrChapters.count > 0)
+                {
+                    chapOrItem = subSection.arrChapters.firstObject;
+                    break;
+                }
+            }
+        }
     }
     else if(detailVolumeStructure.arrChapters && detailVolumeStructure.arrChapters > 0)//Volume has direct chapters
     {
@@ -201,14 +269,28 @@ static IWUserActionManager* userActionManager = nil ;
     NSString *strUrl = nil;
     int iItemIndex = 0;
     
-    if([chapOrItem isKindOfClass:[IWSectionStructure class]] ||
-       [chapOrItem isKindOfClass:[IWSubSectionStructrue class]]||
+
+    
+    if([chapOrItem isKindOfClass:[IWSubSectionStructrue class]]||
        [chapOrItem isKindOfClass:[IWPartStructure class]] ||
        [chapOrItem isKindOfClass:[IWSegmentStructure class]] )
     {
         //Do nothing
+        NSLog(@"No chapter or item :%@", chapOrItem);
     }
-    if([chapOrItem isKindOfClass:[IWChapterStructure class]])
+    
+    if([chapOrItem isKindOfClass:[IWSectionStructure class]])
+    {
+        IWSectionStructure *section = (IWSectionStructure*)chapOrItem;
+        
+        if(section.arrChapters.count > 0)
+        {
+            IWChapterStructure *chapter = (IWChapterStructure*)[section.arrChapters firstObject];
+            strUrl = chapter.strUrl;
+        }
+
+    }
+    else if([chapOrItem isKindOfClass:[IWChapterStructure class]])
     {
         IWChapterStructure *chapter = (IWChapterStructure*)chapOrItem;
         strUrl = chapter.strUrl;
