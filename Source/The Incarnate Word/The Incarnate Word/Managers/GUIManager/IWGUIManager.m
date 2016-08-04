@@ -281,6 +281,33 @@ static IWGUIManager* guiManager = nil ;
         [viewController class] == [IWChapterDetailsViewController class]||
         [viewController class] == [IWAdvanceSearchViewController class])
     {
+        
+        
+        
+        if ([viewController class] == [IWChapterDetailsViewController class])
+        {
+            UIButton *customRighBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            customRighBtn.bounds = CGRectMake( 40, 0, 40, 40 );
+            [customRighBtn addTarget:self action:@selector(btnRightDrawerClicked) forControlEvents:UIControlEventTouchUpInside];
+            [customRighBtn setImage:[UIImage imageNamed:@"btn_navbar_content"] forState:UIControlStateNormal];
+            UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:customRighBtn];
+            
+            UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
+                                                    initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                    target:nil action:nil];
+            if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") )
+            {
+                negativeSpacerRight.width = -9;
+            }
+            else
+            {
+                negativeSpacerRight.width = -5;
+            }
+            
+            viewController.navigationItem.rightBarButtonItems = [NSArray
+                                                                 arrayWithObjects:negativeSpacerRight,rightButton,nil];
+        }
+        
         return ;
     }
     
@@ -312,30 +339,10 @@ static IWGUIManager* guiManager = nil ;
     viewController.navigationItem.leftBarButtonItems = [NSArray
                                                         arrayWithObjects:negativeSpacerLeft, leftButton, nil];
     
-    if ([viewController class] == [IWChapterDetailsViewController class])
-    {
-        UIButton *customRighBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        customRighBtn.bounds = CGRectMake( 40, 0, 40, 40 );
-        [customRighBtn addTarget:self action:@selector(btnRightDrawerClicked) forControlEvents:UIControlEventTouchUpInside];
-        [customRighBtn setImage:[UIImage imageNamed:@"btn_navbar_content"] forState:UIControlStateNormal];
-        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:customRighBtn];
-        
-        UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
-                                               initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                               target:nil action:nil];
-        if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") )
-        {
-            negativeSpacerRight.width = -9;
-        }
-        else
-        {
-            negativeSpacerRight.width = -5;
-        }
-        
-        viewController.navigationItem.rightBarButtonItems = [NSArray
-                                                            arrayWithObjects:negativeSpacerRight,rightButton,nil];
-    }
+
 }
+
+
 
 -(void)btnLeftDrawerClicked
 {
