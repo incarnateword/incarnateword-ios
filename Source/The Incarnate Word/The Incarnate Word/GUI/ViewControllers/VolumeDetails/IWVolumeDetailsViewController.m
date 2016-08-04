@@ -51,6 +51,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint         *constraintLblBottomTopSpace;
 @property (weak, nonatomic) IBOutlet UIScrollView               *scrollViewTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint         *constraintHorizontalSpaceBtnsBackNext;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintTableBottomSpace;
 
 
 - (IBAction)btnPrevVolumePressed:(id)sender;
@@ -108,6 +109,10 @@
 
 -(void)setupUI
 {
+    //Hide bottom bar for right drawer based volume listing
+    _constraintViewToolbarHeight.constant = 0;
+    _constraintTableBottomSpace.constant = 0;
+    
     self.navigationItem.title = @"Loading...";
     _viewLoading.layer.cornerRadius = 3.0;
     _viewLoading.backgroundColor = COLOR_LOADING_VIEW;
