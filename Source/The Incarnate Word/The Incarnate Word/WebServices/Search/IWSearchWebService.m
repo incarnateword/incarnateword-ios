@@ -155,6 +155,36 @@
  }
  },
  
+ 
+ 
+ ///DATE SEARCH
+ 
+ {
+	"query": {
+ "query": "/1973",
+ "query_alt": "In 1973",
+ "results": [{
+ "_source": {
+ "path": [{
+ "u": "/cwm",
+ "t": "CWM"
+ }, {
+ "u": "/cwm/12",
+ "t": "On Education"
+ }, {
+ "t": "Messages, Letters and Conversations"
+ }, {
+ "t": "Conversations"
+ }],
+ "url": "/cwm/12/18-february-1973"
+ },
+ "highlight": {
+ "txt": ["A: Tonight, I am going to read you a letter from X. She gave us a letter about her class. You know that this year she has started working with the young children. Oh! A: So this is what she"],
+ "t": ["18 February 1973"]
+ }
+ }
+ 
+ 
  */
 -(void)parseResponse:(NSDictionary*)response
 {
@@ -193,6 +223,26 @@
                 {
                     searchItem.arrHighlightText = [[NSArray alloc] initWithObjects:[dictSource objectForKey:@"txt"], nil];
                 }
+            }
+            
+            if( searchItem.strTitle == nil)//Date search
+            {
+                
+                if([dict objectForKey:@"highlight"])
+                {
+                    NSDictionary *dictHighlight = [dict objectForKey:@"highlight"];
+                 
+                    if([dictHighlight objectForKey:@"t"])
+                    {
+                        NSArray *arrTitle = [dictHighlight objectForKey:@"t"];
+                        
+                        if(arrTitle.count > 0)
+                        {
+                            searchItem.strTitle = arrTitle.firstObject;
+                        }
+                    }
+                }
+            
             }
             
             [arrSearchResult addObject:searchItem];
