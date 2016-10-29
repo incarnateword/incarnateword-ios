@@ -34,7 +34,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     var _selectedSegment:EnumSelectedSegment = .SelectedSegmentFilter
     
     internal var _strSearch:String?
-    var _strAuther:String = ""
+    var _arrAuther:[String] = []
     var _strCompilation:String = ""
     var _strVolume:String = ""
     
@@ -72,6 +72,12 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         if segmentControl.selectedSegmentIndex == 0
         {
             _selectedSegment = .SelectedSegmentFilter
+            
+            if _arrAuther.count == 2
+            {
+                _arrAuther.removeAtIndex(1)
+                vcContainerTable.cellAuther.detailTextLabel?.text = _arrAuther[0]
+            }
         }
         else if segmentControl.selectedSegmentIndex == 1
         {
@@ -111,7 +117,12 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         vc!.strDay = ""
         
         vc!._selectedSegment = self._selectedSegment
-        vc!.strAuther       = _strAuther == "" ? "" :(_strAuther == "Sri Aurobindo" ? "sa": "m")
+        
+        
+        if _arrAuther.count == 1
+        {
+            vc!.strAuther       = (_arrAuther[0] == "Sri Aurobindo" ? "sa": "m")
+        }
 
         
         if self._selectedSegment == .SelectedSegmentFilter
@@ -184,14 +195,24 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
 
     func cellSelectedAuther()
     {
+        if self._selectedSegment == .SelectedSegmentFilter
+        {
+            vcSelection?.bAllowMultipleSelection = false
+        }
+        else if self._selectedSegment == .SelectedSegmentGoToDate
+        {
+            vcSelection?.bAllowMultipleSelection = true
+
+        }
+        
         _listType = .SelectionListTypeAuthor
 
         print("Auther Cell Selected")
         vcSelection?.arrDataSource = ["Sri Aurobindo","The Mother"]
         
-        if _strAuther != ""
+        if _arrAuther.count > 0
         {
-            vcSelection?.arrPreviousSelection = [_strAuther]
+            vcSelection?.arrPreviousSelection = _arrAuther
         }
         self.navigationController?.pushViewController(vcSelection!, animated: true)
         
@@ -220,13 +241,13 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
             vcSelection?.arrPreviousSelection = [_strCompilation]
         }
         
-        if _strAuther == "Sri Aurobindo"
+        if _arrAuther[0] == "Sri Aurobindo"
         {
             vcSelection?.arrDataSource = ["Birth Centenary Library","Complete Works"]
             self.navigationController?.pushViewController(vcSelection!, animated: true)
 
         }
-        else if _strAuther == "The Mother"
+        else if _arrAuther[0] == "The Mother"
         {
             vcSelection?.arrDataSource = ["Collected Works","Agenda"]
             self.navigationController?.pushViewController(vcSelection!, animated: true)
@@ -703,7 +724,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         {
         case .SelectionListTypeAuthor  :
             
-            _strAuther = selectionItems[0] as! String
+            _arrAuther = selectionItems as! [String]
             _strCompilation = ""
             _strVolume = ""
             vcContainerTable.cellCompilation.contentView.alpha = 1.0
@@ -740,8 +761,21 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
             break;
         }
         
+        var strAuthers:String = ""
         
-        vcContainerTable.cellAuther.detailTextLabel?.text = _strAuther
+        for strAuther in _arrAuther {
+            
+            if strAuthers == ""
+            {
+                strAuthers = strAuthers + strAuther
+            }
+            else
+            {
+                strAuthers = strAuthers + ", " + strAuther
+            }
+        }
+        
+        vcContainerTable.cellAuther.detailTextLabel?.text = strAuthers
         vcContainerTable.cellCompilation.detailTextLabel?.text = _strCompilation
         vcContainerTable.cellVolume.detailTextLabel?.text = _strVolume
         

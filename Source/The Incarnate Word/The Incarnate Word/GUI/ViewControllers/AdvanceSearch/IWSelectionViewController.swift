@@ -22,6 +22,7 @@ class IWSelectionViewController: UIViewController,UITableViewDataSource,UITableV
     var arrSelectionList:[AnyObject]        = []
     var delegateSelectionView: SelectionViewDelegate?;
     var arrPreviousSelection:[AnyObject] = []
+    var bAllowMultipleSelection:Bool = false
     
     @IBOutlet weak var tableViewList: UITableView!
     
@@ -57,8 +58,17 @@ class IWSelectionViewController: UIViewController,UITableViewDataSource,UITableV
         super.viewWillAppear(animated)
         tableViewList.reloadData()
         arrSelectionList.removeAll()
-        arrSelectionList += arrPreviousSelection
         
+        //keep only one element if multiple selection not allowed
+        if bAllowMultipleSelection == false && arrPreviousSelection.count > 1
+        {
+            var firstObject = arrPreviousSelection[0]
+            arrPreviousSelection.removeAll()
+            arrPreviousSelection[0] = firstObject
+        }
+        
+        arrSelectionList += arrPreviousSelection
+
     }
     
     @IBAction func buttonCancelClicked()
@@ -115,6 +125,12 @@ class IWSelectionViewController: UIViewController,UITableViewDataSource,UITableV
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if bAllowMultipleSelection == false
+        {
+            arrSelectionList.removeAll()
+        }
+        
         
         if arrSelectionList.count == 0
         {
