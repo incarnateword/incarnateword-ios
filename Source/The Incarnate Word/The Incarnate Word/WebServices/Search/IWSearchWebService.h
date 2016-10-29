@@ -21,4 +21,11 @@
                 AndVolume:(NSString*) strVolume
             AndStartIndex:(int) start
               AndDelegate:(id<WebServiceDelegate>)delegate;
+
+
+-(id)initWithSearchYear:(NSString*) strYear
+              WithMonth:(NSString*) strMonth
+               WithDate:(NSString*) strDate
+            AndDelegate:(id<WebServiceDelegate>)delegate;
+
 @end

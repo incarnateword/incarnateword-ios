@@ -9,6 +9,7 @@
 #import "IWSearchWebService.h"
 #import "IWSearchItemStructure.h"
 #import "IWSearchStructure.h"
+#import "IWUtility.h"
 
 @implementation IWSearchWebService
 
@@ -48,6 +49,39 @@
     }
     return self ;
 }
+
+-(id)initWithSearchYear:(NSString*) strYear
+              WithMonth:(NSString*) strMonth
+               WithDate:(NSString*) strDate
+            AndDelegate:(id<WebServiceDelegate>)delegate
+{
+    
+    NSMutableString *strQuery = [[NSMutableString alloc] initWithString:strYear];
+    
+    if([IWUtility isNilOrEmptyString:strMonth] == NO)
+    {
+        [strQuery appendString:[NSString stringWithFormat:@"/%@",strMonth]];
+        
+        if([IWUtility isNilOrEmptyString:strDate] == NO)
+        {
+            [strQuery appendString:[NSString stringWithFormat:@"/%@",strDate]];
+        }
+    }
+    
+    [strQuery appendString:@".json"];
+    
+    self = [super initWithRequest:[strQuery copy]
+                           header:nil
+                             body:nil
+                      RequestType:@"GET"];
+    
+    if (self)
+    {
+        self.delegate = delegate;
+    }
+    return self ;
+}
+
 
 /*
  {
