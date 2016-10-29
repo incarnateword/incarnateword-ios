@@ -522,7 +522,7 @@
     if(strUrl)
     {
         [[IWUserActionManager sharedManager] showChapterWithPath:[NSString stringWithFormat:@"%@/%@",_strVolumePath,strUrl]
-                                                    andItemIndex:iItemIndex];
+                                                    andItemIndex:iItemIndex andShouldForcePush:NO];
         [self.navigationController popViewControllerAnimated:YES];
 
     }

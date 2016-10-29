@@ -307,7 +307,7 @@ static IWUserActionManager* userActionManager = nil ;
     {
         _chapterViewController = nil;
         [[IWUserActionManager sharedManager] showChapterWithPath:[NSString stringWithFormat:@"%@/%@",_strVolumePath,strUrl]
-                                                    andItemIndex:iItemIndex];
+                                                    andItemIndex:iItemIndex andShouldForcePush:NO] ;
     }
 }
 
@@ -359,9 +359,12 @@ static IWUserActionManager* userActionManager = nil ;
     [[IWGUIManager sharedManager] rootViewPushViewController:volumeDetailsViewController forceOnRoot:NO animated:YES];
 }
 
--(void)showChapterWithPath:(NSString *) strPath andItemIndex:(int) iItemIndex;
+-(void)showChapterWithPath:(NSString *) strPath andItemIndex:(int) iItemIndex andShouldForcePush:(BOOL) bShouldForcePush;
 {
-    if(_chapterViewController)
+    if(bShouldForcePush)
+        _chapterViewController = nil;
+    
+    if(_chapterViewController)//In chapter view pressed Next/Prev -> No need to push just update UI
     {
         _chapterViewController.strChapterPath = strPath;
         _chapterViewController.iItemIndex = iItemIndex;

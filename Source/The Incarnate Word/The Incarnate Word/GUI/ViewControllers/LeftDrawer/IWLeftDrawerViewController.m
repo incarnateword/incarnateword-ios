@@ -573,7 +573,7 @@
         {
             
             IWSearchItemStructure *searchItem = [_arrSearchResult objectAtIndex:indexPath.row-1];
-            [[IWUserActionManager sharedManager] showChapterWithPath:searchItem.strChapterUrl andItemIndex:0];
+            [[IWUserActionManager sharedManager] showChapterWithPath:searchItem.strChapterUrl andItemIndex:0 andShouldForcePush:YES];
         }
     }
     else

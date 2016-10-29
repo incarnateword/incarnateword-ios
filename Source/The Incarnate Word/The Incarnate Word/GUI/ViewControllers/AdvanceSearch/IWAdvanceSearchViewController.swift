@@ -59,8 +59,10 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         searchBar.showsCancelButton = false
         searchBar.text = _strSearch
         
-        vcContainerTable.cellCompilation.contentView.alpha = 0.5
-        vcContainerTable.cellVolume.contentView.alpha = 0.5
+        self.disableCell(vcContainerTable.cellCompilation, shouldDisable: true)
+        self.disableCell(vcContainerTable.cellVolume, shouldDisable: true)
+        
+        self.disableCell(vcContainerTable.cellDate, shouldDisable: true)
         
         
         let attr = NSDictionary(object: UIFont(name: FONT_TITLE_REGULAR, size: 16.0)!, forKey: NSFontAttributeName)
@@ -180,9 +182,9 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
                 return
             }
             
-            vc!.strYear = _strYear
-            vc!.strMonth = _strMonth
-            vc!.strDay = _strDay
+            vc!.strYear  = _strYear
+            vc!.strMonth = (_strMonth ==  "Any" ? "" :  _strMonth)
+            vc!.strDay   = (_strDay ==  "Any" ? "" :  _strDay)
         }
         
         
@@ -243,13 +245,13 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         
         if _arrAuther[0] == "Sri Aurobindo"
         {
-            vcSelection?.arrDataSource = ["Birth Centenary Library","Complete Works"]
+            vcSelection?.arrDataSource = ["Any","Birth Centenary Library","Complete Works"]
             self.navigationController?.pushViewController(vcSelection!, animated: true)
 
         }
         else if _arrAuther[0] == "The Mother"
         {
-            vcSelection?.arrDataSource = ["Collected Works","Agenda"]
+            vcSelection?.arrDataSource = ["Any","Collected Works","Agenda"]
             self.navigationController?.pushViewController(vcSelection!, animated: true)
         }
         
@@ -640,7 +642,8 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         }
         
         vcSelection?.arrDataSource =
-            ["January",
+            ["Any",
+             "January",
              "February",
              "March",
              "April",
@@ -670,7 +673,8 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         
         let arrTemp:[String] =
         
-        ["January",
+        ["Any",
+         "January",
          "February",
          "March",
          "April",
@@ -683,7 +687,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
          "November",
          "December"]
         
-        components.month = arrTemp.indexOf(_strMonth)! + 1;
+        components.month = arrTemp.indexOf(_strMonth)! ;
         var date:NSDate = calendar.dateFromComponents(components)!
         var range:NSRange = calendar.rangeOfUnit(.Day, inUnit: .Month , forDate: date)
         
@@ -733,8 +737,10 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
             _arrAuther = selectionItems as! [String]
             _strCompilation = ""
             _strVolume = ""
-            vcContainerTable.cellCompilation.contentView.alpha = 1.0
-            vcContainerTable.cellVolume.contentView.alpha = 0.5
+            
+            self.disableCell(vcContainerTable.cellCompilation, shouldDisable: false)
+            self.disableCell(vcContainerTable.cellVolume, shouldDisable: true)
+
             
             break;
             
@@ -743,22 +749,48 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
             _strCompilation = selectionItems[0] as! String
             _strVolume = ""
             
-            vcContainerTable.cellVolume.contentView.alpha = 1.0
+            if ( _strCompilation != "Any")
+            {
+                self.disableCell(vcContainerTable.cellVolume, shouldDisable: false)
+            }
+
             break;
             
         case .SelectionListTypeVolume  :
             
             _strVolume = selectionItems[0] as! String
+            
             break;
             
         case .SelectionListTypeYear  :
             
             _strYear = selectionItems[0] as! String
+            
+            if (_strYear == "Any"  || _strYear == ""  || _strMonth == "Any" ||  _strMonth == "")
+            {
+                self.disableCell(vcContainerTable.cellDate, shouldDisable: true)
+            }
+            else
+            {
+                self.disableCell(vcContainerTable.cellDate, shouldDisable: false)
+            }
+            
+            
             break;
             
         case .SelectionListTypeMonth  :
             
             _strMonth = selectionItems[0] as! String
+            
+            if (_strYear == "Any"  || _strYear == ""  || _strMonth == "Any" ||  _strMonth == "")
+            {
+                self.disableCell(vcContainerTable.cellDate, shouldDisable: true)
+            }
+            else
+            {
+                self.disableCell(vcContainerTable.cellDate, shouldDisable: false)
+            }
+            
             break;
             
         case .SelectionListTypeDate  :
@@ -807,7 +839,24 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         searchBar.showsCancelButton = false
     }
     
-    
-
+    private func disableCell(cell:UITableViewCell, shouldDisable bShouldDisable:Bool)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
+       {
+            dispatch_async(dispatch_get_main_queue(),
+            {
+                if bShouldDisable
+                {
+                    cell.contentView.alpha = 0.5
+                    cell.userInteractionEnabled = false
+                }
+                else
+                {
+                    cell.contentView.alpha = 1.0
+                    cell.userInteractionEnabled = true
+                }
+            })
+       })
+    }
 
 }
