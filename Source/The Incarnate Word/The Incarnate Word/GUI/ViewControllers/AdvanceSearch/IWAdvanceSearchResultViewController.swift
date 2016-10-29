@@ -123,6 +123,7 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let searchItem:IWSearchItemStructure = arrSearchResult[indexPath.row] as! IWSearchItemStructure
         IWUserActionManager.sharedManager().showChapterWithPath(searchItem.strChapterUrl, andItemIndex: 0)
     }
