@@ -223,7 +223,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     func cellSelectedCompilation()
     {
 
-        
+        vcSelection?.bAllowMultipleSelection = false
         
         _listType = .SelectionListTypeCollection
 
@@ -257,6 +257,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     
     func cellSelectedVolume()
     {
+        vcSelection?.bAllowMultipleSelection = false
         _listType = .SelectionListTypeVolume
 
         print("Volume Cell Selected")
@@ -526,6 +527,8 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     
     func cellSelectedYear()
     {
+        vcSelection?.bAllowMultipleSelection = false
+
         _listType = .SelectionListTypeYear
         
         print("Year Cell Selected")
@@ -625,6 +628,8 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     
     func cellSelectedMonth()
     {
+        vcSelection?.bAllowMultipleSelection = false
+
         _listType = .SelectionListTypeMonth
         
         print("Month Cell Selected")
@@ -653,7 +658,8 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     
     func cellSelectedDate()
     {
-        
+        vcSelection?.bAllowMultipleSelection = false
+
         let calendar:NSCalendar = NSCalendar.currentCalendar()
         var components:NSDateComponents = NSDateComponents()
         
