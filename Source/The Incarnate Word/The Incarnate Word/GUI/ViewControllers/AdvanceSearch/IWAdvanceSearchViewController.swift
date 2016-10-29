@@ -183,7 +183,27 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
             }
             
             vc!.strYear  = _strYear
-            vc!.strMonth = (_strMonth ==  "Any" ? "" :  _strMonth)
+            
+            
+            let arrTemp:[String] =
+                
+                ["Any",
+                 "January",
+                 "February",
+                 "March",
+                 "April",
+                 "May",
+                 "June",
+                 "July",
+                 "August",
+                 "September",
+                 "October",
+                 "November",
+                 "December"]
+            
+           
+            let index:Int = arrTemp.indexOf(_strMonth)!
+            vc!.strMonth = (_strMonth ==  "Any" ? "" :"\(index)")
             vc!.strDay   = (_strDay ==  "Any" ? "" :  _strDay)
         }
         
