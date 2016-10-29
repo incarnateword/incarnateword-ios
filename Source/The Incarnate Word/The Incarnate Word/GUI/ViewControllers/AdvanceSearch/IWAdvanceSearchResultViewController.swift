@@ -15,10 +15,16 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
     var strAuther:String = "";
     var strCollection:String = "";
     var strVolume:String = "";
+    
+    var strYear:String = ""
+    var strMonth:String = ""
+    var strDay:String = ""
+    
     var webServiceSerch:IWSearchWebService?;
     var arrSearchResult = [AnyObject]()
     var _bSearchRequestIsInProgress:Bool = false;
     var _iTotalNumberOfRecords:Int = 0;
+    var _selectedSegment:EnumSelectedSegment = .SelectedSegmentFilter
 
     @IBOutlet weak var constraintHeightViewSearchResult: NSLayoutConstraint!
     @IBOutlet weak var constraintHeightViewLoadingMore: NSLayoutConstraint!
@@ -47,7 +53,17 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         constraintHeightViewLoadingMore.constant = 0;
         constraintHeightViewLoadingMore.constant = 0;
 
+        if _selectedSegment == .SelectedSegmentFilter
+        {
+        
         webServiceSerch = IWSearchWebService.init(searchString: strSearch, andAuther: strAuther, andCompilation: strCollection, andVolume: strVolume, andStartIndex: 0, andDelegate: self)
+            
+        }
+        else if _selectedSegment == .SelectedSegmentGoToDate
+        {
+            webServiceSerch = IWSearchWebService.init(searchYear:strYear,withMonth:strMonth,withDate:strDay,andStartIndex:0, andDelegate: self)
+        }
+
         webServiceSerch?.sendAsyncRequest()
         
     }
@@ -70,7 +86,13 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         let searchItem:IWSearchItemStructure = arrSearchResult[indexPath.row] as! IWSearchItemStructure
         let  lblTitle:UILabel       = cell.viewWithTag(201) as! UILabel
         let  lblText:UILabel       = cell.viewWithTag(202) as! UILabel
-        lblTitle.text = " "+searchItem.strTitle;
+        
+        lblTitle.text = ""
+        
+        if isObjectNil(searchItem.strTitle) == false
+        {
+            lblTitle.text = " "+searchItem.strTitle;
+        }
         
         var strMut:String = ""
         
@@ -119,6 +141,16 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         lblText.attributedText = attributedString
         
         return cell
+    }
+    
+    func isObjectNil(object:AnyObject!) -> Bool
+    {
+        if let _:AnyObject = object
+        {
+            return false
+        }
+        
+        return true
     }
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
@@ -206,7 +238,17 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
             constraintHeightViewLoadingMore.constant = 24
             _bSearchRequestIsInProgress = true;
 //            _constraintViewLoadingMoreItemHeight.constant = HEIGHT_LOADING_MORE_ITEM_VIEW;
-            webServiceSerch = IWSearchWebService.init(searchString: strSearch, andAuther: strAuther, andCompilation: strCollection, andVolume: strVolume, andStartIndex: Int32(arrSearchResult.count), andDelegate: self)
+
+            
+            if _selectedSegment == .SelectedSegmentFilter
+            {
+                webServiceSerch = IWSearchWebService.init(searchString: strSearch, andAuther: strAuther, andCompilation: strCollection, andVolume: strVolume, andStartIndex: Int32(arrSearchResult.count), andDelegate: self)
+            }
+            else if _selectedSegment == .SelectedSegmentGoToDate
+            {
+                webServiceSerch = IWSearchWebService.init(searchYear:strYear,withMonth:strMonth,withDate:strDay,andStartIndex:Int32(arrSearchResult.count), andDelegate: self)
+            }
+            
             webServiceSerch?.sendAsyncRequest()
         }
     }

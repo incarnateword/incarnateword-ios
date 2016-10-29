@@ -40,7 +40,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     
     var _strYear:String = ""
     var _strMonth:String = ""
-    var _strDate:String = ""
+    var _strDay:String = ""
     
     //MARK: View Life Cycle
     
@@ -98,51 +98,85 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     
     @IBAction func buttonAdvanceSearchClicked(sender: AnyObject)
     {
-        if searchBar.text == nil || searchBar.text ==  ""
-        {
-            
-            // create the alert
-            let alert = UIAlertController(title: "Error", message: "Please enter search text.", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            // add an action (button)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            
-            // show the alert
-            self.presentViewController(alert, animated: true, completion: nil)
-            
-            return
-        }
         
         let vc = (self.storyboard?.instantiateViewControllerWithIdentifier("IWAdvanceSearchResultViewController"))! as? IWAdvanceSearchResultViewController
+
+        vc!.strSearch = ""
+        vc!.strAuther = ""
+        vc!.strCollection = ""
+        vc!.strVolume = ""
         
-        //http://incarnateword.in/search?q=mother&auth=sa&comp=sabcl&vol=01
-        vc!.strSearch       = searchBar.text!
-        vc!.strAuther       = _strAuther == "" ? "" :(_strAuther == "Sri Aurobindo" ? "sa": "m")
+        vc!.strYear = ""
+        vc!.strMonth = ""
+        vc!.strDay = ""
         
-        var strTempCollection:String = ""
+        vc!._selectedSegment = self._selectedSegment
         
-        if(_strCompilation == "Birth Centenary Library")
-        {
-            strTempCollection = "sabcl"
-        }
-        else if(_strCompilation == "Complete Works")
-        {
-            strTempCollection = "cwsa"
-        }
-        else if(_strCompilation == "Collected Works")
-        {
-            strTempCollection = "cwm"
-        }
-        else if(_strCompilation == "Agenda")
-        {
-            strTempCollection = "agenda"
-        }
-        vc!.strCollection   = strTempCollection
         
-        var arr:[String] = _strVolume.componentsSeparatedByString(":")
-        vc!.strVolume       = arr.count >= 2 ? arr[0] : ""
+        if self._selectedSegment == .SelectedSegmentFilter
+        {
+            if searchBar.text == nil || searchBar.text ==  ""
+            {
+                
+                let alert = UIAlertController(title: "Error", message: "Please enter search text.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+                return
+            }
+        
+            //http://incarnateword.in/search?q=mother&auth=sa&comp=sabcl&vol=01
+            vc!.strSearch       = searchBar.text!
+            vc!.strAuther       = _strAuther == "" ? "" :(_strAuther == "Sri Aurobindo" ? "sa": "m")
+            
+            var strTempCollection:String = ""
+            
+            if(_strCompilation == "Birth Centenary Library")
+            {
+                strTempCollection = "sabcl"
+            }
+            else if(_strCompilation == "Complete Works")
+            {
+                strTempCollection = "cwsa"
+            }
+            else if(_strCompilation == "Collected Works")
+            {
+                strTempCollection = "cwm"
+            }
+            else if(_strCompilation == "Agenda")
+            {
+                strTempCollection = "agenda"
+            }
+            vc!.strCollection   = strTempCollection
+            
+            var arr:[String] = _strVolume.componentsSeparatedByString(":")
+            vc!.strVolume       = arr.count >= 2 ? arr[0] : ""
+            
+            
+        }
+        else if self._selectedSegment == .SelectedSegmentGoToDate
+        {
+            if _strYear ==  "" ||  _strYear ==  "Any"
+            {
+                let alert = UIAlertController(title: "Error", message: "Please select year.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+                return
+            }
+            
+            vc!.strYear = _strYear
+            vc!.strMonth = _strMonth
+            vc!.strDay = _strDay
+        }
+        
         
         self.navigationController?.pushViewController(vc!, animated: true)
+
     }
     
 
@@ -633,9 +667,9 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         
         print("Date Cell Selected")
         
-        if _strDate != ""
+        if _strDay != ""
         {
-            vcSelection?.arrPreviousSelection = [_strDate]
+            vcSelection?.arrPreviousSelection = [_strDay]
         }
         
         
@@ -702,7 +736,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
             
         case .SelectionListTypeDate  :
             
-            _strDate = selectionItems[0] as! String
+            _strDay = selectionItems[0] as! String
             break;
         }
         
@@ -713,7 +747,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         
         vcContainerTable.cellYear.detailTextLabel?.text = _strYear
         vcContainerTable.cellMonth.detailTextLabel?.text = _strMonth
-        vcContainerTable.cellDate.detailTextLabel?.text = _strDate
+        vcContainerTable.cellDate.detailTextLabel?.text = _strDay
     }
 
     
