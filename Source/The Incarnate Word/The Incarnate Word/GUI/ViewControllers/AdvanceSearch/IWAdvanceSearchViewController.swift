@@ -201,10 +201,14 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
                  "November",
                  "December"]
             
+            if _strMonth !=  "" &&  _strMonth !=  "Any"
+            {
+                let index:Int = arrTemp.indexOf(_strMonth)!
+                vc!.strMonth = "\(index)"
+                vc!.strDay   = (_strDay ==  "Any" ? "" :  _strDay)
+            }
            
-            let index:Int = arrTemp.indexOf(_strMonth)!
-            vc!.strMonth = (_strMonth ==  "Any" ? "" :"\(index)")
-            vc!.strDay   = (_strDay ==  "Any" ? "" :  _strDay)
+
         }
         
         
@@ -560,89 +564,39 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
             vcSelection?.arrPreviousSelection = [_strYear]
         }
         
-        vcSelection?.arrDataSource =
-        ["Any",
-        "1973",
-        "1972",
-        "1971",
-        "1970",
-        "1969",
-        "1968",
-        "1967",
-        "1966",
-        "1965",
-        "1964",
-        "1963",
-        "1962",
-        "1961",
-        "1960",
-        "1959",
-        "1958",
-        "1957",
-        "1956",
-        "1955",
-        "1954",
-        "1953",
-        "1952",
-        "1951",
-        "1950",
-        "1949",
-        "1948",
-        "1947",
-        "1946",
-        "1945",
-        "1944",
-        "1943",
-        "1942",
-        "1941",
-        "1940",
-        "1939",
-        "1938",
-        "1937",
-        "1936",
-        "1935",
-        "1934",
-        "1933",
-        "1932",
-        "1931",
-        "1930",
-        "1929",
-        "1928",
-        "1927",
-        "1926",
-        "1925",
-        "1924",
-        "1923",
-        "1922",
-        "1921",
-        "1920",
-        "1919",
-        "1918",
-        "1917",
-        "1916",
-        "1915",
-        "1914",
-        "1913",
-        "1912",
-        "1911",
-        "1910",
-        "1909",
-        "1908",
-        "1907",
-        "1906",
-        "1905",
-        "1904",
-        "1903",
-        "1902",
-        "1901",
-        "1900",
-        "1899",
-        "1898",
-        "1897",
-        "1896",
-        "1895",
-        "1894",
-        "1893"]
+        var arrYear:[String] = ["Any"]
+        /*
+         Both 1890 - 1973
+
+         Sir 1890 - 1950
+         
+         Mother 1893 - 1973
+         
+         */
+        
+        //Both combined
+        var startYear:Int = 1890
+        var endYear:Int = 1973
+        
+        if _arrAuther.count == 1
+        {
+            if _arrAuther[0] == "Sri Aurobindo" //Sir
+            {
+                endYear = 1950
+            }
+            else//Mother
+            {
+                startYear = 1893
+            }
+        }
+        
+        for(var year:Int = startYear; year <= endYear; year += 1 )
+        {
+            arrYear.append(String(format:"%d",year))
+        }
+        
+        vcSelection?.arrDataSource = arrYear
+        
         
         self.navigationController?.pushViewController(vcSelection!, animated: true)
 
