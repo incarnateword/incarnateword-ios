@@ -52,6 +52,7 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         _iTotalNumberOfRecords = 0;
         constraintHeightViewLoadingMore.constant = 0;
         constraintHeightViewLoadingMore.constant = 0;
+        tableViewResult.tableFooterView = UIView()
 
         if _selectedSegment == .SelectedSegmentFilter
         {
@@ -181,6 +182,16 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         }
         
         constraintHeightViewLoadingMore.constant = 0
+        
+        if (arrSearchResult.count == 0)
+        {
+            let alert = UIAlertController(title: "No Records", message: "No records found for given search.", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction) in
+                self.navigationController?.popViewControllerAnimated(true)
+            }));
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     func updateTableContent()
@@ -210,6 +221,16 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
     {
         _bSearchRequestIsInProgress = false
         constraintHeightViewLoadingMore.constant = 0
+        
+        if (arrSearchResult.count == 0)
+        {
+            let alert = UIAlertController(title: "Error", message: "Search request failed.", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction) in
+                self.navigationController?.popViewControllerAnimated(true)
+            }));
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     //MARK: ScrollView Delegate
