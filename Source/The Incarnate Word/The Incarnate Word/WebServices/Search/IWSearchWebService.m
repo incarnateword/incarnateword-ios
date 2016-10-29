@@ -50,9 +50,11 @@
     return self ;
 }
 
+
 -(id)initWithSearchYear:(NSString*) strYear
               WithMonth:(NSString*) strMonth
                WithDate:(NSString*) strDate
+          AndStartIndex:(int) start
             AndDelegate:(id<WebServiceDelegate>)delegate
 {
     
@@ -68,7 +70,7 @@
         }
     }
     
-    [strQuery appendString:@".json"];
+    [strQuery appendString:[NSString stringWithFormat:@".json?start=%d",start]];
     
     self = [super initWithRequest:[strQuery copy]
                            header:nil

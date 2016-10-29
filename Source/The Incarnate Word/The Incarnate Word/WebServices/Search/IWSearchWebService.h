@@ -26,6 +26,7 @@
 -(id)initWithSearchYear:(NSString*) strYear
               WithMonth:(NSString*) strMonth
                WithDate:(NSString*) strDate
+          AndStartIndex:(int) start
             AndDelegate:(id<WebServiceDelegate>)delegate;
 
 @end
