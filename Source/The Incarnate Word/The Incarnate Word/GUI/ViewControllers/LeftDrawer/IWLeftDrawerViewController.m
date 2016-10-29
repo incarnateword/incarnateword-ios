@@ -473,8 +473,44 @@
             
             strMut = [[strMut stringByReplacingOccurrencesOfString:@"<em>" withString:@""] mutableCopy];
             strMut = [[strMut stringByReplacingOccurrencesOfString:@"</em>" withString:@""] mutableCopy];
+           
             
-            lblText.attributedText = [IWUtility getMarkdownNSAttributedStringFromNSString:[strMut copy]];
+            NSString *strStrongStart = @"<strong>";
+            NSString *strStrongEnd = @"</strong>";
+            
+            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[strMut copy]];
+            
+            NSRange r1 = [strMut rangeOfString:strStrongStart];
+            NSRange r2 = [strMut rangeOfString:strStrongEnd];
+            
+            if( r1.location != NSNotFound && r2.location != NSNotFound)
+            {
+       
+                strMut = [[strMut stringByReplacingOccurrencesOfString:strStrongStart withString:@""] mutableCopy];
+                strMut = [[strMut stringByReplacingOccurrencesOfString:strStrongEnd withString:@""] mutableCopy];
+         
+                
+                int index = (int)strStrongStart.length + (int)strStrongEnd.length;
+                
+                NSRange rSub = NSMakeRange(r1.location, (r2.location+r2.length-index-r1.location));
+                NSString *sub = [strMut substringWithRange:rSub];
+                
+                
+                NSString *searchQuery = sub;
+                
+                attributedString = [[NSMutableAttributedString alloc] initWithString:[strMut copy]];
+                
+                NSRange range = [strMut rangeOfString:searchQuery];
+                
+                [attributedString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:lblText.font.pointSize] range:range];
+                
+      
+            }
+            
+            lblText.attributedText = [attributedString copy];
+            
+            
+            
         }
     }
     
