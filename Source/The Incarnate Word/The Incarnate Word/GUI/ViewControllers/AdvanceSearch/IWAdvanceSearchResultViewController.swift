@@ -61,7 +61,7 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         }
         else if _selectedSegment == .SelectedSegmentGoToDate
         {
-            webServiceSerch = IWSearchWebService.init(searchYear:strYear,withMonth:strMonth,withDate:strDay,andStartIndex:0, andDelegate: self)
+            webServiceSerch = IWSearchWebService.init(searchYear:strYear,withMonth:strMonth,withDate:strDay,andAuther: strAuther,andStartIndex:0, andDelegate: self)
         }
 
         webServiceSerch?.sendAsyncRequest()
@@ -246,7 +246,7 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
             }
             else if _selectedSegment == .SelectedSegmentGoToDate
             {
-                webServiceSerch = IWSearchWebService.init(searchYear:strYear,withMonth:strMonth,withDate:strDay,andStartIndex:Int32(arrSearchResult.count), andDelegate: self)
+                webServiceSerch = IWSearchWebService.init(searchYear:strYear,withMonth:strMonth,withDate:strDay,andAuther: strAuther,andStartIndex:Int32(arrSearchResult.count), andDelegate: self)
             }
             
             webServiceSerch?.sendAsyncRequest()

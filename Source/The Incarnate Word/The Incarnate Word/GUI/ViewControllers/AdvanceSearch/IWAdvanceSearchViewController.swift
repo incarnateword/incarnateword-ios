@@ -111,7 +111,8 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         vc!.strDay = ""
         
         vc!._selectedSegment = self._selectedSegment
-        
+        vc!.strAuther       = _strAuther == "" ? "" :(_strAuther == "Sri Aurobindo" ? "sa": "m")
+
         
         if self._selectedSegment == .SelectedSegmentFilter
         {
@@ -129,7 +130,6 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         
             //http://incarnateword.in/search?q=mother&auth=sa&comp=sabcl&vol=01
             vc!.strSearch       = searchBar.text!
-            vc!.strAuther       = _strAuther == "" ? "" :(_strAuther == "Sri Aurobindo" ? "sa": "m")
             
             var strTempCollection:String = ""
             
