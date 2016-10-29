@@ -54,6 +54,7 @@
 -(id)initWithSearchYear:(NSString*) strYear
               WithMonth:(NSString*) strMonth
                WithDate:(NSString*) strDate
+              AndAuther:(NSString*) strAuther
           AndStartIndex:(int) start
             AndDelegate:(id<WebServiceDelegate>)delegate
 {
@@ -68,6 +69,11 @@
         {
             [strQuery appendString:[NSString stringWithFormat:@"/%@",strDate]];
         }
+    }
+    
+    if([IWUtility isNilOrEmptyString:strAuther] == NO)
+    {
+        [strQuery appendString:[NSString stringWithFormat:@"/%@",strAuther]];
     }
     
     [strQuery appendString:[NSString stringWithFormat:@".json?start=%d",start]];
