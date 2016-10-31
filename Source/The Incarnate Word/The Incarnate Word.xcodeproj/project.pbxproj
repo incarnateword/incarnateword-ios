@@ -1195,7 +1195,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.incarnateword.internal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "af26e8c3-9383-4f7b-8d34-19acde97357e";
 				SWIFT_OBJC_BRIDGING_HEADER = "The Incarnate Word/GUI/ViewControllers/GUIUtility/CustomSpinner/The Incarnate Word-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1216,7 +1216,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.incarnateword.internal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "af26e8c3-9383-4f7b-8d34-19acde97357e";
 				SWIFT_OBJC_BRIDGING_HEADER = "The Incarnate Word/GUI/ViewControllers/GUIUtility/CustomSpinner/The Incarnate Word-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
