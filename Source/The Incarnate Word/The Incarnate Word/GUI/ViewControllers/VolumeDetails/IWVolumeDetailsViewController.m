@@ -232,7 +232,10 @@
     lblTop.textColor = [UIColor whiteColor];
     
     lblBottom.text = _detailVolumeStructure.strSubTitle;
+    lblBottom.numberOfLines = 2;
     lblBottom.font  = [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:18]];
+    lblBottom.adjustsFontSizeToFitWidth=YES;
+    lblBottom.minimumScaleFactor=0.5;
     lblBottom.textAlignment = NSTextAlignmentCenter;
     lblBottom.textColor = [UIColor whiteColor];
 
