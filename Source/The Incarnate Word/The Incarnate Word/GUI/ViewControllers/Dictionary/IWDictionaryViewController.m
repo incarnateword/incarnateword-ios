@@ -68,7 +68,7 @@
 
 -(void)setupUI
 {
-    self.navigationItem.title = @"Loading...";
+    self.navigationItem.title = @"Dictionary";
     _viewLoading.layer.cornerRadius = 3.0;
     _viewLoading.backgroundColor = COLOR_LOADING_VIEW;
 
@@ -160,7 +160,6 @@
 
 -(void)updateUI
 {
-    self.navigationItem.title = @"Dictionary";
     
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     

@@ -54,7 +54,18 @@
 -(void)setupUI
 {
     self.view.backgroundColor = COLOR_VIEW_BG;
-    self.navigationItem.title = @"Loading...";
+    
+    if([_strAboutPath isEqualToString:@"sa"])
+    {
+        self.navigationItem.title = @"Sri Aurobindo on the Mother";
+
+    }
+    else if([_strAboutPath isEqualToString:@"m"])
+    {
+        self.navigationItem.title = @"The Mother on Sri Aurobindo";
+
+    }
+    
     _viewLoading.layer.cornerRadius = 3.0;
     _viewLoading.backgroundColor = COLOR_LOADING_VIEW;
 //    _webView.scrollView.decelerationRate = 1.5;//UIScrollViewDecelerationRateFast;
@@ -126,8 +137,8 @@
 
 -(void)updateUI
 {
-    self.navigationItem.title = @"About";
-    self.navigationItem.title = _aboutDataStructure.strDescriptionTitle;
+//    self.navigationItem.title = @"About";
+//    self.navigationItem.title = _aboutDataStructure.strDescriptionTitle;
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
    ^{

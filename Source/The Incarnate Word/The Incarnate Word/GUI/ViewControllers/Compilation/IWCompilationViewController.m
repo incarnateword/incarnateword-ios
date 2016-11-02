@@ -59,7 +59,20 @@
     _viewVolume.backgroundColor = COLOR_VIEW_BG;
     
     _viewVolume.hidden = YES;
-    self.navigationItem.title = @"Loading...";
+    
+    if([_strCompilationPath isEqualToString:@"sabcl"] || [_strCompilationPath isEqualToString:@"cwsa"])
+    {
+        self.navigationItem.title = @"Sri Aurobindo";
+    }
+    else if([_strCompilationPath isEqualToString:@"cwm"] || [_strCompilationPath isEqualToString:@"agenda"])
+    {
+        self.navigationItem.title = @"The Mother";
+    }
+    else
+    {
+        self.navigationItem.title = @"";
+    }
+    
     _tableViewVolumeList.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self.view sendSubviewToBack:_viewTop];
