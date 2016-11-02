@@ -590,7 +590,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
             }
         }
         
-        for(var year:Int = startYear; year <= endYear; year += 1 )
+        for(var year:Int = endYear; year >= startYear; year -= 1 )
         {
             arrYear.append(String(format:"%d",year))
         }
