@@ -112,6 +112,9 @@
 
     [self setupVC];
     
+    
+    /* PAGE CURL
+
     UIView *tempUIView=[[UIView alloc]initWithFrame:self.view.bounds];
     tempUIView.backgroundColor=[UIColor whiteColor];
     
@@ -138,6 +141,8 @@
          [tempUIView removeFromSuperview];
      }
      ];
+     
+     */
 }
 
 - (IBAction)btnNextChapterPressed:(id)sender
@@ -157,7 +162,8 @@
 
     [self setupVC];
     
-    
+    /* PAGE CURL
+     
     UIView *tempUIView=[[UIView alloc]initWithFrame:self.view.bounds];
     tempUIView.backgroundColor=[UIColor whiteColor];
     
@@ -184,6 +190,8 @@
                                     [tempUIView removeFromSuperview];
                                 }
      ];
+     
+     */
 }
 
 - (IBAction)btnSharePressed:(id)sender
