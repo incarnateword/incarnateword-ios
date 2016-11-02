@@ -82,6 +82,7 @@
 
 @property(nonatomic) NSString   *strIndex;// "vol": 1
 @property(nonatomic) NSString   *strTitle;//"alt": "Bande Mataram",
+@property(nonatomic) NSString   *strCompilationAuther;// "cmpa": "SABCL",
 @property(nonatomic) NSString   *strCompilationName;// "cmpn": "Sri Aurobindo Birth Centenary Library",
 @property(nonatomic) NSString   *strSubTitle;//"subt": "Early Political Writings - 1 (1890-May 1908)",
 @property(nonatomic) NSArray    *arrBooks;

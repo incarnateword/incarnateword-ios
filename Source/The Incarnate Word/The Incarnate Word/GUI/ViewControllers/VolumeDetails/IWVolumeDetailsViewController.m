@@ -194,7 +194,7 @@
 -(void)updateUI
 {
     _viewBottom.hidden = NO;
-    self.navigationItem.title = _detailVolumeStructure.strCompilationName;
+    self.navigationItem.title = _detailVolumeStructure.strCompilationAuther;
     _btnNextVolume.hidden = [IWUtility isNilOrEmptyString:_detailVolumeStructure.strUrlNextVolume];
     
     [_tableViewParts reloadData];

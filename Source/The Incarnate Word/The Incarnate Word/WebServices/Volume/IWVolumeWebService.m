@@ -172,6 +172,7 @@
         volume.strIndex = [[dictVolume objectForKey:@"vol"] stringValue];
         volume.strTitle = [dictVolume objectForKey:@"alt"];
         volume.strCompilationName = [dictVolume objectForKey:@"cmpn"];
+        volume.strCompilationAuther = [dictVolume objectForKey:@"cmpa"];
         volume.strSubTitle = [dictVolume objectForKey:@"subt"];
         volume.strUrlPrevVolume = [dictVolume objectForKey:@"prvu"];
         volume.strUrlNextVolume = [dictVolume objectForKey:@"nxtu"];
