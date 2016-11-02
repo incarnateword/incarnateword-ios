@@ -502,7 +502,7 @@
                 
                 NSRange range = [strMut rangeOfString:searchQuery];
                 
-                [attributedString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:lblText.font.pointSize] range:range];
+                [attributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:FONT_TITLE_MEDIUM size:[IWUtility getNumberAsPerScalingFactor:16.0]] range:range];
                 
       
             }

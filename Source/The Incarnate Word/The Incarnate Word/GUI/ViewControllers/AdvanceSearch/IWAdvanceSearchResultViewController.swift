@@ -88,6 +88,7 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         let  lblTitle:UILabel       = cell.viewWithTag(201) as! UILabel
         let  lblText:UILabel       = cell.viewWithTag(202) as! UILabel
         
+        lblText.font = UIFont (name: FONT_TITLE_REGULAR, size: 16.0)
         lblTitle.text = ""
         
         if isObjectNil(searchItem.strTitle) == false
@@ -136,7 +137,7 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
             
             let range = (strMut.copy() as! NSString).rangeOfString(searchQuery)
                 
-            attributedString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(lblText.font.pointSize), range: range)
+            attributedString.addAttribute(NSFontAttributeName, value: UIFont(name: FONT_TITLE_MEDIUM, size: 16.0)!, range: range)
         }
         
         lblText.attributedText = attributedString
