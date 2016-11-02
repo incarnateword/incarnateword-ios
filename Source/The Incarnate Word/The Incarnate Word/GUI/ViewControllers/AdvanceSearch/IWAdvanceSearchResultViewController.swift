@@ -53,7 +53,8 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         constraintHeightViewLoadingMore.constant = 0;
         constraintHeightViewLoadingMore.constant = 0;
         tableViewResult.tableFooterView = UIView()
-
+        self.navigationItem.title = strSearch
+        
         if _selectedSegment == .SelectedSegmentFilter
         {
         
