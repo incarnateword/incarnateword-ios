@@ -33,6 +33,7 @@
 		4861880E1B0A5BEF00A4D292 /* IWPathStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 4861880D1B0A5BEF00A4D292 /* IWPathStructure.m */; };
 		486DC23E1D0DBC570019DD10 /* Utility.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486DC23D1D0DBC570019DD10 /* Utility.storyboard */; };
 		486DC2431D0DBD380019DD10 /* IWCustomSpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486DC2421D0DBD380019DD10 /* IWCustomSpinnerViewController.swift */; };
+		486DE7271DCBB0B400D1FF16 /* IWMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486DE7261DCBB0B400D1FF16 /* IWMoreViewController.swift */; };
 		487381D01D2D786A00D0A257 /* IWSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487381CF1D2D786A00D0A257 /* IWSelectionViewController.swift */; };
 		487422511B2490FC004975DB /* IWSubSectionStructrue.m in Sources */ = {isa = PBXBuildFile; fileRef = 487422501B2490FC004975DB /* IWSubSectionStructrue.m */; };
 		487422551B24A3DE004975DB /* IWBookStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 487422541B24A3DE004975DB /* IWBookStructure.m */; };
@@ -146,6 +147,7 @@
 		486DC23D1D0DBC570019DD10 /* Utility.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Utility.storyboard; sourceTree = "<group>"; };
 		486DC2411D0DBD370019DD10 /* The Incarnate Word-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "The Incarnate Word-Bridging-Header.h"; sourceTree = "<group>"; };
 		486DC2421D0DBD380019DD10 /* IWCustomSpinnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWCustomSpinnerViewController.swift; sourceTree = "<group>"; };
+		486DE7261DCBB0B400D1FF16 /* IWMoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWMoreViewController.swift; sourceTree = "<group>"; };
 		487381CF1D2D786A00D0A257 /* IWSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWSelectionViewController.swift; sourceTree = "<group>"; };
 		4874224F1B2490FC004975DB /* IWSubSectionStructrue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWSubSectionStructrue.h; sourceTree = "<group>"; };
 		487422501B2490FC004975DB /* IWSubSectionStructrue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWSubSectionStructrue.m; sourceTree = "<group>"; };
@@ -643,6 +645,7 @@
 				4895E1861D2065CC00BEBD3F /* IWAdvanceSearchContainerTableViewController.swift */,
 				4890FC361D2301BC001921C2 /* IWAdvanceSearchResultViewController.swift */,
 				487381CF1D2D786A00D0A257 /* IWSelectionViewController.swift */,
+				486DE7261DCBB0B400D1FF16 /* IWMoreViewController.swift */,
 			);
 			path = AdvanceSearch;
 			sourceTree = "<group>";
@@ -1052,6 +1055,7 @@
 				483D67801B08A03100BA9A82 /* IWVolumeStructure.m in Sources */,
 				487E62F01B10EE230013F91E /* IWChaterItemStructure.m in Sources */,
 				483D67611B0886E500BA9A82 /* UIViewController+MMDrawerController.m in Sources */,
+				486DE7271DCBB0B400D1FF16 /* IWMoreViewController.swift in Sources */,
 				4878697C1B08E86D00429141 /* IWPartStructure.m in Sources */,
 				483D675D1B0886E500BA9A82 /* MMDrawerBarButtonItem.m in Sources */,
 				4895E1871D2065CC00BEBD3F /* IWAdvanceSearchContainerTableViewController.swift in Sources */,
@@ -1195,7 +1199,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.incarnateword.internal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "af26e8c3-9383-4f7b-8d34-19acde97357e";
+				PROVISIONING_PROFILE = "493f64f5-9b1b-440d-8cc4-6df87fd169bd";
 				SWIFT_OBJC_BRIDGING_HEADER = "The Incarnate Word/GUI/ViewControllers/GUIUtility/CustomSpinner/The Incarnate Word-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1216,7 +1220,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.incarnateword.internal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "af26e8c3-9383-4f7b-8d34-19acde97357e";
+				PROVISIONING_PROFILE = "493f64f5-9b1b-440d-8cc4-6df87fd169bd";
 				SWIFT_OBJC_BRIDGING_HEADER = "The Incarnate Word/GUI/ViewControllers/GUIUtility/CustomSpinner/The Incarnate Word-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
