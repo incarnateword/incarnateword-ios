@@ -84,6 +84,11 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         self.loadAllTOC()
     }
     
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        self.navigationItem.title = "Advance Search"
+    }
     
     func loadAllTOC()
     {

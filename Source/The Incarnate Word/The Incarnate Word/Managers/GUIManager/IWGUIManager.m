@@ -279,6 +279,7 @@ static IWGUIManager* guiManager = nil ;
         [viewController class] == [IWAdvanceSearchResultViewController class]||
         [viewController class] == [IWSelectionViewController class]||
         [viewController class] == [IWChapterDetailsViewController class]||
+        [viewController class] == [IWMoreViewController class]||
         [viewController class] == [IWAdvanceSearchViewController class])
     {
         
@@ -307,6 +308,33 @@ static IWGUIManager* guiManager = nil ;
             viewController.navigationItem.rightBarButtonItems = [NSArray
                                                                  arrayWithObjects:negativeSpacerRight,rightButton,nil];
         }
+        
+        if ([viewController class] == [IWAdvanceSearchViewController class])
+        {
+            UIButton *customRighBtn = [UIButton buttonWithType:UIButtonTypeInfoDark];
+            customRighBtn.bounds = CGRectMake( 40, 0, 40, 40 );
+            [customRighBtn addTarget:self action:@selector(btnAdvanceSearchMoreClicked) forControlEvents:UIControlEventTouchUpInside];
+//            [customRighBtn setTitle:@"i" forState:UIControlStateNormal];
+            
+            UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:customRighBtn];
+            
+            UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
+                                                    initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                    target:nil action:nil];
+            if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") )
+            {
+                negativeSpacerRight.width = -9;
+            }
+            else
+            {
+                negativeSpacerRight.width = -5;
+            }
+            
+            viewController.navigationItem.rightBarButtonItems = [NSArray
+                                                                 arrayWithObjects:negativeSpacerRight,rightButton,nil];
+        }
+        
+        
         
         return ;
     }
@@ -352,6 +380,11 @@ static IWGUIManager* guiManager = nil ;
 -(void)btnRightDrawerClicked
 {
     [[IWUserActionManager sharedManager] showVolumeForChapter];
+}
+
+-(void)btnAdvanceSearchMoreClicked
+{
+    [[IWUserActionManager sharedManager] pushAdvanceSearchMoreView];
 }
 
 -(IWInfoViewController*)getInfoViewControllerForText:(NSString*) strText

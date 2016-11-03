@@ -90,6 +90,8 @@
 
 #define S_POPOVER_INFO_VC @"INFO_VC"
 
+//Advance search
+#define S_ADVANCE_SEARCH_MORE_VC @"IWMoreViewController"
 
 /*******************************/
 

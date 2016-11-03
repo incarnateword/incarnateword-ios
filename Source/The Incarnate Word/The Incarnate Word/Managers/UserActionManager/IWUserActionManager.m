@@ -101,6 +101,13 @@ static IWUserActionManager* userActionManager = nil ;
     [self showCompilationWithPath:_strCurrentCompilation andForceOnRoot:NO];
 }
 
+-(void)pushAdvanceSearchMoreView
+{
+    UIStoryboard *sbCompilation = [UIStoryboard storyboardWithName:STORYBOARD_ADVANCE_SEARCH bundle:nil];
+
+    [[IWGUIManager sharedManager] rootViewPushViewController:[sbCompilation instantiateViewControllerWithIdentifier:S_ADVANCE_SEARCH_MORE_VC] forceOnRoot:NO animated:YES];
+}
+
 -(void)showVolumeForChapter
 {
     [self showVolumeWithPath:_strCurrentVolume];

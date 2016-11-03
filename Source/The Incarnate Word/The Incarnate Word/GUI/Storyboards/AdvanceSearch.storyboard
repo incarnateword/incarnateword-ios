@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <development version="7000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf">
@@ -67,13 +68,13 @@
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C7C-cC-Cfx">
                                 <rect key="frame" x="15" y="543" width="570" height="44"/>
-                                <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="nfO-Ad-KLz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="CharlotteSansW02-Medium" family="CharlotteSansW02-Medium" pointSize="17"/>
-                                <state key="normal" title="Advance Search">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="buttonAdvanceSearchClicked:" destination="W9f-0f-Fjk" eventType="touchUpInside" id="ivI-DP-xGS"/>
@@ -484,23 +485,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jc-YK-G0V">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBe-Rq-ODq">
+                                <rect key="frame" x="10" y="10" width="580" height="580"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2Jc-YK-G0V" firstAttribute="top" secondItem="w3a-i0-1ab" secondAttribute="top" id="LWp-VG-nZz"/>
-                            <constraint firstAttribute="trailing" secondItem="2Jc-YK-G0V" secondAttribute="trailing" id="VDC-ou-agP"/>
-                            <constraint firstItem="2Jc-YK-G0V" firstAttribute="leading" secondItem="w3a-i0-1ab" secondAttribute="leading" id="Wgz-vQ-Rbl"/>
-                            <constraint firstItem="Zr1-wC-ZQi" firstAttribute="top" secondItem="2Jc-YK-G0V" secondAttribute="bottom" id="oWJ-bU-nMv"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="zBe-Rq-ODq" secondAttribute="bottom" constant="10" id="A5J-NI-Bfn"/>
+                            <constraint firstAttribute="trailing" secondItem="zBe-Rq-ODq" secondAttribute="trailing" constant="10" id="E8x-zO-USk"/>
+                            <constraint firstItem="zBe-Rq-ODq" firstAttribute="top" secondItem="w3a-i0-1ab" secondAttribute="top" constant="10" id="PWg-41-HF8"/>
+                            <constraint firstItem="zBe-Rq-ODq" firstAttribute="leading" secondItem="w3a-i0-1ab" secondAttribute="leading" constant="10" id="RAk-r6-hUp"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="labelInfo" destination="2Jc-YK-G0V" id="xgm-LF-8JL"/>
+                        <outlet property="textView" destination="zBe-Rq-ODq" id="ii1-Mz-Kg7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DOi-7R-Ej9" userLabel="First Responder" sceneMemberID="firstResponder"/>

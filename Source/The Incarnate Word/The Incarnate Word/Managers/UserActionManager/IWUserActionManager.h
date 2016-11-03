@@ -36,7 +36,7 @@
 -(void)showHomeScreen;
 -(void)toggleLeftDrawer;
 -(void)showAdvanceSearch:(NSString*) strSearchSting;
-
+-(void)pushAdvanceSearchMoreView;
 //TODO: Move to data manager
 -(void)saveChapter:(IWDetailChapterStructure*) detailChapterStructure;
 -(IWDetailChapterStructure*)getOfflineChapterWithUrl:(NSString*)strUrl;
