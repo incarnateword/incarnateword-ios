@@ -472,5 +472,40 @@
             </objects>
             <point key="canvasLocation" x="1345" y="1052"/>
         </scene>
+        <!--More View Controller-->
+        <scene sceneID="guB-kt-MvX">
+            <objects>
+                <viewController storyboardIdentifier="IWMoreViewController" id="F3B-l5-3VC" customClass="IWMoreViewController" customModule="The_Incarnate_Word" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jkH-4X-FHJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zr1-wC-ZQi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="w3a-i0-1ab">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jc-YK-G0V">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2Jc-YK-G0V" firstAttribute="top" secondItem="w3a-i0-1ab" secondAttribute="top" id="LWp-VG-nZz"/>
+                            <constraint firstAttribute="trailing" secondItem="2Jc-YK-G0V" secondAttribute="trailing" id="VDC-ou-agP"/>
+                            <constraint firstItem="2Jc-YK-G0V" firstAttribute="leading" secondItem="w3a-i0-1ab" secondAttribute="leading" id="Wgz-vQ-Rbl"/>
+                            <constraint firstItem="Zr1-wC-ZQi" firstAttribute="top" secondItem="2Jc-YK-G0V" secondAttribute="bottom" id="oWJ-bU-nMv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="labelInfo" destination="2Jc-YK-G0V" id="xgm-LF-8JL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DOi-7R-Ej9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2012" y="1177"/>
+        </scene>
     </scenes>
 </document>
