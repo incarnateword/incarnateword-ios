@@ -9,3 +9,6 @@
 #import "IWSearchItemStructure.h"
 #import "IWUserActionManager.h"
 #import "IWUIConstants.h"
+#import "IWCompilationWebService.h"
+#import "IWCompilationStructure.h"
+

@@ -9,8 +9,7 @@
 import Foundation
 import UIKit
 
-
-class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,SelectionViewDelegate,UISearchBarDelegate,UITableViewDelegate
+class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,SelectionViewDelegate,UISearchBarDelegate,UITableViewDelegate,WebServiceDelegate
 {
     enum EnumSelectionListType
     {
@@ -42,6 +41,20 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     var _strMonth:String = ""
     var _strDay:String = ""
     
+    
+    
+    private var wsCompilationSABCL: IWCompilationWebService!
+    private var wsCompilationCWSA: IWCompilationWebService!
+    private var wsCompilationCWM: IWCompilationWebService!
+    private var wsCompilationAGENDA: IWCompilationWebService!
+    
+    private var compilationSABCL: IWCompilationStructure!
+    private var compilationCWSA: IWCompilationStructure!
+    private var compilationCWM: IWCompilationStructure!
+    private var compilationAGENDA: IWCompilationStructure!
+    
+    
+    
     //MARK: View Life Cycle
     
     required init?(coder aDecoder: NSCoder)
@@ -67,6 +80,52 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         
         let attr = NSDictionary(object: UIFont(name: FONT_TITLE_REGULAR, size: 16.0)!, forKey: NSFontAttributeName)
         UISegmentedControl.appearance().setTitleTextAttributes(attr as [NSObject : AnyObject] , forState: .Normal)
+        
+        self.loadAllTOC()
+    }
+    
+    
+    func loadAllTOC()
+    {
+        self.wsCompilationSABCL = IWCompilationWebService(path: "sabcl", andDelegate: self)
+        self.wsCompilationSABCL.sendAsyncRequest()
+        
+        self.wsCompilationCWSA = IWCompilationWebService(path: "cwsa", andDelegate: self)
+        self.wsCompilationCWSA.sendAsyncRequest()
+        
+        self.wsCompilationCWM = IWCompilationWebService(path: "cwa", andDelegate: self)
+        self.wsCompilationCWM.sendAsyncRequest()
+        
+        self.wsCompilationAGENDA = IWCompilationWebService(path: "agenda", andDelegate: self)
+        self.wsCompilationAGENDA.sendAsyncRequest()
+    }
+    
+    func requestSucceed(webService: BaseWebService, response responseModel: AnyObject)
+    {
+        if webService === self.wsCompilationSABCL
+        {
+            compilationSABCL = responseModel as!  IWCompilationStructure
+
+        }
+        else if webService === self.wsCompilationCWSA
+        {
+            compilationCWSA = responseModel as!  IWCompilationStructure
+
+        }
+        else if webService === self.wsCompilationCWM
+        {
+            compilationCWM = responseModel as!  IWCompilationStructure
+
+        }
+        else if webService === self.wsCompilationCWM
+        {
+            compilationAGENDA = responseModel as!  IWCompilationStructure
+        }
+    }
+    
+    func requestFailed(webService: BaseWebService, error: WSError)
+    {
+        
     }
     
     @IBAction func segmentControlValueChanged(sender: AnyObject)
