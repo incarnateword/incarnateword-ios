@@ -200,20 +200,7 @@
     _searchBar.layer.borderColor = searchBarColor.CGColor;
     //_searchBar.searchBarStyle = UISearchBarStyleProminent;//Removes border
 
-    //Cursor color
-    [[UITextField appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor blackColor]];
-    
-    //Cancel button text color
-    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                                                  [UIColor blackColor],
-                                                                                                  NSForegroundColorAttributeName,
-                                                                                                  nil]
-                                                                                        forState:UIControlStateNormal];
-    //Placeholder text color
-    [[UILabel appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor darkGrayColor]];
-    
-    //Text Field Bg Color
-    //[[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setBackgroundColor:[UIColor whiteColor]];
+
     
     [_viewTop addSubview:_searchBar];
     _viewTop.backgroundColor = searchBarColor;
