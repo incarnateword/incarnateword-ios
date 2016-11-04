@@ -181,10 +181,11 @@
     //Cursor color
     [[UITextField appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor blackColor]];
     
-    //Cancel button text color
+    //Cancel button text color, font color
     [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                                                   [UIColor blackColor],
                                                                                                   NSForegroundColorAttributeName,
+                                                                                                  [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:15]],NSFontAttributeName,
                                                                                                   nil]
                                                                                         forState:UIControlStateNormal];
     //Placeholder text color
@@ -192,6 +193,14 @@
     
     //Text Field Bg Color
     //[[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setBackgroundColor:[UIColor whiteColor]];
+    
+    
+    //Place holder and typed text
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setDefaultTextAttributes:@{
+                                                                                                 NSFontAttributeName: [UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:15]],
+                                                                                                 }];
+    
+    
     
     [_viewTop addSubview:_searchBar];
     _viewTop.backgroundColor = searchBarColor;
