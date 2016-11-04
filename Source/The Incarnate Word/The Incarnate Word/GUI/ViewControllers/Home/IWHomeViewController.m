@@ -91,6 +91,19 @@
     
     self.navigationController.navigationBar.titleTextAttributes = navbarTitleTextAttributes;
     
+    
+    //Back button font
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowOffset = CGSizeMake(0.0, 1.0);
+    shadow.shadowColor = [UIColor whiteColor];
+    
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
+     setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor blackColor],
+       NSShadowAttributeName:shadow,
+       NSFontAttributeName:[UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:20]]
+       }
+     forState:UIControlStateNormal];
 }
 
 -(IBAction)btnLeftMenuPressed:(id)sender
