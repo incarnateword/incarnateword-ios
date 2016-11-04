@@ -46,33 +46,16 @@
      CharlotteSansBookItalicPlain
      */
     
-    [self setupNavigationBar];
+    [self setupGlobalNavigationBar];
     [self setBanners];
+    [self setupNavigationBarLeftButton];
 }
 
--(void)setupNavigationBar
+
+
+-(void)setupGlobalNavigationBar
 {
-    UIButton *customLeftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    customLeftBtn.bounds = CGRectMake( 10, 0, 44, 44 );
-    [customLeftBtn addTarget:self action:@selector(btnLeftMenuPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [customLeftBtn setImage:[UIImage imageNamed:@"btn_navbar_drawer"] forState:UIControlStateNormal];
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:customLeftBtn];
-    
-    UIBarButtonItem *negativeSpacerLeft = [[UIBarButtonItem alloc]
-                                           initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                           target:nil action:nil];
-    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") )
-    {
-        negativeSpacerLeft.width = -14;
-    }
-    else
-    {
-        negativeSpacerLeft.width = -2;
-    }
-    
-    self.navigationItem.leftBarButtonItems = [NSArray
-                                              arrayWithObjects:negativeSpacerLeft, leftButton, nil];
-    
+
      UIColor *navBarColor = [IWUtility getNavBarColor];
     
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)])//iOS 7 and above
@@ -99,11 +82,37 @@
     
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
      setTitleTextAttributes:
-     @{NSForegroundColorAttributeName:[UIColor blackColor],
+     @{NSForegroundColorAttributeName:[UIColor clearColor],
        NSShadowAttributeName:shadow,
        NSFontAttributeName:[UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:20]]
        }
      forState:UIControlStateNormal];
+    
+    
+}
+
+-(void)setupNavigationBarLeftButton
+{
+    UIButton *customLeftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    customLeftBtn.bounds = CGRectMake( 10, 0, 44, 44 );
+    [customLeftBtn addTarget:self action:@selector(btnLeftMenuPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [customLeftBtn setImage:[UIImage imageNamed:@"btn_navbar_drawer"] forState:UIControlStateNormal];
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:customLeftBtn];
+    
+    UIBarButtonItem *negativeSpacerLeft = [[UIBarButtonItem alloc]
+                                           initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                           target:nil action:nil];
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") )
+    {
+        negativeSpacerLeft.width = -14;
+    }
+    else
+    {
+        negativeSpacerLeft.width = -2;
+    }
+    
+    self.navigationItem.leftBarButtonItems = [NSArray
+                                              arrayWithObjects:negativeSpacerLeft, leftButton, nil];
 }
 
 -(IBAction)btnLeftMenuPressed:(id)sender
