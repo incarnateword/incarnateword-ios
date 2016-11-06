@@ -146,12 +146,32 @@
                                              selector:@selector(notifLeftDrawerClosed:)
                                                  name:NOTIF_LEFT_DRAWER_CLOSED
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(notifStatusBarTapped:)
+                                                 name:NOTIF_STATUS_BAR_TAPPED
+                                               object:nil];
 }
 
 -(void)notifLeftDrawerClosed:(NSNotification*) notification
 {
     _bIsSearchOn = NO;
     [self updateTableContent];
+}
+
+-(void)notifStatusBarTapped:(NSNotification*) notification
+{
+    if(_bIsSearchOn)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
+       ^{
+           dispatch_async(dispatch_get_main_queue(),
+          ^{
+              [_tableViewMenu scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+
+          });
+       });
+    }
 }
 
 -(void)setupSearchBar

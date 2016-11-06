@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "IWAppManager.h"
+#import "IWUIConstants.h"
 
 @interface AppDelegate ()
 @end
@@ -21,6 +22,17 @@
     [IWAppManager sharedManager];
     
     return YES;
+}
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    CGPoint location = [[[event allTouches] anyObject] locationInView:[self window]];
+    if (CGRectContainsPoint([UIApplication sharedApplication].statusBarFrame, location))
+    {
+        NSLog(@"STATUS BAR TAPPED!");
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIF_STATUS_BAR_TAPPED object:nil];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
