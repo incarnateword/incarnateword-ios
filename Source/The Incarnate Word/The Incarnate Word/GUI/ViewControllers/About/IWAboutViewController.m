@@ -66,6 +66,13 @@
 
     }
     
+    UIBarButtonItem *backButton =
+    [[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
+    [[self navigationItem] setBackBarButtonItem:backButton];
+    
     _viewLoading.layer.cornerRadius = 3.0;
     _viewLoading.backgroundColor = COLOR_LOADING_VIEW;
 //    _webView.scrollView.decelerationRate = 1.5;//UIScrollViewDecelerationRateFast;

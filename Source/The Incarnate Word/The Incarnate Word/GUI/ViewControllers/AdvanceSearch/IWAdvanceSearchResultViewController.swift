@@ -55,6 +55,15 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         tableViewResult.tableFooterView = UIView()
         self.navigationItem.title = strSearch
         
+        let backButton = UIBarButtonItem(
+            title: "Back",
+            style: UIBarButtonItemStyle.Plain,
+            target: nil,
+            action: nil
+        )
+        
+        self.navigationItem.backBarButtonItem = backButton
+        
         if _selectedSegment == .SelectedSegmentFilter
         {
         

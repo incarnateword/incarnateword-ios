@@ -93,6 +93,12 @@
 -(void)setupUI
 {
     self.navigationItem.title = @"Loading...";
+    UIBarButtonItem *backButton =
+    [[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
+    [[self navigationItem] setBackBarButtonItem:backButton];
     _viewLoading.backgroundColor = COLOR_LOADING_VIEW;
 
     _viewLoading.layer.cornerRadius = 3.0;

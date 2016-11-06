@@ -255,6 +255,12 @@
 
     _viewBottom.hidden = YES;
     self.navigationItem.title = @"Loading...";
+    UIBarButtonItem *backButton =
+    [[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
+    [[self navigationItem] setBackBarButtonItem:backButton];
     
     _btnNextChapter.hidden = YES;
     _btnShare.hidden = YES;

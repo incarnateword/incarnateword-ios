@@ -72,6 +72,12 @@
     {
         self.navigationItem.title = @"";
     }
+    UIBarButtonItem *backButton =
+    [[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
+    [[self navigationItem] setBackBarButtonItem:backButton];
     
     _tableViewVolumeList.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     

@@ -19,8 +19,15 @@ class IWMoreViewController: UIViewController
         super.viewDidLoad()
         
         self.navigationItem.title = "Search tips"
-        self.navigationController!.navigationBar.topItem!.title = "Back"
 
+        let backButton = UIBarButtonItem(
+            title: "Back",
+            style: UIBarButtonItemStyle.Plain,
+            target: nil,
+            action: nil
+        )
+        
+        self.navigationItem.backBarButtonItem = backButton
         
         textView.font = UIFont (name: FONT_TITLE_REGULAR, size: 16.0)
         

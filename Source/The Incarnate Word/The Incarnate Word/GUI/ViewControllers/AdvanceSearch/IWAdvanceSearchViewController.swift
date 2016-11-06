@@ -82,12 +82,17 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         UISegmentedControl.appearance().setTitleTextAttributes(attr as [NSObject : AnyObject] , forState: .Normal)
         
         self.loadAllTOC()
-    }
-    
-    override func viewWillAppear(animated: Bool)
-    {
-        super.viewWillAppear(animated)
+        
         self.navigationItem.title = "Advance Search"
+        
+        let backButton = UIBarButtonItem(
+            title: "Back",
+            style: UIBarButtonItemStyle.Plain,
+            target: nil,
+            action: nil
+        )
+
+        self.navigationItem.backBarButtonItem = backButton
     }
     
     func loadAllTOC()
