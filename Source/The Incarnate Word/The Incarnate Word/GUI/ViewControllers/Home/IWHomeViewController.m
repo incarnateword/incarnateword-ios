@@ -85,7 +85,7 @@
     //Set bar buttons (back) font and color for all button states
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
      setTitleTextAttributes:
-     @{NSForegroundColorAttributeName:[UIColor clearColor],
+     @{NSForegroundColorAttributeName:[UIColor blackColor],
        NSShadowAttributeName:shadow,
        NSFontAttributeName:[UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:20]]
        }
@@ -93,7 +93,7 @@
     
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
      setTitleTextAttributes:
-     @{NSForegroundColorAttributeName:[UIColor clearColor],
+     @{NSForegroundColorAttributeName:[UIColor blackColor],
        NSShadowAttributeName:shadow,
        NSFontAttributeName:[UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:20]]
        }
@@ -101,7 +101,7 @@
     
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
      setTitleTextAttributes:
-     @{NSForegroundColorAttributeName:[UIColor clearColor],
+     @{NSForegroundColorAttributeName:[UIColor blackColor],
        NSShadowAttributeName:shadow,
        NSFontAttributeName:[UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:20]]
        }
