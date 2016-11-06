@@ -80,6 +80,9 @@
     shadow.shadowOffset = CGSizeMake(0.0, 1.0);
     shadow.shadowColor = [UIColor whiteColor];
     
+    
+    
+    //Set bar buttons (back) font and color for all button states
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
      setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor clearColor],
@@ -87,6 +90,22 @@
        NSFontAttributeName:[UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:20]]
        }
      forState:UIControlStateNormal];
+    
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
+     setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor clearColor],
+       NSShadowAttributeName:shadow,
+       NSFontAttributeName:[UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:20]]
+       }
+     forState:UIControlStateHighlighted];
+    
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
+     setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor clearColor],
+       NSShadowAttributeName:shadow,
+       NSFontAttributeName:[UIFont fontWithName:FONT_TITLE_REGULAR size:[IWUtility getNumberAsPerScalingFactor:20]]
+       }
+     forState:UIControlStateSelected];
     
     
 }
