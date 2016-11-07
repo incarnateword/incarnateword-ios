@@ -340,6 +340,8 @@
         _offlineDetailChapterStructure = [[IWUserActionManager sharedManager] getOfflineChapterWithUrl:strPath];
     }
     
+    [self performSelectorOnMainThread:@selector(startLoadingAnimation) withObject:nil waitUntilDone:NO];
+
     if(_offlineDetailChapterStructure)
     {
         _detailChapterStructure = _offlineDetailChapterStructure;
@@ -347,7 +349,6 @@
     }
     else
     {
-        [self performSelectorOnMainThread:@selector(startLoadingAnimation) withObject:nil waitUntilDone:NO];
         _chapterWebService = [[IWChapterWebService alloc] initWithPath:_strChapterPath AndDelegate:self];
         [_chapterWebService sendAsyncRequest];
     }
@@ -470,7 +471,11 @@
            _detailChapterStructure.strTextParsed = strHtmlString;
             [[IWUserActionManager sharedManager] saveChapter:_detailChapterStructure];
            
-           [self performSelectorOnMainThread:@selector(stopLoadingAnimation) withObject:nil waitUntilDone:NO];
+           dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void)
+           {
+               [self stopLoadingAnimation];
+           });
+           
            [self performSelectorOnMainThread:@selector(showButtonsBasedOnContent) withObject:nil waitUntilDone:NO];
 
         });
@@ -483,7 +488,11 @@
                
                [_wkWebView loadHTMLString:_offlineDetailChapterStructure.strTextParsed baseURL:[IWUtility getCommonCssBaseURL]];
 
-               [self performSelectorOnMainThread:@selector(stopLoadingAnimation) withObject:nil waitUntilDone:NO];
+               dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void)
+               {
+                   [self stopLoadingAnimation];
+               });
+               
                [self performSelectorOnMainThread:@selector(showButtonsBasedOnContent) withObject:nil waitUntilDone:NO];
            });
     }
