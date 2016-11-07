@@ -2,22 +2,25 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "Backward_Arrow_64 copy.png"
+      "filename" : "Backward_Arrow_64 copy.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "Backward_Arrow_64 copy 2.png"
+      "filename" : "Backward_Arrow_64 copy 2.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "Backward_Arrow_64 copy 3.png"
+      "filename" : "Backward_Arrow_64 copy 3.png",
+      "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
+  },
+  "properties" : {
+    "template-rendering-intent" : "template"
   }
 }

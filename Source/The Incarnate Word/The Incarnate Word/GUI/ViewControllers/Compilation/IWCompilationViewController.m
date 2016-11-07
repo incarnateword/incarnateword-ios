@@ -165,7 +165,7 @@
     NSString *stringSeparatorFormat = @" / ";
     NSString *finalString = [NSString stringWithFormat:@"%@%@%@",volume.strIndex,stringSeparatorFormat,volume.strTitle];
     NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:finalString attributes:attrsDictionary];
-    UIColor *colorIndexString = [UIColor colorWithRed:18.0/255 green:107.0/255 blue:169.0/255 alpha:1.0];
+    UIColor *colorIndexString = [UIColor colorWithRed:19.0/255 green:173.0/255 blue:234.0/255 alpha:1];//[UIColor colorWithRed:18.0/255 green:107.0/255 blue:169.0/255 alpha:1.0];
     [attributedString addAttribute:NSForegroundColorAttributeName value:colorIndexString range:NSMakeRange(0,volume.strIndex.length+stringSeparatorFormat.length)];
     
     labelTitle.attributedText = attributedString;
