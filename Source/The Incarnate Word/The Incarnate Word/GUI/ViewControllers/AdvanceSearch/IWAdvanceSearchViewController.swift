@@ -25,6 +25,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentControl: UISegmentedControl!
+    @IBOutlet weak var buttonSearch: UIButton!
 
     
     var vcContainerTable:IWAdvanceSearchContainerTableViewController!
@@ -93,6 +94,8 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         )
 
         self.navigationItem.backBarButtonItem = backButton
+        
+        self.buttonSearch.layer.cornerRadius = 10.0
     }
     
     func loadAllTOC()

@@ -99,6 +99,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="buttonSearch" destination="C7C-cC-Cfx" id="6ck-fS-82o"/>
                         <outlet property="searchBar" destination="yP2-On-Lsf" id="O9R-Q4-iy8"/>
                         <outlet property="segmentControl" destination="Jge-K7-Swn" id="eSv-ze-kQc"/>
                     </connections>
