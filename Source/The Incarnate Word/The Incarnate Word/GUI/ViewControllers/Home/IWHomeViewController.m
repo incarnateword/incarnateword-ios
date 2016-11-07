@@ -134,6 +134,15 @@
     
     self.navigationItem.leftBarButtonItems = [NSArray
                                               arrayWithObjects:negativeSpacerLeft, leftButton, nil];
+    
+    
+    
+    UIBarButtonItem *backButton =
+    [[UIBarButtonItem alloc] initWithTitle:@""
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
+    [[self navigationItem] setBackBarButtonItem:backButton];
 }
 
 -(IBAction)btnLeftMenuPressed:(id)sender
