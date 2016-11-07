@@ -56,7 +56,7 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
         self.navigationItem.title = strSearch
         
         let backButton = UIBarButtonItem(
-            title: "Back",
+            title: "",
             style: UIBarButtonItemStyle.Plain,
             target: nil,
             action: nil

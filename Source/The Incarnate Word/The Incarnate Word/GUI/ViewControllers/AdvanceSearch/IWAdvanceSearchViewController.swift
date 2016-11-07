@@ -86,7 +86,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         self.navigationItem.title = "Advance Search"
         
         let backButton = UIBarButtonItem(
-            title: "Back",
+            title: "",
             style: UIBarButtonItemStyle.Plain,
             target: nil,
             action: nil

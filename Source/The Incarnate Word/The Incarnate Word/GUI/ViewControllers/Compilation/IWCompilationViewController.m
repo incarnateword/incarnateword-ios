@@ -73,7 +73,7 @@
         self.navigationItem.title = @"";
     }
     UIBarButtonItem *backButton =
-    [[UIBarButtonItem alloc] initWithTitle:@"Back"
+    [[UIBarButtonItem alloc] initWithTitle:@""
                                      style:UIBarButtonItemStylePlain
                                     target:nil
                                     action:nil];

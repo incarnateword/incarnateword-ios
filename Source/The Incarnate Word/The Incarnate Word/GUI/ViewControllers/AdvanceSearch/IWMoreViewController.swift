@@ -21,7 +21,7 @@ class IWMoreViewController: UIViewController
         self.navigationItem.title = "Search tips"
 
         let backButton = UIBarButtonItem(
-            title: "Back",
+            title: "",
             style: UIBarButtonItemStyle.Plain,
             target: nil,
             action: nil
