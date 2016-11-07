@@ -366,6 +366,23 @@ static IWUserActionManager* userActionManager = nil ;
     [[IWGUIManager sharedManager] rootViewPushViewController:volumeDetailsViewController forceOnRoot:NO animated:YES];
 }
 
+-(void)showChapterWithPath:(NSString *) strPath andItemIndex:(int) iItemIndex andShouldForcePush:(BOOL) bShouldForcePush andShouldUpdateVolumeUrl:(BOOL) bShouldUpdateVolumeUrl
+{
+    
+    if(bShouldUpdateVolumeUrl)
+    {
+        NSArray *arrPathComponent = [strPath componentsSeparatedByString:@"/"]; // e.g /sabcl/28/
+        
+        if (arrPathComponent.count >= 3)
+        {
+            _strCurrentVolume = [NSString stringWithFormat:@"%@/%@",[arrPathComponent objectAtIndex:1],[arrPathComponent objectAtIndex:2]];
+        }
+    }
+    
+    [self showChapterWithPath:strPath andItemIndex:iItemIndex andShouldForcePush:bShouldForcePush];
+}
+
+
 -(void)showChapterWithPath:(NSString *) strPath andItemIndex:(int) iItemIndex andShouldForcePush:(BOOL) bShouldForcePush;
 {
     if(bShouldForcePush)

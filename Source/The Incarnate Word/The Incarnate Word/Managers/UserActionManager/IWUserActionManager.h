@@ -27,6 +27,8 @@
 
 -(void)showVolumeWithPath:(NSString *) strPath;
 -(void)showChapterWithPath:(NSString *) strPath andItemIndex:(int) iItemIndex andShouldForcePush:(BOOL) bShouldForcePush;
+-(void)showChapterWithPath:(NSString *) strPath andItemIndex:(int) iItemIndex andShouldForcePush:(BOOL) bShouldForcePush andShouldUpdateVolumeUrl:(BOOL) bShouldUpdateVolumeUrl;
+
 
 -(void)showChapterWithChapterStructure:(IWDetailChapterStructure*) detailChapterStructure;
 -(void)showAboutWithPath:(NSString *) strPath andImageName:(NSString*)strImageName andDescriptionHeight:(float) height;
