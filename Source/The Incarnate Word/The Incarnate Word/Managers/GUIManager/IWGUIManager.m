@@ -312,11 +312,14 @@ static IWGUIManager* guiManager = nil ;
         
         if ([viewController class] == [IWAdvanceSearchViewController class])
         {
-            UIButton *customRighBtn = [UIButton buttonWithType:UIButtonTypeInfoDark];
-            customRighBtn.bounds = CGRectMake( 40, 0, 40, 40 );
+            UIButton *customRighBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            customRighBtn.bounds = CGRectMake( 40, 0, 40, 44 );
             [customRighBtn addTarget:self action:@selector(btnAdvanceSearchMoreClicked) forControlEvents:UIControlEventTouchUpInside];
-//            [customRighBtn setTitle:@"i" forState:UIControlStateNormal];
+            [customRighBtn setTitle:@"i" forState:UIControlStateNormal];
             
+            customRighBtn.titleLabel.font = [UIFont fontWithName:FONT_BODY_SEMIBOLD_ITALIC size:[IWUtility getNumberAsPerScalingFactor:24]];
+            [customRighBtn setTitleColor:COLOR_THEME_OBJ_C forState:UIControlStateNormal];
+
             UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:customRighBtn];
             
             UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
@@ -324,7 +327,7 @@ static IWGUIManager* guiManager = nil ;
                                                     target:nil action:nil];
             if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") )
             {
-                negativeSpacerRight.width = -9;
+                negativeSpacerRight.width = -15;//-9;
             }
             else
             {
