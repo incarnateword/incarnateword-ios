@@ -291,7 +291,7 @@ static IWGUIManager* guiManager = nil ;
             customRighBtn.bounds = CGRectMake( 40, 0, 40, 40 );
             [customRighBtn addTarget:self action:@selector(btnRightDrawerClicked) forControlEvents:UIControlEventTouchUpInside];
             [customRighBtn setImage:[UIImage imageNamed:@"btn_navbar_content"] forState:UIControlStateNormal];
-            customRighBtn.tintColor = [UIColor colorWithRed:19.0/255 green:173.0/255 blue:234.0/255 alpha:1];
+            customRighBtn.tintColor = COLOR_THEME_OBJ_C;
             UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:customRighBtn];
             
             UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
@@ -351,7 +351,7 @@ static IWGUIManager* guiManager = nil ;
     customLeftBtn.bounds = CGRectMake( 10, 0, 40, 40 );
     [customLeftBtn addTarget:self action:@selector(btnLeftDrawerClicked) forControlEvents:UIControlEventTouchUpInside];
     [customLeftBtn setImage:[UIImage imageNamed:@"btn_navbar_drawer"] forState:UIControlStateNormal];
-    customLeftBtn.tintColor = [UIColor colorWithRed:19.0/255 green:173.0/255 blue:234.0/255 alpha:1];
+    customLeftBtn.tintColor = COLOR_THEME_OBJ_C;
 
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:customLeftBtn];
     

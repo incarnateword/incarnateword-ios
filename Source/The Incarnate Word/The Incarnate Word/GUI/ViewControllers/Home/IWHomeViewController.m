@@ -116,7 +116,7 @@
     customLeftBtn.bounds = CGRectMake( 10, 0, 44, 44 );
     [customLeftBtn addTarget:self action:@selector(btnLeftMenuPressed:) forControlEvents:UIControlEventTouchUpInside];
     [customLeftBtn setImage:[UIImage imageNamed:@"btn_navbar_drawer"] forState:UIControlStateNormal];
-    customLeftBtn.tintColor = [UIColor colorWithRed:19.0/255 green:173.0/255 blue:234.0/255 alpha:1];
+    customLeftBtn.tintColor = COLOR_THEME_OBJ_C;
 
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:customLeftBtn];
     

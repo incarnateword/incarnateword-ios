@@ -22,6 +22,8 @@
 #define COLOR_SECTION_HEADER_TITLE [UIColor whiteColor]//[UIColor colorWithRed:255.0/255.0 green:245.0/255.0 blue:215.0/255.0 alpha:1.0]
 #define COLOR_LOADING_VIEW [UIColor blackColor]//[UIColor colorWithRed:52.0/255.0 green:26.0/255.0 blue:0.0/255.0 alpha:1.0]
 
+#define COLOR_THEME_OBJ_C [UIColor colorWithRed:19.0/255 green:173.0/255 blue:234.0/255 alpha:1]
+
 /******* Storyboard Names *******/
 
 #define STORYBOARD_MAIN             @"Main"
