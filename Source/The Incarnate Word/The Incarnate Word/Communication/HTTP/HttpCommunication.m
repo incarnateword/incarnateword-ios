@@ -192,9 +192,12 @@ static NSOperationQueue *_serverOperationQueue = nil ;
 
 -(NSMutableURLRequest*)createRequest
 {
-    NSString *urlString = [[NSString stringWithFormat:@"%@/%@",_baseServerUrl,_urlPathComponent] stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+//    NSString *urlString = [[NSString stringWithFormat:@"%@/%@",_baseServerUrl,_urlPathComponent] stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@",_baseServerUrl,_urlPathComponent] ;
     
-    NSURL *url = [NSURL URLWithString:urlString];
+    NSString *urlFinal = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURL *url = [NSURL URLWithString:urlFinal];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];

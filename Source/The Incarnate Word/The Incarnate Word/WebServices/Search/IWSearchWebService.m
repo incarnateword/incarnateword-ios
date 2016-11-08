@@ -37,7 +37,21 @@
             AndStartIndex:(int) start
               AndDelegate:(id<WebServiceDelegate>)delegate
 {
-    self = [super initWithRequest:[NSString stringWithFormat:@"search.json?q=%@&start=%d&auth=%@&comp=%@&vol=%@",strSearch,start,strAuther,strCollection,strVolume]
+    
+    NSMutableString *strPath = [[NSMutableString alloc] initWithFormat:@"search.json?q=%@&start=%d&auth=%@",strSearch,start,strAuther];
+    
+    if([IWUtility isNilOrEmptyString:strCollection] == NO)
+    {
+        [strPath appendString:[NSString stringWithFormat:@"&comp=%@",strCollection]];
+    }
+    
+    if([IWUtility isNilOrEmptyString:strVolume] == NO)
+    {
+        [strPath appendString:[NSString stringWithFormat:@"&vol=%@",strVolume]];
+
+    }
+    
+    self = [super initWithRequest:[strPath copy]
                            header:nil
                              body:nil
                       RequestType:@"GET"];
