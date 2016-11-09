@@ -30,6 +30,11 @@
     font-family: 'MonotypeSabonW04-Italic';
     src: local('MonotypeSabonW04-Italic'),url('Monotype Sabon Italic 37b153ea-bbab-44d7-8332.otf') format('opentype');
 }
+@font-face
+{
+    font-family: 'MonotypeSabonW04-SemiBold';
+    src: local('MonotypeSabonW04-SemiBold'),url('Monotype Sabon Semi Bold f566a8ba-865f-46da-9251.otf') format('opentype');
+}
 
 @font-face
 {
@@ -47,15 +52,27 @@ body
 
 
 /* Emphasized text -> Italics */
-
+/* WkWebView Specific: WkWebView will pick Italics version automaitically, setting italics font will make it double italics*/
 em
 {
-    font-family: MonotypeSabonW04-Italic;
+    font-family: MonotypeSabonW04-Regular;
 }
 
+/* WkWebView Specific: Override */
+b
+{
+    font-weight: normal;
+    font-family: MonotypeSabonW04-SemiBold;
+}
+
+/* WkWebView Specific: Override */
+strong
+{
+    font-weight: normal;
+    font-family: MonotypeSabonW04-SemiBold;
+}
 
 /* Horizontal rule */
-
 hr
 {
     width: 30%;
