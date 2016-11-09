@@ -170,7 +170,7 @@
     {
         IWDetailVolumeStructure *volume =[[IWDetailVolumeStructure alloc] init];
         volume.strIndex = [[dictVolume objectForKey:@"vol"] stringValue];
-        volume.strTitle = [dictVolume objectForKey:@"alt"];
+        volume.strTitle = [dictVolume objectForKey:@"t"];
         volume.strCompilationName = [dictVolume objectForKey:@"cmpn"];
         volume.strCompilationAuther = [dictVolume objectForKey:@"cmpa"];
         volume.strSubTitle = [dictVolume objectForKey:@"subt"];
