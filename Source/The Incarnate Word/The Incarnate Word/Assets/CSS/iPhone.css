@@ -52,10 +52,11 @@ body
 
 
 /* Emphasized text -> Italics */
-/* WkWebView Specific: WkWebView will pick Italics version automaitically, setting italics font will make it double italics*/
+/* WkWebView Specific: WkWebView will pick Italics version automaitically, setting italics font will make it double italics, override font-style*/
 em
 {
-    font-family: MonotypeSabonW04-Regular;
+    font-family: MonotypeSabonW04-Italic;
+    font-style: normal;
 }
 
 /* WkWebView Specific: Override */
