@@ -40,10 +40,13 @@ class IWMoreViewController: UIViewController
         let strTitle3:String = "truth -ignorance"
         let strDesc3:String = "Occurrences of \"truth\" without \"ignorance\""
         
-        let strMut:String = String(format:"%@\n%@\n\n%@\n%@\n\n%@\n%@",strTitle1,strDesc1,strTitle2,strDesc2,strTitle3,strDesc3)
+        let strMut = String(format:"%@\n%@\n\n%@\n%@\n\n%@\n%@",strTitle1,strDesc1,strTitle2,strDesc2,strTitle3,strDesc3)
 
         
-        let attributedString = NSMutableAttributedString(string:strMut.copy() as! String)
+        
+        
+        
+        let attributedString = NSMutableAttributedString(string: strMut.copy() as! String,attributes: [NSFontAttributeName:UIFont (name: FONT_TITLE_REGULAR, size: 16.0)!])
 
         let range1 = (strMut.copy() as! NSString).rangeOfString(strTitle1)
         let range2 = (strMut.copy() as! NSString).rangeOfString(strTitle2)
