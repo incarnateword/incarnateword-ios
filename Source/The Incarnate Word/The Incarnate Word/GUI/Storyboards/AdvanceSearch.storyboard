@@ -49,27 +49,17 @@
                                     <outlet property="delegate" destination="W9f-0f-Fjk" id="wzE-dV-YFb"/>
                                 </connections>
                             </searchBar>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jge-K7-Swn">
-                                <rect key="frame" x="10" y="54" width="580" height="29"/>
-                                <segments>
-                                    <segment title="Filter"/>
-                                    <segment title="Go to date"/>
-                                </segments>
-                                <color key="tintColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="segmentControlValueChanged:" destination="W9f-0f-Fjk" eventType="valueChanged" id="GHH-EQ-Y8K"/>
-                                </connections>
-                            </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="avg-w0-TGv">
                                 <rect key="frame" x="0.0" y="92" width="600" height="436"/>
                                 <connections>
                                     <segue destination="pEm-Gl-VfK" kind="embed" identifier="AdvanceSearchTableContainer" id="8vv-Sy-BQs"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C7C-cC-Cfx">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C7C-cC-Cfx">
                                 <rect key="frame" x="15" y="543" width="570" height="44"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="290" id="2bk-4m-QBN"/>
                                     <constraint firstAttribute="height" constant="44" id="nfO-Ad-KLz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="CharlotteSansW02-Medium" family="CharlotteSansW02-Medium" pointSize="17"/>
@@ -80,21 +70,33 @@
                                     <action selector="buttonAdvanceSearchClicked:" destination="W9f-0f-Fjk" eventType="touchUpInside" id="ivI-DP-xGS"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jge-K7-Swn">
+                                <rect key="frame" x="10" y="56" width="580" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="290" id="MfS-Wn-Wk4"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Filter"/>
+                                    <segment title="Go to date"/>
+                                </segments>
+                                <color key="tintColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="segmentControlValueChanged:" destination="W9f-0f-Fjk" eventType="valueChanged" id="GHH-EQ-Y8K"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="C7C-cC-Cfx" secondAttribute="trailing" constant="15" id="89x-xJ-Zzw"/>
+                            <constraint firstItem="Jge-K7-Swn" firstAttribute="centerX" secondItem="pwK-fe-FDv" secondAttribute="centerX" id="Gih-vA-R7u"/>
                             <constraint firstAttribute="trailing" secondItem="avg-w0-TGv" secondAttribute="trailing" id="LWP-Wk-wZn"/>
                             <constraint firstItem="Kkq-m7-0Dv" firstAttribute="top" secondItem="C7C-cC-Cfx" secondAttribute="bottom" constant="13" id="TzE-xa-qpZ"/>
                             <constraint firstItem="avg-w0-TGv" firstAttribute="leading" secondItem="pwK-fe-FDv" secondAttribute="leading" id="WFW-wL-ife"/>
-                            <constraint firstAttribute="trailing" secondItem="Jge-K7-Swn" secondAttribute="trailing" constant="10" id="WzT-HN-edy"/>
                             <constraint firstItem="C7C-cC-Cfx" firstAttribute="top" secondItem="avg-w0-TGv" secondAttribute="bottom" constant="15" id="g2c-7k-DH0"/>
                             <constraint firstAttribute="trailing" secondItem="yP2-On-Lsf" secondAttribute="trailing" id="jkD-vq-pnc"/>
                             <constraint firstItem="avg-w0-TGv" firstAttribute="top" secondItem="Jge-K7-Swn" secondAttribute="bottom" constant="10" id="lj0-WN-tob"/>
-                            <constraint firstItem="C7C-cC-Cfx" firstAttribute="leading" secondItem="pwK-fe-FDv" secondAttribute="leading" constant="15" id="nXg-Wp-Fsa"/>
-                            <constraint firstItem="Jge-K7-Swn" firstAttribute="leading" secondItem="pwK-fe-FDv" secondAttribute="leading" constant="10" id="oVC-g2-hMc"/>
                             <constraint firstItem="yP2-On-Lsf" firstAttribute="leading" secondItem="pwK-fe-FDv" secondAttribute="leading" id="pvY-nU-r1p"/>
                             <constraint firstItem="Jge-K7-Swn" firstAttribute="top" secondItem="yP2-On-Lsf" secondAttribute="bottom" constant="10" id="rrS-N4-VR1"/>
+                            <constraint firstItem="C7C-cC-Cfx" firstAttribute="centerX" secondItem="pwK-fe-FDv" secondAttribute="centerX" id="sao-Nl-hGe"/>
                             <constraint firstItem="yP2-On-Lsf" firstAttribute="top" secondItem="pwK-fe-FDv" secondAttribute="top" id="vuC-rC-MD1"/>
                         </constraints>
                     </view>
@@ -112,7 +114,7 @@
         <scene sceneID="6Tz-lr-pC1">
             <objects>
                 <tableViewController storyboardIdentifier="IWAdvanceSearchContainerTableViewController" id="pEm-Gl-VfK" customClass="IWAdvanceSearchContainerTableViewController" customModule="The_Incarnate_Word" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="l7I-xk-i5z">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="l7I-xk-i5z">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
