@@ -131,9 +131,12 @@
 -(void)addMarkdownView
 {
 
-
    NSString *strHtmlString = [IWUtility getHtmlStringUsingJSLibForMarkdownText:_strText forTypeHeading:YES];
    NSLog(@"Called loadHTMLString");
+    strHtmlString = [strHtmlString stringByReplacingOccurrencesOfString: @"<p>" withString:@""];
+    strHtmlString = [strHtmlString stringByReplacingOccurrencesOfString: @"</p>" withString:@""];
+    strHtmlString = [strHtmlString stringByReplacingOccurrencesOfString: @"<em>" withString:@"<i>"];
+    strHtmlString = [strHtmlString stringByReplacingOccurrencesOfString: @"</em>" withString:@"</i>"];
    [_wkWebView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
     
     _constraintViewContainerBottom.constant = -_fContainerHeight;

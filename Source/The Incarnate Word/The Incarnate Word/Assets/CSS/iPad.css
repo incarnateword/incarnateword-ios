@@ -43,6 +43,12 @@
     src: local('CharlotteSansW02-Book'),url('Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf') format('opentype');
 }
 
+@font-face
+{
+    font-family: 'CharlotteSansW02-Italic';
+    src: local('CharlotteSansW02-Italic'),url('Charlotte_Sans_Italic_0309808a-11a3-4582-acdf.otf') format('opentype');
+}
+
 body
 {
     font-family: MonotypeSabonW04-Regular;
@@ -136,5 +142,13 @@ h6
     font-family: CharlotteSansW02-Book;
     font-size: 26px;
     font-weight: normal;
+}
+
+/* Nested tags */
+h5 i
+{
+    font-family: CharlotteSansW02-Italic;
+    font-size: 50px;
+    font-style: normal;
 }
 
