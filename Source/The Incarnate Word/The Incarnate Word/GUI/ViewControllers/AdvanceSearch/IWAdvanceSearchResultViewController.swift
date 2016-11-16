@@ -106,51 +106,7 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
             lblTitle.text = " "+searchItem.strTitle;
         }
         
-        var strMut:String = ""
-        
-        
-        for str in searchItem.arrHighlightText
-        {
-            if (str.isKindOfClass(NSNull) == false)
-            {
-                strMut = strMut+str.stringByReplacingOccurrencesOfString("\n", withString: " ")
-                strMut = strMut+"... "
-            }
-        }
-        
-        strMut = strMut.stringByReplacingOccurrencesOfString("<em>", withString: "")
-        strMut = strMut.stringByReplacingOccurrencesOfString("</em>", withString: "")
-        
-        
-        let strStrongStart:String = "<strong>",strStrongEnd:String = "</strong>"
-        
-        var attributedString = NSMutableAttributedString(string:strMut.copy() as! String)
-
-        
-        if strMut.rangeOfString(strStrongStart) != nil && strMut.rangeOfString(strStrongEnd) != nil
-        {
-            let r1:Range  = strMut.rangeOfString(strStrongStart)!
-            let r2:Range  = strMut.rangeOfString(strStrongEnd)!
-            
-            strMut = strMut.stringByReplacingOccurrencesOfString(strStrongStart, withString: "")
-            strMut = strMut.stringByReplacingOccurrencesOfString(strStrongEnd, withString: "")
-            
-            let index = strStrongStart.characters.count + strStrongEnd.characters.count + 1
-            
-            let rSub:Range = r1.startIndex ... r2.endIndex.advancedBy(-index)
-            
-            let sub:String = strMut.substringWithRange(rSub)
-     
-            let searchQuery = sub
-            
-            attributedString = NSMutableAttributedString(string:strMut.copy() as! String)
-            
-            let range = (strMut.copy() as! NSString).rangeOfString(searchQuery)
-                
-            attributedString.addAttribute(NSFontAttributeName, value: UIFont(name: FONT_TITLE_MEDIUM, size: 16.0)!, range: range)
-        }
-        
-        lblText.attributedText = attributedString
+        lblText.attributedText = IWUtility.getAttributedSearchResultStringForSearchText(strSearch, andResultStringArray: searchItem.arrHighlightText)
         
         return cell
     }

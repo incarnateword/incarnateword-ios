@@ -201,4 +201,67 @@
     return @"iPhone.css";
 }
 
++(NSAttributedString*)getAttributedSearchResultStringForSearchText:(NSString*)searchText AndResultStringArray:(NSArray*) arrResultString
+{
+    NSMutableString *strMut = [[NSMutableString alloc] init];
+    
+    for(NSString *str in arrResultString)
+    {
+        if([str isKindOfClass:[NSNull class]] == NO)
+        {
+            [strMut appendString:[str stringByReplacingOccurrencesOfString:@"\n" withString:@" "]];
+            [strMut appendString:@"... "];
+        }
+    }
+    
+    strMut = [[strMut stringByReplacingOccurrencesOfString:@"<em>" withString:@""] mutableCopy];
+    strMut = [[strMut stringByReplacingOccurrencesOfString:@"</em>" withString:@""] mutableCopy];
+    strMut = [[strMut stringByReplacingOccurrencesOfString:@"<strong>" withString:@""] mutableCopy];
+    strMut = [[strMut stringByReplacingOccurrencesOfString:@"</strong>" withString:@""] mutableCopy];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[strMut copy]];
+    
+    NSString *strHightlightString =  [searchText stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    
+    NSMutableArray *arrStringsToHightlight = [[NSMutableArray alloc] initWithObjects:strHightlightString, nil];
+    
+    if ([strHightlightString hasPrefix:@"`"] && [strHightlightString hasSuffix:@"`"])
+    {
+        strHightlightString =  [searchText stringByReplacingOccurrencesOfString:@"`" withString:@""];
+    }
+    
+    NSMutableArray *array = (NSMutableArray *)[strHightlightString componentsSeparatedByString:@" "];
+    if([array containsObject:@""])
+    {
+        [array removeObject:@""]; // This removes all objects like @""
+    }
+    [arrStringsToHightlight addObjectsFromArray:array];
+    
+    if ([strHightlightString rangeOfString:@" -" options:NSCaseInsensitiveSearch].location != NSNotFound)
+    {
+        [arrStringsToHightlight removeAllObjects];
+        NSRange range = [strHightlightString rangeOfString:@" -"];
+        [arrStringsToHightlight addObject:[strHightlightString substringToIndex:range.location]];
+    }
+    
+    
+    for(NSString *str in arrStringsToHightlight)
+    {
+        NSError *error;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern: str options:NSRegularExpressionCaseInsensitive error:&error];
+        
+        if (!error)
+        {
+            NSArray *allMatches = [regex matchesInString:[strMut copy] options:0 range:NSMakeRange(0, [[strMut copy] length])];
+            for (NSTextCheckingResult *aMatch in allMatches)
+            {
+                NSRange matchRange = [aMatch range];
+                [attributedString setAttributes:@{NSFontAttributeName:[UIFont fontWithName:FONT_TITLE_MEDIUM size:[IWUtility getNumberAsPerScalingFactor:16.0]]} range: matchRange];
+            }
+        }
+    }
+    
+    return [attributedString copy];
+}
+
+
 @end

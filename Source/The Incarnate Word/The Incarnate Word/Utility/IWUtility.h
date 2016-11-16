@@ -55,4 +55,7 @@ Bipass Markdown lib
 +(UIImage *)imageWithColor:(UIColor *)color;
 +(void)showWebserviceFailedAlert;
 +(float)getHorizontalSpaceBetweenButtons;
+
+//Search result highlighted string
++(NSAttributedString*)getAttributedSearchResultStringForSearchText:(NSString*)searchText AndResultStringArray:(NSArray*) arrResultString;
 @end
