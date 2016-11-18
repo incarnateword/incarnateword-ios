@@ -18,7 +18,7 @@
             AndStartIndex:(int) start
               AndDelegate:(id<WebServiceDelegate>)delegate
 {
-    self = [super initWithRequest:[NSString stringWithFormat:@"search.json?q=%@&start=%d",strSearch,start] header:nil body:nil RequestType:@"GET"];
+    self = [super initWithRequest:[NSString stringWithFormat:@"search.json?q=%@&start=%d",[strSearch lowercaseString],start] header:nil body:nil RequestType:@"GET"];
     
     if (self)
     {
@@ -38,7 +38,7 @@
               AndDelegate:(id<WebServiceDelegate>)delegate
 {
     
-    NSMutableString *strPath = [[NSMutableString alloc] initWithFormat:@"search.json?q=%@&start=%d&auth=%@",strSearch,start,strAuther];
+    NSMutableString *strPath = [[NSMutableString alloc] initWithFormat:@"search.json?q=%@&start=%d&auth=%@",[strSearch lowercaseString],start,strAuther];
     
     if([IWUtility isNilOrEmptyString:strCollection] == NO)
     {
