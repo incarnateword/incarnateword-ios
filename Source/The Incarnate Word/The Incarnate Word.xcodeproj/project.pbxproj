@@ -896,6 +896,7 @@
 				48C2C4D51B07887A00ED333F /* Frameworks */,
 				48C2C4D61B07887A00ED333F /* Resources */,
 				D4DEA614378DD52539046766 /* Copy Pods Resources */,
+				48AF70201DE5FB6F00F4256B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -979,6 +980,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		48AF70201DE5FB6F00F4256B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$BUILT_PRODUCTS_DIR/${PRODUCT_NAME}.app\"\nrm -rf libswiftRemoteMirror.dylib";
+		};
 		68B16850170EB002EC17CFCB /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1194,6 +1208,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
 				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "The Incarnate Word/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1216,6 +1231,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
 				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "The Incarnate Word/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
