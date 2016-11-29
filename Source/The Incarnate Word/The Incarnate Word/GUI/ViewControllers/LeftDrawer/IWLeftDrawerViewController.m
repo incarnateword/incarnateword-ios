@@ -86,9 +86,14 @@
     NSMutableDictionary *dict4 = [[NSMutableDictionary alloc] init];
     [dict4 setObject:@"Offline" forKey:MENU_TITLE];
     [dict4 setObject:[[NSArray alloc] initWithObjects:@"Chapters", nil] forKey:MENU_ARRAY];
+    
+    
+    NSMutableDictionary *dict5 = [[NSMutableDictionary alloc] init];
+    [dict5 setObject:@"Notification" forKey:MENU_TITLE];
+    [dict5 setObject:[[NSArray alloc] initWithObjects:@"Manage", nil] forKey:MENU_ARRAY];
 
 
-    _arrDataSource = [[NSArray alloc] initWithObjects:[dict0 copy],[dict1 copy],[dict2 copy],[dict3 copy],/*[dict4 copy],*/ nil];
+    _arrDataSource = [[NSArray alloc] initWithObjects:[dict0 copy],[dict1 copy],[dict2 copy],[dict3 copy],/*[dict4 copy],*/[dict5 copy], nil];
 }
 
 -(void)setupUI
@@ -648,7 +653,8 @@
         {
             if(indexPath.row == 0)
             {
-                [[IWUserActionManager sharedManager] showOfflineChapters];
+                //[[IWUserActionManager sharedManager] showOfflineChapters];
+                
             }
         }
     }

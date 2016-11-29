@@ -61,6 +61,8 @@
 		48A611821B19EE3A007AC3B5 /* IWAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A611811B19EE3A007AC3B5 /* IWAboutViewController.m */; };
 		48A611861B1A03F6007AC3B5 /* aurobindo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48A611841B1A03F6007AC3B5 /* aurobindo.jpg */; };
 		48A611871B1A03F6007AC3B5 /* theMother.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48A611851B1A03F6007AC3B5 /* theMother.jpg */; };
+		48B1BF5B1DEDF95B000CC654 /* IWManageNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B1BF5A1DEDF95B000CC654 /* IWManageNotificationViewController.swift */; };
+		48B1BF5D1DEDF9B1000CC654 /* Notification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B1BF5C1DEDF9B1000CC654 /* Notification.storyboard */; };
 		48B7C7741B8B916E0088FEC6 /* iPad.css in Resources */ = {isa = PBXBuildFile; fileRef = 48B7C7731B8B916E0088FEC6 /* iPad.css */; };
 		48BBDA4D1B3C845E00564E70 /* Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48BBDA451B3C845E00564E70 /* Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf */; };
 		48BBDA4E1B3C845E00564E70 /* Charlotte_Sans_Italic_0309808a-11a3-4582-acdf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48BBDA461B3C845E00564E70 /* Charlotte_Sans_Italic_0309808a-11a3-4582-acdf.otf */; };
@@ -192,6 +194,8 @@
 		48A611811B19EE3A007AC3B5 /* IWAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWAboutViewController.m; sourceTree = "<group>"; };
 		48A611841B1A03F6007AC3B5 /* aurobindo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aurobindo.jpg; sourceTree = "<group>"; };
 		48A611851B1A03F6007AC3B5 /* theMother.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = theMother.jpg; sourceTree = "<group>"; };
+		48B1BF5A1DEDF95B000CC654 /* IWManageNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWManageNotificationViewController.swift; sourceTree = "<group>"; };
+		48B1BF5C1DEDF9B1000CC654 /* Notification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notification.storyboard; sourceTree = "<group>"; };
 		48B7C7731B8B916E0088FEC6 /* iPad.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = iPad.css; sourceTree = "<group>"; };
 		48BBDA451B3C845E00564E70 /* Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Charlotte_Sans_Book_9b51b91d-fb1d-41f8-8900.otf"; sourceTree = "<group>"; };
 		48BBDA461B3C845E00564E70 /* Charlotte_Sans_Italic_0309808a-11a3-4582-acdf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Charlotte_Sans_Italic_0309808a-11a3-4582-acdf.otf"; sourceTree = "<group>"; };
@@ -323,6 +327,7 @@
 				48E51FEF1B30ABA9008825FC /* Popover.storyboard */,
 				486DC23D1D0DBC570019DD10 /* Utility.storyboard */,
 				488B1EF21D1C65A20078A604 /* AdvanceSearch.storyboard */,
+				48B1BF5C1DEDF9B1000CC654 /* Notification.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -330,6 +335,7 @@
 		483D673E1B087FFD00BA9A82 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				48B1BF591DEDF92E000CC654 /* Notification */,
 				488B1EF41D1C68560078A604 /* AdvanceSearch */,
 				486DC23F1D0DBCE40019DD10 /* GUIUtility */,
 				48E51FF11B30ABD8008825FC /* Info */,
@@ -714,6 +720,14 @@
 			path = NonXcasset;
 			sourceTree = "<group>";
 		};
+		48B1BF591DEDF92E000CC654 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				48B1BF5A1DEDF95B000CC654 /* IWManageNotificationViewController.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		48B7C7721B8B91580088FEC6 /* CSS */ = {
 			isa = PBXGroup;
 			children = (
@@ -960,6 +974,7 @@
 				48A611871B1A03F6007AC3B5 /* theMother.jpg in Resources */,
 				48A6117E1B19EAED007AC3B5 /* About.storyboard in Resources */,
 				48C2C4EC1B07887B00ED333F /* LaunchScreen.xib in Resources */,
+				48B1BF5D1DEDF9B1000CC654 /* Notification.storyboard in Resources */,
 				48A611861B1A03F6007AC3B5 /* aurobindo.jpg in Resources */,
 				483D67781B089C6F00BA9A82 /* Compilation.storyboard in Resources */,
 				D087B92A1C4CCC5000B3E15A /* ApplicationIcon.png in Resources */,
@@ -1046,6 +1061,7 @@
 				487869721B08D75C00429141 /* IWVolumeWebService.m in Sources */,
 				B2CB97711B2593AF0050214A /* IWAboutStructure.m in Sources */,
 				4878697F1B09010300429141 /* IWDetailChapterStructure.m in Sources */,
+				48B1BF5B1DEDF95B000CC654 /* IWManageNotificationViewController.swift in Sources */,
 				483D676B1B088B2600BA9A82 /* IWLeftDrawerViewController.m in Sources */,
 				487869781B08DCCE00429141 /* IWVolumeDetailsViewController.m in Sources */,
 				B2DCAC5B1B0DEDE40092AD85 /* NSAttributedStringMarkdownParser.m in Sources */,
