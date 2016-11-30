@@ -432,6 +432,13 @@ static IWUserActionManager* userActionManager = nil ;
     [[IWGUIManager sharedManager] rootViewPushViewController:dictVC forceOnRoot:NO animated:YES];
 }
 
+-(void)showManageNotificationScreen
+{
+    UIStoryboard *sbNotif = [UIStoryboard storyboardWithName:STORYBOARD_NOTIFICATION bundle:nil];
+    [[IWGUIManager sharedManager] rootViewPushViewController:[sbNotif instantiateViewControllerWithIdentifier:S_NOTIFICATION_MANAGE_VC] forceOnRoot:NO animated:YES];
+    
+}
+
 -(void)showOfflineChapters
 {
     UIStoryboard *sbChapter = [UIStoryboard storyboardWithName:STORYBOARD_CHAPTER bundle:nil];

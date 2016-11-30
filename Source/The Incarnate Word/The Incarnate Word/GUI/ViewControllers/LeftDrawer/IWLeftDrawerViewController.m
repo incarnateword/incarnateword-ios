@@ -654,7 +654,7 @@
             if(indexPath.row == 0)
             {
                 //[[IWUserActionManager sharedManager] showOfflineChapters];
-                
+                [[IWUserActionManager sharedManager] showManageNotificationScreen];
             }
         }
     }

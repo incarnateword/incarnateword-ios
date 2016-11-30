@@ -34,6 +34,7 @@
 -(void)showAboutWithPath:(NSString *) strPath andImageName:(NSString*)strImageName andDescriptionHeight:(float) height;
 -(void)showDictionary;
 -(void)showOfflineChapters;
+-(void)showManageNotificationScreen;
 -(void)showDictionaryMeaningForWord:(NSString*)strWord;
 -(void)showHomeScreen;
 -(void)toggleLeftDrawer;

@@ -35,6 +35,7 @@
 #define STORYBOARD_DICTIONARY       @"Dictionary"
 #define STORYBOARD_POPOVER          @"Popover"
 #define STORYBOARD_ADVANCE_SEARCH   @"AdvanceSearch"
+#define STORYBOARD_NOTIFICATION     @"Notification"
 
 /*******************************/
 
@@ -86,6 +87,11 @@
 #define S_DICTIONARY_DICTIONARY_VC @"DICTIONARY_VC"
 
 #define S_DICTIONARY_DICTIONARY_MEANING_VC @"DICTIONARY_MEANING_VC"
+
+///////////////// NOTIFICATION ///////////////
+
+#define S_NOTIFICATION_MANAGE_VC @"IWManageNotificationViewController"
+
 
 ///////////////// POPOVER ///////////////
 
