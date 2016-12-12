@@ -85,6 +85,10 @@
 		48E51FF41B30ABEF008825FC /* IWInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E51FF31B30ABEF008825FC /* IWInfoViewController.m */; };
 		48EC97381C1D9FA400FB5533 /* IWSearchStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EC97371C1D9FA400FB5533 /* IWSearchStructure.m */; };
 		48EF3C1F1C1D49A300528265 /* IWSearchWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EF3C1E1C1D49A300528265 /* IWSearchWebService.m */; };
+		48FC629B1DFE94C900B1E27B /* IWNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FC629A1DFE94C900B1E27B /* IWNotificationModel.swift */; };
+		48FC62A11DFE9ADA00B1E27B /* IWNotificationDataWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FC62A01DFE9ADA00B1E27B /* IWNotificationDataWebService.m */; };
+		48FC62A51DFE9F0B00B1E27B /* IWQuoteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FC62A41DFE9F0A00B1E27B /* IWQuoteItem.m */; };
+		48FC62A81DFE9F2600B1E27B /* IWQuoteListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FC62A71DFE9F2600B1E27B /* IWQuoteListItem.m */; };
 		8AD18642D3A0FF75FC2D3A73 /* libPods-The Incarnate Word.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A76EDDEF6408E3B815FA982A /* libPods-The Incarnate Word.a */; };
 		B20EC21D1B1EFBF100691285 /* IWDictionaryMeaningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20EC21C1B1EFBF100691285 /* IWDictionaryMeaningViewController.m */; };
 		B20EC2201B1EFC3700691285 /* IWDictionaryMeaningWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = B20EC21F1B1EFC3700691285 /* IWDictionaryMeaningWebService.m */; };
@@ -229,6 +233,13 @@
 		48EC97371C1D9FA400FB5533 /* IWSearchStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWSearchStructure.m; sourceTree = "<group>"; };
 		48EF3C1D1C1D49A300528265 /* IWSearchWebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWSearchWebService.h; sourceTree = "<group>"; };
 		48EF3C1E1C1D49A300528265 /* IWSearchWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWSearchWebService.m; sourceTree = "<group>"; };
+		48FC629A1DFE94C900B1E27B /* IWNotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWNotificationModel.swift; sourceTree = "<group>"; };
+		48FC629F1DFE9ADA00B1E27B /* IWNotificationDataWebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWNotificationDataWebService.h; sourceTree = "<group>"; };
+		48FC62A01DFE9ADA00B1E27B /* IWNotificationDataWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWNotificationDataWebService.m; sourceTree = "<group>"; };
+		48FC62A31DFE9F0A00B1E27B /* IWQuoteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWQuoteItem.h; sourceTree = "<group>"; };
+		48FC62A41DFE9F0A00B1E27B /* IWQuoteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWQuoteItem.m; sourceTree = "<group>"; };
+		48FC62A61DFE9F2600B1E27B /* IWQuoteListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWQuoteListItem.h; sourceTree = "<group>"; };
+		48FC62A71DFE9F2600B1E27B /* IWQuoteListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWQuoteListItem.m; sourceTree = "<group>"; };
 		A6D5E233381465EC7C903528 /* Pods-The Incarnate Word.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Incarnate Word.release.xcconfig"; path = "Pods/Target Support Files/Pods-The Incarnate Word/Pods-The Incarnate Word.release.xcconfig"; sourceTree = "<group>"; };
 		A76EDDEF6408E3B815FA982A /* libPods-The Incarnate Word.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-The Incarnate Word.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20EC21B1B1EFBF100691285 /* IWDictionaryMeaningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWDictionaryMeaningViewController.h; sourceTree = "<group>"; };
@@ -278,6 +289,7 @@
 		483D67391B087F6300BA9A82 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				48FC62991DFE94A800B1E27B /* Notification */,
 				483D67731B08996100BA9A82 /* UserActionManager */,
 				483D674B1B08836000BA9A82 /* AppManager */,
 				483D674C1B08836000BA9A82 /* GUIManager */,
@@ -353,6 +365,7 @@
 		483D673F1B0880CB00BA9A82 /* DataStructures */ = {
 			isa = PBXGroup;
 			children = (
+				48FC62A21DFE9EE200B1E27B /* Notification */,
 				486053701C18B1B800A3D8EA /* Search */,
 				B2CB976D1B2593AF0050214A /* About */,
 				B2CB97701B2593AF0050214A /* Segment */,
@@ -827,6 +840,7 @@
 		48C2C5181B07930700ED333F /* WebServices */ = {
 			isa = PBXGroup;
 			children = (
+				48FC629C1DFE9A3A00B1E27B /* Notification */,
 				48EF3C1C1C1D497700528265 /* Search */,
 				488FA31A1B1A1FF200F9B5FB /* Dictionary */,
 				48A611761B19E5FF007AC3B5 /* About */,
@@ -853,6 +867,34 @@
 				48EF3C1E1C1D49A300528265 /* IWSearchWebService.m */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		48FC62991DFE94A800B1E27B /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				48FC629A1DFE94C900B1E27B /* IWNotificationModel.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		48FC629C1DFE9A3A00B1E27B /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				48FC629F1DFE9ADA00B1E27B /* IWNotificationDataWebService.h */,
+				48FC62A01DFE9ADA00B1E27B /* IWNotificationDataWebService.m */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		48FC62A21DFE9EE200B1E27B /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				48FC62A31DFE9F0A00B1E27B /* IWQuoteItem.h */,
+				48FC62A41DFE9F0A00B1E27B /* IWQuoteItem.m */,
+				48FC62A61DFE9F2600B1E27B /* IWQuoteListItem.h */,
+				48FC62A71DFE9F2600B1E27B /* IWQuoteListItem.m */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		7976ADCF36AF3FAAE399C7E1 /* Pods */ = {
@@ -1062,6 +1104,7 @@
 				B2CB97711B2593AF0050214A /* IWAboutStructure.m in Sources */,
 				4878697F1B09010300429141 /* IWDetailChapterStructure.m in Sources */,
 				48B1BF5B1DEDF95B000CC654 /* IWManageNotificationViewController.swift in Sources */,
+				48FC62A11DFE9ADA00B1E27B /* IWNotificationDataWebService.m in Sources */,
 				483D676B1B088B2600BA9A82 /* IWLeftDrawerViewController.m in Sources */,
 				487869781B08DCCE00429141 /* IWVolumeDetailsViewController.m in Sources */,
 				B2DCAC5B1B0DEDE40092AD85 /* NSAttributedStringMarkdownParser.m in Sources */,
@@ -1075,11 +1118,13 @@
 				48C2C5121B078B1700ED333F /* HttpCommunication.m in Sources */,
 				48EF3C1F1C1D49A300528265 /* IWSearchWebService.m in Sources */,
 				486DC2431D0DBD380019DD10 /* IWCustomSpinnerViewController.swift in Sources */,
+				48FC629B1DFE94C900B1E27B /* IWNotificationModel.swift in Sources */,
 				487869661B08D4CB00429141 /* IWDetailVolumeStructure.m in Sources */,
 				483D676E1B088BFD00BA9A82 /* IWUtility.m in Sources */,
 				488FA3161B1A1E7500F9B5FB /* IWDictionaryViewController.m in Sources */,
 				486053731C18B1F500A3D8EA /* IWSearchItemStructure.m in Sources */,
 				483D674F1B0883AF00BA9A82 /* IWAppManager.m in Sources */,
+				48FC62A51DFE9F0B00B1E27B /* IWQuoteItem.m in Sources */,
 				48A611791B19E631007AC3B5 /* IWAboutWebService.m in Sources */,
 				48EC97381C1D9FA400FB5533 /* IWSearchStructure.m in Sources */,
 				483D67801B08A03100BA9A82 /* IWVolumeStructure.m in Sources */,
@@ -1103,6 +1148,7 @@
 				48C2C4DE1B07887A00ED333F /* main.m in Sources */,
 				483D67451B0881B200BA9A82 /* IWHomeViewController.m in Sources */,
 				483D67721B08966000BA9A82 /* IWCompilationViewController.m in Sources */,
+				48FC62A81DFE9F2600B1E27B /* IWQuoteListItem.m in Sources */,
 				48E51FF41B30ABEF008825FC /* IWInfoViewController.m in Sources */,
 				483D67601B0886E500BA9A82 /* MMExampleDrawerVisualStateManager.m in Sources */,
 				B20EC21D1B1EFBF100691285 /* IWDictionaryMeaningViewController.m in Sources */,
