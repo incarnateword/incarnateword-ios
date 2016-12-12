@@ -19,6 +19,8 @@ class IWNotificationModel:NSObject,WebServiceDelegate
     {
         super.init()
         
+        self .configureNotification()
+        
         let  arr:Array = self.retrieveQuotes()!
         
         if arr.count == 0
@@ -118,4 +120,32 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         
         return NSArray() as? [IWQuoteItem]
     }
+    
+    func configureNotification()
+    {
+        let dateFire: NSDateComponents = NSDateComponents()
+        let getCurrentYear = dateFire.year
+        let getCurrentMonth = dateFire.month
+        let getCurrentDay = dateFire.day
+        
+        dateFire.year = getCurrentYear
+        dateFire.month = getCurrentMonth
+        dateFire.day = getCurrentDay
+        dateFire.hour = 18
+        dateFire.minute = 31
+        dateFire.timeZone = NSTimeZone.defaultTimeZone()
+        
+        
+        let calender: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        let date: NSDate = calender.dateFromComponents(dateFire)!
+        
+        let localNotification = UILocalNotification()
+        localNotification.fireDate = date // NSDate (timeIntervalSinceNow: 5)//date
+        localNotification.alertBody = "A new day has begun and a fresh layer on snow lies on the mountain! Can you beat your highscore?"
+        localNotification.alertAction = "open"
+        localNotification.repeatInterval = NSCalendarUnit.Day
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+    }
+    
+    
 }
