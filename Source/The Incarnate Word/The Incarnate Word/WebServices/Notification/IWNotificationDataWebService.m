@@ -137,31 +137,41 @@
                 @property(nonatomic)    NSArray     *arrTags;
                  
                  */
-
+                
+                NSMutableArray *arrListItems = [NSMutableArray new];
+                
                 for (NSDictionary *dictListItems in arrList)
                 {
+                    NSLog(@"~~~~ %@",dictListItems);
+                    
                     IWQuoteListItem *quoteListItem = [IWQuoteListItem new];
                     
-                    if([dict objectForKey:@"ref"])
+                    if([dictListItems objectForKey:@"ref"])
                     {
                         quoteListItem.strRefUrl = [dictListItems objectForKey:@"ref"];
                     }
                     
-                    if([dict objectForKey:@"sel"])
+                    if([dictListItems objectForKey:@"sel"])
                     {
                         quoteListItem.strSelText = [dictListItems objectForKey:@"sel"];
                     }
                     
-                    if([dict objectForKey:@"auth"])
+                    if([dictListItems objectForKey:@"auth"])
                     {
                         quoteListItem.strAuth = [dictListItems objectForKey:@"auth"];
                     }
                     
-                    if([dict objectForKey:@"arrTags"])
+                    if([dictListItems objectForKey:@"arrTags"])
                     {
                         quoteListItem.arrTags = [dictListItems objectForKey:@"arrTags"];
                     }
+                    
+                    [arrListItems addObject:quoteListItem];
+                    
                 }
+                
+                
+                quoteItem.arrListItems = [arrListItems copy];
             }
             
             [arrResult addObject:quoteItem];

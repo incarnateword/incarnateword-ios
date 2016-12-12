@@ -14,3 +14,5 @@
 #import "IWVolumeStructure.h"
 #import "IWUtility.h"
 #import "IWNotificationDataWebService.h"
+#import "IWQuoteItem.h"
+#import "IWQuoteListItem.h"
