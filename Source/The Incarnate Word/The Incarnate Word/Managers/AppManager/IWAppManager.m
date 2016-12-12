@@ -8,6 +8,7 @@
 
 #import "IWAppManager.h"
 #import "IWGUIManager.h"
+#import "The_Incarnate_Word-Swift.h"
 
 @implementation IWAppManager
 
@@ -44,6 +45,8 @@ static IWAppManager* appManager = nil ;
 -(void)initializeApplication
 {
     [IWGUIManager sharedManager];
+    IWNotificationModel.sharedInstance;
+    
 
 }
 
