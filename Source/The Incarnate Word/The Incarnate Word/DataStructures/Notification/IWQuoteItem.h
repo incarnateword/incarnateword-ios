@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IWQuoteItem : NSObject
+@interface IWQuoteItem : NSObject<NSCoding>
+
 /*
  
  {
@@ -20,7 +21,7 @@
 
 @property(nonatomic)    NSString    *strTitle;
 @property(nonatomic)    NSString    *strCompilation;
-@property(nonatomic)    int         volume;
+@property(nonatomic)    NSNumber    *volume;
 @property(nonatomic)    NSArray     *arrListItems;
 
 

@@ -116,7 +116,7 @@
             
             if([dict objectForKey:@"vol"])
             {
-                quoteItem.volume = [[dict objectForKey:@"vol"] intValue];
+                quoteItem.volume =  [NSNumber numberWithInt:[[dict objectForKey:@"vol"] intValue]];
             }
             
             if([dict objectForKey:@"list"])

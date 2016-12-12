@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IWQuoteListItem : NSObject
+@interface IWQuoteListItem : NSObject<NSCoding>
+
 
 /*
  {
