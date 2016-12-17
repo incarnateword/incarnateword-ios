@@ -92,6 +92,10 @@
         alert.tag = 123;
         [alert show];
     }
+    else
+    {
+        [[IWNotificationModel sharedInstance] showRandomQuote];
+    }
     
     // Set icon badge number to zero
     application.applicationIconBadgeNumber = 0;
