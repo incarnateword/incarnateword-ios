@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="35" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9fu-r3-VPH" id="Hl7-MS-ftc">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qmh-dy-8XR">
@@ -41,7 +41,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Allow Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XaW-rY-KVc">
                                                     <rect key="frame" x="17" y="0.0" width="274" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
-                                                    <fontDescription key="fontDescription" name="CharlotteSansW02-Book" family="CharlotteSansW02-Book" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" name="CharlotteSansW02-Book" family="CharlotteSansW02-Book" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -56,17 +56,17 @@
                                         <rect key="frame" x="0.0" y="79" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vfm-SJ-gNj" id="HXj-Ka-yY5">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notifications per day (3)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ikj-5a-djb">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ikj-5a-djb">
                                                     <rect key="frame" x="17" y="0.0" width="181" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                                    <fontDescription key="fontDescription" name="CharlotteSansW02-Book" family="CharlotteSansW02-Book" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" name="CharlotteSansW02-Book" family="CharlotteSansW02-Book" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="4ld-WK-5DF">
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="4ld-WK-5DF">
                                                     <rect key="frame" x="211" y="6" width="94" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                     <connections>
@@ -81,10 +81,10 @@
                             <tableViewSection headerTitle="Time interval" id="Pbm-qP-YTi">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="200" id="4rL-OR-gzs">
-                                        <rect key="frame" x="0.0" y="180" width="320" height="200"/>
+                                        <rect key="frame" x="0.0" y="179" width="320" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4rL-OR-gzs" id="qWT-Lh-iAy">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="199.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="isW-Rs-F87">
@@ -92,7 +92,16 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="OAN-sE-DXb"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="CharlotteSansW02-Book" family="CharlotteSansW02-Book" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" name="CharlotteSansW02-Book" family="CharlotteSansW02-Book" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjp-c3-tXj" userLabel="FromDetail">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="Jxl-5p-T3e"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="CharlotteSansW02-Book" family="CharlotteSansW02-Book" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -104,6 +113,9 @@
                                                     <date key="date" timeIntervalSinceReferenceDate="503258592.30602801">
                                                         <!--2016-12-12 18:03:12 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="datePickerValueChanged:" destination="OQv-v5-IWF" eventType="valueChanged" id="ZfG-ai-Z8c"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -112,15 +124,18 @@
                                                 <constraint firstItem="isW-Rs-F87" firstAttribute="leading" secondItem="qWT-Lh-iAy" secondAttribute="leading" constant="15" id="8i8-YZ-vyU"/>
                                                 <constraint firstAttribute="trailing" secondItem="QXG-Lj-xbI" secondAttribute="trailing" id="97F-rt-yhD"/>
                                                 <constraint firstAttribute="trailing" secondItem="isW-Rs-F87" secondAttribute="trailing" constant="15" id="EK0-FA-LTS"/>
+                                                <constraint firstItem="rjp-c3-tXj" firstAttribute="top" secondItem="qWT-Lh-iAy" secondAttribute="top" id="Wys-MV-a30"/>
+                                                <constraint firstItem="rjp-c3-tXj" firstAttribute="leading" secondItem="qWT-Lh-iAy" secondAttribute="leading" constant="15" id="i8a-bp-GTd"/>
                                                 <constraint firstItem="isW-Rs-F87" firstAttribute="top" secondItem="qWT-Lh-iAy" secondAttribute="top" id="mX2-vD-3jx"/>
+                                                <constraint firstAttribute="trailing" secondItem="rjp-c3-tXj" secondAttribute="trailing" constant="15" id="pNI-8K-Gjc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="200" id="eSK-r1-FBz">
-                                        <rect key="frame" x="0.0" y="380" width="320" height="200"/>
+                                        <rect key="frame" x="0.0" y="379" width="320" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eSK-r1-FBz" id="dxs-nZ-VWb">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="199.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPa-by-2yn">
@@ -128,7 +143,16 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="FhD-I6-6TW"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="CharlotteSansW02-Book" family="CharlotteSansW02-Book" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" name="CharlotteSansW02-Book" family="CharlotteSansW02-Book" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lB6-Cq-tjK" userLabel="ToDetail">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="IbC-tg-l5Z"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="CharlotteSansW02-Book" family="CharlotteSansW02-Book" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -140,11 +164,17 @@
                                                     <date key="date" timeIntervalSinceReferenceDate="503258592.30602801">
                                                         <!--2016-12-12 18:03:12 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="datePickerValueChanged:" destination="OQv-v5-IWF" eventType="valueChanged" id="3Zc-ID-ZOd"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="SPa-by-2yn" firstAttribute="top" secondItem="dxs-nZ-VWb" secondAttribute="top" id="6XK-dK-4qd"/>
+                                                <constraint firstAttribute="trailing" secondItem="lB6-Cq-tjK" secondAttribute="trailing" constant="15" id="BnM-XO-wMF"/>
                                                 <constraint firstAttribute="trailing" secondItem="XeD-rf-lxc" secondAttribute="trailing" id="QsC-6X-lrf"/>
+                                                <constraint firstItem="lB6-Cq-tjK" firstAttribute="leading" secondItem="dxs-nZ-VWb" secondAttribute="leading" constant="15" id="UFr-7o-HfR"/>
+                                                <constraint firstItem="lB6-Cq-tjK" firstAttribute="top" secondItem="dxs-nZ-VWb" secondAttribute="top" id="Y32-Hw-dx6"/>
                                                 <constraint firstAttribute="trailing" secondItem="SPa-by-2yn" secondAttribute="trailing" constant="15" id="dJ7-nM-And"/>
                                                 <constraint firstAttribute="bottom" secondItem="XeD-rf-lxc" secondAttribute="bottom" id="hdx-Xh-Ga5"/>
                                                 <constraint firstItem="XeD-rf-lxc" firstAttribute="leading" secondItem="dxs-nZ-VWb" secondAttribute="leading" id="kNg-bE-36N"/>
@@ -164,7 +194,10 @@
                         <outlet property="cellTimeFrom" destination="4rL-OR-gzs" id="Zlc-yL-WgG"/>
                         <outlet property="datePickerFrom" destination="QXG-Lj-xbI" id="VVn-l1-UOz"/>
                         <outlet property="datePickerTo" destination="XeD-rf-lxc" id="PpS-QK-cEN"/>
+                        <outlet property="labelFromDetail" destination="rjp-c3-tXj" id="Hbg-qk-DpS"/>
                         <outlet property="labelNotificationsPerDay" destination="Ikj-5a-djb" id="sEp-MY-tu2"/>
+                        <outlet property="labelToDetail" destination="lB6-Cq-tjK" id="g0N-kB-Up3"/>
+                        <outlet property="stepper" destination="4ld-WK-5DF" id="Ab3-2D-Xno"/>
                         <outlet property="switchNotification" destination="qmh-dy-8XR" id="a5E-2P-UOb"/>
                     </connections>
                 </tableViewController>

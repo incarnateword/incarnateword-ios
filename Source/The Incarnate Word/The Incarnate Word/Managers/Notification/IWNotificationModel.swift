@@ -147,5 +147,105 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
     }
     
+    //Notifications Per Day Count
+    func getNotificationsPerDayCount() ->Int
+    {
+        if let _ = NSUserDefaults.standardUserDefaults().objectForKey("NotificationsPerDayCount")
+        {
+            return NSUserDefaults.standardUserDefaults().objectForKey("NotificationsPerDayCount") as! Int
+        }
+        
+        return 3
+    }
     
+    func setNotificationPerDayCount(count:Int)
+    {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(count, forKey: "NotificationsPerDayCount")
+        defaults.synchronize()
+    }
+
+    //Is Notification On
+    func getIsNotifcationOnValue() -> Bool
+    {
+        if let _ = NSUserDefaults.standardUserDefaults().objectForKey("IsNotifcationOnValue")
+        {
+            return NSUserDefaults.standardUserDefaults().objectForKey("IsNotifcationOnValue") as! Bool
+        }
+        
+        return true
+    }
+    
+    func setIsNotifcationOnValue(bIsOn:Bool)
+    {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(bIsOn, forKey: "IsNotifcationOnValue")
+        defaults.synchronize()
+    }
+    
+    //From Time
+    func getFromTime() -> NSDate
+    {
+        if let _ = NSUserDefaults.standardUserDefaults().objectForKey("NotifcationFromDate")
+        {
+            return NSUserDefaults.standardUserDefaults().objectForKey("NotifcationFromDate") as! NSDate
+        }
+        
+        let dateFire: NSDateComponents = NSDateComponents()
+        let getCurrentYear = dateFire.year
+        let getCurrentMonth = dateFire.month
+        let getCurrentDay = dateFire.day
+        
+        dateFire.year = getCurrentYear
+        dateFire.month = getCurrentMonth
+        dateFire.day = getCurrentDay
+        dateFire.hour = 10
+        dateFire.minute = 0
+        dateFire.timeZone = NSTimeZone.defaultTimeZone()
+        
+        let calender: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        let date: NSDate = calender.dateFromComponents(dateFire)!
+        
+        return date
+    }
+    
+    func setFromTime(date:NSDate)
+    {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(date, forKey: "NotifcationFromDate")
+        defaults.synchronize()
+    }
+    
+    //To Time
+    func getToTime() -> NSDate
+    {
+        if let _ = NSUserDefaults.standardUserDefaults().objectForKey("NotifcationToDate")
+        {
+            return NSUserDefaults.standardUserDefaults().objectForKey("NotifcationToDate") as! NSDate
+        }
+        
+        let dateFire: NSDateComponents = NSDateComponents()
+        let getCurrentYear = dateFire.year
+        let getCurrentMonth = dateFire.month
+        let getCurrentDay = dateFire.day
+        
+        dateFire.year = getCurrentYear
+        dateFire.month = getCurrentMonth
+        dateFire.day = getCurrentDay
+        dateFire.hour = 21
+        dateFire.minute = 0
+        dateFire.timeZone = NSTimeZone.defaultTimeZone()
+        
+        let calender: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        let date: NSDate = calender.dateFromComponents(dateFire)!
+        
+        return date
+    }
+    
+    func setToTime(date:NSDate)
+    {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(date, forKey: "NotifcationToDate")
+        defaults.synchronize()
+    }
 }

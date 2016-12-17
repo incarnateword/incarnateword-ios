@@ -12,23 +12,47 @@ import UIKit
 
 class IWManageNotificationViewController: UITableViewController
 {
-    var bIsFromCellExpanded:Bool = false
-    var bIsToCellExpanded:Bool = false
+    
+    private var bIsFromCellExpanded:Bool = false
+    private var bIsToCellExpanded:Bool = false
+    private var dateSelectedFrom:NSDate?
+    private var dateSelectedTo:NSDate?
+    
     
     @IBOutlet weak var switchNotification: UISwitch!
     @IBOutlet weak var labelNotificationsPerDay: UILabel!
     @IBOutlet weak var cellTimeFrom: UITableViewCell!
     @IBOutlet weak var datePickerFrom: UIDatePicker!
     @IBOutlet weak var datePickerTo: UIDatePicker!
+    @IBOutlet weak var labelFromDetail: UILabel!
+    @IBOutlet weak var labelToDetail: UILabel!
+    @IBOutlet weak var stepper: UIStepper!
     
-    @IBAction func notificationPerDayStepperValueChanged(sender: AnyObject)
+    
+    override func viewDidLoad()
     {
+        super.viewDidLoad()
+        
     }
     
-    @IBAction func notitifacationSwitchValueChanged(sender: AnyObject)
+    override func viewWillAppear(animated: Bool)
     {
+        super.viewWillAppear(animated)
+        self.configureUI()
     }
     
+    private func configureUI()
+    {
+        switchNotification.on = IWNotificationModel.sharedInstance.getIsNotifcationOnValue()
+        
+        self.updateNotificationPerDayText()
+        
+
+        self.updateFromDateLabel()
+        self.updateToDateLabel()
+    }
+    
+
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         var rowHeight: CGFloat = 44
@@ -82,5 +106,94 @@ class IWManageNotificationViewController: UITableViewController
             self.tableView.reloadData()
         }
     }
+    
+    @IBAction func notificationPerDayStepperValueChanged(sender: AnyObject)
+    {
+        let notifStepper: UIStepper = sender as! UIStepper
+        IWNotificationModel.sharedInstance.setNotificationPerDayCount(Int(notifStepper.value))
+        self.updateNotificationPerDayText()
+    }
+    
+    @IBAction func notitifacationSwitchValueChanged(sender: AnyObject)
+    {
+        let notifSwitch: UISwitch = sender as! UISwitch
+        IWNotificationModel.sharedInstance.setIsNotifcationOnValue(notifSwitch.on)
+    }
+    
+    
+    @IBAction func datePickerValueChanged(sender: AnyObject)
+    {
+        var dateSelected:NSDate = datePickerFrom.date
+        
+        if sender === datePickerTo
+        {
+            dateSelected = datePickerTo.date
+        }
+        
+        let calendar = NSCalendar.currentCalendar()
+        let hour = calendar.component(NSCalendarUnit.Hour, fromDate: dateSelected)
+        let minute = calendar.component(NSCalendarUnit.Minute, fromDate: dateSelected)
+        
+        
+        let dateFire: NSDateComponents = NSDateComponents()
+        let getCurrentYear = dateFire.year
+        let getCurrentMonth = dateFire.month
+        let getCurrentDay = dateFire.day
+        
+        dateFire.year = getCurrentYear
+        dateFire.month = getCurrentMonth
+        dateFire.day = getCurrentDay
+        dateFire.hour = hour
+        dateFire.minute = minute
+        dateFire.timeZone = NSTimeZone.defaultTimeZone()
+        
+        let calender: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        let date: NSDate = calender.dateFromComponents(dateFire)!
+        
+        if sender === datePickerFrom
+        {
+            IWNotificationModel.sharedInstance.setFromTime(date)
+            self.updateFromDateLabel()
+  
+        }
+        else if sender === datePickerTo
+        {
+            IWNotificationModel.sharedInstance.setToTime(date)
+            self.updateToDateLabel()
+        }
+    }
+    
+    private func updateNotificationPerDayText()
+    {
+        stepper.value = Double(IWNotificationModel.sharedInstance.getNotificationsPerDayCount())
+
+        let strPerDayNotif:String = String(format: "Notifications per day (%d)",IWNotificationModel.sharedInstance.getNotificationsPerDayCount())
+        labelNotificationsPerDay.text = strPerDayNotif
+    }
+    
+    private func updateFromDateLabel()
+    {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "hh : mm a"
+        
+        
+        let fromDate:NSDate = IWNotificationModel.sharedInstance.getFromTime()
+        datePickerFrom.date = fromDate
+        labelFromDetail.text = dateFormatter.stringFromDate(fromDate)
+    }
+    
+    private func updateToDateLabel()
+    {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "hh : mm a"
+        
+        let toDate:NSDate = IWNotificationModel.sharedInstance.getToTime()
+        datePickerTo.date = toDate
+        labelToDetail.text = dateFormatter.stringFromDate(toDate)
+    }
+    
 
 }
+
+
+
