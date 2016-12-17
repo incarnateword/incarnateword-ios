@@ -19,7 +19,7 @@ class IWNotificationModel:NSObject,WebServiceDelegate
     {
         super.init()
         
-        self .configureNotification()
+        self.configureNotification()
         
         let  arr:Array = self.retrieveQuotes()!
         
@@ -123,6 +123,45 @@ class IWNotificationModel:NSObject,WebServiceDelegate
     
     func configureNotification()
     {
+        self.cancelAllNotifications()
+        
+        let secondsBetween = abs(Int(self.getFromTime().timeIntervalSinceDate(self.getToTime())))
+        let minuteIncrementer:Int = Int(secondsBetween/60)/self.getNotificationsPerDayCount()
+        
+        print("Notification Interval In Minutes: \(minuteIncrementer)")
+        
+        let calendar = NSCalendar.currentCalendar()
+        let hour = calendar.component(NSCalendarUnit.Hour, fromDate: self.getFromTime())
+        let minute = calendar.component(NSCalendarUnit.Minute, fromDate: self.getFromTime())
+        
+        for index in 1...self.getNotificationsPerDayCount()
+        {
+            if index == 1
+            {
+                self.scheduleNotification(hour, forMinute: minute)
+            }
+            else
+            {
+                var nextHour = hour + Int((minute + minuteIncrementer*(index-1))/60)
+                
+                if nextHour > 24
+                {
+                    nextHour = nextHour - 24
+                }
+                
+                let nextMinute = Int((minute + minuteIncrementer*(index-1))%60)
+                
+                self.scheduleNotification(nextHour, forMinute: nextMinute)
+
+            }
+        }
+    }
+    
+    func scheduleNotification(forHour:Int, forMinute:Int)
+    {
+        let compoundString = "\(forHour):\(forMinute)"
+        print("Scheduled Local Notification: "+compoundString)
+        
         let dateFire: NSDateComponents = NSDateComponents()
         let getCurrentYear = dateFire.year
         let getCurrentMonth = dateFire.month
@@ -131,8 +170,8 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         dateFire.year = getCurrentYear
         dateFire.month = getCurrentMonth
         dateFire.day = getCurrentDay
-        dateFire.hour = 18
-        dateFire.minute = 31
+        dateFire.hour = forHour
+        dateFire.minute = forMinute
         dateFire.timeZone = NSTimeZone.defaultTimeZone()
         
         
@@ -141,7 +180,7 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         
         let localNotification = UILocalNotification()
         localNotification.fireDate = date // NSDate (timeIntervalSinceNow: 5)//date
-        localNotification.alertBody = "A new day has begun and a fresh layer on snow lies on the mountain! Can you beat your highscore?"
+        localNotification.alertBody = "Daily Quotes"
         localNotification.alertAction = "open"
         localNotification.repeatInterval = NSCalendarUnit.Day
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
@@ -163,6 +202,8 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(count, forKey: "NotificationsPerDayCount")
         defaults.synchronize()
+        
+        self.configureNotification()
     }
 
     //Is Notification On
@@ -181,6 +222,17 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(bIsOn, forKey: "IsNotifcationOnValue")
         defaults.synchronize()
+        
+        if bIsOn == false
+        {
+           self.cancelAllNotifications()
+        }
+    }
+    
+    func cancelAllNotifications()
+    {
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
     }
     
     //From Time
@@ -214,6 +266,8 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(date, forKey: "NotifcationFromDate")
         defaults.synchronize()
+        
+        self.configureNotification()
     }
     
     //To Time
@@ -247,5 +301,7 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(date, forKey: "NotifcationToDate")
         defaults.synchronize()
+        
+        self.configureNotification()
     }
 }

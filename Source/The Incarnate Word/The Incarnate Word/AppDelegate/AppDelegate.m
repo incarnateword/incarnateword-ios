@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "IWAppManager.h"
 #import "IWUIConstants.h"
+#import "The_Incarnate_Word-Swift.h"
 
 @interface AppDelegate ()
 @end
@@ -36,7 +37,7 @@
     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (locationNotification)
     {
-        // Set icon badge number to zero
+        [[IWNotificationModel sharedInstance] showRandomQuote];
         application.applicationIconBadgeNumber = 0;
     }
     
@@ -83,16 +84,28 @@
     
     if (state == UIApplicationStateActive) {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Daily Quotes"
                                                         message:notification.alertBody
                                                        delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Ok",nil];
+        alert.tag = 123;
         [alert show];
     }
     
     // Set icon badge number to zero
     application.applicationIconBadgeNumber = 0;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(alertView.tag == 123)
+    {
+        if([[alertView buttonTitleAtIndex:buttonIndex]isEqual:@"Ok"])
+        {
+            [[IWNotificationModel sharedInstance] showRandomQuote];
+        }
+    }
 }
 
 @end
