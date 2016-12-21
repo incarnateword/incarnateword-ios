@@ -486,7 +486,7 @@
         
         if(indexPath.row == 0)
         {
-            lblTitle.text       = @"Advance Search";
+            lblTitle.text       = @"Advanced Search";
         }
         else
         {

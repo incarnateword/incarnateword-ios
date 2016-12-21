@@ -84,7 +84,7 @@ class IWAdvanceSearchViewController: UIViewController,ContainerViewDelegate,Sele
         
         self.loadAllTOC()
         
-        self.navigationItem.title = "Advance Search"
+        self.navigationItem.title = "Advanced Search"
         
         let backButton = UIBarButtonItem(
             title: "",
