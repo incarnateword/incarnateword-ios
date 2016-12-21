@@ -43,10 +43,15 @@
         NSDictionary *userInfo = locationNotification.userInfo;
         
         NSData *data = [userInfo objectForKey:@"IWQuoteListItem"];
+        
         if(data)
         {
-            quoteListItem = [[IWNotificationModel sharedInstance] retrieveQuoteListItem:data].firstObject;
-            [[IWNotificationModel sharedInstance] handleNotificationAction:quoteListItem];
+            NSArray *arr = [[IWNotificationModel sharedInstance] retrieveQuoteListItem:data];
+            if(arr.count > 0)
+            {
+                quoteListItem = [[IWNotificationModel sharedInstance] retrieveQuoteListItem:data].firstObject;
+                [[IWNotificationModel sharedInstance] handleNotificationAction:quoteListItem];
+            }
         }
         
         application.applicationIconBadgeNumber = 0;
@@ -91,27 +96,45 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
+    quoteListItem = nil;
+    
     UIApplicationState state = [application applicationState];
 
     NSDictionary *userInfo = notification.userInfo;
     NSData *data = [userInfo objectForKey:@"IWQuoteListItem"];
     if(data)
     {
-        quoteListItem = [[IWNotificationModel sharedInstance] retrieveQuoteListItem:data].firstObject;
-    
-        if (state == UIApplicationStateActive)
+        NSArray *arr = [[IWNotificationModel sharedInstance] retrieveQuoteListItem:data];
+        
+        if(arr.count > 0)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:quoteListItem.strAuth
-                                                            message:quoteListItem.strSelText
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:@"Ok",nil];
-            alert.tag = 123;
-            [alert show];
-        }
-        else
-        {
-            [[IWNotificationModel sharedInstance] handleNotificationAction:quoteListItem];
+            quoteListItem = [[IWNotificationModel sharedInstance] retrieveQuoteListItem:data].firstObject;
+            
+            if (state == UIApplicationStateActive)
+            {
+                NSString *strTitle = quoteListItem.strAuth;
+                
+                if([strTitle isEqualToString:@"sa"])
+                {
+                    strTitle = @"Sri Aurobindo";
+                }
+                else if([strTitle isEqualToString:@"m"])
+                {
+                    strTitle = @"The Mother";
+                }
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle
+                                                                message:quoteListItem.strSelText
+                                                               delegate:self
+                                                      cancelButtonTitle:@"Cancel"
+                                                      otherButtonTitles:@"Ok",nil];
+                alert.tag = 123;
+                [alert show];
+            }
+            else
+            {
+                [[IWNotificationModel sharedInstance] handleNotificationAction:quoteListItem];
+            }
         }
     }
     // Set icon badge number to zero

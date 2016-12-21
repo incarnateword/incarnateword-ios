@@ -181,6 +181,17 @@ class IWNotificationModel:NSObject,WebServiceDelegate
     {
         let quoteListItem: IWQuoteListItem = self.getRandomQuoteItem()
         
+        var strTitle:String = quoteListItem.strAuth;
+        
+        if(strTitle == "sa")
+        {
+            strTitle = "Sri Aurobindo"
+        }
+        else if(strTitle == "m")
+        {
+            strTitle = "The Mother"
+        }
+        
         let compoundString = "\(forHour):\(forMinute)"
         print("Scheduled Local Notification: "+compoundString)
         
@@ -205,7 +216,7 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         
         if #available(iOS 8.2, *)
         {
-            localNotification.alertTitle = quoteListItem.strAuth
+            localNotification.alertTitle = strTitle
         }
         else
         {
