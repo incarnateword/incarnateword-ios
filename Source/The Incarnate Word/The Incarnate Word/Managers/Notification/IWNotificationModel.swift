@@ -58,7 +58,7 @@ class IWNotificationModel:NSObject,WebServiceDelegate
     
     func getRandomQuoteItem() -> IWQuoteListItem
     {
-        var quoteListItem: IWQuoteListItem?
+        var quoteListItem: IWQuoteListItem =  IWQuoteListItem()
         
         let  arr:Array = self.retrieveQuotes()!
                                 
@@ -68,11 +68,11 @@ class IWNotificationModel:NSObject,WebServiceDelegate
                                         
             if quoteItem.arrListItems.count > 0
             {
-               quoteListItem = quoteItem.arrListItems[self.randomNumber(0...quoteItem.arrListItems.count-1)] as? IWQuoteListItem
+               quoteListItem = quoteItem.arrListItems[self.randomNumber(0...quoteItem.arrListItems.count-1)] as! IWQuoteListItem
             }
         }
         
-        return quoteListItem!
+        return quoteListItem
     }
     
     func handleNotificationAction(quoteListItem:IWQuoteListItem)
@@ -179,7 +179,15 @@ class IWNotificationModel:NSObject,WebServiceDelegate
     
     func scheduleNotification(forHour:Int, forMinute:Int)
     {
-        let quoteListItem: IWQuoteListItem = self.getRandomQuoteItem()
+        guard let quoteListItem: IWQuoteListItem = self.getRandomQuoteItem() else
+        {
+            return
+        }
+        
+        guard (quoteListItem.strAuth != nil) else
+        {
+            return
+        }
         
         var strTitle:String = quoteListItem.strAuth;
         
