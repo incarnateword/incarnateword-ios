@@ -47,7 +47,8 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         arrQuoteItems = responseModel as! Array<IWQuoteItem>
         
         self.saveQuotes(arrQuoteItems)
-
+        
+        self.configureNotification()
     }
     
     func requestFailed(webService: BaseWebService!, error: WSError!)
