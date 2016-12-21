@@ -314,7 +314,8 @@ static IWUserActionManager* userActionManager = nil ;
     {
         _chapterViewController = nil;
         [[IWUserActionManager sharedManager] showChapterWithPath:[NSString stringWithFormat:@"%@/%@",_strVolumePath,strUrl]
-                                                    andItemIndex:iItemIndex andShouldForcePush:NO] ;
+                                                    andItemIndex:iItemIndex andShouldForcePush:NO
+                                               andParagraphIndex:0] ;
     }
 }
 
@@ -366,9 +367,8 @@ static IWUserActionManager* userActionManager = nil ;
     [[IWGUIManager sharedManager] rootViewPushViewController:volumeDetailsViewController forceOnRoot:NO animated:YES];
 }
 
--(void)showChapterWithPath:(NSString *) strPath andItemIndex:(int) iItemIndex andShouldForcePush:(BOOL) bShouldForcePush andShouldUpdateVolumeUrl:(BOOL) bShouldUpdateVolumeUrl
+-(void)showChapterWithPath:(NSString *) strPath andItemIndex:(int) iItemIndex andShouldForcePush:(BOOL) bShouldForcePush andShouldUpdateVolumeUrl:(BOOL) bShouldUpdateVolumeUrl andParagraphIndex:(int) iParagraphIndex
 {
-    
     if(bShouldUpdateVolumeUrl)
     {
         NSArray *arrPathComponent = [strPath componentsSeparatedByString:@"/"]; // e.g /sabcl/28/
@@ -379,11 +379,14 @@ static IWUserActionManager* userActionManager = nil ;
         }
     }
     
-    [self showChapterWithPath:strPath andItemIndex:iItemIndex andShouldForcePush:bShouldForcePush];
+    [self showChapterWithPath:strPath andItemIndex:iItemIndex andShouldForcePush:bShouldForcePush andParagraphIndex:iParagraphIndex];
 }
 
 
--(void)showChapterWithPath:(NSString *) strPath andItemIndex:(int) iItemIndex andShouldForcePush:(BOOL) bShouldForcePush;
+-(void)showChapterWithPath:(NSString *) strPath
+              andItemIndex:(int) iItemIndex
+        andShouldForcePush:(BOOL) bShouldForcePush
+         andParagraphIndex:(int) iParagraphIndex
 {
     if(bShouldForcePush)
         _chapterViewController = nil;
@@ -393,7 +396,7 @@ static IWUserActionManager* userActionManager = nil ;
         _chapterViewController.strChapterPath = strPath;
         _chapterViewController.iItemIndex = iItemIndex;
         _chapterViewController.offlineDetailChapterStructure = nil;
-        
+        _chapterViewController.iParagraphIndex = iParagraphIndex;
         [_chapterViewController setupVC];
     }
     else
@@ -402,6 +405,8 @@ static IWUserActionManager* userActionManager = nil ;
         _chapterViewController = [sbChapter instantiateViewControllerWithIdentifier:S_CHAP_CHAPTER_DETAILS_VC];
         _chapterViewController.strChapterPath = strPath;
         _chapterViewController.iItemIndex = iItemIndex;
+        _chapterViewController.iParagraphIndex = iParagraphIndex;
+
         [[IWGUIManager sharedManager] rootViewPushViewController:_chapterViewController forceOnRoot:NO animated:YES];
     }
 }

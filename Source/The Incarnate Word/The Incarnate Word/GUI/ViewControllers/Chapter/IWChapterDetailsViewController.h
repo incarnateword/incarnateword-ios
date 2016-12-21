@@ -13,6 +13,7 @@
 
 @property(nonatomic) NSString *strChapterPath;
 @property(nonatomic) int       iItemIndex;
+@property(nonatomic) int       iParagraphIndex;
 
 @property(nonatomic) IWDetailChapterStructure *offlineDetailChapterStructure;
 

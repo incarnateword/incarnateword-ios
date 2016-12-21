@@ -125,7 +125,7 @@ public class IWAdvanceSearchResultViewController: UIViewController, UITableViewD
     {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let searchItem:IWSearchItemStructure = arrSearchResult[indexPath.row] as! IWSearchItemStructure
-        IWUserActionManager.sharedManager().showChapterWithPath(searchItem.strChapterUrl, andItemIndex: 0, andShouldForcePush:true, andShouldUpdateVolumeUrl:true)
+        IWUserActionManager.sharedManager().showChapterWithPath(searchItem.strChapterUrl, andItemIndex: 0, andShouldForcePush:true, andShouldUpdateVolumeUrl:true, andParagraphIndex: 0)
     }
 
     // MARK: WebService Delegate

@@ -26,8 +26,16 @@
 
 
 -(void)showVolumeWithPath:(NSString *) strPath;
--(void)showChapterWithPath:(NSString *) strPath andItemIndex:(int) iItemIndex andShouldForcePush:(BOOL) bShouldForcePush;
--(void)showChapterWithPath:(NSString *) strPath andItemIndex:(int) iItemIndex andShouldForcePush:(BOOL) bShouldForcePush andShouldUpdateVolumeUrl:(BOOL) bShouldUpdateVolumeUrl;
+-(void)showChapterWithPath:(NSString *) strPath
+              andItemIndex:(int) iItemIndex
+        andShouldForcePush:(BOOL) bShouldForcePush
+         andParagraphIndex:(int) iParagraphIndex;
+
+-(void)showChapterWithPath:(NSString *) strPath
+              andItemIndex:(int) iItemIndex
+        andShouldForcePush:(BOOL) bShouldForcePush
+  andShouldUpdateVolumeUrl:(BOOL) bShouldUpdateVolumeUrl
+         andParagraphIndex:(int) iParagraphIndex;
 
 
 -(void)showChapterWithChapterStructure:(IWDetailChapterStructure*) detailChapterStructure;

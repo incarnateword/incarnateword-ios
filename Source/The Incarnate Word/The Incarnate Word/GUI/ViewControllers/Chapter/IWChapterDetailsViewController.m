@@ -105,7 +105,14 @@
     NSLog(@"WKWebView didFinishNavigation");
     
     [self stopLoadingAnimation];
-
+    
+    if (_iParagraphIndex > 0)
+    {
+        NSString *strScrllToPara = [NSString stringWithFormat:@"document.getElementsByTagName('p')[%d].scrollIntoView();",_iParagraphIndex];
+        _iParagraphIndex = 0;
+        [_wkWebView evaluateJavaScript:strScrllToPara completionHandler:nil];
+    }
+    
 }
 
 - (IBAction)btnPrevChapterPressed:(id)sender

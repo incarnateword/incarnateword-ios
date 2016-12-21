@@ -82,12 +82,25 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         {
             dispatch_async(dispatch_get_main_queue(),
             {
+                /*
+                 "ref": "http://incarnateword.in/sabcl/24/difficulties-of-the-path-vii#p13",
+                 */
+                
                 print(quoteListItem.strRefUrl)
                 
                 let strUrl: String =  quoteListItem.strRefUrl.stringByReplacingOccurrencesOfString("http://incarnateword.in/", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
                 let arrComponent : [String] = strUrl.componentsSeparatedByString("#")
+                var iParaIndex: Int = 0
+                if let paragraphIndex: String = arrComponent.last
+                {
+                    if paragraphIndex is String
+                    {
+                        let index:String = paragraphIndex.stringByReplacingOccurrencesOfString("p", withString: "")
+                        iParaIndex = Int(index)!
+                    }
+                }
                 
-                IWUserActionManager.sharedManager().showChapterWithPath(arrComponent[0], andItemIndex: 0, andShouldForcePush: true, andShouldUpdateVolumeUrl: true)
+                IWUserActionManager.sharedManager().showChapterWithPath(arrComponent[0], andItemIndex: 0, andShouldForcePush: true, andShouldUpdateVolumeUrl: true, andParagraphIndex: Int32(iParaIndex))
                 
                 //IWUserActionManager.sharedManager().showChapterWithPath("sabcl/24/difficulties-of-the-path-vii", andItemIndex: 0, andShouldForcePush: true, andShouldUpdateVolumeUrl: true)
 
