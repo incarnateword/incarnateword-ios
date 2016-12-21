@@ -21,7 +21,7 @@
 #import "IWGUIManager.h"
 
 
-@interface IWChapterDetailsViewController ()<WebServiceDelegate,UIScrollViewDelegate,InfoViewDelegate,UIWebViewDelegate>
+@interface IWChapterDetailsViewController ()<WebServiceDelegate,UIScrollViewDelegate,InfoViewDelegate,UIWebViewDelegate,WKNavigationDelegate>
 {
     IWChapterWebService                     *_chapterWebService;
     
@@ -81,6 +81,7 @@
 {
     _wkWebView = [WKWebView new];
     _wkWebView.scrollView.delegate = self;
+    _wkWebView.navigationDelegate = self;
     [_containerWebVIew addSubview:_wkWebView];
     
     
@@ -97,6 +98,13 @@
                                                                       options:0
                                                                       metrics:nil
                                                                         views:NSDictionaryOfVariableBindings(subview)]];
+
+}
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation
+{
+    NSLog(@"WKWebView didFinishNavigation");
+    
+    [self stopLoadingAnimation];
 
 }
 
@@ -471,10 +479,10 @@
            _detailChapterStructure.strTextParsed = strHtmlString;
             [[IWUserActionManager sharedManager] saveChapter:_detailChapterStructure];
            
-           dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void)
-           {
-               [self stopLoadingAnimation];
-           });
+//           dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void)
+//           {
+//               [self stopLoadingAnimation];
+//           });
            
            [self performSelectorOnMainThread:@selector(showButtonsBasedOnContent) withObject:nil waitUntilDone:NO];
 
@@ -488,10 +496,10 @@
                
                [_wkWebView loadHTMLString:_offlineDetailChapterStructure.strTextParsed baseURL:[IWUtility getCommonCssBaseURL]];
 
-               dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void)
-               {
-                   [self stopLoadingAnimation];
-               });
+//               dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void)
+//               {
+//                   [self stopLoadingAnimation];
+//               });
                
                [self performSelectorOnMainThread:@selector(showButtonsBasedOnContent) withObject:nil waitUntilDone:NO];
            });
