@@ -375,7 +375,7 @@ static IWUserActionManager* userActionManager = nil ;
         
         if (arrPathComponent.count >= 3)
         {
-            _strCurrentVolume = [NSString stringWithFormat:@"%@/%@",[arrPathComponent objectAtIndex:1],[arrPathComponent objectAtIndex:2]];
+            _strCurrentVolume = [NSString stringWithFormat:@"%@/%@",[arrPathComponent objectAtIndex:0],[arrPathComponent objectAtIndex:1]];
         }
     }
     
