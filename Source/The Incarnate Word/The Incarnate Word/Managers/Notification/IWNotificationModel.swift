@@ -56,33 +56,41 @@ class IWNotificationModel:NSObject,WebServiceDelegate
     
     // MARK: Show random quote
     
-    func showRandomQuote()
+    func getRandomQuoteItem() -> IWQuoteListItem
+    {
+        var quoteListItem: IWQuoteListItem?
+        
+        let  arr:Array = self.retrieveQuotes()!
+                                
+        if arr.count > 0
+        {
+            let quoteItem: IWQuoteItem = arr[self.randomNumber(0...arr.count-1)]
+                                        
+            if quoteItem.arrListItems.count > 0
+            {
+               quoteListItem = quoteItem.arrListItems[self.randomNumber(0...quoteItem.arrListItems.count-1)] as? IWQuoteListItem
+            }
+        }
+        
+        return quoteListItem!
+    }
+    
+    func handleNotificationAction(quoteListItem:IWQuoteListItem)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
-                       {
-                        dispatch_async(dispatch_get_main_queue(),
-                            {
-                                let  arr:Array = self.retrieveQuotes()!
-                                
-                                    if arr.count > 0
-                                    {
-                                        let quoteItem: IWQuoteItem = arr[self.randomNumber(0...arr.count-1)]
-                                        
-                                        if quoteItem.arrListItems.count > 0
-                                        {
-                                            let quoteListItem: IWQuoteListItem = quoteItem.arrListItems[self.randomNumber(0...quoteItem.arrListItems.count-1)] as! IWQuoteListItem
-                                            
-                                            print(quoteListItem.strRefUrl)
-                                            
-                                            let strUrl: String =  quoteListItem.strRefUrl.stringByReplacingOccurrencesOfString("http://incarnateword.in/", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-                                            let arrComponent : [String] = strUrl.componentsSeparatedByString("#")
-                                            
-                                            IWUserActionManager.sharedManager().showChapterWithPath(arrComponent[0], andItemIndex: 0, andShouldForcePush: true, andShouldUpdateVolumeUrl: true)
-                                            
-                                            //IWUserActionManager.sharedManager().showChapterWithPath("sabcl/24/difficulties-of-the-path-vii", andItemIndex: 0, andShouldForcePush: true, andShouldUpdateVolumeUrl: true)
-                                        }
-                                    }
-                        })
+        {
+            dispatch_async(dispatch_get_main_queue(),
+            {
+                print(quoteListItem.strRefUrl)
+                
+                let strUrl: String =  quoteListItem.strRefUrl.stringByReplacingOccurrencesOfString("http://incarnateword.in/", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                let arrComponent : [String] = strUrl.componentsSeparatedByString("#")
+                
+                IWUserActionManager.sharedManager().showChapterWithPath(arrComponent[0], andItemIndex: 0, andShouldForcePush: true, andShouldUpdateVolumeUrl: true)
+                
+                //IWUserActionManager.sharedManager().showChapterWithPath("sabcl/24/difficulties-of-the-path-vii", andItemIndex: 0, andShouldForcePush: true, andShouldUpdateVolumeUrl: true)
+
+            })
         })
     }
 
@@ -120,6 +128,18 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         
         return NSArray() as? [IWQuoteItem]
     }
+    
+    func archiveQuoteListItem(quoteListItem:[IWQuoteListItem]) -> NSData
+    {
+        let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(quoteListItem as NSArray)
+        return archivedObject
+    }
+    
+    func retrieveQuoteListItem(data:NSData) -> [IWQuoteListItem]?
+    {
+        return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [IWQuoteListItem]
+    }
+    
     
     func configureNotification()
     {
@@ -159,6 +179,8 @@ class IWNotificationModel:NSObject,WebServiceDelegate
     
     func scheduleNotification(forHour:Int, forMinute:Int)
     {
+        let quoteListItem: IWQuoteListItem = self.getRandomQuoteItem()
+        
         let compoundString = "\(forHour):\(forMinute)"
         print("Scheduled Local Notification: "+compoundString)
         
@@ -180,9 +202,21 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         
         let localNotification = UILocalNotification()
         localNotification.fireDate = date // NSDate (timeIntervalSinceNow: 5)//date
-        localNotification.alertBody = "Daily Quotes"
+        
+        if #available(iOS 8.2, *)
+        {
+            localNotification.alertTitle = quoteListItem.strAuth
+        }
+        else
+        {
+            // Fallback on earlier versions
+        }
+        
+        localNotification.alertBody = quoteListItem.strSelText
         localNotification.alertAction = "open"
         localNotification.repeatInterval = NSCalendarUnit.Day
+        localNotification.userInfo = ["IWQuoteListItem" : self.archiveQuoteListItem([quoteListItem])]
+        
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
     }
     

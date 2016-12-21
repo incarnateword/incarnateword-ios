@@ -12,6 +12,9 @@
 #import "The_Incarnate_Word-Swift.h"
 
 @interface AppDelegate ()
+{
+    IWQuoteListItem *quoteListItem;
+}
 @end
 
 @implementation AppDelegate
@@ -37,7 +40,15 @@
     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (locationNotification)
     {
-        [[IWNotificationModel sharedInstance] showRandomQuote];
+        NSDictionary *userInfo = locationNotification.userInfo;
+        
+        NSData *data = [userInfo objectForKey:@"IWQuoteListItem"];
+        if(data)
+        {
+            quoteListItem = [[IWNotificationModel sharedInstance] retrieveQuoteListItem:data].firstObject;
+            [[IWNotificationModel sharedInstance] handleNotificationAction:quoteListItem];
+        }
+        
         application.applicationIconBadgeNumber = 0;
     }
     
@@ -81,33 +92,39 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     UIApplicationState state = [application applicationState];
-    
-    if (state == UIApplicationStateActive) {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Daily Quotes"
-                                                        message:notification.alertBody
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Ok",nil];
-        alert.tag = 123;
-        [alert show];
-    }
-    else
+
+    NSDictionary *userInfo = notification.userInfo;
+    NSData *data = [userInfo objectForKey:@"IWQuoteListItem"];
+    if(data)
     {
-        [[IWNotificationModel sharedInstance] showRandomQuote];
-    }
+        quoteListItem = [[IWNotificationModel sharedInstance] retrieveQuoteListItem:data].firstObject;
     
+        if (state == UIApplicationStateActive)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:quoteListItem.strAuth
+                                                            message:quoteListItem.strSelText
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Ok",nil];
+            alert.tag = 123;
+            [alert show];
+        }
+        else
+        {
+            [[IWNotificationModel sharedInstance] handleNotificationAction:quoteListItem];
+        }
+    }
     // Set icon badge number to zero
     application.applicationIconBadgeNumber = 0;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(alertView.tag == 123)
+    if(alertView.tag == 123 && quoteListItem)
     {
         if([[alertView buttonTitleAtIndex:buttonIndex]isEqual:@"Ok"])
         {
-            [[IWNotificationModel sharedInstance] showRandomQuote];
+            [[IWNotificationModel sharedInstance] handleNotificationAction:quoteListItem];
         }
     }
 }
