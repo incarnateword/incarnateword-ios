@@ -330,6 +330,11 @@ class IWNotificationModel:NSObject,WebServiceDelegate
     
     func setFromTime(date:NSDate)
     {
+        if self.isValidTimeInterval(date, dateTwo: self.getToTime()) == false
+        {
+            return
+        }
+        
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(date, forKey: "NotifcationFromDate")
         defaults.synchronize()
@@ -365,10 +370,23 @@ class IWNotificationModel:NSObject,WebServiceDelegate
     
     func setToTime(date:NSDate)
     {
+        if self.isValidTimeInterval(date, dateTwo: self.getFromTime()) == false
+        {
+            return
+        }
+        
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(date, forKey: "NotifcationToDate")
         defaults.synchronize()
         
         self.configureNotification()
+    }
+    
+    private func isValidTimeInterval(dateOne:NSDate,dateTwo:NSDate)->Bool
+    {        
+        let secondsBetween = abs(Int(dateOne.timeIntervalSinceDate(dateTwo)))
+        let minuteDifference:Int = Int(secondsBetween/60)
+        
+        return minuteDifference >= 60
     }
 }
