@@ -110,7 +110,12 @@
     {
         NSString *strScrllToPara = [NSString stringWithFormat:@"document.getElementsByTagName('p')[%d].scrollIntoView();",_iParagraphIndex];
         _iParagraphIndex = 0;
-        [_wkWebView evaluateJavaScript:strScrllToPara completionHandler:nil];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(),
+        ^{
+            [_wkWebView evaluateJavaScript:strScrllToPara completionHandler:nil];
+        });
+        
     }
     
 }
