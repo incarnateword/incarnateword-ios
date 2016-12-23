@@ -172,7 +172,10 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         {
             if index == 1
             {
-                self.scheduleNotification(hour, forMinute: minute)
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
+                {
+                    self.scheduleNotification(hour, forMinute: minute)
+                })
             }
             else
             {
@@ -185,7 +188,11 @@ class IWNotificationModel:NSObject,WebServiceDelegate
                 
                 let nextMinute = Int((minute + minuteIncrementer*(index-1))%60)
                 
-                self.scheduleNotification(nextHour, forMinute: nextMinute)
+                
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
+                {
+                    self.scheduleNotification(nextHour, forMinute: nextMinute)
+                })
 
             }
         }
