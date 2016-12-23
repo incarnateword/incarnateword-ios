@@ -37,6 +37,7 @@
     NSString                                *_strDate;
     
     IWDetailChapterStructure                *_detailChapterStructure;
+    BOOL                                    _bIsWebviewLoadingWithActualData;
 }
 
 @property (nonatomic, assign) CGFloat                           lastContentOffset;
@@ -102,20 +103,24 @@
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation
 {
-    NSLog(@"WKWebView didFinishNavigation");
     
     [self stopLoadingAnimation];
     
-    if (_iParagraphIndex > 0)
+    if (_iParagraphIndex > 0 && _bIsWebviewLoadingWithActualData)
     {
+        NSLog(@"WKWebView didFinishNavigation, Jumping to para: %d",_iParagraphIndex);
+
         NSString *strScrllToPara = [NSString stringWithFormat:@"document.getElementsByTagName('p')[%d].scrollIntoView();",_iParagraphIndex];
         _iParagraphIndex = 0;
+        _bIsWebviewLoadingWithActualData = NO;
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(),
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
         ^{
-            [_wkWebView evaluateJavaScript:strScrllToPara completionHandler:nil];
+            dispatch_async(dispatch_get_main_queue(),
+            ^{
+                [_wkWebView evaluateJavaScript:strScrllToPara completionHandler:nil];
+            });
         });
-        
     }
     
 }
@@ -486,6 +491,7 @@
 
 //            [_webView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
            
+           _bIsWebviewLoadingWithActualData = YES;
            [_wkWebView loadHTMLString:strHtmlString baseURL:[IWUtility getCommonCssBaseURL]];
            
            _detailChapterStructure.strTextParsed = strHtmlString;
@@ -505,7 +511,7 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
            ^{
 //               [_webView loadHTMLString:_offlineDetailChapterStructure.strTextParsed baseURL:[IWUtility getCommonCssBaseURL]];
-               
+               _bIsWebviewLoadingWithActualData = YES;
                [_wkWebView loadHTMLString:_offlineDetailChapterStructure.strTextParsed baseURL:[IWUtility getCommonCssBaseURL]];
 
 //               dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void)
