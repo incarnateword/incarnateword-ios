@@ -110,7 +110,7 @@
     {
         NSLog(@"WKWebView didFinishNavigation, Jumping to para: %d",_iParagraphIndex);
 
-        NSString *strScrllToPara = [NSString stringWithFormat:@"document.getElementsByTagName('p')[%d].scrollIntoView();",_iParagraphIndex];
+        NSString *strScrllToPara = [NSString stringWithFormat:@"document.getElementsByTagName('p')[%d].scrollIntoView();",_iParagraphIndex-1];
         _iParagraphIndex = 0;
         _bIsWebviewLoadingWithActualData = NO;
         
