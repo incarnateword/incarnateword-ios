@@ -107,6 +107,25 @@ class IWManageNotificationViewController: UITableViewController
         }
     }
     
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
+    {
+        let headerLabel:UILabel = UILabel()
+        headerLabel.font = UIFont (name: FONT_TITLE_REGULAR, size: 16.0)
+        headerLabel.textColor = UIColor.darkGrayColor()
+
+        switch (section)
+        {
+            case 1:
+                
+                headerLabel.text = "    Time Interval (minimum 1 hour)";
+
+            default:
+                headerLabel.text = "";
+        }
+        
+        return headerLabel
+    }
+    
     @IBAction func notificationPerDayStepperValueChanged(sender: AnyObject)
     {
         let notifStepper: UIStepper = sender as! UIStepper
