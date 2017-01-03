@@ -18,7 +18,9 @@ class IWNotificationModel:NSObject,WebServiceDelegate
     override init()
     {
         super.init()
-        
+     
+//        NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: Selector(handleNotificationAction(IWQuoteListItem())), userInfo: nil, repeats: false)
+
         self.configureNotification()
         
         let  arr:Array = self.retrieveQuotes()!
@@ -76,8 +78,11 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         return quoteListItem
     }
     
-    func handleNotificationAction(quoteListItem:IWQuoteListItem)
+    @objc func handleNotificationAction(quoteListItem:IWQuoteListItem)
     {
+        
+//        IWUserActionManager.sharedManager().showChapterWithPath("sabcl/24/difficulties-of-the-path-vii", andItemIndex: 0, andShouldForcePush: true, andShouldUpdateVolumeUrl: true, andParagraphIndex: Int32(0),andShouldForceOnRoot: true )
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
         {
             dispatch_async(dispatch_get_main_queue(),
@@ -100,9 +105,9 @@ class IWNotificationModel:NSObject,WebServiceDelegate
                     }
                 }
                 
-                IWUserActionManager.sharedManager().showChapterWithPath(arrComponent[0], andItemIndex: 0, andShouldForcePush: true, andShouldUpdateVolumeUrl: true, andParagraphIndex: Int32(iParaIndex))
+                IWUserActionManager.sharedManager().showChapterWithPath(arrComponent[0], andItemIndex: 0, andShouldForcePush: true, andShouldUpdateVolumeUrl: true, andParagraphIndex: Int32(iParaIndex), andShouldForceOnRoot: true )
                 
-                //IWUserActionManager.sharedManager().showChapterWithPath("sabcl/24/difficulties-of-the-path-vii", andItemIndex: 0, andShouldForcePush: true, andShouldUpdateVolumeUrl: true)
+
 
             })
         })

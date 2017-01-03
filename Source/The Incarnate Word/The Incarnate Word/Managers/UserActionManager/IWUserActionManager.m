@@ -315,7 +315,7 @@ static IWUserActionManager* userActionManager = nil ;
         _chapterViewController = nil;
         [[IWUserActionManager sharedManager] showChapterWithPath:[NSString stringWithFormat:@"%@/%@",_strVolumePath,strUrl]
                                                     andItemIndex:iItemIndex andShouldForcePush:NO
-                                               andParagraphIndex:0] ;
+                                               andParagraphIndex:0 andShouldForceOnRoot:NO];
     }
 }
 
@@ -367,7 +367,12 @@ static IWUserActionManager* userActionManager = nil ;
     [[IWGUIManager sharedManager] rootViewPushViewController:volumeDetailsViewController forceOnRoot:NO animated:YES];
 }
 
--(void)showChapterWithPath:(NSString *) strPath andItemIndex:(int) iItemIndex andShouldForcePush:(BOOL) bShouldForcePush andShouldUpdateVolumeUrl:(BOOL) bShouldUpdateVolumeUrl andParagraphIndex:(int) iParagraphIndex
+-(void)showChapterWithPath:(NSString *) strPath
+              andItemIndex:(int) iItemIndex
+        andShouldForcePush:(BOOL) bShouldForcePush
+  andShouldUpdateVolumeUrl:(BOOL) bShouldUpdateVolumeUrl
+         andParagraphIndex:(int) iParagraphIndex
+      andShouldForceOnRoot:(BOOL) bShouldForceOnRoot
 {
     if(bShouldUpdateVolumeUrl)
     {
@@ -379,7 +384,7 @@ static IWUserActionManager* userActionManager = nil ;
         }
     }
     
-    [self showChapterWithPath:strPath andItemIndex:iItemIndex andShouldForcePush:bShouldForcePush andParagraphIndex:iParagraphIndex];
+    [self showChapterWithPath:strPath andItemIndex:iItemIndex andShouldForcePush:bShouldForcePush andParagraphIndex:iParagraphIndex andShouldForceOnRoot:bShouldForceOnRoot];
 }
 
 
@@ -387,11 +392,12 @@ static IWUserActionManager* userActionManager = nil ;
               andItemIndex:(int) iItemIndex
         andShouldForcePush:(BOOL) bShouldForcePush
          andParagraphIndex:(int) iParagraphIndex
+      andShouldForceOnRoot:(BOOL) bShouldForceOnRoot
 {
     if(bShouldForcePush)
         _chapterViewController = nil;
     
-    if(_chapterViewController)//In chapter view pressed Next/Prev -> No need to push just update UI
+    if(_chapterViewController && bShouldForceOnRoot == NO)//In chapter view pressed Next/Prev -> No need to push just update UI
     {
         _chapterViewController.strChapterPath = strPath;
         _chapterViewController.iItemIndex = iItemIndex;
@@ -407,7 +413,7 @@ static IWUserActionManager* userActionManager = nil ;
         _chapterViewController.iItemIndex = iItemIndex;
         _chapterViewController.iParagraphIndex = iParagraphIndex;
 
-        [[IWGUIManager sharedManager] rootViewPushViewController:_chapterViewController forceOnRoot:NO animated:YES];
+        [[IWGUIManager sharedManager] rootViewPushViewController:_chapterViewController forceOnRoot:bShouldForceOnRoot animated:YES];
     }
 }
 

@@ -29,13 +29,16 @@
 -(void)showChapterWithPath:(NSString *) strPath
               andItemIndex:(int) iItemIndex
         andShouldForcePush:(BOOL) bShouldForcePush
-         andParagraphIndex:(int) iParagraphIndex;
+         andParagraphIndex:(int) iParagraphIndex
+      andShouldForceOnRoot:(BOOL) bShouldForceOnRoot;
+
 
 -(void)showChapterWithPath:(NSString *) strPath
               andItemIndex:(int) iItemIndex
         andShouldForcePush:(BOOL) bShouldForcePush
   andShouldUpdateVolumeUrl:(BOOL) bShouldUpdateVolumeUrl
-         andParagraphIndex:(int) iParagraphIndex;
+         andParagraphIndex:(int) iParagraphIndex
+      andShouldForceOnRoot:(BOOL) bShouldForceOnRoot;
 
 
 -(void)showChapterWithChapterStructure:(IWDetailChapterStructure*) detailChapterStructure;
