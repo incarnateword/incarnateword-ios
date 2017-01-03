@@ -159,6 +159,12 @@ class IWNotificationModel:NSObject,WebServiceDelegate
     {
         self.cancelAllNotifications()
         
+        if self.getIsNotifcationOnValue() == false
+        {
+            print("Notification switch is OFF")
+            return
+        }
+        
         let secondsBetween = abs(Int(self.getFromTime().timeIntervalSinceDate(self.getToTime())))
         let minuteIncrementer:Int = Int(secondsBetween/60)/self.getNotificationsPerDayCount()
         
@@ -300,6 +306,10 @@ class IWNotificationModel:NSObject,WebServiceDelegate
         if bIsOn == false
         {
            self.cancelAllNotifications()
+        }
+        else
+        {
+            self.configureNotification()
         }
     }
     
