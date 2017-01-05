@@ -105,7 +105,7 @@ class IWNotificationModel:NSObject,WebServiceDelegate
                     }
                 }
                 
-                IWUserActionManager.sharedManager().showChapterWithPath(arrComponent[0], andItemIndex: 0, andShouldForcePush: true, andShouldUpdateVolumeUrl: true, andParagraphIndex: Int32(iParaIndex), andShouldForceOnRoot: true )
+                IWUserActionManager.sharedManager().showChapterWithPath(arrComponent[0], andItemIndex: 0, andShouldForcePush: true, andShouldUpdateVolumeUrl: true, andParagraphIndex: Int32(iParaIndex), andShouldForceOnRoot: false )
                 
 
 
