@@ -1267,18 +1267,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = JFJ7QVPY27;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "The Incarnate Word/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = in.incarnateword.internal;
+				PRODUCT_BUNDLE_IDENTIFIER = in.incarnateword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "493f64f5-9b1b-440d-8cc4-6df87fd169bd";
-				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Development";
+				PROVISIONING_PROFILE = "2a7d2e7f-6f57-4156-8149-0ffff3bedacf";
+				PROVISIONING_PROFILE_SPECIFIER = "The Incarnate Word (production)";
 				SWIFT_OBJC_BRIDGING_HEADER = "The Incarnate Word/GUI/ViewControllers/GUIUtility/CustomSpinner/The Incarnate Word-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 2.3;
@@ -1292,18 +1292,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Prashant Tiwari (VC4YJF9ZJ7)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Revealing Hour Creations Private Limited (JFJ7QVPY27)";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = JFJ7QVPY27;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "The Incarnate Word/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = in.incarnateword.internal;
+				PRODUCT_BUNDLE_IDENTIFIER = in.incarnateword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "493f64f5-9b1b-440d-8cc4-6df87fd169bd";
-				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Development";
+				PROVISIONING_PROFILE = "2a7d2e7f-6f57-4156-8149-0ffff3bedacf";
+				PROVISIONING_PROFILE_SPECIFIER = "The Incarnate Word (production)";
 				SWIFT_OBJC_BRIDGING_HEADER = "The Incarnate Word/GUI/ViewControllers/GUIUtility/CustomSpinner/The Incarnate Word-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
